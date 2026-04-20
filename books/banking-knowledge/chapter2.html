@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অধ্যায় ২ – অ্যাকাউন্ট নীতি | মিলন বিশ্বাস</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root { --bg: #fef9e8; --surface: #ffffff; --text: #1e2a3e; --text-sec: #4a627a; --accent: #c44536; --border: #e2dcd5; --highlight: #2c5f8a; }
+    body.dark { --bg: #1a1e2a; --surface: #2a2f3f; --text: #e0e0e0; --text-sec: #aaa; --border: #3a3f4f; --accent: #e07a5f; --highlight: #6c9ebf; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', 'Times New Roman', 'Noto Serif Bengali', serif; line-height: 1.6; padding: 20px; transition: background 0.3s, color 0.2s; }
+    .container { max-width: 1000px; margin: 0 auto; background: var(--surface); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; }
+    .book-header { background: linear-gradient(135deg, #2c5f8a 0%, #1e3a5f 100%); color: white; padding: 20px 30px; text-align: center; }
+    .controls { display: flex; justify-content: flex-end; gap: 12px; padding: 12px 20px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .toggle-btn { background: var(--surface); border: 1px solid var(--accent); padding: 6px 14px; border-radius: 30px; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
+    .toggle-btn:hover { background: var(--accent); color: white; }
+    .content { padding: 30px 40px; }
+    .lesson-title { font-size: 1.8rem; font-weight: bold; color: var(--highlight); border-left: 4px solid var(--accent); padding-left: 15px; margin: 20px 0 30px; }
+    h2 { font-size: 1.5rem; color: var(--accent); margin: 25px 0 12px; }
+    h3 { font-size: 1.2rem; color: var(--highlight); margin: 20px 0 8px; }
+    p { margin: 12px 0; }
+    ul { margin-left: 25px; margin-bottom: 15px; }
+    li { margin: 5px 0; }
+    .badge { background: #f0e9e0; padding: 4px 12px; border-radius: 30px; display: inline-block; margin: 4px; font-size: 0.85rem; color: #3a2a1f; }
+    .nav-buttons { display: flex; justify-content: space-between; margin: 40px 0 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .btn { background: var(--highlight); color: white; padding: 8px 20px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.2s; }
+    .btn:hover { background: var(--accent); transform: translateY(-2px); }
+    footer { text-align: center; padding: 20px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-sec); }
+    .lang-bn { display: block; }
+    .lang-en { display: none; }
+    body.en .lang-bn { display: none; }
+    body.en .lang-en { display: block; }
+    @media (max-width: 700px) { .content { padding: 20px; } .lesson-title { font-size: 1.4rem; } h2 { font-size: 1.3rem; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="book-header"><h1>📘 BASIC BANKING KNOWLEDGE</h1><p>Chapter 2</p></div>
+  <div class="controls"><button id="langToggle" class="toggle-btn">🌐 English</button><button id="themeToggle" class="toggle-btn">🌙 Dark</button></div>
+
+  <!-- বাংলা কন্টেন্ট -->
+  <div class="lang-bn">
+    <div class="content">
+      <div class="lesson-title">📖 অধ্যায় ২: অ্যাকাউন্ট নীতি</div>
+      <h2>📂 সেভিংস অ্যাকাউন্ট</h2>
+      <p>ভারতীয় নাগরিকদের জন্য। ভবিষ্যতের জন্য সঞ্চয় ও সুদ আয়ের উদ্দেশ্যে। সুদের হার ০.৭৫% থেকে ৭% (ব্যাংক ভেদে)। সর্বোচ্চ জমা সীমা: প্রতিদিন ২ লক্ষ টাকা, প্রতি আর্থিক বছরে ১০ লক্ষ টাকা (আয়কর এড়াতে)।</p>
+      <h3>বয়সভিত্তিক প্রকারভেদ</h3>
+      <ul><li>১০-১৮ বছর: ছাত্র সেভিংস অ্যাকাউন্ট (খোলা ও ব্যালেন্স রক্ষণাবেক্ষণ বিনামূল্যে)</li><li>১৮-৬০ বছর: সাধারণ সেভিংস অ্যাকাউন্ট (খোলার সময় ব্যালেন্স দরকার)</li><li>৬০+ বছর: সিনিয়র সিটিজেন সেভিংস অ্যাকাউন্ট</li></ul>
+      <h3>ন্যূনতম রক্ষণাবেক্ষণ ব্যালেন্স অনুযায়ী প্রকার</h3>
+      <ul><li>টাইপ ১: ৩,০০০ টাকা বা তার কম</li><li>টাইপ ২: ৫,০০০ টাকা</li><li>টাইপ ৩: ২৫,০০০ টাকা বা বেশি</li></ul>
+      <h3>প্রয়োজনীয় ডকুমেন্টস</h3>
+      <div><span class="badge">প্যান কার্ড</span> <span class="badge">আধার কার্ড</span> <span class="badge">ভোটার কার্ড</span> <span class="badge">কালার পাসপোর্ট সাইজ ছবি</span></div>
+      
+      <h2>💼 কারেন্ট অ্যাকাউন্ট</h2>
+      <p>ব্যবসায়িক লেনদেনের জন্য। লেনদেনের কোনো সীমা নেই। প্রয়োজনীয় ডকুমেন্টস: ট্রেড লাইসেন্স, ইনকর্পোরেশন সার্টিফিকেট, মেমোরেন্ডাম অফ অ্যাসোসিয়েশন, ইউটিলিটি বিল, পার্টনারশিপ ডিড ইত্যাদি।</p>
+      <ul><li>সেলফ এমপ্লয়েড নন-প্রফেশনাল (একক মালিকানা, পার্টনারশিপ, প্রাইভেট লিমিটেড)</li><li>সেলফ এমপ্লয়েড প্রফেশনাল (ডাক্তার, ইঞ্জিনিয়ার, চার্টার্ড অ্যাকাউন্ট্যান্ট)</li><li>যেকোনো সংস্থা (ক্লাব, ট্রাস্ট, স্কুল)</li></ul>
+      <p>ন্যূনতম রক্ষণাবেক্ষণ ব্যালেন্স: ৫,০০০ – ১০,০০০ টাকা (টাইপ ১), ৫০,০০০ টাকা (টাইপ ২), ৫,০০,০০০ টাকা (টাইপ ৩)।</p>
+
+      <h2>🌍 এনআরআই অ্যাকাউন্ট</h2>
+      <p>ভারতে জন্মগ্রহণ করে যারা বিদেশে বসবাস করছেন। দুই প্রকার: <strong>এনআরই</strong> (শুধু বৈদেশিক মুদ্রা, ট্যাক্স ফ্রি) ও <strong>এনআরও</strong> (বিদেশি ও দেশীয় মুদ্রা, করযোগ্য)। যৌথ অ্যাকাউন্ট খোলার নিয়ম ভিন্ন। প্রয়োজনীয় ডকুমেন্ট: পাসপোর্ট, ভিসা।</p>
+
+      <h2>📈 ডিম্যাট অ্যাকাউন্ট</h2>
+      <p>শেয়ার ডিজিটাল আকারে রাখার জন্য। সেভিংস অ্যাকাউন্টের সাথে লিংক করতে হয়। তিন প্রকার: রেগুলার (ভারতীয়), রিপ্যাট্রিয়েবল ও নন-রিপ্যাট্রিয়েবল (এনআরআই)। ডকুমেন্টস: প্যান, আধার, ক্যানসেল চেক বা পাসবুকের কপি।</p>
+
+      <h2>💼 স্যালারি অ্যাকাউন্ট</h2>
+      <p>শুধু নিয়োগকর্তার মাধ্যমে খোলা যায়। বেতন লেনদেনের জন্য। কোনো ব্যালেন্স প্রয়োজন হয় না। ডেবিট কার্ড, চেকবুক, মোবাইল ব্যাংকিং সুবিধা থাকে।</p>
+    </div>
+  </div>
+
+  <!-- ইংরেজি কন্টেন্ট -->
+  <div class="lang-en">
+    <div class="content">
+      <div class="lesson-title">📖 Chapter 2: Account Policies</div>
+      <h2>📂 Savings Account</h2>
+      <p>For Indian citizens. Interest rate 0.75% to 7% (varies by bank). Maximum deposit limit: ₹2L/day, ₹10L/year to avoid IT notice.</p>
+      <h3>Based on Age</h3>
+      <ul><li>10-18 yrs: Student Savings (zero balance)</li><li>18-60 yrs: General Savings</li><li>60+ yrs: Senior Citizen Savings</li></ul>
+      <h3>Based on Maintenance Balance</h3>
+      <ul><li>Type 1: ₹3,000 or less</li><li>Type 2: ₹5,000</li><li>Type 3: ₹25,000 or more</li></ul>
+      <h3>Documents</h3>
+      <div><span class="badge">PAN Card</span> <span class="badge">Aadhar Card</span> <span class="badge">Voter ID</span> <span class="badge">Color Passport Photo</span></div>
+
+      <h2>💼 Current Account</h2>
+      <p>For business purposes. Unlimited transactions. Additional documents: Trade License, Incorporation Certificate, MOA, Partnership Deed, Utility Bills. Customer types: self-employed non-professional, self-employed professional, organizations. Maintenance balance: ₹5,000-₹10,000 (Type1), ₹50,000 (Type2), ₹500,000 (Type3).</p>
+
+      <h2>🌍 NRI Account</h2>
+      <p>NRE (foreign currency, tax free) and NRO (both currencies, taxable). Joint account rules differ. Documents: Passport, Visa.</p>
+
+      <h2>📈 Demat Account</h2>
+      <p>To hold shares digitally. Must link with a savings account. Types: Regular, Repatriable, Non-Repatriable. Documents: PAN, Aadhar, cancelled cheque or passbook copy.</p>
+
+      <h2>💼 Salary Account</h2>
+      <p>Opened only by employer. Zero balance. Includes debit card, cheque book, mobile banking.</p>
+    </div>
+  </div>
+
+  <div class="nav-buttons" style="padding: 0 40px 30px 40px;">
+    <a href="index.html" class="btn">← সূচিপত্র</a>
+    <a href="chapter3.html" class="btn">অধ্যায় ৩ →</a>
+  </div>
+
+  <footer>
+    <p>© ২০২৬ Milan Biswas | <a href="https://banglagolpogalaxy.github.io/portfolio" style="color: var(--highlight);">মূল পোর্টফোলিওতে ফিরুন</a></p>
+  </footer>
+</div>
+
+<script>
+  const langToggle = document.getElementById("langToggle");
+  const themeToggle = document.getElementById("themeToggle");
+  function setLanguage(lang) {
+    if (lang === 'en') { document.body.classList.add('en'); langToggle.innerHTML = '🌐 বাংলা'; localStorage.setItem('bankingChapter2Lang', 'en');
+    } else { document.body.classList.remove('en'); langToggle.innerHTML = '🌐 English'; localStorage.setItem('bankingChapter2Lang', 'bn'); }
+  }
+  function setTheme(theme) {
+    if (theme === 'dark') { document.body.classList.add('dark'); themeToggle.innerHTML = '☀️ Light';
+    } else { document.body.classList.remove('dark'); themeToggle.innerHTML = '🌙 Dark'; }
+    localStorage.setItem('bankingChapter2Theme', theme);
+  }
+  const savedLang = localStorage.getItem('bankingChapter2Lang'); if (savedLang === 'en') setLanguage('en'); else setLanguage('bn');
+  const savedTheme = localStorage.getItem('bankingChapter2Theme'); if (savedTheme === 'dark') setTheme('dark'); else setTheme('light');
+  langToggle.addEventListener('click', () => { const isEn = document.body.classList.contains('en'); setLanguage(isEn ? 'bn' : 'en'); });
+  themeToggle.addEventListener('click', () => { const isDark = document.body.classList.contains('dark'); setTheme(isDark ? 'light' : 'dark'); });
+</script>
+</body>
+  </html>
