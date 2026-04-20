@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অধ্যায় ১ – ব্যাংকিং পণ্যের পরিচিতি | মিলন বিশ্বাস</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root {
+      --bg: #fef9e8;
+      --surface: #ffffff;
+      --text: #1e2a3e;
+      --text-sec: #4a627a;
+      --accent: #c44536;
+      --border: #e2dcd5;
+      --highlight: #2c5f8a;
+    }
+    body.dark {
+      --bg: #1a1e2a;
+      --surface: #2a2f3f;
+      --text: #e0e0e0;
+      --text-sec: #aaa;
+      --border: #3a3f4f;
+      --accent: #e07a5f;
+      --highlight: #6c9ebf;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', 'Times New Roman', 'Noto Serif Bengali', serif;
+      line-height: 1.6;
+      padding: 20px;
+      transition: background 0.3s, color 0.2s;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .book-header {
+      background: linear-gradient(135deg, #2c5f8a 0%, #1e3a5f 100%);
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+    }
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 12px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .toggle-btn {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .toggle-btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+    .content {
+      padding: 30px 40px;
+    }
+    .lesson-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--highlight);
+      border-left: 4px solid var(--accent);
+      padding-left: 15px;
+      margin: 20px 0 30px;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin: 25px 0 12px;
+    }
+    h3 {
+      font-size: 1.2rem;
+      color: var(--highlight);
+      margin: 20px 0 8px;
+    }
+    p {
+      margin: 12px 0;
+    }
+    ul {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+    li {
+      margin: 5px 0;
+    }
+    .badge {
+      background: #f0e9e0;
+      padding: 4px 12px;
+      border-radius: 30px;
+      display: inline-block;
+      margin: 4px;
+      font-size: 0.85rem;
+      color: #3a2a1f;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin: 40px 0 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .btn {
+      background: var(--highlight);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-sec);
+    }
+    .lang-bn { display: block; }
+    .lang-en { display: none; }
+    body.en .lang-bn { display: none; }
+    body.en .lang-en { display: block; }
+    @media (max-width: 700px) {
+      .content { padding: 20px; }
+      .lesson-title { font-size: 1.4rem; }
+      h2 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="book-header">
+    <h1>📘 BASIC BANKING KNOWLEDGE</h1>
+    <p>Chapter 1</p>
+  </div>
+  <div class="controls">
+    <button id="langToggle" class="toggle-btn">🌐 English</button>
+    <button id="themeToggle" class="toggle-btn">🌙 Dark</button>
+  </div>
+
+  <!-- বাংলা কন্টেন্ট -->
+  <div class="lang-bn">
+    <div class="content">
+      <div class="lesson-title">📖 অধ্যায় ১: ব্যাংকিং পণ্যের পরিচিতি</div>
+      <h2>🏦 গ্রাহকের দৃষ্টিকোণ</h2>
+      <p>ব্যাংক হলো এমন একটি প্রতিষ্ঠান যেখানে গ্রাহকরা তাদের আর্থিক লেনদেন করতে পারে, ঋণ ও অগ্রিম পেতে পারে, উচ্চ রিটার্নের জন্য বিনিয়োগ করতে পারে এবং টাকা নিরাপদে রাখতে পারে।</p>
+      <h2>💼 ব্যাংকারের দৃষ্টিকোণ</h2>
+      <p>ব্যাংকারের প্রাথমিক কাজ হলো অ্যাকাউন্ট খোলা, ঋণ ও অগ্রিম প্রদানের মাধ্যমে ব্যবসা তৈরি করা, গ্রাহকদের ফলোআপ করা এবং সুসম্পর্ক বজায় রাখা।</p>
+      <h2>📌 ব্যাংকের পণ্যসমূহ</h2>
+      <h3>📂 অ্যাকাউন্ট</h3>
+      <div>
+        <span class="badge">সেভিংস অ্যাকাউন্ট</span>
+        <span class="badge">কারেন্ট অ্যাকাউন্ট</span>
+        <span class="badge">এনআরআই অ্যাকাউন্ট</span>
+        <span class="badge">ডিম্যাট অ্যাকাউন্ট</span>
+        <span class="badge">স্যালারি অ্যাকাউন্ট</span>
+      </div>
+      <h3>💸 লোন (ফাইন্যান্স পলিসি)</h3>
+      <p><strong>আনসিকিউর লোন (মর্টগেজ ছাড়া):</strong> পার্সোনাল লোন, এডুকেশন লোন, কনজিউমার লোন</p>
+      <p><strong>সিকিউর লোন (মর্টগেজ বা সম্পত্তি বন্ধক):</strong> হোম লোন, বিজনেস লোন, অটো লোন, গোল্ড লোন, লোন এগেইনস্ট লাইফ ইন্সুরেন্স, লোন এগেইনস্ট এফডি, লোন এগেইনস্ট পিপিএফ</p>
+      <h3>📈 ইনভেস্টমেন্ট পলিসি</h3>
+      <div>
+        <span class="badge">ফিক্সড ডিপোজিট</span>
+        <span class="badge">রিকারিং ডিপোজিট</span>
+        <span class="badge">পাবলিক প্রভিডেন্ট ফান্ড</span>
+        <span class="badge">ইন্সুরেন্স</span>
+      </div>
+      <h3>🛡️ ইন্সুরেন্স পলিসি</h3>
+      <p><strong>লাইফ ইন্সুরেন্স</strong> (রিস্ক কভার ও সেভিংস) – এটি উপার্জনের মাধ্যম নয়।<br>
+      <strong>জেনারেল ইন্সুরেন্স</strong> (শুধু রিস্ক কভার) – যানবাহন, স্বাস্থ্য, মেরিন, এভিয়েশন, ফায়ার, মিসিং, এগ্রিকালচার, দুর্ঘটনা, রোড, ট্রাভেল ইন্সুরেন্স।</p>
+      <h3>⚙️ অন্যান্য সেবা</h3>
+      <div>
+        <span class="badge">চেক</span> <span class="badge">ক্রেডিট কার্ড</span> <span class="badge">ডেবিট কার্ড</span>
+        <span class="badge">এনইএফটি</span> <span class="badge">আরটিজিএস</span> <span class="badge">নেট ব্যাংকিং</span>
+        <span class="badge">মোবাইল ব্যাংকিং</span> <span class="badge">লকার</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ইংরেজি কন্টেন্ট -->
+  <div class="lang-en">
+    <div class="content">
+      <div class="lesson-title">📖 Chapter 1: Introduction to Banking Products</div>
+      <h2>🏦 Customer's Point of View</h2>
+      <p>A bank is an organization where customers can perform financial transactions, get loans and advances, invest for higher returns, and keep money safely.</p>
+      <h2>💼 Banker's Point of View</h2>
+      <p>The primary role of a banker is to generate business by opening accounts, providing loans and advances, following up with customers, and maintaining good relationships.</p>
+      <h2>📌 Banking Products</h2>
+      <h3>📂 Accounts</h3>
+      <div>
+        <span class="badge">Savings Account</span>
+        <span class="badge">Current Account</span>
+        <span class="badge">NRI Account</span>
+        <span class="badge">Demat Account</span>
+        <span class="badge">Salary Account</span>
+      </div>
+      <h3>💸 Loans (Finance Policies)</h3>
+      <p><strong>Unsecured Loan (Without Mortgage):</strong> Personal Loan, Education Loan, Consumer Loan</p>
+      <p><strong>Secured Loan (Mortgage or Loan Against Property):</strong> Home Loan, Business Loan, Auto Loan, Gold Loan, Loan Against Life Insurance, Loan Against FD, Loan Against PPF</p>
+      <h3>📈 Investment Policies</h3>
+      <div>
+        <span class="badge">Fixed Deposit</span>
+        <span class="badge">Recurring Deposit</span>
+        <span class="badge">Public Provident Fund</span>
+        <span class="badge">Insurance</span>
+      </div>
+      <h3>🛡️ Insurance Policies</h3>
+      <p><strong>Life Insurance</strong> (risk coverage & savings) – not an earning tool.<br>
+      <strong>General Insurance</strong> (only risk coverage) – Vehicle, Health, Marine, Aviation, Fire, Missing, Agriculture, Accidental, Road, Travel.</p>
+      <h3>⚙️ Other Services</h3>
+      <div>
+        <span class="badge">Cheque</span> <span class="badge">Credit Card</span> <span class="badge">Debit Card</span>
+        <span class="badge">NEFT</span> <span class="badge">RTGS</span> <span class="badge">Net Banking</span>
+        <span class="badge">Mobile Banking</span> <span class="badge">Locker</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-buttons" style="padding: 0 40px 30px 40px;">
+    <a href="index.html" class="btn">← সূচিপত্র</a>
+    <a href="chapter2.html" class="btn">অধ্যায় ২ →</a>
+  </div>
+
+  <footer>
+    <p>© ২০২৬ Milan Biswas | <a href="https://banglagolpogalaxy.github.io/portfolio" style="color: var(--highlight);">মূল পোর্টফোলিওতে ফিরুন</a></p>
+  </footer>
+</div>
+
+<script>
+  const langToggle = document.getElementById("langToggle");
+  const themeToggle = document.getElementById("themeToggle");
+
+  function setLanguage(lang) {
+    if (lang === 'en') {
+      document.body.classList.add('en');
+      langToggle.innerHTML = '🌐 বাংলা';
+      localStorage.setItem('bankingChapter1Lang', 'en');
+    } else {
+      document.body.classList.remove('en');
+      langToggle.innerHTML = '🌐 English';
+      localStorage.setItem('bankingChapter1Lang', 'bn');
+    }
+  }
+
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+      themeToggle.innerHTML = '☀️ Light';
+    } else {
+      document.body.classList.remove('dark');
+      themeToggle.innerHTML = '🌙 Dark';
+    }
+    localStorage.setItem('bankingChapter1Theme', theme);
+  }
+
+  const savedLang = localStorage.getItem('bankingChapter1Lang');
+  if (savedLang === 'en') setLanguage('en');
+  else setLanguage('bn');
+
+  const savedTheme = localStorage.getItem('bankingChapter1Theme');
+  if (savedTheme === 'dark') setTheme('dark');
+  else setTheme('light');
+
+  langToggle.addEventListener('click', () => {
+    const isEn = document.body.classList.contains('en');
+    setLanguage(isEn ? 'bn' : 'en');
+  });
+
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.body.classList.contains('dark');
+    setTheme(isDark ? 'light' : 'dark');
+  });
+</script>
+</body>
+                    </html>
