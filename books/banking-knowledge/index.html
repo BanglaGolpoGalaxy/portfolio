@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ব্যাংকিং নলেজ – সূচিপত্র | মিলন বিশ্বাস</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root {
+      --bg: #fef9e8;
+      --surface: #ffffff;
+      --text: #1e2a3e;
+      --text-sec: #4a627a;
+      --accent: #c44536;
+      --border: #e2dcd5;
+      --highlight: #2c5f8a;
+    }
+    body.dark {
+      --bg: #1a1e2a;
+      --surface: #2a2f3f;
+      --text: #e0e0e0;
+      --text-sec: #aaa;
+      --border: #3a3f4f;
+      --accent: #e07a5f;
+      --highlight: #6c9ebf;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', 'Times New Roman', 'Noto Serif Bengali', serif;
+      line-height: 1.5;
+      padding: 20px;
+      transition: background 0.3s, color 0.2s;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .book-header {
+      background: linear-gradient(135deg, #2c5f8a 0%, #1e3a5f 100%);
+      color: white;
+      padding: 30px 40px;
+      text-align: center;
+    }
+    .book-header h1 {
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 12px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .toggle-btn {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .toggle-btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+    .chapters {
+      padding: 30px 40px;
+    }
+    .chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .chapter-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      transition: 0.2s;
+    }
+    .chapter-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .chapter-card h2 {
+      color: var(--highlight);
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+    }
+    .chapter-card p {
+      color: var(--text-sec);
+      margin-bottom: 12px;
+    }
+    .btn {
+      background: var(--highlight);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-sec);
+    }
+    .lang-bn, .lang-en { display: block; }
+    body.en .lang-bn { display: none; }
+    body.en .lang-en { display: block; }
+    @media (max-width: 700px) {
+      .book-header h1 { font-size: 1.5rem; }
+      .chapters { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="book-header">
+    <h1>📘 BASIC BANKING KNOWLEDGE</h1>
+    <p>A BEGINNER'S GUIDE TO BANKING</p>
+  </div>
+  <div class="controls">
+    <button id="langToggle" class="toggle-btn">🌐 English</button>
+    <button id="themeToggle" class="toggle-btn">🌙 Dark Mode</button>
+  </div>
+  <!-- বাংলা সূচিপত্র -->
+  <div class="lang-bn">
+    <div class="chapters">
+      <div class="chapter-list">
+        <div class="chapter-card"><h2>📖 অধ্যায় ১: ব্যাংকিং পণ্যের পরিচিতি</h2><p>ব্যাংক কী, গ্রাহক ও ব্যাংকারের দৃষ্টিভঙ্গি, বিভিন্ন পণ্যের সংক্ষিপ্ত পরিচিতি।</p><a href="chapter1.html" class="btn">পড়ুন →</a></div>
+        <div class="chapter-card"><h2>📖 অধ্যায় ২: অ্যাকাউন্ট নীতি</h2><p>সেভিংস, কারেন্ট, এনআরআই, ডিম্যাট ও স্যালারি অ্যাকাউন্ট – বিস্তারিত যোগ্যতা ও ডকুমেন্টেশন।</p><a href="chapter2.html" class="btn">পড়ুন →</a></div>
+        <div class="chapter-card"><h2>📖 অধ্যায় ৩: আনসিকিউর লোন ও ফাইন্যান্স পলিসি</h2><p>পার্সোনাল লোন, এডুকেশন লোন, কনজিউমার লোন – যোগ্যতা, ক্যালকুলেশন ও ডকুমেন্ট।</p><a href="chapter3.html" class="btn">পড়ুন →</a></div>
+        <div class="chapter-card"><h2>📖 অধ্যায় ৪: সিকিউর লোন, ইনভেস্টমেন্ট ও ইন্সুরেন্স</h2><p>হোম লোন, বিজনেস লোন, গোল্ড লোন, ফিক্সড ডিপোজিট, পিপিএফ, ইন্সুরেন্স পলিসি।</p><a href="chapter4.html" class="btn">পড়ুন →</a></div>
+        <div class="chapter-card"><h2>📖 অধ্যায় ৫: ইএমআই ক্যালকুলেশন, ইন্টারভিউ প্রশ্ন ও ব্যাংকিং অ্যাওয়ারনেস</h2><p>ইএমআই ফর্মুলা, চাকরির ইন্টারভিউ প্রশ্নোত্তর, আরবিআর ও ব্যাংকের ইতিহাস।</p><a href="chapter5.html" class="btn">পড়ুন →</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- ইংরেজি সূচিপত্র -->
+  <div class="lang-en">
+    <div class="chapters">
+      <div class="chapter-list">
+        <div class="chapter-card"><h2>📖 Chapter 1: Introduction to Banking Products</h2><p>What is bank, customer and banker perspective, overview of banking products.</p><a href="chapter1.html" class="btn">Read →</a></div>
+        <div class="chapter-card"><h2>📖 Chapter 2: Account Policies</h2><p>Savings, Current, NRI, Demat, Salary accounts – eligibility and documentation.</p><a href="chapter2.html" class="btn">Read →</a></div>
+        <div class="chapter-card"><h2>📖 Chapter 3: Unsecured Loans & Finance Policies</h2><p>Personal Loan, Education Loan, Consumer Loan – eligibility, calculation, documents.</p><a href="chapter3.html" class="btn">Read →</a></div>
+        <div class="chapter-card"><h2>📖 Chapter 4: Secured Loans, Investment & Insurance</h2><p>Home Loan, Business Loan, Gold Loan, Fixed Deposit, PPF, Insurance policies.</p><a href="chapter4.html" class="btn">Read →</a></div>
+        <div class="chapter-card"><h2>📖 Chapter 5: EMI Calculation, Interview Q&A & Banking Awareness</h2><p>EMI formula, job interview questions, RBI history and banking facts.</p><a href="chapter5.html" class="btn">Read →</a></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>© ২০২৬ Milan Biswas | <a href="https://banglagolpogalaxy.github.io/portfolio" style="color: var(--highlight);">মূল পোর্টফোলিওতে ফিরুন</a></p>
+  </footer>
+</div>
+<script>
+  const langToggle = document.getElementById("langToggle");
+  const themeToggle = document.getElementById("themeToggle");
+  function setLanguage(lang) {
+    if (lang === 'en') {
+      document.body.classList.add('en');
+      langToggle.innerHTML = '🌐 বাংলা';
+      localStorage.setItem('bankingIndexLang', 'en');
+    } else {
+      document.body.classList.remove('en');
+      langToggle.innerHTML = '🌐 English';
+      localStorage.setItem('bankingIndexLang', 'bn');
+    }
+  }
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+      themeToggle.innerHTML = '☀️ Light Mode';
+    } else {
+      document.body.classList.remove('dark');
+      themeToggle.innerHTML = '🌙 Dark Mode';
+    }
+    localStorage.setItem('bankingIndexTheme', theme);
+  }
+  const savedLang = localStorage.getItem('bankingIndexLang');
+  if (savedLang === 'en') setLanguage('en');
+  else setLanguage('bn');
+  const savedTheme = localStorage.getItem('bankingIndexTheme');
+  if (savedTheme === 'dark') setTheme('dark');
+  else setTheme('light');
+  langToggle.addEventListener('click', () => {
+    const isEn = document.body.classList.contains('en');
+    setLanguage(isEn ? 'bn' : 'en');
+  });
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.body.classList.contains('dark');
+    setTheme(isDark ? 'light' : 'dark');
+  });
+</script>
+</body>
+  </html>
