@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>অধ্যায় ৩: আনসিকিউর লোন ও ইএমআই ক্যালকুলেশন | মিলন বিশ্বাস</title>
+  <meta name="title" content="অধ্যায় ৩ – আনসিকিউর লোন ও ইএমআই ক্যালকুলেশন | ব্যাংকিং নলেজ">
+  <meta name="description" content="পার্সোনাল লোন, এডুকেশন লোন, কনজিউমার লোন – যোগ্যতা, ডকুমেন্ট ও ইএমআই নির্ণয়ের পদ্ধতি। উদাহরণসহ EMI ক্যালকুলেশন শিখুন।">
+  <meta name="keywords" content="আনসিকিউর লোন, পার্সোনাল লোন, এডুকেশন লোন, কনজিউমার লোন, ইএমআই ক্যালকুলেশন, EMI ফর্মুলা">
+  <meta name="author" content="মিলন বিশ্বাস">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/books/banking-knowledge/chapter3.html">
+  <meta property="og:title" content="অধ্যায় ৩: আনসিকিউর লোন ও ইএমআই ক্যালকুলেশন">
+  <meta property="og:description" content="বিস্তারিত আনসিকিউর লোন ও ইএমআই গণনা পদ্ধতি।">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/avatar.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/books/banking-knowledge/chapter3.html">
+  <meta property="twitter:title" content="অধ্যায় ৩: আনসিকিউর লোন ও ইএমআই ক্যালকুলেশন">
+  <meta property="twitter:description" content="ইএমআই ফর্মুলা ও উদাহরণ।">
+  <meta property="twitter:image" content="https://banglagolpogalaxy.github.io/avatar.png">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/books/banking-knowledge/chapter3.html">
+  
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "আনসিকিউর লোন ও ইএমআই ক্যালকুলেশন",
+    "description": "পার্সোনাল, এডুকেশন ও কনজিউমার লোনের যোগ্যতা এবং ইএমআই গণনার নিয়ম।",
+    "author": {
+      "@type": "Person",
+      "name": "মিলন বিশ্বাস"
+    },
+    "inLanguage": "bn",
+    "isPartOf": {
+      "@type": "Book",
+      "name": "ব্যাংকিং নলেজ"
+    }
+  }
+  </script>
+  
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root {
+      --bg: #fef9e8;
+      --surface: #ffffff;
+      --text: #1e2a3e;
+      --text-sec: #4a627a;
+      --accent: #c44536;
+      --border: #e2dcd5;
+      --highlight: #2c5f8a;
+    }
+    body.dark {
+      --bg: #1a1e2a;
+      --surface: #2a2f3f;
+      --text: #e0e0e0;
+      --text-sec: #aaa;
+      --border: #3a3f4f;
+      --accent: #e07a5f;
+      --highlight: #6c9ebf;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', 'Times New Roman', 'Noto Serif Bengali', serif;
+      line-height: 1.6;
+      padding: 20px;
+      transition: background 0.3s, color 0.2s;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .book-header {
+      background: linear-gradient(135deg, #2c5f8a 0%, #1e3a5f 100%);
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+    }
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 12px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .toggle-btn {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .toggle-btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+    .content {
+      padding: 30px 40px;
+    }
+    .lesson-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--highlight);
+      border-left: 4px solid var(--accent);
+      padding-left: 15px;
+      margin: 20px 0 30px;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin: 25px 0 12px;
+    }
+    h3 {
+      font-size: 1.2rem;
+      color: var(--highlight);
+      margin: 20px 0 8px;
+    }
+    p {
+      margin: 12px 0;
+    }
+    ul {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+    li {
+      margin: 5px 0;
+    }
+    .badge {
+      background: #f0e9e0;
+      padding: 4px 12px;
+      border-radius: 30px;
+      display: inline-block;
+      margin: 4px;
+      font-size: 0.85rem;
+      color: #3a2a1f;
+    }
+    .formula-box {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin: 20px 0;
+      text-align: center;
+      font-family: monospace;
+      font-size: 1.1rem;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 40px 0 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .btn {
+      background: var(--highlight);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-sec);
+    }
+    .lang-bn { display: block; }
+    .lang-en { display: none; }
+    body.en .lang-bn { display: none; }
+    body.en .lang-en { display: block; }
+    @media (max-width: 700px) {
+      .content { padding: 20px; }
+      .lesson-title { font-size: 1.4rem; }
+      h2 { font-size: 1.3rem; }
+      .nav-buttons { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="book-header">
+    <h1>📘 BASIC BANKING KNOWLEDGE</h1>
+    <p>Chapter 3</p>
+  </div>
+  <div class="controls">
+    <button id="langToggle" class="toggle-btn">🌐 English</button>
+    <button id="themeToggle" class="toggle-btn">🌙 Dark</button>
+  </div>
+
+  <!-- বাংলা কন্টেন্ট -->
+  <div class="lang-bn">
+    <div class="content">
+      <div class="lesson-title">📖 অধ্যায় ৩: আনসিকিউর লোন ও ইএমআই ক্যালকুলেশন</div>
+      <h2>💸 আনসিকিউর লোন (মর্টগেজ ছাড়া)</h2>
+      <p><strong>পার্সোনাল লোন</strong> – জরুরি চিকিৎসা, শিক্ষা, ভ্রমণ, বিবাহ ইত্যাদি। যোগ্যতা: নিয়মিত আয়, ভালো ট্রানজেকশন ও লোন রিপেমেন্ট ইতিহাস। বয়স ২৩-৬৫ বছর। ডিউরেশন ১২-৬০ মাস। ক্রেডিট স্কোর ৭৫০+। লোনের যোগ্যতা: মাসিক আয়ের সর্বোচ্চ ৫০% EMI-তে কাটা যায়। উদাহরণ: ₹২০,০০০ আয়ে সর্বোচ্চ EMI ₹১০,০০০ → ৬০ মাসে লোন ₹৬,০০,০০০ (সুদের আগে)।</p>
+      <p><strong>এডুকেশন লোন</strong> – শুধু পেশাগত পড়াশোনার জন্য। ন্যূনতম যোগ্যতা এইচএসসি। বয়স ১৮-৪৫ বছর। ছাত্র আবেদনকারী, পিতা/মাতা সহ-আবেদনকারী। ভারতের জন্য সর্বোচ্চ ₹১০ লক্ষ, বিদেশের জন্য ₹২০ লক্ষ। ডিউরেশন ১৫ বছর পর্যন্ত। কভারেজ: কোর্স ফি, থাকার খরচ, বিদেশ ভ্রমণ ভাতা।</p>
+      <p><strong>কনজিউমার লোন</strong> – পণ্য ক্রয়ের জন্য (টিভি, ফ্রিজ, মোবাইল, ল্যাপটপ ইত্যাদি)। যেকোনো ব্যাংক বা এনবিএফসি আয়ের ভিত্তিতে দেয়। ক্রেডিট স্কোর ৬৫০+। বয়স সর্বনিম্ন ১৮ বছর।</p>
+
+      <h2>🧮 ইএমআই ক্যালকুলেশন (Equated Monthly Installment)</h2>
+      <p>ইএমআই হলো নির্দিষ্ট সুদের হারে মাসিক কিস্তি। সূত্র:</p>
+      <div class="formula-box">
+        <strong>EMI = P × r × (1+r)<sup>n</sup> / ((1+r)<sup>n</sup> – 1)</strong><br>
+        যেখানে, P = মূলধন, r = মাসিক সুদের হার (বার্ষিক সুদ / 12 / 100), n = মোট মাস সংখ্যা।
+      </div>
+      <p><strong>উদাহরণ:</strong> মূলধন ₹৪,৫০,০০০, বার্ষিক সুদ ৯.৫%, সময় ৫ বছর (৬০ মাস)।<br>
+      সরল পদ্ধতি: মোট সুদ = ৪,৫০,০০০ × ৯.৫% × ৫ = ₹২,১৩,৭৫০; মোট পরিশোধ্য = ₹৬,৬৩,৭৫০; EMI = ৬,৬৩,৭৫০ / ৬০ = ₹১১,০৬২.৫০ (প্রায়)।<br>
+      (উপরের সঠিক EMI সূত্রে সামান্য ভিন্নতা আসতে পারে, তবে ব্যাংকগুলি এই পদ্ধতি বা রিডিউসিং ব্যালেন্স পদ্ধতি ব্যবহার করে।)</p>
+      <p><strong>ক্রেডিট স্কোর:</strong> সময়মতো EMI পরিশোধ করলে ক্রেডিট স্কোর বাড়ে। স্কোর ৭৫০+ হলে লোন সহজে অনুমোদিত হয়।</p>
+    </div>
+  </div>
+
+  <!-- ইংরেজি কন্টেন্ট -->
+  <div class="lang-en">
+    <div class="content">
+      <div class="lesson-title">📖 Chapter 3: Unsecured Loans & EMI Calculation</div>
+      <h2>💸 Unsecured Loans (Without Mortgage)</h2>
+      <p><strong>Personal Loan:</strong> For emergency medical, education, travel, wedding etc. Eligibility: regular income, good transaction history. Age 23-65 years. Duration 12-60 months. Credit score 750+. Loan amount calculation: max 50% of monthly income as EMI. Example: ₹20,000 income → max EMI ₹10,000 → for 60 months max loan ₹6,00,000 (before interest).</p>
+      <p><strong>Education Loan:</strong> Only for professional studies. Min qualification HSC. Age 18-45 years. Student as applicant, parent as co-applicant. Max loan ₹10 lakh (India), ₹20 lakh (abroad). Duration up to 15 years. Covers course fee, accommodation, travel allowance.</p>
+      <p><strong>Consumer Loan:</strong> For product purchase (TV, fridge, mobile, laptop etc.). Given by banks/NBFCs based on income. Credit score 650+. Min age 18 years.</p>
+
+      <h2>🧮 EMI Calculation (Equated Monthly Installment)</h2>
+      <p>EMI is the monthly installment including interest. Formula:</p>
+      <div class="formula-box">
+        <strong>EMI = P × r × (1+r)<sup>n</sup> / ((1+r)<sup>n</sup> – 1)</strong><br>
+        Where, P = Principal, r = monthly interest rate (annual rate / 12 / 100), n = number of months.
+      </div>
+      <p><strong>Example:</strong> Principal ₹4,50,000, annual interest 9.5%, tenure 5 years (60 months).<br>
+      Simple method: Total interest = 4,50,000 × 9.5% × 5 = ₹2,13,750; Total payable = ₹6,63,750; EMI = 6,63,750 / 60 = ₹11,062.50 (approx).<br>
+      (Actual EMI using reducing balance method may differ slightly.)</p>
+      <p><strong>Credit Score:</strong> Timely EMI payment increases credit score. Score 750+ makes loan approval easier.</p>
+    </div>
+  </div>
+
+  <div class="nav-buttons" style="padding: 0 40px 30px 40px;">
+    <a href="chapter2.html" class="btn">← অধ্যায় ২</a>
+    <a href="index.html" class="btn">সূচিপত্র</a>
+    <a href="chapter4.html" class="btn">অধ্যায় ৪ →</a>
+  </div>
+
+  <footer>
+    <p>© ২০২৬ Milan Biswas | <a href="https://banglagolpogalaxy.github.io/portfolio" style="color: var(--highlight);">মূল পোর্টফোলিওতে ফিরুন</a></p>
+  </footer>
+</div>
+
+<script>
+  const langToggle = document.getElementById("langToggle");
+  const themeToggle = document.getElementById("themeToggle");
+
+  function setLanguage(lang) {
+    if (lang === 'en') {
+      document.body.classList.add('en');
+      langToggle.innerHTML = '🌐 বাংলা';
+      localStorage.setItem('bankingChapter3Lang', 'en');
+    } else {
+      document.body.classList.remove('en');
+      langToggle.innerHTML = '🌐 English';
+      localStorage.setItem('bankingChapter3Lang', 'bn');
+    }
+  }
+
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+      themeToggle.innerHTML = '☀️ Light';
+    } else {
+      document.body.classList.remove('dark');
+      themeToggle.innerHTML = '🌙 Dark';
+    }
+    localStorage.setItem('bankingChapter3Theme', theme);
+  }
+
+  const savedLang = localStorage.getItem('bankingChapter3Lang');
+  if (savedLang === 'en') setLanguage('en');
+  else setLanguage('bn');
+
+  const savedTheme = localStorage.getItem('bankingChapter3Theme');
+  if (savedTheme === 'dark') setTheme('dark');
+  else setTheme('light');
+
+  langToggle.addEventListener('click', () => {
+    const isEn = document.body.classList.contains('en');
+    setLanguage(isEn ? 'bn' : 'en');
+  });
+
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.body.classList.contains('dark');
+    setTheme(isDark ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
