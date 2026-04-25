@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://banglagolpogalaxy.github.io/portfolio/sitemap.html
