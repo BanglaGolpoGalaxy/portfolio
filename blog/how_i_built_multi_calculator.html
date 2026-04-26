@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags (English - default for crawlers) -->
+  <title>How I Built a Multi-Calculator Tool | Milan Biswas</title>
+  <meta name="title" content="How I Built a Multi-Calculator Tool - Step by Step Guide">
+  <meta name="description" content="A complete guide to building an all-in-one multi-calculator using HTML, CSS, JavaScript. Includes basic calculator, trigonometry, geometry, unit converter, EMI, BMI and more. Perfect for beginners.">
+  <meta name="keywords" content="multi-calculator, web development, HTML, CSS, JavaScript, beginner project, EMI calculator, BMI calculator, unit converter, trigonometry, geometry, flower market calculator">
+  <meta name="author" content="Milan Biswas">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Bengali Meta Tags -->
+  <meta name="description" lang="bn" content="HTML, CSS, JavaScript দিয়ে একটি অল-ইন-ওয়ান মাল্টি-ক্যালকুলেটর তৈরির ধাপে ধাপে গাইড। সাধারণ ক্যালকুলেটর, ত্রিকোণমিতি, জ্যামিতি, ইউনিট কনভার্টার, ইএমআই, বিএমআই সহ সবকিছু। বিগিনারদের জন্য উপযোগী।">
+  <meta name="keywords" lang="bn" content="মাল্টি-ক্যালকুলেটর, ওয়েব ডেভেলপমেন্ট, এইচটিএমএল, সিএসএস, জাভাস্ক্রিপ্ট, বিগিনার প্রোজেক্ট, ইএমআই ক্যালকুলেটর, বিএমআই ক্যালকুলেটর, ইউনিট কনভার্টার, ত্রিকোণমিতি, জ্যামিতি, ফুল বাজার ক্যালকুলেটর">
+  
+  <!-- Hindi Meta Tags -->
+  <meta name="description" lang="hi" content="HTML, CSS, JavaScript के साथ ऑल-इन-वन मल्टी-कैलकुलेटर बनाने की चरण-दर-चरण गाइड। बेसिक कैलकुलेटर, त्रिकोणमिति, ज्यामिति, यूनिट कन्वर्टर, ईएमआई, बीएमआई और भी बहुत कुछ। शुरुआती लोगों के लिए उपयुक्त।">
+  <meta name="keywords" lang="hi" content="मल्टी-कैलकुलेटर, वेब डेवलपमेंट, एचटीएमएल, सीएसएस, जावास्क्रिप्ट, शुरुआती प्रोजेक्ट, ईएमआई कैलकुलेटर, बीएमआई कैलकुलेटर, यूनिट कन्वर्टर, त्रिकोणमिति, ज्यामिति">
+  
+  <!-- Open Graph / Facebook (শেয়ারিং এর জন্য) -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/how-i-built-multicalc.html">
+  <meta property="og:title" content="How I Built a Multi-Calculator Tool">
+  <meta property="og:description" content="Step by step guide to building an all-in-one multi-calculator using HTML, CSS, JavaScript. Perfect for beginners.">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/multi_cal_blog_card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/how-i-built-multicalc.html">
+  <meta property="twitter:title" content="How I Built a Multi-Calculator Tool">
+  <meta property="twitter:description" content="Complete guide to building a multi-calculator with HTML, CSS, JavaScript.">
+  <meta property="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/multi_cal_blog_card.jpg">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/how-i-built-multicalc.html">
+  
+  <link rel="icon" href="https://banglagolpogalaxy.github.io/avatar.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-sec: #475569;
+      --accent: #2563eb;
+      --border: #e2e8f0;
+    }
+    body.dark {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text: #e2e8f0;
+      --text-sec: #94a3b8;
+      --accent: #38bdf8;
+      --border: #334155;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Noto Sans Bengali', 'Noto Sans Devanagari', system-ui, sans-serif;
+      line-height: 1.7;
+      transition: background 0.3s, color 0.2s;
+      padding: 20px;
+    }
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    h1 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--accent);
+      padding-left: 18px;
+    }
+    .meta {
+      color: var(--text-sec);
+      font-size: 0.85rem;
+      margin-bottom: 30px;
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 1.4rem;
+    }
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    p, li {
+      margin-bottom: 12px;
+    }
+    code {
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+    }
+    pre {
+      background: var(--bg);
+      padding: 16px;
+      border-radius: 16px;
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border);
+    }
+    .btn {
+      background: var(--accent);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-sec);
+    }
+    /* ভাষা টগল বাটন – শুধু লেখা, কোনো পতাকা নেই */
+    .lang-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 40px;
+      padding: 5px 14px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    /* ভাষার কন্টেন্ট */
+    .lang-bn { display: block; }
+    .lang-en { display: none; }
+    .lang-hi { display: none; }
+    body.bn .lang-bn { display: block; }
+    body.bn .lang-en { display: none; }
+    body.bn .lang-hi { display: none; }
+    body.en .lang-bn { display: none; }
+    body.en .lang-en { display: block; }
+    body.en .lang-hi { display: none; }
+    body.hi .lang-bn { display: none; }
+    body.hi .lang-en { display: none; }
+    body.hi .lang-hi { display: block; }
+    /* কমেন্ট সেকশন – সবসময় লাইট মোড */
+    .comments-section {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .comments-section h3 {
+      color: #2563eb;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+    body.dark .comments-section {
+      background: #ffffff;
+      border-color: #e2e8f0;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 20px; }
+      h1 { font-size: 1.5rem; }
+      .meta { gap: 12px; }
+      .lang-bar { justify-content: center; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body class="bn">
+<div class="container">
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="bn">বাংলা</button>
+    <button class="lang-btn" data-lang="en">English</button>
+    <button class="lang-btn" data-lang="hi">हिंदी</button>
+    <button id="themeToggle" style="margin-left: auto; background: var(--surface); border: 1px solid var(--accent); border-radius: 40px; padding: 5px 12px; cursor: pointer;">🌙</button>
+  </div>
+
+  <!-- বাংলা কন্টেন্ট -->
+  <div class="lang-bn">
+    <h1>🧮 কিভাবে আমি একটি মাল্টি-ক্যালকুলেটর টুল বানালাম</h1>
+    <div class="meta">
+      <span>📅 ২৫ এপ্রিল, ২০২৬</span>
+      <span>⏱️ পড়তে ৬ মিনিট</span>
+      <span>✍️ মিলন বিশ্বাস</span>
+    </div>
+    <p>আমি যখন প্রথম ওয়েব ডেভেলপমেন্ট শেখা শুরু করি, তখন ভাবতাম শুধু দেখতে সুন্দর ওয়েবসাইট বানালেই হয়। কিন্তু আসল চ্যালেঞ্জ শুরু হয় যখন আমি নিজের জন্য কিছু <strong>প্র্যাকটিক্যাল টুল</strong> তৈরি করতে চাইলাম। এই ব্লগ পোস্টে আমি শেয়ার করব কিভাবে আমি একটি অল-ইন-ওয়ান মাল্টি-ক্যালকুলেটর তৈরি করেছি – যেখানে আছে সাধারণ ক্যালকুলেটর, ত্রিকোণমিতি, জ্যামিতি, ইউনিট কনভার্টার, ফুল বাজার, ইএমআই, বিএমআই – সব একসাথে!</p>
+
+    <h2>🎯 কেন এই প্রোজেক্ট?</h2>
+    <p>আমার কাছে সবসময়ই মনে হতো, একাধিক ছোট ছোট ক্যালকুলেটর টুল থাকার চেয়ে একটি বড় টুল থাকলে সেটা বেশি কার্যকরী হয়। আপনি যখন ফুল কিনতে যান, তখন ফুল বাজারের হিসাব দরকার; আবার ব্যাংকে লোন নিতে গেলে ইএমআই; শরীরের যত্ন নিতে গেলে বিএমআই। এছাড়াও দৈনন্দিন জীবনে দৈর্ঘ্য, ওজন, তাপমাত্রা কনভার্ট করতে হয়। তাই আমি সবগুলো এক জায়গায় এনে দিলাম।</p>
+
+    <h2>🛠️ প্রযুক্তি যা ব্যবহার করেছি</h2>
+    <ul>
+      <li><strong>HTML5</strong> → কাঠামো তৈরি করতে</li>
+      <li><strong>CSS3</strong> → ডিজাইন ও ডার্ক/লাইট মোডের জন্য</li>
+      <li><strong>জাভাস্ক্রিপ্ট</strong> → সব হিসাব ও ফিচারের জন্য</li>
+      <li><strong>GitHub Pages</strong> → ফ্রিতে হোস্ট করতে</li>
+    </ul>
+    <p>কোনো ব্যাকএন্ড নেই, কোনো ডাটাবেস নেই – পুরো অফলাইনে কাজ করে। শুধু HTML, CSS আর JS-ই যথেষ্ট ছিল।</p>
+
+    <h2>📐 ক্যালকুলেটরের বিভিন্ন অংশ</h2>
+    
+    <h3>১. সাধারণ ক্যালকুলেটর</h3>
+    <p>সবচেয়ে ক্লাসিক পার্ট। এখানে যোগ, বিয়োগ, গুণ, ভাগ, বর্গমূল, শতকরা – সবকিছু আছে। আমি বাটনগুলোকে বাজারের ক্যালকুলেটরের মত করে সাজিয়েছি। বিশেষ করে <strong>ব্র্যাকেট ( ) [ ] { }</strong> দিয়েছি যাতে বড় এক্সপ্রেশন একসাথে করা যায়। আর ভালো লাগার জন্য + বাটনটাকে বড় করে দিয়েছি।</p>
+    <pre><code>// ইভাল না করে নিজের সেফ ইভাল ফাংশন
+function safeEval(expr) {
+  let processed = expr.replace(/×/g, '*').replace(/÷/g, '/');
+  return Function('"use strict";return (' + processed + ')')();
+}</code></pre>
+    <p>📌 চ্যালেঞ্জ: ইউজার যখন `eval()` ব্যবহার করে, তখন সিকিউরিটি ইস্যু হতে পারে। তাই আমি কেবল ক্যালকুলেটরের বাটন দিয়েই ইনপুট নিয়েছি, ইউজার সরাসরি স্ক্রিপ্ট দিতে পারে না।</p>
+
+    <h3>২. ত্রিকোণমিতি</h3>
+    <p>মাধ্যমিক অঙ্কের জন্য sin, cos, tan এবং তাদের ইনভার্স ফাংশন। ডিগ্রি ইনপুট নিয়ে রেডিয়ানে কনভার্ট করে জাভাস্ক্রিপ্টের <code>Math.sin()</code> ইত্যাদি ব্যবহার করেছি। ফলাফল দশমিক ও ভগ্নাংশ – উভয় আকারে দেখায়।</p>
+    <pre><code>function sin(deg) {
+  let rad = deg * Math.PI / 180;
+  return Math.sin(rad);
+}</code></pre>
+
+    <h3>৩. জ্যামিতি (পরিমিতি)</h3>
+    <p>বর্গ, আয়তক্ষেত্র, বৃত্ত, ঘনক, গোলক, ত্রিভুজ – এদের ক্ষেত্রফল, আয়তন, কর্ণ, অতিভুজ ইত্যাদি বের করার জন্য ফর্মুলা বসিয়েছি। বিশেষ করে বিষমবাহু ত্রিভুজের ক্ষেত্রফলের জন্য হেরনের সূত্র এবং সমকোণী ত্রিভুজের জন্য পিথাগোরাসের উপপাদ্য ব্যবহার করেছি।</p>
+    <pre><code>// হেরনের সূত্র
+let s = (a+b+c)/2;
+let area = Math.sqrt(s*(s-a)*(s-b)*(s-c));</code></pre>
+
+    <h3>৪. ইউনিট কনভার্টার</h3>
+    <p>দৈর্ঘ্য (মিটার, সেমি, মিমি, কিমি, ইঞ্চি, ফুট, গজ), আয়তন (লিটার, মিলিলিটার, গ্যালন, ঘনমিটার), তাপমাত্রা (সেলসিয়াস, ফারেনহাইট, কেলভিন) এবং ওজন (কেজি, গ্রাম, পাউন্ড, আউন্স, টন) – সব এক জায়গায়। ইউজার একটি ইউনিটে মান দিলেই অন্য সব ইউনিটে ফলাফল দেখায়।</p>
+
+    <h3>৫. ফুল বাজার ক্যালকুলেটর</h3>
+    <p>আমি আগে ফুলের দোকানে কাজ করতাম। সেখানে মালামালের মোট ওজন থেকে ব্যাগ ও বর্জ্য বাদ দিয়ে পাকা ওজন বের করতে হয়। এই ক্যালকুলেটর সেই হিসাব ২ সেকেন্ডে করে দেয়।</p>
+
+    <h3>৬. ইএমআই ও বিএমআই</h3>
+    <p>ইএমআই ক্যালকুলেটর ঋণের মাসিক কিস্তি বের করে। বিএমআই ক্যালকুলেটর উচ্চতা ও ওজন থেকে শরীরের ভরসূচক নির্ণয় করে এবং কমেন্ট দেখায় (ওজন কম, স্বাভাবিক, বেশি ইত্যাদি)।</p>
+
+    <h2>💡 শেখার ধাপগুলো (বিগিনারদের জন্য টিপস)</h2>
+    <ol>
+      <li><strong>একসাথে সব করার চেষ্টা করবেন না</strong> – আমি প্রথমে শুধু সাধারণ ক্যালকুলেটর বানালাম, তারপর ত্রিকোণমিতি যোগ করলাম, এরপর ইউনিট কনভার্টার। ধাপে ধাপে বাড়ালে বাগ খুঁজে পাওয়া সহজ হয়।</li>
+      <li><strong>ট্যাব সিস্টেম ব্যবহার করুন</strong> – সব ক্যালকুলেটর এক পেজে রাখতে ট্যাব বা ড্রপডাউন ব্যবহার করা ভালো। আমি ট্যাব বাটন দিয়েছি, যাতে একবারে একটি প্যানেল দেখা যায়।</li>
+      <li><strong>ইউজার ইনপুট যাচাই করুন</strong> – জিরো দিয়ে ভাগ বা নেতিবাচক সংখ্যার বর্গমূল ধরতে পারেন। ত্রুটি ধরা ফাংশন রাখুন।</li>
+      <li><strong>ডার্ক/লাইট মোড দিতে CSS ভেরিয়েবল ব্যবহার করুন</strong> – সম্পূর্ণ ডিজাইন কয়েক লাইনে বদলে যায়।</li>
+      <li><strong>গিটহাবে প্রোজেক্ট লাইভ করুন</strong> – আপনার কাজ দেখানোর সেরা জায়গা। কেউ লিংক দিলেই পুরো ক্যালকুলেটর ইউজ করতে পারে।</li>
+    </ol>
+
+    <h2>🎉 আমি কী কী শিখলাম?</h2>
+    <ul>
+      <li>জাভাস্ক্রিপ্টের ইভাল নিয়ে নিরাপত্তা সচেতনতা</li>
+      <li>CSS গ্রিড এবং ফ্লেক্স দিয়ে বাটন সাজানো</li>
+      <li>ডাইনামিক HTML এলিমেন্ট তৈরি করা</li>
+      <li>গাণিতিক ফর্মুলাগুলো কীভাবে কোডে প্রয়োগ করতে হয়</li>
+      <li>প্রজেক্টকে মডুলার ও রিডেবল রাখা</li>
+    </ul>
+
+    <h2>🚀 প্রজেক্টটা লাইভ কোথায় দেখবেন?</h2>
+    <p>আপনি এখানে ক্যালকুলেটরটি ব্যবহার করতে পারেন:<br>
+    <a href="https://banglagolpogalaxy.github.io/portfolio/super_calculator.html" target="_blank" class="btn">🔢 লাইভ ডেমো দেখুন</a></p>
+    <p>পুরো সোর্স কোড পাবেন আমার গিটহাবে: <a href="https://github.com/BanglaGolpoGalaxy/portfolio" target="_blank">GitHub রেপো</a></p>
+
+    <h2>📢 শেষ কথা</h2>
+    <p>এই প্রোজেক্টটি আমার জন্য শেখার একটি মাইলফলক। একজন বিগিনার হিসেবে আমি প্রমাণ করতে পারি যে, ধৈর্য আর ধাপে ধাপে কাজ করলে বড় প্রজেক্টও শেষ করা যায়। তুমিও যদি ওয়েব ডেভেলপমেন্ট শিখতে চাও, তবে ছোট শুরু করে আস্তে আস্তে জটিল ফিচার যোগ করতে থাকো। কোনো প্রশ্ন থাকলে কমেন্ট করতে দ্বিধা করবে না।</p>
+    <p>শুভকামনা,<br>– মিলন বিশ্বাস</p>
+  </div>
+
+  <!-- ইংরেজি কন্টেন্ট -->
+  <div class="lang-en">
+    <h1>🧮 How I Built a Multi-Calculator Tool</h1>
+    <div class="meta">
+      <span>📅 April 26, 2026</span>
+      <span>⏱️ 6 min read</span>
+      <span>✍️ Milan Biswas</span>
+    </div>
+    <p>When I first started learning web development, I thought building a good-looking website is enough. But the real challenge began when I wanted to create some practical tools for myself. In this blog post, I will share how I built an all-in-one multi-calculator tool – where there is a basic calculator, trigonometry, geometry, unit converter, flower market, EMI, BMI – everything together!</p>
+
+    <h2>🎯 Why this project?</h2>
+    <p>I always felt that having multiple small calculators is less efficient than one big tool. When you go to buy flowers, you need flower market calculations; when you take a loan, you need EMI; for health, you need BMI. Also in daily life, you often convert length, weight, temperature. So I brought everything into one place.</p>
+
+    <h2>🛠️ Technologies used</h2>
+    <ul>
+      <li><strong>HTML5</strong> – structure</li>
+      <li><strong>CSS3</strong> – styling & dark/light mode</li>
+      <li><strong>JavaScript</strong> – all calculations</li>
+      <li><strong>GitHub Pages</strong> – free hosting</li>
+    </ul>
+    <p>No backend, no database – everything works offline. HTML, CSS, and JS were enough.</p>
+
+    <h2>📐 Different parts of the calculator</h2>
+    
+    <h3>1. Basic Calculator</h3>
+    <p>The classic part. Addition, subtraction, multiplication, division, square root, percentage – everything is there. I arranged the buttons like a market calculator. I also added <strong>brackets ( ) [ ] { }</strong> so that long expressions can be typed in one line. And I made the '+' button larger for better look.</p>
+    <pre><code>// Safe eval without using eval()
+function safeEval(expr) {
+  let processed = expr.replace(/×/g, '*').replace(/÷/g, '/');
+  return Function('"use strict";return (' + processed + ')')();
+}</code></pre>
+    <p>📌 Challenge: Using `eval()` can cause security issues. So I only allowed input through calculator buttons – users cannot inject scripts directly.</p>
+
+    <h3>2. Trigonometry</h3>
+    <p>For secondary level math: sin, cos, tan and their inverse functions. Input in degrees, convert to radians, then use JavaScript's <code>Math.sin()</code> etc. Result shown both in decimal and fraction.</p>
+    <pre><code>function sin(deg) {
+  let rad = deg * Math.PI / 180;
+  return Math.sin(rad);
+}</code></pre>
+
+    <h3>3. Geometry</h3>
+    <p>Square, rectangle, circle, cube, sphere, triangle – area, volume, diagonal, hypotenuse etc. Used Heron's formula for scalene triangle and Pythagoras theorem for right triangle.</p>
+    <pre><code>// Heron's formula
+let s = (a+b+c)/2;
+let area = Math.sqrt(s*(s-a)*(s-b)*(s-c));</code></pre>
+
+    <h3>4. Unit Converter</h3>
+    <p>Length (meter, cm, mm, km, inch, foot, yard), volume (liter, mL, gallon, cubic meter), temperature (Celsius, Fahrenheit, Kelvin) and weight (kg, gram, pound, ounce, ton). Once you enter a value in one unit, all other units show the converted value automatically.</p>
+
+    <h3>5. Flower Market Calculator</h3>
+    <p>I used to work at a flower shop. There we had to deduct bag weight and waste from total weight to get net weight. This calculator does that in 2 seconds.</p>
+
+    <h3>6. EMI & BMI</h3>
+    <p>EMI calculator gives monthly loan installment. BMI calculator tells you whether you are underweight, normal, overweight or obese.</p>
+
+    <h2>💡 Learning steps (Tips for beginners)</h2>
+    <ol>
+      <li><strong>Don't try to do everything at once</strong> – I first built the basic calculator, then added trigonometry, then unit converter. Adding step by step makes debugging easier.</li>
+      <li><strong>Use tab system</strong> – To put all calculators on one page, use tabs or dropdown. I used tab buttons so that only one panel is visible at a time.</li>
+      <li><strong>Validate user input</strong> – Handle division by zero or square root of negative numbers. Keep error handling functions.</li>
+      <li><strong>Use CSS variables for dark/light mode</strong> – The whole design changes in a few lines.</li>
+      <li><strong>Make your project live on GitHub</strong> – Best way to showcase your work. Anyone with the link can use the calculator.</li>
+    </ol>
+
+    <h2>🎉 What I learned</h2>
+    <ul>
+      <li>Security awareness regarding eval() in JavaScript</li>
+      <li>Arranging buttons with CSS Grid and Flexbox</li>
+      <li>Creating dynamic HTML elements</li>
+      <li>Implementing mathematical formulas in code</li>
+      <li>Keeping the project modular and readable</li>
+    </ul>
+
+    <h2>🚀 Where to see the live project?</h2>
+    <p>You can use the calculator here:<br>
+    <a href="https://banglagolpogalaxy.github.io/portfolio/super_calculator.html" target="_blank" class="btn">🔢 Live Demo</a></p>
+    <p>Source code is available on my GitHub: <a href="https://github.com/BanglaGolpoGalaxy/portfolio" target="_blank">GitHub Repo</a></p>
+
+    <h2>📢 Final words</h2>
+    <p>This project was a milestone in my learning journey. As a beginner, I can prove that with patience and step-by-step work, even a big project can be completed. If you also want to learn web development, start small and keep adding complex features. Feel free to comment if you have any questions.</p>
+    <p>Best regards,<br>– Milan Biswas</p>
+  </div>
+
+  <!-- हिंदी कंटेंट -->
+  <div class="lang-hi">
+    <h1>🧮 मैंने मल्टी-कैलकुलेटर टूल कैसे बनाया</h1>
+    <div class="meta">
+      <span>📅 25 अप्रैल, 2026</span>
+      <span>⏱️ पढ़ने में 6 मिनट</span>
+      <span>✍️ मिलन बिस्वास</span>
+    </div>
+    <p>जब मैंने पहली बार web development सीखना शुरू किया, तो मैं सोचता था कि सिर्फ अच्छी दिखने वाली वेबसाइट बनाना ही काफी है। लेकिन असली चुनौती तब शुरू हुई जब मैंने अपने लिए कुछ practical tools बनाने की कोशिश की। इस blog post में मैं साझा करूँगा कि कैसे मैंने एक all-in-one multi-calculator tool बनाया - जहाँ basic calculator, trigonometry, geometry, unit converter, फूल बाजार, EMI, BMI - सब कुछ एक साथ है!</p>
+
+    <h2>🎯 यह प्रोजेक्ट क्यों?</h2>
+    <p>मैं हमेशा सोचता था कि एक बड़ा tool कई छोटे कैलकुलेटर से ज़्यादा कारगर होता है। जब आप फूल खरीदने जाते हैं, तो फूल बाजार का हिसाब चाहिए; जब लोन लेते हैं, तो EMI चाहिए; स्वास्थ्य के लिए BMI चाहिए। इसके अलावा रोज़मर्रा की ज़िंदगी में लंबाई, वज़न, तापमान कन्वर्ट करना पड़ता है। इसलिए मैंने सबको एक जगह रखा।</p>
+
+    <h2>🛠️ तकनीक जो मैंने उपयोग की</h2>
+    <ul>
+      <li><strong>HTML5</strong> – संरचना</li>
+      <li><strong>CSS3</strong> – डिज़ाइन और dark/light mode</li>
+      <li><strong>JavaScript</strong> – सभी calculations</li>
+      <li><strong>GitHub Pages</strong> – मुफ्त hosting</li>
+    </ul>
+    <p>कोई backend नहीं, कोई database नहीं – पूरी तरह offline काम करता है। सिर्फ HTML, CSS और JS काफी थे।</p>
+
+    <h2>📐 कैलकुलेटर के विभिन्न भाग</h2>
+    
+    <h3>1. साधारण कैलकुलेटर</h3>
+    <p>सबसे क्लासिक भाग। जोड़, घटाव, गुणा, भाग, वर्गमूल, प्रतिशत – सब कुछ है। मैंने बटनों को बाजार के कैलकुलेटर की तरह सजाया है। विशेष रूप से <strong>brackets ( ) [ ] { }</strong> दिए हैं ताकि बड़े expressions एक पंक्ति में टाइप किए जा सकें। और '+' बटन को बड़ा किया है।</p>
+    <pre><code>// सुरक्षित eval फ़ंक्शन
+function safeEval(expr) {
+  let processed = expr.replace(/×/g, '*').replace(/÷/g, '/');
+  return Function('"use strict";return (' + processed + ')')();
+}</code></pre>
+    <p>📌 चुनौती: `eval()` का उपयोग करने से सुरक्षा समस्या हो सकती है। इसलिए मैंने केवल कैलकुलेटर के बटनों से इनपुट लिया – उपयोगकर्ता सीधे script नहीं दे सकता।</p>
+
+    <h3>2. त्रिकोणमिति</h3>
+    <p>माध्यमिक गणित के लिए sin, cos, tan और उनके inverse फ़ंक्शन। डिग्री इनपुट लेकर रेडियन में बदलता हूँ, फिर JavaScript के <code>Math.sin()</code> आदि का उपयोग करता हूँ। परिणाम दशमलव और भिन्न दोनों में दिखाता है।</p>
+    <pre><code>function sin(deg) {
+  let rad = deg * Math.PI / 180;
+  return Math.sin(rad);
+}</code></pre>
+
+    <h3>3. ज्यामिति</h3>
+    <p>वर्ग, आयत, वृत्त, घन, गोला, त्रिभुज – क्षेत्रफल, आयतन, विकर्ण, कर्ण आदि। विषमबाहु त्रिभुज के लिए हीरोन का सूत्र और समकोण त्रिभुज के लिए पाइथागोरस प्रमेय का उपयोग किया।</p>
+    <pre><code>// हीरोन का सूत्र
+let s = (a+b+c)/2;
+let area = Math.sqrt(s*(s-a)*(s-b)*(s-c));</code></pre>
+
+    <h3>4. यूनिट कन्वर्टर</h3>
+    <p>लंबाई (मीटर, सेमी, मिमी, किमी, इंच, फुट, गज), आयतन (लीटर, मिलीलीटर, गैलन, घन मीटर), तापमान (सेल्सियस, फारेनहाइट, केल्विन) और वजन (किलोग्राम, ग्राम, पाउंड, औंस, टन) – सब एक जगह। एक यूनिट में मान डालने पर बाकी सभी यूनिट में मान दिख जाता है।</p>
+
+    <h3>5. फूल बाजार कैलकुलेटर</h3>
+    <p>मैं पहले फूल की दुकान पर काम करता था। वहाँ कुल वजन से बैग और बेकार वजन निकालकर शुद्ध वजन निकालना पड़ता था। यह कैलकुलेटर 2 सेकंड में वह हिसाब कर देता है।</p>
+
+    <h3>6. EMI और BMI</h3>
+    <p>EMI कैलकुलेटर लोन की मासिक किस्त निकालता है। BMI कैलकुलेटर बताता है कि आप कम वजन, सामान्य, अधिक वजन या मोटे हैं।</p>
+
+    <h2>💡 सीखने के चरण (शुरुआती लोगों के लिए सुझाव)</h2>
+    <ol>
+      <li><strong>एक साथ सब कुछ करने की कोशिश न करें</strong> – मैंने पहले सिर्फ basic calculator बनाया, फिर trigonometry जोड़ा, फिर unit converter। कदम दर कदम बढ़ाने से bugs ढूंढना आसान होता है।</li>
+      <li><strong>Tab system का उपयोग करें</strong> – सभी calculators को एक पेज पर रखने के लिए tabs या dropdown का उपयोग करें। मैंने tabs बटन दिए हैं ताकि एक बार में एक पैनल दिखे।</li>
+      <li><strong>User input को validate करें</strong> – शून्य से भाग या नकारात्मक संख्या का वर्गमूल संभालें। error handling फ़ंक्शन रखें।</li>
+      <li><strong>Dark/light mode के लिए CSS variables का उपयोग करें</strong> – कुछ लाइनों में पूरा design बदल जाता है।</li>
+      <li><strong>अपने project को GitHub पर live करें</strong> – अपना काम दिखाने का सबसे अच्छा तरीका। कोई भी link से calculator उपयोग कर सकता है।</li>
+    </ol>
+
+    <h2>🎉 मैंने क्या सीखा?</h2>
+    <ul>
+      <li>JavaScript में eval() के बारे में सुरक्षा जागरूकता</li>
+      <li>CSS Grid और Flexbox के साथ बटन सजाना</li>
+      <li>Dynamic HTML elements बनाना</li>
+      <li>गणितीय सूत्रों को code में लागू करना</li>
+      <li>project को modular और readable रखना</li>
+    </ul>
+
+    <h2>🚀 live project कहाँ देखें?</h2>
+    <p>आप यहाँ calculator का उपयोग कर सकते हैं:<br>
+    <a href="https://banglagolpogalaxy.github.io/portfolio/super_calculator.html" target="_blank" class="btn">🔢 Live Demo देखें</a></p>
+    <p>पूरा source code मेरे GitHub पर उपलब्ध है: <a href="https://github.com/BanglaGolpoGalaxy/portfolio" target="_blank">GitHub Repo</a></p>
+
+    <h2>📢 अंतिम बात</h2>
+    <p>यह project मेरे सीखने के सफर में एक मील का पत्थर था। एक beginner के रूप में मैं साबित कर सकता हूँ कि धैर्य और कदम-दर-कदम काम करने से बड़ा project भी पूरा किया जा सकता है। अगर आप भी web development सीखना चाहते हैं, तो छोटे से शुरू करें और धीरे-धीरे complex features जोड़ते जाएँ। कोई प्रश्न हो तो comment करने में संकोच न करें।</p>
+    <p>शुभकामनाएँ,<br>– मिलन बिस्वास</p>
+  </div>
+
+  <!-- Cusdis কমেন্ট বক্স – সবসময় লাইট মোডে -->
+  <div class="comments-section">
+    <h3>💬 Share your thoughts</h3>
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a"
+      data-page-id="blog-multicalc-final"
+      data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/how-i-built-multicalc.html"
+      data-page-title="How I Built a Multi-Calculator Tool"
+      data-theme="light">
+    </div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+  </div>
+
+  <div class="footer-note">
+    <p>© 2026 Milan Biswas | Educational content in বাংলা, English, हिंदी</p>
+    <p><a href="https://banglagolpogalaxy.github.io/portfolio/" style="color: var(--accent);">← Back to Portfolio</a></p>
+  </div>
+</div>
+
+<script>
+  // ভাষা টগল
+  const langBtns = document.querySelectorAll('.lang-btn');
+  const body = document.body;
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      body.className = lang;
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      localStorage.setItem('blogLang', lang);
+    });
+  });
+  const savedLang = localStorage.getItem('blogLang');
+  if (savedLang && ['bn','en','hi'].includes(savedLang)) {
+    body.className = savedLang;
+    document.querySelector(`.lang-btn[data-lang="${savedLang}"]`).classList.add('active');
+  }
+
+  // থিম টগল – শুধু পেজের জন্য, কমেন্ট বক্স লাইট ই রাখবে
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    toggle.innerHTML = isDark ? '☀️' : '🌙';
+    localStorage.setItem('blogTheme', isDark ? 'dark' : 'light');
+  });
+  if (localStorage.getItem('blogTheme') === 'dark') {
+    document.body.classList.add('dark');
+    toggle.innerHTML = '☀️';
+  }
+</script>
+</body>
+</html>
