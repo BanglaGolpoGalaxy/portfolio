@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>আমার কোডিং জার্নি – How I Built a Full Ecosystem Using Only a Mobile Phone| মিলন বিশ্বাস</title>
+  <meta name="title" content="আমার কোডিং জার্নি – How I Built a Full Ecosystem Using Only a Mobile Phone">
+  <meta name="description" content="একটা সময় ছিল যখন নিজের কম্পিউটার ছিল না। মোবাইলের নোটপ্যাডে লেগে থাকা HTML ট্যাগ। আজ গর্বের সাথে বলতে পারি, আমি শিখেছি। পড়ুন আমার সংগ্রামের গল্প।">
+  <meta name="keywords" content="কোডিং জার্নি, শূন্য থেকে শেখা, স্বপ্ন, মোবাইলে কোডিং, Milan Biswas">
+  <meta name="author" content="Milan Biswas">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Bengali Meta -->
+  <meta name="description" lang="bn" content="কিভাবে আমি স্বপ্ন দেখতে দেখতে কোডার হয়েছি। নোটপ্যাড থেকে শুরু, আজকের অবস্থান। একটি অসম্ভব গল্প, যার নায়ক সম্ভবতার চেয়েও বেশি জেদ।">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/my-web-dev-journey.html">
+  <meta property="og:title" content="আমার কোডিং জার্নি – স্বপ্ন দেখে যারা শুরু করে">
+  <meta property="og:description" content="যে গল্প আপনাকে বলবে – তুমি তোমার কম্পিউটার না থাকলেও পারবে।">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/journey-cover.jpg">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/my-web-dev-journey.html">
+  <link rel="icon" href="https://banglagolpogalaxy.github.io/avatar.png">
+  
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root { --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --text-sec: #475569; --accent: #2563eb; --border: #e2e8f0; }
+    body.dark { --bg: #0f172a; --surface: #1e293b; --text: #e2e8f0; --text-sec: #94a3b8; --accent: #38bdf8; --border: #334155; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Noto Sans Bengali', system-ui, sans-serif;
+      line-height: 1.7;
+      transition: 0.3s;
+      padding: 20px;
+    }
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    h1 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--accent);
+      padding-left: 18px;
+    }
+    .meta {
+      color: var(--text-sec);
+      font-size: 0.85rem;
+      margin-bottom: 30px;
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .hook {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 1.4rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 12px;
+    }
+    p { margin-bottom: 16px; }
+    .btn {
+      background: var(--accent);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-sec);
+    }
+    .lang-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 40px;
+      padding: 5px 14px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    body.dark .lang-btn {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--accent);
+    }
+    body.dark .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    .lang-bn { display: block; }
+    .lang-en { display: none; }
+    .lang-hi { display: none; }
+    body.bn .lang-bn { display: block; }
+    body.bn .lang-en { display: none; }
+    body.bn .lang-hi { display: none; }
+    body.en .lang-bn { display: none; }
+    body.en .lang-en { display: block; }
+    body.en .lang-hi { display: none; }
+    body.hi .lang-bn { display: none; }
+    body.hi .lang-en { display: none; }
+    body.hi .lang-hi { display: block; }
+    .comments-section {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+    }
+    .comments-section h3 { color: #2563eb; margin-bottom: 20px; }
+    body.dark .comments-section { background: #ffffff; border-color: #e2e8f0; }
+    @media (max-width: 600px) {
+      .container { padding: 20px; }
+      h1 { font-size: 1.5rem; }
+      .lang-bar { justify-content: center; margin-top: 10px; }
+      .hook { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body class="bn">
+<div class="container">
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="bn">বাংলা</button>
+    <button class="lang-btn" data-lang="en">English</button>
+    <button class="lang-btn" data-lang="hi">हिंदी</button>
+    <button id="themeToggle" style="margin-left: auto; background: var(--surface); border: 1px solid var(--accent); border-radius: 40px; padding: 5px 12px; cursor: pointer;">🌙</button>
+  </div>
+
+  <!-- বাংলা কন্টেন্ট – আপডেটেড হেডিং -->
+  <div class="lang-bn">
+    <h1>🧑‍💻 নোটপ্যাড থেকে নক্ষত্র – কীভাবে মোবাইলে গড়লাম নিজের ডিজিটাল দুনিয়া</h1>
+    <div class="meta">
+      <span>📅 ২৭ এপ্রিল, ২০২৬</span>
+      <span>⏱️ পড়তে ৭ মিনিট</span>
+      <span>✍️ মিলন বিশ্বাস</span>
+    </div>
+    
+    <p>একটা সময় ছিল – যখন আমি ভাবতাম, কম্পিউটার না থাকলে প্রোগ্রামিং শেখা সম্ভব নয়। আজ আমি সেই ভাবনাকে ভুল প্রমাণ করেই বসে আছি। কারণ আমি শিখেছি। মোবাইলের নোটপ্যাডে বসে, গভীর রাতে, নির্জনতায় – এক এক করে টাইপ করেছি <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, আর <code>Hello World</code>।</p>
+    
+    <h2>শেখার শুরু</h2>
+    <p>মাধ্যমিক পাস করার পর থেকে আমি কাজ করতাম আমার মাস্টারের কোচিং সেন্টারে। তিনি আমার সম্পর্কে বেশ ভালই অবগত ছিলেন, তিনি আমাকে বুঝতেন। আর তিনি এটিও বুঝেছিলেন যে আমার দ্বারা হবে। ওনার একটা সমিতি ছিল – স্বামী বিবেকানন্দ কল্যাণ সমিতি। ওখানে একটা অ্যাপ বানানো হয়েছিল। যিনি তৈরি করছিলেন তিনি ঠিকঠাক সব চাহিদা পূরণ করতে পারছিলেন না এবং ডেলিভারি দিতেও দেরি করতেন। মেইনটেনেন্স এর জন্য সব সময় তার মুখাপেক্ষি হয়ে থাকতে হতো। একদিন তিনি আমার দিকে তাকিয়ে বললেন, <strong>“তুই যদি নিজে এগুলো শিখিস, তাহলে আর কারও মুখাপেক্ষী হতে হবে না।”</strong> ওই কথাটা আমার ভেতরে একটা আগুন জ্বালিয়ে দিয়েছিল। সেই আগুন আজও নিভেনি।</p>
+    
+    <h2>আমার প্রথম ‘Hello World’ – Command</h2>
+    <p>প্রথম ভাষাটি ছিল C++। কেউ যখন প্রথমবার <code>cout &lt;&lt; "Hello World";</code> লিখে রান করে, আর আউটপুট দেখে – সেই অনুভূতি ভাষায় প্রকাশ করা যায় না। আমার চোখ ছলছল করে উঠেছিল। কারণ এটা শুধু কোড ছিল না, এটা ছিল আমার “আমিও পারি” – ঘোষণা। এই "Hello World" লেখা দিয়ে ই আমি যেন পৃথিবীকে জানিয়ে দিলাম ওহে পৃথিবী দেখো, আমিও পারি ✊</p>
+    <p>কিন্তু আনন্দ বেশি দিন স্থায়ী হলো না। মাস্টার জানালেন তিনি আর শেখাতে পারবেন না। কারণ বললেন না। হাতে কম্পিউটার নেই, তাও আবার এমনিতে নেটিভ C++ শেখা কঠিন। কোচিংয়ের কাজ শেষ করে রাতে ওখানেই প্র্যাকটিস করতাম। বাণিজ্যিকভাবে তখনো অ্যাপস টি চালু করা হয়নি, ট্রায়াল চলছিল। তাই সমিতির পুরো ডাটা এন্ট্রি করতে লাগলাম Excel VBA তে। কাজের চাপ বাড়ল। আমাকে সমিতির ম্যানেজার করলেন। হ্যাঁ, উপযুক্ত লোকের অভাবে আমাকেই সমিতির ম্যানেজারের দায়িত্ব নিতে হল। দুই দিকের দায়িত্ব – কোচিং আর সমিতি। পড়াশোনা, রুটিন, সব এলোমেলো। নতুন করে কোডিং শেখা প্রায় অসম্ভব হয়ে গেল। কিন্তু মনের মধ্যে একটা কথা পোক্ত হয়ে গেল: <strong>“একদিন আমি শিখবই।”</strong></p>
+    
+    <h2>ওয়ার্ডপ্রেসের অসহায়তা আর ‘আমি নিজে বানাবো’ জেদ</h2>
+    <p>লেখালেখি ছিল আমার প্রাচীন শখ। স্বপ্ন দেখতাম। সেসব স্বপ্নের গল্প লিখে রাখতাম ডায়েরিতে, পরে গুগল ডকে। ওয়ার্ডপ্রেসে পোস্ট দিতাম – কিন্তু সেটা আমার মনের মতো হচ্ছিল না। টেমপ্লেট বদলাতে গেলেই বাধা। সেখানে যা ইচ্ছে তাই করার স্বাধীনতা নেই। তাই ঠিক করলাম – <strong>আমার নিজের ওয়েবসাইট, আমার নিজের কোড, আমার নিজের নিয়মে।</strong> এই জেদ একদিন আমাকে কোডিংয়ের বাস্তব জগতে ফিরিয়ে আনে।</p>
+    
+    <h2>আইটিআইতে নতুন করে শুরু, আর HTML-এর হাতেখড়ি</h2>
+    <p>COPA ট্রেডে ভর্তি হলাম। সেখানে প্রথম কিছুদিন কম্পিউটারের বেসিক ক্লাস চলছিল যেগুলো আমার পূর্বেই জানা ছিল। এরপর একদিন ক্লাসে যখন নোটপ্যাড খুলে HTML ট্যাগ লিখলাম, পুরনো সেই ‘Hello World’-এর মতোই অনুভব হলো। ধীরে ধীরে CSS এলো, JavaScript এলো। ডিজাইন বানানোর মজাই আলাদা। রঙ, ব্লক, স্ক্রল ইফেক্ট – সব নিজের হাতে। যখন প্রথমবার নিজের পোর্টফোলিওর একটা ডিজাইন চোখের সামনে এল, আমি বুঝলাম – আর পিছিয়ে যাব না।</p>
+    
+    <h2>গল্পের ওয়েবসাইট – স্বপ্নকে লেখায়, লেখাকে কোডে পরিণত করা</h2>
+    <p>আমি স্বপ্ন দেখি। অদ্ভুত, মুভির মতো স্বপ্ন। সেসব স্বপ্নের গল্প গুগল ডক্সে পড়ে থাকত। একদিন মনে হলো, কেন এই গল্পগুলোর জন্য আলাদা একটা জগৎ বানাই না? তখনই জন্ম নেয় <strong>“Bangla Golpo Galaxy”</strong>।</p>
+    <p>কোনো কম্পিউটার নেই, শুধু মোবাইল আর <strong>SPCK Editor</strong>। রাতে, কাজের ফাঁকে ফাঁকে লিখতাম HTML, CSS, JS। প্রথমবার যখন সাইট লাইভ হলো, আমি কয়েক মিনিট চুপ করে বসে ছিলাম। এটা আমার নিজস্ব জায়গা। পৃথিবীর যেকোনো প্রান্তের একজন মানুষ আমার লেখা গল্প পড়তে পারবে। সেই অনুভূতি শুধু একজন ডেভেলপারই বোঝে।</p>
+    <p>GitHub শিখলাম, Pages এ হোস্ট করলাম। কমেন্ট দরকার – Giscus চেষ্টা করলাম, কাজ হয়নি। হাল ছাড়িনি। Cusdis ব্যবহার করলাম। কন্টাক্ট ফর্ম লাগল – Formspree, গুগল ফর্ম – সব নিজে। প্রতিদিন নতুন কিছু শেখা। যত শিখছি, তত বুঝছি এটা শেষ নেই, আর সেটাই মজার।</p>
+    
+    <h2>পোর্টফোলিও, ব্যাংকিং বই, আর ক্যালকুলেটর – আমার চিহ্ন</h2>
+    <p>তারপর এলো আমার নিজের পোর্টফোলিও তৈরি করার পালা। আমি চেয়েছিলাম যে কেউ দেখলেই যেন স্পষ্ট বুঝতে পারে – এই মানুষটি একজন লার্নার, একজন ক্রিয়েটর। ব্যাংকিং বইয়ের পিডিএফ ছিল, সেটাও ওয়েবের ছাঁদে ঢাললাম। ফুলের দোকানে কাজ করতাম একসময়, মালামালের ওজন থেকে ব্যাগ আর বর্জ্য বাদ দিয়ে পাকা ওজন বের করতে হতো – তখনই ভেবেছিলাম, একটা ক্যালকুলেটর বানাই। সেই বাসনা এখন বাস্তব। আমার <strong>মাল্টি-ক্যালকুলেটর</strong> আজ নিজের প্রয়োজনে, অন্যরাও ব্যবহার করছে।</p>
+    <p>এটা কোনো বড় কোম্পানির প্রোডাক্ট নয়। এটা এক ব্যক্তির জেদের ফসল। যে ব্যক্তি শিখেছে মোবাইলের ছোট্ট স্ক্রিনে, যার হাতে ছিল না নিজের পিসি, যার একমাত্র সঙ্গী ছিল জেদ আর কিছু স্বপ্নের গল্প।</p>
+    
+    <h2>আজকের আমি, আর আগামীর পথ</h2>
+    <p>আজ আমি HTML, CSS, JavaScript, Git, GitHub, ফর্ম হ্যান্ডলিং, ডার্ক মোড, ডাইনামিক কন্টেন্ট – এসব নিয়ে স্বাচ্ছন্দ্যে কাজ করতে পারি। ফ্রি টুলস, ফ্রি হোস্টিং, আর ফ্রি সময় – এই তিন ফ্রি দিয়েই আমি আমার পুরো ইকোসিস্টেম দাঁড় করিয়েছি।</p>
+    <p>আমি এখন নতুন করে শিখছি ব্যাকএন্ড। ইচ্ছা আছে আরও বড় কিছু করার। কিন্তু আরও বড় ইচ্ছা – অন্য বিগিনারদের শেখানো। আপনাকে বলতে চাই, দয়া করে অপেক্ষা করবেন না। ‘একদিন কম্পিউটার কিনব’, ‘একদিন সুযোগ পাব’ – এই অপেক্ষায় সময় নষ্ট করবেন না। আপনার ফোনের নোটপ্যাড আজই খুলুন। লিখুন <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>। এটাই প্রথম সোপান।</p>
+    <p><strong>আমি পারি, তুমিও পারবে।</strong> শুধু একবার শুরু করো। বাকিটা পথ নিজেই এগিয়ে যাবে।</p>
+    
+    <div class="footer-note">
+      <p>আমার গল্প যদি ভালো লেগে থাকে, তাহলে নিচে কমেন্ট করে জানাও। আর হ্যাঁ, এক কাপ চা খাওয়ার সময়টা দিয়ে দিও।</p>
+      <p><a href="https://banglagolpogalaxy.github.io/portfolio/" style="color: var(--accent);">← পোর্টফোলিওতে ফিরুন</a></p>
+    </div>
+  </div>
+
+  <!-- English content (unchanged from your previous version) -->
+  <div class="lang-en">
+    <h1>🧑‍💻 How I Built a Full Ecosystem Using Only a Mobile Phone</h1>
+    <div class="meta">
+      <span>📅 April 27, 2026</span>
+      <span>⏱️ 7 min read</span>
+      <span>✍️ Milan Biswas</span>
+    </div>
+
+    <div class="hook">
+      🚀 No laptop, no desktop – just a ₹0 budget, a smartphone, a free code editor, and raw determination. This is how I built a full ecosystem: story website, portfolio, banking book, multi‑calculator, invoice generator – all from a mobile screen.
+    </div>
+
+    <p>There was a time when I thought learning to code without a computer was impossible. Today, I’ve proven that wrong – using just a mobile phone, a text editor, and a lot of stubbornness.</p>
+    <p>After my secondary exams, I worked at my tutor’s coaching center. He understood my potential. He had a society – Swami Vivekananda Welfare Society. An app was built for it, but the engineer couldn't meet all requirements or deliver on time. Maintenance always depended on him. One day my tutor said, <strong>“If you learn this yourself, you won't have to depend on anyone else.”</strong> That sentence lit a fire inside me. That fire still burns.</p>
+    <p>I started with C++. The first time I typed <code>cout &lt;&lt; "Hello World";</code> and saw the output – I can't describe that feeling. It wasn't just code; it was my declaration: "I can do it too."</p>
+    <p>But the joy didn't last long. My tutor said he couldn't teach me anymore, without any reason. No computer of my own, and native C++ is tough. I practiced at the coaching center after work. The app wasn't fully launched yet, so I handled all data entry in Excel VBA for the society. Work pressure increased. Due to lack of suitable people, I was made manager. Two responsibilities – coaching and society. Studies, routine, everything became messy. Learning to code again seemed impossible. But a voice inside grew stronger: <strong>“I will learn one day.”</strong></p>
+    <p>Writing was my old hobby. I used to write down my dreams – first in diaries, then in Google Docs. I posted on WordPress, but I couldn't customise templates the way I wanted. So I decided: <strong>My own website, my own code, my own rules.</strong> That determination brought me back to coding.</p>
+    <p>I enrolled in ITI COPA. There I started HTML in Notepad. Then CSS and JavaScript came. The joy of designing my own page was unique. When I first saw my own design in the browser, I knew I wouldn't turn back.</p>
+    <p>I see vivid dreams. I had written those dream stories in Google Docs. One day I thought, why not create a separate world for these stories? That's how <strong>Bangla Golpo Galaxy</strong> was born.</p>
+    <p>No computer – only mobile and <strong>SPCK Editor</strong>. Late nights, after work, I wrote HTML, CSS, JS. When the site went live, I sat silent for a few minutes. This was my own place. Anyone from any corner of the world could read my stories. Only a developer can feel that.</p>
+    <p>I learned GitHub, hosted on Pages. Needed comments – tried Giscus, it failed. Didn't give up, used Cusdis. Contact form – Formspree, Google Form – all done myself. Learning new things every day. The more I learn, the more I realise there's no end – and that's the fun part.</p>
+    <p>Then came my portfolio. I had a PDF banking book – turned it into a web project. While working at a flower shop, I needed a calculator to deduct bag weight and waste. That wish is now real. My <strong>multi-calculator</strong> tool is used by others too.</p>
+    <p>This isn't a big company product. It's the result of one person's stubbornness – who learned on a tiny mobile screen, who had no PC, whose only companions were determination and a few dreamt stories.</p>
+    <p>Today, I can comfortably work with HTML, CSS, JavaScript, Git, GitHub, dark mode, dynamic content, forms – all using free tools and free hosting. I'm now learning backend. I want to go further. But an even bigger wish is to teach other beginners. So I say – don't wait. Don't waste time saying "I'll buy a computer someday", "I'll get a chance someday". Open your phone's notepad today. Type <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>. That's the first step.</p>
+    <p><strong>If I can, you can too.</strong> Just start. The rest will follow.</p>
+    <div class="footer-note">
+      <p><a href="https://banglagolpogalaxy.github.io/portfolio/">← Back to Portfolio</a></p>
+    </div>
+  </div>
+
+  <!-- Hindi content (unchanged) -->
+  <div class="lang-hi">
+    <h1>🧑‍💻 जिनके पास कंप्यूटर नहीं था, उन्होंने ही दिखा दिया – मोबाइल से कोडिंग सीखी</h1>
+    <div class="meta">
+      <span>📅 27 अप्रैल, 2026</span>
+      <span>⏱️ 7 मिनट पढ़ें</span>
+      <span>✍️ मिलन बिस्वास</span>
+    </div>
+    <p>एक समय था जब मैं सोचता था कि बिना कंप्यूटर के कोडिंग सीखना नामुमकिन है। आज मैंने वो सोच गलत साबित कर दी है – सिर्फ मोबाइल, एक टेक्स्ट एडिटर, और बहुत सारी जिद के दम पर।</p>
+    <p>मैं अपने ट्यूटर के कोचिंग सेंटर पर काम करता था। वह मुझे अच्छे से समझते थे। उनकी एक समिति थी – स्वामी विवेकानंद कल्याण समिति। उसके लिए एक ऐप बनवाया गया था, लेकिन जिस इंजीनियर ने बनाया, वह सभी जरूरतें पूरी नहीं कर पाता था और डिलीवरी भी देरी से देता था। मेंटेनेंस के लिए हमेशा उस पर निर्भर रहना पड़ता था। एक दिन मेरे ट्यूटर ने कहा, <strong>“अगर तू खुद ये सीख लेगा, तो किसी के मुहताज नहीं रहना पड़ेगा।”</strong> उस एक वाक्य ने मेरे अंदर आग लगा दी। वो आज भी बुझी नहीं है।</p>
+    <p>मैंने C++ से शुरुआत की। पहली बार जब <code>cout &lt;&lt; "Hello World";</code> लिखा और आउटपुट देखा – वो एहसास शब्दों में बयान नहीं कर सकता। ये सिर्फ कोड नहीं था, ये मेरी घोषणा थी: "मैं भी कर सकता हूँ।"</p>
+    <p>लेकिन खुशी ज्यादा दिन नहीं टिकी। ट्यूटर ने कहा कि वह और नहीं पढ़ा सकते – बिना कोई वजह बताए। अपना कंप्यूटर नहीं था। कोचिंग के काम के बाद वहीं प्रैक्टिस करता था। ऐप अभी पूरी तरह लॉन्च नहीं हुई थी, इसलिए समिति का सारा डेटा एंट्री Excel VBA से करनी पड़ी। काम का दबाव बढ़ गया। उपयुक्त व्यक्ति न होने के कारण मुझे समिति का मैनेजर बना दिया गया। दो जिम्मेदारियाँ – कोचिंग और समिति। पढ़ाई, रूटीन, सब बिगड़ गया। नई चीजें सीखना लगभग असंभव हो गया। लेकिन दिल में एक बात पक्की हो गई: <strong>“एक दिन मैं जरूर सीखूंगा।”</strong></p>
+    <p>लिखना मेरा पुराना शौक था। मैं सपने देखता हूँ – अजीब, फिल्मी सपने। उन सपनों की कहानियाँ गूगल डॉक्स पर लिखी रहती थीं। वर्डप्रेस पर पोस्ट करता था, लेकिन टेम्पलेट बदलना मुश्किल था। इसलिए ठान लिया – <strong>अपनी खुद की वेबसाइट, अपना कोड, अपने नियम।</strong> यही जिद मुझे फिर से कोडिंग की दुनिया में ले आई।</p>
+    <p>ITI COPA में दाखिला लिया। वहाँ नोटपैड से HTML सीखा। फिर CSS और JavaScript। डिजाइन बनाने का मजा ही अलग है। पहली बार जब अपनी बनाई डिजाइन ब्राउज़र में देखी, समझ गया – अब पीछे नहीं हटना है।</p>
+    <p>मैं सपने देखता हूँ। वो सपने की कहानियाँ गूगल डॉक्स पर पड़ी थीं। एक दिन सोचा, क्यों न इन कहानियों के लिए अलग दुनिया बनाई जाए? तभी जन्म हुआ <strong>Bangla Golpo Galaxy</strong> का।</p>
+    <p>कोई कंप्यूटर नहीं, सिर्फ मोबाइल और <strong>SPCK Editor</strong>। रातों-रात, काम के बीच, लिखता रहा HTML, CSS, JS। जब पहली बार साइट लाइव हुई, कुछ पल चुप बैठा रहा। ये मेरी अपनी जगह थी। दुनिया के किसी भी कोने से कोई व्यक्ति मेरी कहानियाँ पढ़ सकता है। ये एहसास सिर्फ एक डेवलपर ही समझ सकता है।</p>
+    <p>GitHub सीखा, Pages पर होस्ट किया। कमेंट चाहिए थी – Giscus ट्राई किया, काम नहीं किया। हारा नहीं, Cusdis इस्तेमाल किया। कॉन्टैक्ट फॉर्म – Formspree, गूगल फॉर्म – सब खुद किया। हर दिन नई चीजें सीखता हूँ। जितना सीखता हूँ, उतना समझता हूँ – इसका कोई अंत नहीं है, और यहीं मजा है।</p>
+    <p>फिर बनाया अपना पोर्टफोलियो। मेरे पास बैंकिंग पर एक पीडीएफ किताब थी, उसे वेब प्रोजेक्ट में बदला। फूल की दुकान पर काम करते समय माल के वजन से बैग और बेकार वजन घटाकर शुद्ध वजन निकालने के लिए एक कैलकुलेटर की जरूरत हुआ करती थी। वो इच्छा अब साकार है। मेरा <strong>मल्टी-कैलकुलेटर</strong> आज दूसरे भी इस्तेमाल कर रहे हैं।</p>
+    <p>ये कोई बड़ी कंपनी का प्रोडक्ट नहीं है। ये एक व्यक्ति की जिद का नतीजा है – जिसने सीखा मोबाइल की छोटी स्क्रीन पर, जिसके पास अपना पीसी नहीं था, जिसके साथी थे सिर्फ जिद और कुछ सपनों की कहानियाँ।</p>
+    <p>आज मैं HTML, CSS, JavaScript, Git, GitHub, फॉर्म हैंडलिंग, डार्क मोड, डायनामिक कंटेंट – इन सब पर काम कर सकता हूँ। सिर्फ फ्री टूल्स, फ्री होस्टिंग। अब बैकएंड सीख रहा हूँ। और भी बड़ा इरादा है – दूसरे शुरुआती लोगों को सिखाने का। तो कहना चाहूँगा – इंतज़ार मत करो। “एक दिन कंप्यूटर खरीदूंगा”, “एक दिन मौका मिलेगा” – इन बहानों में टाइम बर्बाद मत करो। आज ही अपने फोन का नोटपैड खोलो। लिखो <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>। यही पहली सीढ़ी है।</p>
+    <p><strong>मैं कर सकता हूँ, तुम भी कर सकते हो।</strong> बस एक बार शुरू करो। बाकी रास्ता खुद बनता चला जाएगा।</p>
+    <div class="footer-note">
+      <p><a href="https://banglagolpogalaxy.github.io/portfolio/">← पोर्टफोलियो पर वापस जाएं</a></p>
+    </div>
+  </div>
+
+  <!-- Cusdis Comment Box -->
+  <div class="comments-section">
+    <h3>💬 Share your thoughts</h3>
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a"
+      data-page-id="my-web-dev-journey-final"
+      data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/my-web-dev-journey.html"
+      data-page-title="My Web Development Journey"
+      data-theme="light">
+    </div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+  </div>
+
+  <div class="footer-note">
+    <p>© 2026 Milan Biswas</p>
+  </div>
+</div>
+
+<script>
+  const langBtns = document.querySelectorAll('.lang-btn');
+  const body = document.body;
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      body.className = lang;
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      localStorage.setItem('blogLang', lang);
+    });
+  });
+  const savedLang = localStorage.getItem('blogLang');
+  if (savedLang && ['bn','en','hi'].includes(savedLang)) {
+    body.className = savedLang;
+    document.querySelector(`.lang-btn[data-lang="${savedLang}"]`).classList.add('active');
+  }
+
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    toggle.innerHTML = isDark ? '☀️' : '🌙';
+    localStorage.setItem('blogTheme', isDark ? 'dark' : 'light');
+  });
+  if (localStorage.getItem('blogTheme') === 'dark') {
+    document.body.classList.add('dark');
+    toggle.innerHTML = '☀️';
+  }
+</script>
+</body>
+</html>
