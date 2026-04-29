@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>ডার্ক মোড টগল – CSS ভেরিয়েবল ও JavaScript (বাংলা/English/हिंदी) | মিলন বিশ্বাস</title>
+  <meta name="title" content="ডার্ক মোড টগল – CSS ভেরিয়েবল ও JavaScript | ধাপে ধাপে টিউটোরিয়াল">
+  <meta name="description" content="CSS ভেরিয়েবল ও JavaScript দিয়ে ডার্ক/লাইট মোড টগল বানানোর পূর্ণাঙ্গ টিউটোরিয়াল। প্রতিটি লাইনের ব্যাখ্যা বাংলায়। বিগিনারদের জন্য সহজ।">
+  <meta name="keywords" content="ডার্ক মোড, লাইট মোড, টগল বাটন, CSS ভেরিয়েবল, JavaScript, localStorage, বাংলা টিউটোরিয়াল, हिंदी ट्यूटोरियल, English tutorial">
+  <meta name="author" content="Milan Biswas">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- বহুভাষিক মেটা -->
+  <meta name="description" lang="bn" content="CSS ভেরিয়েবল, JavaScript ও localStorage ব্যবহার করে ডার্ক/লাইট মোড টগল বানানোর টিউটোরিয়াল। প্রতিটি লাইনের ব্যাখ্যা বাংলায়।">
+  <meta name="description" lang="en" content="Step-by-step tutorial to build a dark/light mode toggle using CSS variables, JavaScript, and localStorage. Fully explained line by line in Bengali, English, and Hindi.">
+  <meta name="description" lang="hi" content="CSS वेरिएबल, JavaScript और localStorage का उपयोग करके डार्क/लाइट मोड टॉगल बनाने का ट्यूटोरियल। हर लाइन की व्याख्या हिंदी में।">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/dark-mode-trick.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/dark-mode-trick.html">
+  <meta property="og:title" content="ডার্ক মোড টগল – CSS ভেরিয়েবল ও JavaScript (বাংলা/English/हिंदी)">
+  <meta property="og:description" content="CSS ভেরিয়েবল, JavaScript ও localStorage দিয়ে ডার্ক/লাইট মোড টগল। বাংলা, ইংরেজি ও হিন্দি ভাষায় সম্পূর্ণ ব্যাখ্যা।">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/dark-mode-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="bn_BD">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="hi_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/dark-mode-trick.html">
+  <meta name="twitter:title" content="Dark Mode Toggle – CSS Variables & JavaScript (Bengali/English/Hindi)">
+  <meta name="twitter:description" content="Complete dark mode toggle tutorial for beginners. Line by line explanation in three languages.">
+  <meta name="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/dark-mode-card.jpg">
+
+  <link rel="icon" href="https://banglagolpogalaxy.github.io/avatar.png">
+
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-sec: #475569;
+      --accent: #2563eb;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+    }
+    body.dark {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text: #e2e8f0;
+      --text-sec: #94a3b8;
+      --accent: #38bdf8;
+      --border: #334155;
+      --code-bg: #0f172a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Noto Sans Bengali', 'Noto Sans Devanagari', system-ui, sans-serif;
+      line-height: 1.7;
+      transition: background-color 0.3s, color 0.2s;
+    }
+
+    /* ========== টপ বার ========== */
+    .top-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+    .top-bar-inner {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .lang-btn,
+    .theme-toggle-btn {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 40px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    .theme-toggle-btn {
+      font-size: 1rem;
+      padding: 6px 12px;
+      margin-left: 8px;
+    }
+
+    /* ========== মূল কন্টেইনার ========== */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid var(--border);
+    }
+
+    /* ভাষার কন্টেন্ট */
+    .lang-bn { display: block; }
+    .lang-en { display: none; }
+    .lang-hi { display: none; }
+    body.bn .lang-bn { display: block; }
+    body.bn .lang-en { display: none; }
+    body.bn .lang-hi { display: none; }
+    body.en .lang-bn { display: none; }
+    body.en .lang-en { display: block; }
+    body.en .lang-hi { display: none; }
+    body.hi .lang-bn { display: none; }
+    body.hi .lang-en { display: none; }
+    body.hi .lang-hi { display: block; }
+
+    h1 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--accent);
+      padding-left: 18px;
+    }
+    .meta {
+      color: var(--text-sec);
+      font-size: 0.85rem;
+      margin-bottom: 30px;
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 1.4rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 12px;
+    }
+    p { margin-bottom: 16px; }
+    pre {
+      background: var(--code-bg);
+      padding: 16px;
+      border-radius: 16px;
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border);
+      font-family: monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+    }
+    .explanation {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      margin: 10px 0 20px 0;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 6px;
+      font-family: monospace;
+    }
+    .btn-demo {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin: 10px 0;
+    }
+    .demo-box {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+    }
+    /* কমেন্ট সেকশন – সবসময় লাইট মোড, তবে শিরোনাম ভাষা অনুযায়ী বদলাবে */
+    .comments-section {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .comments-section h3 {
+      color: #2563eb;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+    body.dark .comments-section {
+      background: #ffffff;
+      border-color: #e2e8f0;
+    }
+    .related-posts {
+      margin-top: 40px;
+      padding: 20px;
+      background: var(--code-bg);
+      border-radius: 20px;
+    }
+    .related-posts h3 {
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    .related-posts ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .related-posts li {
+      margin-bottom: 10px;
+    }
+    .related-posts a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .related-posts a:hover {
+      text-decoration: underline;
+    }
+    .footer-note {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 20px; }
+      h1 { font-size: 1.4rem; }
+      .top-bar-inner { justify-content: center; }
+    }
+  </style>
+</head>
+<body class="bn">
+
+  <!-- ==================== টপ বার ==================== -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <button class="lang-btn active" data-lang="bn">বাংলা</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="hi">हिंदी</button>
+      <button id="globalThemeToggle" class="theme-toggle-btn" title="ডার্ক/লাইট মোড বদলান">🌙</button>
+    </div>
+  </div>
+
+  <!-- ==================== মূল কন্টেন্ট ==================== -->
+  <div class="container">
+
+    <!-- ************ বাংলা ************ -->
+    <div class="lang-bn" lang="bn">
+      <h1>🌙 ডার্ক মোড টগল – CSS ভেরিয়েবল ও JavaScript (সবকিছু লাইন ধরে বুঝুন)</h1>
+      <div class="meta">
+        <span>📅 ২৯ এপ্রিল, ২০২৬</span>
+        <span>⏱️ ১০ মিনিট পড়া</span>
+        <span>✍️ মিলন বিশ্বাস</span>
+      </div>
+      <p>এই টিউটোরিয়ালে আমি ধাপে ধাপে দেখাব কীভাবে একটি ডার্ক/লাইট মোড টগল বানাতে হয় – <strong>প্রতিটি লাইনের কাজ বাংলায় ব্যাখ্যা করে</strong>। আপনি যদি HTML/CSS/JS না জানেন, তাও চিন্তা নেই। এখানে সব কথা স্পষ্ট করে লেখা আছে।</p>
+
+      <div class="demo-box">
+        <button id="demoThemeToggle" class="btn-demo">🌙 ডার্ক মোড চালু করুন</button>
+        <p style="font-size:0.8rem; margin-top:8px;">⚡ এই বাটন ক্লিক করে পুরো পাতার রং বদলে দেখুন। (এটি ডেমো)</p>
+      </div>
+
+      <h2>🎨 ১. CSS ভেরিয়েবল (Custom Properties) – রং সংরক্ষণ করা</h2>
+      <p>নিচের কোডটি CSS অংশ। আমরা সব রংকে ভেরিয়েবলের ভিতরে রাখব, যাতে পরে এক জায়গায় বদলালেই সব জায়গায় রং বদলে যায়।</p>
+      <pre><code>/* STEP 1: ডিফল্ট (লাইট) থিমের জন্য ভেরিয়েবল */
+:root {
+  --bg: #f8fafc;      /* পৃষ্ঠার পটভূমির রং (হালকা ধূসর) */
+  --text: #0f172a;     /* সাধারণ লেখার রং (কালোর কাছাকাছি) */
+  --accent: #2563eb;   /* বাটন, লিংকের রং (নীল) */
+}
+
+/* STEP 2: ডার্ক থিম – যখন body তে 'dark' ক্লাস থাকবে */
+body.dark {
+  --bg: #0f172a;       /* পটভূমি গাঢ় নীল */
+  --text: #e2e8f0;     /* লেখা সাদার কাছাকাছি */
+  --accent: #38bdf8;   /* আকাশী নীল */
+}
+
+/* STEP 3: ভেরিয়েবল ব্যবহার করা */
+body {
+  background: var(--bg);   /* পটভূমি ভেরিয়েবল অনুযায়ী */
+  color: var(--text);      /* লেখার রং ভেরিয়েবল অনুযায়ী */
+  transition: 0.3s;        /* রং বদলাতে ০.৩ সেকেন্ড সময় নেবে (মসৃণ) */
+}</code></pre>
+      <div class="explanation">
+        <strong>🔍 ব্যাখ্যা:</strong><br>
+        • <code>:root</code> – পুরো ডকুমেন্টের সবচেয়ে উপরের এলিমেন্ট। এখানে রাখা ভেরিয়েবল সব জায়গায় ব্যবহার করা যায়।<br>
+        • <code>--bg</code>, <code>--text</code> – এগুলো কাস্টম ভেরিয়েবলের নাম। ড্যাশ (–) দিয়ে শুরু করতে হয়।<br>
+        • <code>body.dark</code> – মানে যেকোনো body যার ক্লাসে 'dark' আছে। আমরা JavaScript দিয়ে এই ক্লাস যোগ/সরাব।<br>
+        • <code>var(--bg)</code> – মানে '--bg' ভেরিয়েবলের ভ্যালু নাও।<br>
+        • <code>transition: 0.3s;</code> – রং বদলাতে যখনই পরিবর্তন হবে, ০.৩ সেকেন্ড ধরে ধীরে হবে। চোখে আরামদায়ক।
+      </div>
+
+      <h2>🧩 ২. HTML বাটন – ব্যবহারকারী যেখানে ক্লিক করবে</h2>
+      <p>শুধু একটি <code>&lt;button&gt;</code> এলিমেন্ট লাগবে।</p>
+      <pre><code>&lt;button id="themeToggle"&gt;🌙 ডার্ক মোড&lt;/button&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 ব্যাখ্যা:</strong><br>
+        • <code>id="themeToggle"</code> – এই আইডি দিয়ে আমরা JavaScript এ বাটনটিকে চিনতে পারব।<br>
+        • বাটনের ভেতরের টেক্সট – একটি ইমোজি (🌙) ও লেখা। পরে JavaScript দিয়ে টেক্সট বদলাব।
+      </div>
+
+      <h2>⚙️ ৩. জাভাস্ক্রিপ্ট – ক্লিক শোনা, ক্লাস টগল, পছন্দ মনে রাখা</h2>
+      <p>এখানে প্রতিটি লাইনের কাজ স্পষ্ট করে বলা আছে।</p>
+      <pre><code>// বাটন ধরা
+const toggleBtn = document.getElementById('themeToggle');
+
+// ক্লিক করলে
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  toggleBtn.textContent = isDark ? '☀️ লাইট মোড' : '🌙 ডার্ক মোড';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+// পূর্বের পছন্দ লোড
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark');
+  toggleBtn.textContent = '☀️ লাইট মোড';
+}</code></pre>
+      <div class="explanation">
+        <strong>🔍 লাইন বাই লাইন ব্যাখ্যা:</strong><br>
+        • <code>const toggleBtn = document.getElementById('themeToggle');</code> – HTML-এর বাটনটিকে JavaScript-এ নিয়ে আসা।<br>
+        • <code>addEventListener('click', ...)</code> – বাটনে ক্লিক করলে ফাংশন চালাবে।<br>
+        • <code>document.body.classList.toggle('dark');</code> – body তে 'dark' ক্লাস থাকলে সরাবে, না থাকলে যোগ করবে।<br>
+        • <code>const isDark = document.body.classList.contains('dark');</code> – 'dark' ক্লাস আছে কিনা true/false।<br>
+        • <code>toggleBtn.textContent = isDark ? '☀️ লাইট মোড' : '🌙 ডার্ক মোড';</code> – বাটনের লেখা বদলানো।<br>
+        • <code>localStorage.setItem('theme', isDark ? 'dark' : 'light');</code> – পছন্দ সংরক্ষণ।<br>
+        • <code>const savedTheme = localStorage.getItem('theme');</code> – পূর্বের পছন্দ পড়া।<br>
+        • <code>if (savedTheme === 'dark') { ... }</code> – ডার্ক ছিল কিনা চেক করে সেট করা।
+      </div>
+
+      <h2>🎯 পুরো কোড একসাথে (কপি করে পেস্ট করুন)</h2>
+      <p>আপনি চাইলে নিচের পুরো কোডটি আপনার HTML ফাইলে বসিয়ে দিন। তাহলেই ডার্ক মোড টগল কাজ করবে।</p>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    :root { --bg: #f8fafc; --text: #0f172a; --accent: #2563eb; }
+    body.dark { --bg: #0f172a; --text: #e2e8f0; --accent: #38bdf8; }
+    body { background: var(--bg); color: var(--text); transition: 0.3s; padding: 2rem; }
+    button { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="themeToggle"&gt;🌙 ডার্ক মোড&lt;/button&gt;
+  &lt;h1&gt;আমার ওয়েবসাইট&lt;/h1&gt;
+  &lt;p&gt;এই পৃষ্ঠায় ডার্ক/লাইট মোড টগল আছে।&lt;/p&gt;
+  &lt;script&gt;
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      btn.textContent = isDark ? '☀️ লাইট মোড' : '🌙 ডার্ক মোড';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      btn.textContent = '☀️ লাইট মোড';
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h2>💡 প্র্যাকটিক্যাল টিপস</h2>
+      <ul style="margin-left: 20px; margin-bottom: 20px;">
+        <li><strong>CSS ভেরিয়েবল আরও বাড়ান:</strong> আপনি চাইলে <code>--border</code>, <code>--card-bg</code> ইত্যাদি ভেরিয়েবল যোগ করে সব ডিজাইন পরিবর্তন করতে পারেন।</li>
+        <li><strong>মসৃণ ট্রানজিশন:</strong> শুধু <code>transition: 0.3s;</code> দিলেই রং বদলাতে সময় লাগে, চোখে আরামদায়ক।</li>
+        <li><strong>ব্রাউজার সাপোর্ট:</strong> CSS ভেরিয়েবল ও localStorage সব আধুনিক ব্রাউজারে কাজ করে (Chrome, Firefox, Edge, Safari)।</li>
+        <li><strong>একাধিক পৃষ্ঠায় সংরক্ষণ:</strong> localStorage পুরো ওয়েবসাইটের জন্য একটি জায়গা, তাই এক পৃষ্ঠায় পছন্দ করলে অন্য পৃষ্ঠাতেও সেটি লোড হবে (একই ডোমেইনে)।</li>
+      </ul>
+
+      <div class="explanation">
+        <strong>📢 শেষ কথা:</strong> এই টিউটোরিয়াল শেষ করে আপনি নিজেই বুঝতে পারবেন কীভাবে ডার্ক মোড টগল কাজ করে। যদি কোথাও আটকে যান, তাহলে কমেন্ট করে জানাতে পারেন। আমি সাহায্য করব।
+      </div>
+
+      <!-- ========== বাংলা: আরও পড়ুন ও মতামত ========== -->
+      <div class="related-posts">
+        <h3>📚 আরও পড়ুন</h3>
+        <ul>
+          <li><a href="https://banglagolpogalaxy.github.io/portfolio/blog/my-web-dev-journey.html">🧑‍💻 আমার ওয়েব ডেভেলপমেন্ট জার্নি – শূন্য থেকে পোর্টফোলিও পর্যন্ত</a></li>
+          <li><a href="https://banglagolpogalaxy.github.io/portfolio/blog/how-i-built-multicalc.html">🔧 কিভাবে আমি একটি মাল্টি-ক্যালকুলেটর টুল বানালাম</a></li>
+        </ul>
+      </div>
+      <div class="comments-section">
+        <h3>💬 আপনার মতামত দিন</h3>
+        <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a" data-page-id="dark-mode-trick-final" data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/dark-mode-trick.html" data-page-title="Dark Mode Toggle Tutorial" data-theme="light"></div>
+      </div>
+    </div>
+
+    <!-- ************ English ************ -->
+    <div class="lang-en" lang="en">
+      <h1>🌙 Dark Mode Toggle – CSS Variables & JavaScript (Explained Line by Line)</h1>
+      <div class="meta">
+        <span>📅 April 29, 2026</span>
+        <span>⏱️ 10 min read</span>
+        <span>✍️ Milan Biswas</span>
+      </div>
+      <p>In this tutorial, I'll show you step by step how to build a dark/light mode toggle – <strong>explaining every single line of code</strong>. Even if you're a complete beginner, you'll be able to follow along.</p>
+
+      <div class="demo-box">
+        <button id="demoThemeToggleEn" class="btn-demo">🌙 Enable Dark Mode</button>
+        <p style="font-size:0.8rem; margin-top:8px;">⚡ Click this button to see the whole page change colors. (Demo)</p>
+      </div>
+
+      <h2>🎨 1. CSS Variables (Custom Properties) – Storing Colors</h2>
+      <pre><code>:root {
+  --bg: #f8fafc;      /* light background */
+  --text: #0f172a;     /* dark text */
+  --accent: #2563eb;   /* blue accent */
+}
+body.dark {
+  --bg: #0f172a;       /* dark background */
+  --text: #e2e8f0;     /* light text */
+  --accent: #38bdf8;   /* light blue accent */
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}</code></pre>
+      <div class="explanation">Variables defined in <code>:root</code>, overridden in <code>body.dark</code>, then used with <code>var()</code>.</div>
+
+      <h2>🧩 2. HTML Button</h2>
+      <pre><code>&lt;button id="themeToggle"&gt;🌙 Dark Mode&lt;/button&gt;</code></pre>
+
+      <h2>⚙️ 3. JavaScript – Toggle & localStorage</h2>
+      <pre><code>const toggleBtn = document.getElementById('themeToggle');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark');
+  toggleBtn.textContent = '☀️ Light Mode';
+}</code></pre>
+      <div class="explanation">Click → toggle class → update button text → save to localStorage → load saved preference on page load.</div>
+
+      <h2>🎯 Complete Code Example</h2>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    :root { --bg: #f8fafc; --text: #0f172a; --accent: #2563eb; }
+    body.dark { --bg: #0f172a; --text: #e2e8f0; --accent: #38bdf8; }
+    body { background: var(--bg); color: var(--text); transition: 0.3s; padding: 2rem; }
+    button { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="themeToggle"&gt;🌙 Dark Mode&lt;/button&gt;
+  &lt;script&gt;
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      btn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      btn.textContent = '☀️ Light Mode';
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <!-- English related posts & comments -->
+      <div class="related-posts">
+        <h3>📚 Read More</h3>
+        <ul>
+          <li><a href="https://banglagolpogalaxy.github.io/portfolio/blog/my-web-dev-journey.html">🧑‍💻 My Web Development Journey – From Zero to Portfolio</a></li>
+          <li><a href="https://banglagolpogalaxy.github.io/portfolio/blog/how-i-built-multicalc.html">🔧 How I Built a Multi-Calculator Tool</a></li>
+        </ul>
+      </div>
+      <div class="comments-section">
+        <h3>💬 Share your thoughts</h3>
+        <div id="cusdis_thread_en" data-host="https://cusdis.com" data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a" data-page-id="dark-mode-trick-final" data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/dark-mode-trick.html" data-page-title="Dark Mode Toggle Tutorial" data-theme="light"></div>
+      </div>
+    </div>
+
+    <!-- ************ हिंदी ************ -->
+    <div class="lang-hi" lang="hi">
+      <h1>🌙 डार्क मोड टॉगल – CSS वेरिएबल और JavaScript (हर लाइन की व्याख्या)</h1>
+      <div class="meta">
+        <span>📅 29 अप्रैल, 2026</span>
+        <span>⏱️ 10 मिनट पढ़ें</span>
+        <span>✍️ मिलन बिस्वास</span>
+      </div>
+      <p>इस ट्यूटोरियल में मैं चरण दर चरण बताऊंगा कि डार्क/लाइट मोड टॉगल कैसे बनाया जाता है – <strong>हर एक लाइन को हिंदी में समझाते हुए</strong>।</p>
+
+      <div class="demo-box">
+        <button id="demoThemeToggleHi" class="btn-demo">🌙 डार्क मोड चालू करें</button>
+        <p style="font-size:0.8rem; margin-top:8px;">⚡ इस बटन पर क्लिक करके पूरे पेज के रंग बदलते देखें। (डेमो)</p>
+      </div>
+
+      <h2>🎨 1. CSS वेरिएबल – रंग संग्रहित करना</h2>
+      <pre><code>:root {
+  --bg: #f8fafc;      /* हल्की पृष्ठभूमि */
+  --text: #0f172a;     /* गहरा टेक्स्ट */
+  --accent: #2563eb;   /* नीला */
+}
+body.dark {
+  --bg: #0f172a;       /* गहरी पृष्ठभूमि */
+  --text: #e2e8f0;     /* हल्का टेक्स्ट */
+  --accent: #38bdf8;   /* हल्का नीला */
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}</code></pre>
+      <div class="explanation">वेरिएबल <code>:root</code> में परिभाषित होते हैं, <code>body.dark</code> में ओवरराइड होते हैं, और <code>var()</code> से उपयोग किए जाते हैं।</div>
+
+      <h2>🧩 2. HTML बटन</h2>
+      <pre><code>&lt;button id="themeToggle"&gt;🌙 डार्क मोड&lt;/button&gt;</code></pre>
+
+      <h2>⚙️ 3. JavaScript – टॉगल और localStorage</h2>
+      <pre><code>const toggleBtn = document.getElementById('themeToggle');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  toggleBtn.textContent = isDark ? '☀️ लाइट मोड' : '🌙 डार्क मोड';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark');
+  toggleBtn.textContent = '☀️ लाइट मोड';
+}</code></pre>
+      <div class="explanation">क्लिक → क्लास टॉगल करें → बटन टेक्स्ट बदलें → localStorage में सहेजें → पेज लोड पर पिछली पसंद लोड करें।</div>
+
+      <h2>🎯 पूर्ण कोड उदाहरण</h2>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    :root { --bg: #f8fafc; --text: #0f172a; --accent: #2563eb; }
+    body.dark { --bg: #0f172a; --text: #e2e8f0; --accent: #38bdf8; }
+    body { background: var(--bg); color: var(--text); transition: 0.3s; padding: 2rem; }
+    button { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="themeToggle"&gt;🌙 डार्क मोड&lt;/button&gt;
+  &lt;script&gt;
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      btn.textContent = isDark ? '☀️ लाइट मोड' : '🌙 डार्क मोड';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      btn.textContent = '☀️ लाइट मोड';
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <!-- Hindi related posts & comments -->
+      <div class="related-posts">
+        <h3>📚 और पढ़ें</h3>
+        <ul>
+          <li><a href="https://banglagolpogalaxy.github.io/portfolio/blog/my-web-dev-journey.html">🧑‍💻 मेरी वेब डेवलपमेंट यात्रा</a></li>
+          <li><a href="https://banglagolpogalaxy.github.io/portfolio/blog/how-i-built-multicalc.html">🔧 मैंने मल्टी-कैलकुलेटर टूल कैसे बनाया</a></li>
+        </ul>
+      </div>
+      <div class="comments-section">
+        <h3>💬 अपनी राय दें</h3>
+        <div id="cusdis_thread_hi" data-host="https://cusdis.com" data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a" data-page-id="dark-mode-trick-final" data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/dark-mode-trick.html" data-page-title="Dark Mode Toggle Tutorial" data-theme="light"></div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <p>© 2026 Milan Biswas | বাংলা | English | हिंदी</p>
+      <p><a href="https://banglagolpogalaxy.github.io/portfolio/" style="color: var(--accent);">← পোর্টফোলিওতে ফিরুন</a></p>
+    </div>
+  </div>
+
+  <script>
+    // ==================== ভাষা টগল ====================
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const body = document.body;
+    function setLanguage(lang) {
+      body.className = lang;
+      langBtns.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      localStorage.setItem('blogLang', lang);
+    }
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        setLanguage(lang);
+      });
+    });
+    const savedLang = localStorage.getItem('blogLang');
+    if (savedLang && ['bn','en','hi'].includes(savedLang)) setLanguage(savedLang);
+    else setLanguage('bn');
+
+    // ==================== ডার্ক মোড টগল (পূর্ণ কার্যকরী) ====================
+    function toggleDarkMode() {
+      const isDarkNow = document.body.classList.contains('dark');
+      if (isDarkNow) {
+        document.body.classList.remove('dark');
+      } else {
+        document.body.classList.add('dark');
+      }
+      const isDark = document.body.classList.contains('dark');
+      const globalBtn = document.getElementById('globalThemeToggle');
+      if (globalBtn) globalBtn.textContent = isDark ? '☀️' : '🌙';
+      const demoBn = document.getElementById('demoThemeToggle');
+      const demoEn = document.getElementById('demoThemeToggleEn');
+      const demoHi = document.getElementById('demoThemeToggleHi');
+      if (demoBn) demoBn.textContent = isDark ? '☀️ লাইট মোড চালু করুন' : '🌙 ডার্ক মোড চালু করুন';
+      if (demoEn) demoEn.textContent = isDark ? '☀️ Enable Light Mode' : '🌙 Enable Dark Mode';
+      if (demoHi) demoHi.textContent = isDark ? '☀️ लाइट मोड चालू करें' : '🌙 डार्क मोड चालू करें';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    const globalToggle = document.getElementById('globalThemeToggle');
+    if (globalToggle) globalToggle.addEventListener('click', toggleDarkMode);
+    const demoBn = document.getElementById('demoThemeToggle');
+    const demoEn = document.getElementById('demoThemeToggleEn');
+    const demoHi = document.getElementById('demoThemeToggleHi');
+    if (demoBn) demoBn.addEventListener('click', toggleDarkMode);
+    if (demoEn) demoEn.addEventListener('click', toggleDarkMode);
+    if (demoHi) demoHi.addEventListener('click', toggleDarkMode);
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      if (!document.body.classList.contains('dark')) {
+        document.body.classList.add('dark');
+        const globalBtn = document.getElementById('globalThemeToggle');
+        if (globalBtn) globalBtn.textContent = '☀️';
+        const demoBn = document.getElementById('demoThemeToggle');
+        const demoEn = document.getElementById('demoThemeToggleEn');
+        const demoHi = document.getElementById('demoThemeToggleHi');
+        if (demoBn) demoBn.textContent = '☀️ लाइट मोड चालू करें';
+        if (demoEn) demoEn.textContent = '☀️ Enable Light Mode';
+        if (demoHi) demoHi.textContent = '☀️ लाइट मोड चालू करें';
+      }
+    } else {
+      if (document.body.classList.contains('dark')) {
+        document.body.classList.remove('dark');
+        const globalBtn = document.getElementById('globalThemeToggle');
+        if (globalBtn) globalBtn.textContent = '🌙';
+        const demoBn = document.getElementById('demoThemeToggle');
+        const demoEn = document.getElementById('demoThemeToggleEn');
+        const demoHi = document.getElementById('demoThemeToggleHi');
+        if (demoBn) demoBn.textContent = '🌙 डार्क मोड चालू करें';
+        if (demoEn) demoEn.textContent = '🌙 Enable Dark Mode';
+        if (demoHi) demoHi.textContent = '🌙 डार्क मोड चालू करें';
+      }
+    }
+
+    // Cusdis স্ক্রিপ্ট একবার লোড করাই যথেষ্ট (একাধিকবার লোড হবে, কিন্তু ঠিক আছে)
+    if (!document.querySelector('script[src*="cusdis.es.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://cusdis.com/js/cusdis.es.js';
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+  </script>
+</body>
+</html>
