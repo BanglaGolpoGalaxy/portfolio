@@ -105,6 +105,7 @@
       font-family: var(--font-main);
       line-height: 1.6;
       transition: background 0.3s, color 0.2s;
+      padding-top: 100px; /* header height (fixed) */
     }
     .container {
       max-width: 1100px;
@@ -112,12 +113,16 @@
       padding: 0 16px;
     }
     
-    /* ========== HEADER ========== */
+    /* ========== FIXED HEADER ========== */
     header {
       background: var(--header-bg);
       border-bottom: 2px solid transparent;
-      padding: 16px 0;
-      position: sticky; top: 0; z-index: 100;
+      padding: 14px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
       backdrop-filter: blur(12px);
       transition: 0.3s;
     }
@@ -131,6 +136,9 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
     }
     .header-info {
       display: flex;
@@ -193,7 +201,7 @@
     /* ========== HERO ========== */
     .hero {
       text-align: center;
-      padding: 40px 0 30px;
+      padding: 20px 0 30px;
     }
     .hero h2 {
       font-size: 1.6rem;
@@ -232,7 +240,7 @@
     .btn:hover { transform: translateY(-2px); background: var(--accent-hover); }
     
     /* ========== SECTIONS ========== */
-    .section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+    .section { padding: 20px 0; border-bottom: 1px solid var(--border); }
     .section-title {
       font-size: 1.5rem;
       color: var(--accent);
@@ -244,9 +252,9 @@
     
     /* ========== CARDS ========== */
     .card-section { margin: 16px 0; }
-    .scroll-wrapper { position: relative; margin-bottom: 20px; }
+    .scroll-wrapper { margin-bottom: 20px; }
     .scroll-cards {
-      display: flex; overflow-x: auto; gap: 16px; padding: 8px 0 16px;
+      display: flex; overflow-x: auto; gap: 12px; padding: 8px 0 16px;
       scrollbar-width: thin; align-items: stretch;
     }
     .scroll-cards::-webkit-scrollbar { height: 6px; }
@@ -256,7 +264,7 @@
     .grid-cards {
       display: none;
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 16px;
       margin-bottom: 16px;
     }
     
@@ -265,32 +273,37 @@
       display: flex; flex-direction: column; height: 100%;
     }
     .scroll-cards > .card-link {
-      flex: 0 0 280px;
-      width: 280px;
+      flex: 0 0 260px;
+      width: 260px;
     }
     
     .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-      padding: 16px; transition: 0.3s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: 14px; transition: 0.3s;
       display: flex; flex-direction: column; justify-content: space-between;
-      flex: 1; word-break: break-word;
+      flex: 1; word-break: break-word; position: relative;
     }
     .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--card-shadow); }
     .card img {
-      width: 100%; height: 140px; object-fit: cover; border-radius: 10px;
-      margin-bottom: 10px; background: #1e293b;
+      width: 100%; height: 120px; object-fit: cover; border-radius: 10px;
+      margin-bottom: 8px; background: #1e293b;
     }
-    .card h3 { color: var(--accent); margin-bottom: 6px; font-weight: 600; font-size: 1rem; }
-    .card p { color: var(--text-sec); font-size: 0.85rem; margin: 6px 0; line-height: 1.4; }
+    .card h3 { color: var(--accent); margin-bottom: 6px; font-weight: 600; font-size: 0.95rem; }
+    .card p { color: var(--text-sec); font-size: 0.8rem; margin: 4px 0 0; line-height: 1.4; }
     .blog-meta {
       font-size: 0.7rem; color: var(--text-sec); margin-top: 4px;
-      display: flex; flex-wrap: wrap; gap: 8px;
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    /* Footer of card pushed to bottom */
+    .card-footer {
+      margin-top: auto;
+      padding-top: 10px;
     }
     
     .experience-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 16px;
     }
     .experience-grid .card:nth-child(1) { background: var(--exp-card-1); }
     .experience-grid .card:nth-child(2) { background: var(--exp-card-2); }
@@ -308,7 +321,7 @@
     }
     .see-more-btn button:hover { background: var(--accent); color: #020617; }
     
-    .job-date { font-size: 0.75rem; color: var(--accent); margin-bottom: 6px; font-weight: 500; }
+    .job-date { font-size: 0.75rem; color: var(--accent); margin-bottom: 4px; font-weight: 500; }
     
     /* ========== CONTACT FORM ========== */
     .contact-form { max-width: 500px; margin: 0 auto; }
@@ -353,20 +366,22 @@
     
     /* ========== DESKTOP ENHANCEMENTS ========== */
     @media (min-width: 600px) {
+      body { padding-top: 100px; }
       .container { padding: 0 24px; }
-      header { padding: 20px 0; }
+      header { padding: 14px 0; }
+      .header-flex { padding: 0 24px; }
       .profile-img { width: 70px; height: 70px; }
       .header-text h1 { font-size: 1.6rem; }
       .tagline { font-size: 0.9rem; }
       nav a { font-size: 0.9rem; padding: 4px 12px; }
-      .hero { padding: 60px 0 40px; }
+      .hero { padding: 20px 0 30px; }
       .hero h2 { font-size: 2rem; }
       .hero p { font-size: 1rem; }
-      .section { padding: 60px 0; }
+      .section { padding: 40px 0; }
       .section-title { font-size: 1.8rem; }
       .grid-cards { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
       .experience-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-      .card img { height: 160px; }
+      .card img { height: 140px; }
       .blog-meta { font-size: 0.75rem; }
     }
   </style>
@@ -374,7 +389,7 @@
 <body>
 
 <header id="mainHeader">
-  <div class="container header-flex">
+  <div class="header-flex">
     <div class="header-info">
       <a href="#" aria-label="Milan Biswas"><img src="avatar.png" alt="Milan Biswas profile picture" class="profile-img"></a>
       <div class="header-text">
@@ -574,7 +589,9 @@
           <img src="${proj.image}" alt="${proj.title}" loading="lazy" onerror="this.src='https://placehold.co/400x200?text=No+Image'">
           <h3>${proj.title}</h3>
           <p>${proj.description}</p>
-          <a href="${proj.link}" class="btn" target="_blank" rel="noopener noreferrer">${proj.btnText}</a>
+          <div class="card-footer">
+            <a href="${proj.link}" class="btn" target="_blank" rel="noopener noreferrer">${proj.btnText}</a>
+          </div>
         </div>
       </div>
     `;
@@ -591,7 +608,9 @@
             <span>${post.languages}</span>
           </div>
           <p>${post.excerpt}</p>
-          <span style="color:var(--accent); font-size:0.85rem; font-weight:500; margin-top:12px;">→ Read More</span>
+          <div class="card-footer">
+            <span style="color:var(--accent); font-size:0.85rem; font-weight:500;">→ Read More</span>
+          </div>
         </div>
       </a>
     `;
