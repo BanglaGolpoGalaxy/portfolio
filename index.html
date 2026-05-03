@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   
+  <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="EFKZ__SGNwsPC-hOlrKDHH-bJDzpIeZDTLDlve-SxtU" />
   
+  <!-- Primary Meta Tags -->
   <title>Milan Biswas | Web Developer, Teacher & Author</title>
   <meta name="title" content="Milan Biswas – Web Development Learner & Teacher">
   <meta name="description" content="Milan Biswas – B.Sc graduate, ITI COPA trainee. Learning web development. Experience: teaching assistant, manager, supervisor, promoter. Currently teaching at Disha Academy.">
@@ -13,6 +15,7 @@
   <meta name="author" content="Milan Biswas">
   <meta name="robots" content="index, follow, max-image-preview:large">
   
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/">
   <meta property="og:title" content="Milan Biswas – Web Developer Portfolio">
@@ -21,17 +24,23 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   
+  <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/">
   <meta property="twitter:title" content="Milan Biswas – Web Developer Portfolio">
   <meta property="twitter:description" content="Web development projects and blog.">
   <meta property="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/avatar.png">
   
+  <!-- Canonical URL -->
   <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/">
   
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
+  <!-- JSON-LD Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,7 +55,10 @@
       "https://in.linkedin.com/in/milan-biswas-066a5b366",
       "https://profile.indeed.com/p/y5b84wd"
     ],
-    "worksFor": { "@type": "Organization", "name": "Disha Academy" },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Disha Academy"
+    },
     "alumniOf": "B.Sc (2021)",
     "knowsAbout": ["HTML", "CSS", "JavaScript", "Git", "GitHub", "Excel", "Data Entry", "Team Management", "Teaching"]
   }
@@ -104,6 +116,7 @@
     }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     
+    /* ========== HEADER ========== */
     header {
       background: var(--header-bg);
       border-bottom: 2px solid transparent;
@@ -145,6 +158,7 @@
     }
     .theme-toggle:hover { background: var(--accent); color: #020617; }
     
+    /* ========== HERO ========== */
     .hero { text-align: center; padding: 60px 0 40px; }
     .hero h2 {
       font-size: 2rem; color: var(--accent); margin-bottom: 16px; min-height: 3rem;
@@ -165,12 +179,14 @@
     }
     .btn:hover { transform: translateY(-2px); background: var(--accent-hover); }
     
+    /* ========== SECTIONS ========== */
     .section { padding: 60px 0; border-bottom: 1px solid var(--border); }
     .section-title {
       font-size: 1.8rem; color: var(--accent); border-left: 4px solid var(--accent);
       padding-left: 16px; margin-bottom: 32px; font-weight: 600;
     }
     
+    /* ========== CARDS (প্রোজেক্ট ও ব্লগ) ========== */
     .card-section { margin: 20px 0; }
     .scroll-wrapper { position: relative; margin-bottom: 20px; }
     .scroll-cards {
@@ -189,11 +205,15 @@
       grid-auto-rows: 1fr;
     }
     
-    a.card-link {
+    /* ক্লিকেবল কার্ডের জন্য পুরো wrapper */
+    .card-link {
       text-decoration: none; color: inherit;
       display: flex; flex-direction: column; height: 100%;
     }
-    .scroll-cards > a.card-link { flex: 0 0 280px; }
+    /* স্ক্রল ভিউতে প্রতিটি কার্ড-লিংকের নির্দিষ্ট প্রস্থ */
+    .scroll-cards > .card-link {
+      flex: 0 0 280px;
+    }
     
     .card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
@@ -201,7 +221,9 @@
       display: flex; flex-direction: column; justify-content: space-between;
       flex: 1; word-break: break-word;
     }
-    .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--card-shadow); }
+    .card:hover {
+      transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--card-shadow);
+    }
     .card img {
       width: 100%; height: 160px; object-fit: cover; border-radius: 12px;
       margin-bottom: 12px; background: #1e293b;
@@ -213,6 +235,7 @@
       display: flex; flex-wrap: wrap; gap: 10px;
     }
     
+    /* Experience Cards Colour */
     .experience-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;
     }
@@ -234,6 +257,7 @@
     
     .job-date { font-size: 0.8rem; color: var(--accent); margin-bottom: 8px; font-weight: 500; }
     
+    /* ========== CONTACT FORM ========== */
     .contact-form { max-width: 600px; margin: 0 auto; }
     .contact-form .form-group { margin-bottom: 1.2rem; }
     .contact-form label { display: block; margin-bottom: 0.3rem; color: var(--text); font-weight: 500; }
@@ -248,6 +272,7 @@
     }
     .contact-form button:hover { background: var(--accent-hover); }
     
+    /* ========== FOOTER ========== */
     footer {
       background: var(--surface); border-top: 1px solid var(--border);
       text-align: center; padding: 32px 0; margin-top: 40px;
@@ -272,6 +297,7 @@
     }
     .scroll-top.show { opacity: 1; visibility: visible; }
     
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 700px) {
       .header-flex { flex-direction: column; align-items: stretch; text-align: center; }
       .header-info { justify-content: center; }
@@ -480,12 +506,15 @@
   ];
 
   function createProjectCard(proj) {
+    // এখন প্রজেক্ট কার্ডও .card-link দিয়ে মোড়া
     return `
-      <div class="card">
-        <img src="${proj.image}" alt="${proj.title}" loading="lazy" onerror="this.src='https://placehold.co/400x200?text=No+Image'">
-        <h3>${proj.title}</h3>
-        <p>${proj.description}</p>
-        <a href="${proj.link}" class="btn" target="_blank" rel="noopener noreferrer">${proj.btnText}</a>
+      <div class="card-link">
+        <div class="card">
+          <img src="${proj.image}" alt="${proj.title}" loading="lazy" onerror="this.src='https://placehold.co/400x200?text=No+Image'">
+          <h3>${proj.title}</h3>
+          <p>${proj.description}</p>
+          <a href="${proj.link}" class="btn" target="_blank" rel="noopener noreferrer">${proj.btnText}</a>
+        </div>
       </div>
     `;
   }
