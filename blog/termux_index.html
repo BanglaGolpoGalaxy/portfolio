@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <meta name="google-site-verification" content="EFKZ__SGNwsPC-hOlrKDHH-bJDzpIeZDTLDlve-SxtU" />
+  
+  <title>মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট শিখুন | বাংলা টিউটোরিয়াল সিরিজ</title>
+  <meta name="title" content="মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট শিখুন">
+  <meta name="description" content="একটি বাস্তব দোকান ম্যানেজমেন্ট সিস্টেম তৈরি করতে করতে শিখুন Termux, Node.js, Express, API, JSON, এবং ফুল স্ট্যাক ওয়েব ডেভেলপমেন্ট। সম্পূর্ণ ফ্রি, সম্পূর্ণ বাংলায়।">
+  <meta name="keywords" content="Termux বাংলা টিউটোরিয়াল, Node.js বাংলা, Express বাংলা, API বাংলা, দোকান ম্যানেজমেন্ট সিস্টেম, মোবাইলে ওয়েব ডেভেলপমেন্ট, ব্যাকএন্ড বাংলা, ফুল স্ট্যাক বাংলা">
+  <meta name="author" content="Milan Biswas">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/">
+  <meta property="og:title" content="মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট শিখুন">
+  <meta property="og:description" content="দোকান ম্যানেজমেন্ট সিস্টেম তৈরি করতে করতে শিখুন Termux, Node.js, Express, API। সম্পূর্ণ ফ্রি, সম্পূর্ণ বাংলায়।">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/images/series-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Milan Biswas - Blog">
+  <meta property="og:locale" content="bn_BD">
+  
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/">
+  <meta property="twitter:title" content="মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট শিখুন">
+  <meta property="twitter:description" content="দোকান ম্যানেজমেন্ট সিস্টেম তৈরি করতে করতে শিখুন Termux, Node.js, Express, API। সম্পূর্ণ ফ্রি, সম্পূর্ণ বাংলায়।">
+  <meta property="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/images/series-cover.jpg">
+  
+  <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #020617;
+      --surface: #0f172a;
+      --surface2: #1e293b;
+      --text: #e0e0e0;
+      --text-sec: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #a78bfa;
+      --border: #1e293b;
+      --card-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      --font-bn: 'Hind Siliguri', sans-serif;
+      --font-en: 'Poppins', sans-serif;
+      
+      --audience-1: linear-gradient(135deg, #1e2a4a, #0f1a2f);
+      --audience-2: linear-gradient(135deg, #1a3a2a, #0f1f18);
+      --audience-3: linear-gradient(135deg, #3a3520, #1f1c10);
+      --audience-4: linear-gradient(135deg, #3a1e2e, #1f1018);
+      
+      --ep-card-1: linear-gradient(135deg, #f59e0b20, #f59e0b10), linear-gradient(135deg, #1e293b, #162032);
+      --ep-card-2: linear-gradient(135deg, #10b98120, #10b98110), linear-gradient(135deg, #1e293b, #162032);
+      --ep-card-3: linear-gradient(135deg, #3a3520, #1f1c10);
+      --ep-card-4: linear-gradient(135deg, #3a1e2e, #1f1018);
+      --ep-card-5: linear-gradient(135deg, #1e3a3a, #0f1f1f);
+      --ep-card-6: linear-gradient(135deg, #2a1e3a, #1a0f2a);
+      --ep-card-7: linear-gradient(135deg, #3a2a1e, #1f180f);
+      --ep-card-8: linear-gradient(135deg, #1e2a3a, #0f1820);
+      --ep-card-9: linear-gradient(135deg, #2a3a1e, #18200f);
+      --ep-card-10: linear-gradient(135deg, #3a1e2a, #20101a);
+      --ep-card-11: linear-gradient(135deg, #1e1e3a, #10102a);
+      --ep-card-12: linear-gradient(135deg, #7c3aed20, #7c3aed10), linear-gradient(135deg, #1e293b, #162032);
+    }
+    
+    body.light {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface2: #f1f5f9;
+      --text: #0f172a;
+      --text-sec: #475569;
+      --accent: #2563eb;
+      --accent2: #7c3aed;
+      --border: #e2e8f0;
+      --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      
+      --audience-1: linear-gradient(135deg, #eff6ff, #dbeafe);
+      --audience-2: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      --audience-3: linear-gradient(135deg, #fefce8, #fef08a);
+      --audience-4: linear-gradient(135deg, #fdf2f8, #fce7f3);
+      
+      --ep-card-1: linear-gradient(135deg, #fff7ed, #fed7aa);
+      --ep-card-2: linear-gradient(135deg, #ecfdf5, #a7f3d0);
+      --ep-card-3: linear-gradient(135deg, #fefce8, #fef08a);
+      --ep-card-4: linear-gradient(135deg, #fdf2f8, #fce7f3);
+      --ep-card-5: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+      --ep-card-6: linear-gradient(135deg, #ede7f6, #d1c4e9);
+      --ep-card-7: linear-gradient(135deg, #fff8e1, #ffecb3);
+      --ep-card-8: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      --ep-card-9: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      --ep-card-10: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      --ep-card-11: linear-gradient(135deg, #f3e5f5, #e1bee7);
+      --ep-card-12: linear-gradient(135deg, #f5f0ff, #d4c4f0);
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-bn);
+      line-height: 1.5;
+      transition: background 0.3s, color 0.2s;
+    }
+    
+    .en { font-family: var(--font-en); }
+    .bn { font-family: var(--font-bn); }
+    
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--accent);
+      padding: 16px 0;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    
+    .header-flex {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    
+    .logo-section { display: flex; align-items: center; gap: 14px; }
+    .series-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .logo-text h2 { font-size: 1.1rem; color: var(--text); line-height: 1.3; }
+    .logo-text .sub { font-size: 0.8rem; color: var(--text-sec); }
+    
+    .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    
+    .lang-toggle {
+      display: flex; background: var(--surface2); border-radius: 30px; padding: 3px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 6px 14px; border-radius: 30px; border: none; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; transition: 0.2s;
+      background: transparent; color: var(--text-sec); font-family: var(--font-bn);
+    }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+    
+    .theme-toggle {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 30px;
+      padding: 8px 14px; cursor: pointer; font-size: 1.1rem; color: var(--text);
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    
+    .home-btn {
+      color: var(--text-sec); text-decoration: none; font-size: 1.2rem;
+      padding: 6px 10px; border-radius: 8px;
+    }
+    .home-btn:hover { color: var(--accent); background: var(--surface2); }
+    
+    .hero { text-align: center; padding: 60px 20px 40px; }
+    .hero-badge {
+      display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; padding: 6px 18px; border-radius: 30px; font-size: 0.85rem;
+      font-weight: 600; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--accent);
+      margin-bottom: 16px; line-height: 1.4; font-weight: 700;
+    }
+    .hero .subtitle { font-size: 1.1rem; color: var(--text-sec); max-width: 700px; margin: 0 auto 30px; }
+    .hero-stats { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 0.85rem; color: var(--text-sec); }
+    
+    .section { padding: 50px 0; }
+    .section-title {
+      font-size: 1.6rem; color: var(--accent); border-left: 4px solid var(--accent);
+      padding-left: 16px; margin-bottom: 32px; font-weight: 600;
+    }
+    
+    .audience-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .audience-card {
+      border-radius: 16px; padding: 24px; transition: 0.3s; border: 1px solid var(--border); color: var(--text);
+    }
+    .audience-card:nth-child(1) { background: var(--audience-1); }
+    .audience-card:nth-child(2) { background: var(--audience-2); }
+    .audience-card:nth-child(3) { background: var(--audience-3); }
+    .audience-card:nth-child(4) { background: var(--audience-4); }
+    .audience-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow); }
+    .audience-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .audience-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .audience-card p { font-size: 0.9rem; color: var(--text-sec); line-height: 1.6; }
+    
+    .card-section { margin: 20px 0; }
+    .scroll-wrapper { position: relative; margin-bottom: 20px; }
+    .scroll-cards {
+      display: flex; overflow-x: auto; gap: 20px; padding: 12px 0 20px;
+      scrollbar-width: thin;
+      align-items: start;
+    }
+    .scroll-cards::-webkit-scrollbar { height: 6px; }
+    .scroll-cards::-webkit-scrollbar-track { background: var(--border); border-radius: 10px; }
+    .scroll-cards::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+    
+    .grid-cards {
+      display: none; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 20px;
+    }
+    
+    a.card-link { text-decoration: none; color: inherit; display: block; }
+    
+    .card {
+      width: 300px;
+      height: 300px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+    }
+    
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--card-shadow); }
+    
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    
+    .card-content {
+      padding: 14px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: space-between; সরানো হয়েছে */
+      overflow: hidden;
+    }
+    
+    .card-content .top-content {
+      flex: 1; /* উপরের কন্টেন্ট যতটুকু সম্ভব জায়গা নেয়, বাটন নিচে চলে আসে */
+    }
+    
+    .episode-number {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      white-space: nowrap;
+    }
+    
+    .card h3 {
+      font-size: 1rem; /* slightly larger */
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .card p.desc {
+      font-size: 0.8rem; /* larger */
+      color: var(--text-sec);
+      margin-bottom: 8px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .episode-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.75rem;
+      color: var(--text-sec);
+      margin-bottom: 6px;
+    }
+    
+    .btn, .btn-static {
+      background: var(--accent);
+      color: #fff;
+      padding: 5px 16px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: inline-block;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      margin-top: auto; /* পুশ টু বটম */
+    }
+    .btn-static { background: var(--surface2); color: var(--text-sec); cursor: default; }
+    .btn-static:hover { background: var(--surface2); }
+    
+    .card .tagline {
+      font-size: 0.65rem;
+      color: var(--text-sec);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-style: italic;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .see-more-btn { text-align: center; margin: 20px 0 10px; }
+    .see-more-btn button {
+      background: var(--surface); border: 1px solid var(--accent); color: var(--accent);
+      padding: 8px 20px; border-radius: 40px; cursor: pointer; font-family: var(--font-bn);
+    }
+    .see-more-btn button:hover { background: var(--accent); color: #fff; }
+    
+    .about-series { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-top: 30px; }
+    .about-series h3 { color: var(--accent); margin-bottom: 16px; font-size: 1.3rem; }
+    .about-series p { color: var(--text-sec); line-height: 1.8; margin-bottom: 12px; }
+    .feature-list { list-style: none; padding: 0; }
+    .feature-list li { padding: 6px 0; color: var(--text-sec); }
+    .feature-list li i { color: var(--accent2); margin-right: 8px; }
+    
+    .cta { text-align: center; padding: 50px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin: 40px 0; }
+    .cta h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--text); }
+    .cta p { color: var(--text-sec); margin-bottom: 20px; }
+    
+    .contact-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;
+      z-index: 200; visibility: hidden; opacity: 0; transition: 0.3s;
+    }
+    .contact-modal.show { visibility: visible; opacity: 1; }
+    .contact-box {
+      background: var(--surface); border: 2px solid var(--accent); border-radius: 20px;
+      padding: 30px; max-width: 500px; width: 90%; position: relative;
+    }
+    .contact-box h3 { color: var(--accent); margin-bottom: 20px; }
+    .contact-box .close-btn {
+      position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--text-sec); font-size: 1.5rem; cursor: pointer;
+    }
+    .contact-box .close-btn:hover { color: var(--accent); }
+    .contact-box input, .contact-box textarea {
+      width: 100%; padding: 12px; margin: 8px 0 16px; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 12px; color: var(--text); font-family: var(--font-bn);
+    }
+    .contact-box button {
+      background: var(--accent); color: #fff; border: none; padding: 10px 24px; border-radius: 40px; font-weight: 600; cursor: pointer;
+    }
+    
+    footer { background: var(--surface); border-top: 1px solid var(--border); text-align: center; padding: 30px 20px; margin-top: 60px; }
+    footer .social-icons { display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px; }
+    footer .social-icons a { color: var(--text-sec); font-size: 1.5rem; transition: 0.2s; text-decoration: none; }
+    footer .social-icons a:hover { color: var(--accent); }
+    
+    .indeed-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.7rem; height: 1.7rem; border-radius: 50%;
+      border: 2px solid currentColor;
+      color: inherit;
+      font-family: Arial, sans-serif; font-weight: bold; font-size: 0.8rem;
+      transition: 0.2s;
+    }
+    footer .social-icons a:hover .indeed-icon { color: var(--accent); }
+    
+    /* কার্ডের রঙিন ব্যাকগ্রাউন্ড */
+    .scroll-cards .card-link:nth-child(1) .card,
+    .grid-cards .card-link:nth-child(1) .card { background: var(--ep-card-1); }
+    .scroll-cards .card-link:nth-child(2) .card,
+    .grid-cards .card-link:nth-child(2) .card { background: var(--ep-card-2); }
+    .scroll-cards .card-link:nth-child(3) .card,
+    .grid-cards .card-link:nth-child(3) .card { background: var(--ep-card-3); }
+    .scroll-cards .card-link:nth-child(4) .card,
+    .grid-cards .card-link:nth-child(4) .card { background: var(--ep-card-4); }
+    .scroll-cards .card-link:nth-child(5) .card,
+    .grid-cards .card-link:nth-child(5) .card { background: var(--ep-card-5); }
+    .scroll-cards .card-link:nth-child(6) .card,
+    .grid-cards .card-link:nth-child(6) .card { background: var(--ep-card-6); }
+    .scroll-cards .card-link:nth-child(7) .card,
+    .grid-cards .card-link:nth-child(7) .card { background: var(--ep-card-7); }
+    .scroll-cards .card-link:nth-child(8) .card,
+    .grid-cards .card-link:nth-child(8) .card { background: var(--ep-card-8); }
+    .scroll-cards .card-link:nth-child(9) .card,
+    .grid-cards .card-link:nth-child(9) .card { background: var(--ep-card-9); }
+    .scroll-cards .card-link:nth-child(10) .card,
+    .grid-cards .card-link:nth-child(10) .card { background: var(--ep-card-10); }
+    .scroll-cards .card-link:nth-child(11) .card,
+    .grid-cards .card-link:nth-child(11) .card { background: var(--ep-card-11); }
+    .scroll-cards .card-link:nth-child(12) .card,
+    .grid-cards .card-link:nth-child(12) .card { background: var(--ep-card-12); }
+    
+    /* বিশেষ গ্লো */
+    .scroll-cards .card-link:nth-child(1) .card,
+    .grid-cards .card-link:nth-child(1) .card {
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+    }
+    .scroll-cards .card-link:nth-child(2) .card,
+    .grid-cards .card-link:nth-child(2) .card {
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    @media (max-width: 700px) {
+      .header-flex { flex-direction: column; align-items: stretch; }
+      .header-actions { justify-content: center; }
+      .logo-section { justify-content: center; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .hero { padding: 40px 16px 30px; }
+    }
+    
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+    span.lang-content.active { display: inline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-flex">
+    <div class="logo-section">
+      <div class="series-icon">📱</div>
+      <div class="logo-text">
+        <h2>
+          <span class="bn lang-content active" data-lang="bn">মোবাইলেই ব্যাকএন্ড</span>
+          <span class="en lang-content" data-lang="en">Backend on Mobile</span>
+        </h2>
+        <div class="sub">
+          <span class="bn lang-content active" data-lang="bn">Termux বাংলা টিউটোরিয়াল সিরিজ</span>
+          <span class="en lang-content" data-lang="en">Termux Bangla Tutorial Series</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="bn">বাংলা</button>
+        <button class="lang-btn" data-lang="en">English</button>
+      </div>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+      <a href="../../index.html" class="home-btn"><i class="fas fa-home"></i></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="bn lang-content active" data-lang="bn">🎯 সম্পূর্ণ ফ্রি • সম্পূর্ণ বাংলায়</span>
+        <span class="en lang-content" data-lang="en">🎯 100% Free • Complete Guide</span>
+      </div>
+      <h1>
+        <span class="bn lang-content active" data-lang="bn">আপনার ফোনই হয়ে উঠুক একটি সার্ভার</span>
+        <span class="en lang-content" data-lang="en">Turn Your Phone Into a Server</span>
+      </h1>
+      <p class="subtitle">
+        <span class="bn lang-content active" data-lang="bn">একটি বাস্তব দোকান ম্যানেজমেন্ট সিস্টেম তৈরি করতে করতে শিখুন Termux, Node.js, Express, API তৈরি, JSON ডেটাবেস, এবং ফুল স্ট্যাক ওয়েব ডেভেলপমেন্ট।</span>
+        <span class="en lang-content" data-lang="en">Learn Termux, Node.js, Express, API, JSON database, and full stack web development by building a real shop management system.</span>
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-number">12+</div><div class="stat-label"><span class="bn lang-content active" data-lang="bn">পর্ব</span><span class="en lang-content" data-lang="en">Episodes</span></div></div>
+        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label"><span class="bn lang-content active" data-lang="bn">ফ্রি</span><span class="en lang-content" data-lang="en">Free</span></div></div>
+        <div class="stat-item"><div class="stat-number">📱</div><div class="stat-label"><span class="bn lang-content active" data-lang="bn">মোবাইল-বান্ধব</span><span class="en lang-content" data-lang="en">Mobile-Friendly</span></div></div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title"><span class="bn lang-content active" data-lang="bn">🎯 কাদের জন্য এই সিরিজ?</span><span class="en lang-content" data-lang="en">🎯 Who Is This For?</span></h2>
+      <div class="audience-grid">
+        <div class="audience-card"><div class="icon">💻</div><h3><span class="bn lang-content active" data-lang="bn">ফ্রিল্যান্সার ও জব সিকার</span><span class="en lang-content" data-lang="en">Freelancers & Job Seekers</span></h3><p><span class="bn lang-content active" data-lang="bn">HTML, CSS, JS জানেন কিন্তু ল্যাপটপ নেই? Termux দিয়েই Node.js, Express, API শিখুন।</span><span class="en lang-content" data-lang="en">Know HTML, CSS, JS but no laptop? Learn Node.js, Express, API with Termux.</span></p></div>
+        <div class="audience-card"><div class="icon">🏪</div><h3><span class="bn lang-content active" data-lang="bn">ক্ষুদ্র ব্যবসায়ী</span><span class="en lang-content" data-lang="en">Small Business Owners</span></h3><p><span class="bn lang-content active" data-lang="bn">আপনার দোকানের জন্য বিলিং ও স্টক সিস্টেম নিজেই বানান, একদম ফ্রিতে।</span><span class="en lang-content" data-lang="en">Build your own billing & stock system for your shop, completely free.</span></p></div>
+        <div class="audience-card"><div class="icon">🎓</div><h3><span class="bn lang-content active" data-lang="bn">শিক্ষার্থী ও টেক এনথুসিয়াস্ট</span><span class="en lang-content" data-lang="en">Students & Tech Enthusiasts</span></h3><p><span class="bn lang-content active" data-lang="bn">মোবাইল দিয়ে কী কী সম্ভব? Termux আপনার বিশাল খেলার মাঠ।</span><span class="en lang-content" data-lang="en">What's possible with just a phone? Termux is your playground.</span></p></div>
+        <div class="audience-card"><div class="icon">✍️</div><h3><span class="bn lang-content active" data-lang="bn">কন্টেন্ট ক্রিয়েটর</span><span class="en lang-content" data-lang="en">Content Creators</span></h3><p><span class="bn lang-content active" data-lang="bn">বাংলায় Termux শেখার রিসোর্স চান? এই সিরিজ থেকে শিখুন এবং তৈরি করুন।</span><span class="en lang-content" data-lang="en">Looking for Bangla Termux resources? Learn and create from this series.</span></p></div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title"><span class="bn lang-content active" data-lang="bn">📺 পর্ব সমূহ</span><span class="en lang-content" data-lang="en">📺 Episodes</span></h2>
+      <div class="card-section">
+        <div class="scroll-wrapper" id="episodeScrollWrapper"><div class="scroll-cards" id="episodeScroll"></div></div>
+        <div class="grid-cards" id="episodeGrid"></div>
+        <div class="see-more-btn"><button id="seeMoreEpisodes"><span class="bn lang-content active" data-lang="bn">সব পর্ব দেখুন →</span><span class="en lang-content" data-lang="en">See All Episodes →</span></button></div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container">
+      <div class="about-series">
+        <h3><span class="bn lang-content active" data-lang="bn">📖 এই সিরিজ সম্পর্কে</span><span class="en lang-content" data-lang="en">📖 About This Series</span></h3>
+        <p><span class="bn lang-content active" data-lang="bn">"মোবাইলেই ব্যাকএন্ড" একটি বাস্তবমুখী বাংলা টিউটোরিয়াল সিরিজ, যেখানে আমরা <strong>একটি বাস্তব দোকান ম্যানেজমেন্ট সিস্টেম</strong> তৈরি করতে করতে ফুল স্ট্যাক ডেভেলপমেন্ট শিখব।</span><span class="en lang-content" data-lang="en">"Backend on Mobile" is a practical Bangla tutorial series where we learn full stack development by <strong>building a real shop management system</strong>.</span></p>
+        <h4 style="margin-top:20px; color:var(--accent);"><span class="bn lang-content active" data-lang="bn">✅ যা যা শিখবেন:</span><span class="en lang-content" data-lang="en">✅ What You'll Learn:</span></h4>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">Termux ইন্সটল ও কমান্ড লাইন মাস্টারি</span><span class="en lang-content" data-lang="en">Termux installation & command line mastery</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">Node.js ও Express.js দিয়ে REST API তৈরি</span><span class="en lang-content" data-lang="en">Building REST API with Node.js & Express.js</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">JSON ফাইল ডেটাবেস হিসেবে ব্যবহার</span><span class="en lang-content" data-lang="en">Using JSON files as database</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">CRUD অপারেশন (GET, POST, PUT, DELETE)</span><span class="en lang-content" data-lang="en">CRUD operations (GET, POST, PUT, DELETE)</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">ফ্রন্টএন্ড HTML/CSS/JS দিয়ে API কল করা</span><span class="en lang-content" data-lang="en">Frontend HTML/CSS/JS API calls</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">বিলিং ও স্টক ম্যানেজমেন্ট লজিক</span><span class="en lang-content" data-lang="en">Billing & stock management logic</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">JWT লগইন ও সিকিউরিটি</span><span class="en lang-content" data-lang="en">JWT login & security</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">লাভ-ক্ষতি রিপোর্ট ও ড্যাশবোর্ড</span><span class="en lang-content" data-lang="en">Profit-loss report & dashboard</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">SQLite ডেটাবেস ব্যবহার</span><span class="en lang-content" data-lang="en">Using SQLite database</span></li>
+          <li><i class="fas fa-check-circle"></i> <span class="bn lang-content active" data-lang="bn">প্রজেক্ট GitHub ও অনলাইনে লাইভ করা</span><span class="en lang-content" data-lang="en">Deploying project to GitHub & online</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <section class="cta">
+    <div class="container">
+      <h3><span class="bn lang-content active" data-lang="bn">🚀 প্রস্তুত তো?</span><span class="en lang-content" data-lang="en">🚀 Ready?</span></h3>
+      <p><span class="bn lang-content active" data-lang="bn">আপনার ফোন হাতে নিন। Termux ইন্সটল করুন। পর্ব ১ থেকে শুরু করে দিন। এই সিরিজ শেষে আপনি ফোনটাকে নতুন চোখে দেখবেন।</span><span class="en lang-content" data-lang="en">Pick up your phone. Install Termux. Start from Part 1. By the end, you'll see your phone differently.</span></p>
+      <a href="part-1.html" class="btn" style="font-size:1.1rem; padding:12px 30px;"><span class="bn lang-content active" data-lang="bn">পর্ব ১ থেকে শুরু →</span><span class="en lang-content" data-lang="en">Start from Part 1 →</span></a>
+    </div>
+  </section>
+</main>
+
+<div class="contact-modal" id="contactModal">
+  <div class="contact-box">
+    <button class="close-btn" id="closeContactBtn">&times;</button>
+    <h3><span class="bn lang-content active" data-lang="bn">যোগাযোগ করুন</span><span class="en lang-content" data-lang="en">Contact Me</span></h3>
+    <form action="https://formspree.io/f/mpqowyld" method="POST">
+      <input type="text" name="name" placeholder="আপনার নাম / Your Name" required>
+      <input type="email" name="email" placeholder="ইমেইল / Email" required>
+      <textarea name="message" rows="4" placeholder="আপনার বার্তা লিখুন... / Write your message..." required></textarea>
+      <button type="submit"><span class="bn lang-content active" data-lang="bn">পাঠিয়ে দিন</span><span class="en lang-content" data-lang="en">Send Message</span></button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="social-icons">
+      <a href="https://github.com/BanglaGolpoGalaxy" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://in.linkedin.com/in/milan-biswas-066a5b366" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://profile.indeed.com/p/y5b84wd" target="_blank"><span class="indeed-icon">i</span></a>
+      <a href="#" id="openContactBtn"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="color:var(--text-sec);"><span class="bn lang-content active" data-lang="bn">© 2026 Milan Biswas | ভালোবাসা আর শেখার ইচ্ছা দিয়ে তৈরি</span><span class="en lang-content" data-lang="en">© 2026 Milan Biswas | Built with love and passion for learning</span></p>
+    <p style="margin-top:8px;"><a href="../../index.html" style="color:var(--accent); text-decoration:none;"><span class="bn lang-content active" data-lang="bn">← পোর্টফোলিওতে ফিরুন</span><span class="en lang-content" data-lang="en">← Back to Portfolio</span></a></p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    const episodes = [
+      { noBn:"পর্ব ১", noEn:"Part 1", tBn:"Termux সেটআপ ও প্রথম ফাইল", tEn:"Termux Setup & First File", descBn:"Termux ইন্সটল, বেসিক কমান্ড, প্রথম Node.js ফাইল", descEn:"Install Termux, basic commands, first Node.js file", time:"10 min", img:"images/part-1-cover.jpg", link:"part-1.html" },
+      { noBn:"পর্ব ২", noEn:"Part 2", tBn:"Express API: প্রোডাক্ট লিস্ট", tEn:"Express API: Product List", descBn:"Express ইন্সটল, products.json, GET API তৈরি", descEn:"Install Express, products.json, GET API creation", time:"12 min", img:"images/part-2-cover.jpg", link:"part-2.html" },
+      { noBn:"পর্ব ৩", noEn:"Part 3", tBn:"POST API: প্রোডাক্ট যোগ", tEn:"POST API: Add Product", descBn:"POST রাউট দিয়ে প্রোডাক্ট যোগ, ফাইলে সেভ", descEn:"Add product via POST route, save to file", time:"15 min", img:"images/part-3-cover.jpg", link:"part-3.html" },
+      { noBn:"পর্ব ৪", noEn:"Part 4", tBn:"DELETE API: প্রোডাক্ট ডিলিট", tEn:"DELETE API: Delete Product", descBn:"DELETE রাউট, id দিয়ে ডিলিট, ফাইল আপডেট", descEn:"DELETE route, delete by id, update file", time:"10 min", img:"images/part-4-cover.jpg", link:"coming-soon.html" },
+      { noBn:"পর্ব ৫", noEn:"Part 5", tBn:"PUT API: আপডেট ও স্টক", tEn:"PUT API: Update & Stock", descBn:"PUT রাউট, প্রোডাক্ট আপডেট ও স্টক পরিবর্তন", descEn:"PUT route, update product & change stock", time:"12 min", img:"images/part-5-cover.jpg", link:"coming-soon.html" },
+      { noBn:"পর্ব ৬", noEn:"Part 6", tBn:"HTML টেবিল: API ডেটা", tEn:"HTML Table: API Data", descBn:"HTML টেবিলে fetch করে API ডেটা দেখানো", descEn:"Display API data in HTML table via fetch", time:"15 min", img:"images/part-6-cover.jpg", link:"coming-soon.html" },
+      { noBn:"পর্ব ৭", noEn:"Part 7", tBn:"ফর্ম: প্রোডাক্ট যোগ UI", tEn:"Form: Add Product UI", descBn:"ইনপুট ফর্ম, সাবমিটে POST কল, টেবিল আপডেট", descEn:"Input form, POST on submit, update table", time:"12 min", img:"images/part-7-cover.jpg", link:"coming-soon.html" },
+      { noBn:"পর্ব ৮", noEn:"Part 8", tBn:"বিলিং: সিলেক্ট ও কার্ট", tEn:"Billing: Select & Cart", descBn:"সার্চ, প্রোডাক্ট সিলেক্ট, কার্ট UI, মোট দাম", descEn:"Search, select products, cart UI, total price", time:"18 min", img:"images/part-8-cover.jpg", link:"coming-soon.html" },
+      { noBn:"পর্ব ৯", noEn:"Part 9", tBn:"স্টক অটো-আপডেট", tEn:"Auto Stock Update", descBn:"বিল কাটলে অটো স্টক কমানো, সেলস রেকর্ড", descEn:"Auto reduce stock on bill, keep sales record", time:"15 min", img:"images/part-9-cover.jpg", link:"coming-soon.html" },
+      { noBn:"পর্ব ১০", noEn:"Part 10", tBn:"JWT লগইন", tEn:"JWT Login", descBn:"JWT টোকেন দিয়ে লগইন, API সুরক্ষিত", descEn:"Login with JWT token, secure API", time:"20 min", img:"images/part-10-cover.jpg", link:"coming-soon.html" },
+      { noBn:"পর্ব ১১", noEn:"Part 11", tBn:"ডেইলি রিপোর্ট", tEn:"Daily Report", descBn:"দৈনিক বিক্রি, লাভ-ক্ষতি হিসাব, রিপোর্ট", descEn:"Daily sales, profit-loss report", time:"18 min", img:"images/part-11-cover.jpg", link:"coming-soon.html" },
+      { noBn:"পর্ব ১২", noEn:"Part 12", tBn:"SQLite ডাটাবেস", tEn:"SQLite Database", descBn:"SQLite দিয়ে CRUD, JSON ছেড়ে ডাটাবেস", descEn:"CRUD with SQLite, from JSON to real DB", time:"20 min", img:"images/part-12-cover.jpg", link:"coming-soon.html" }
+    ];
+
+    const taglineBn = "Termux বাংলা টিউটোরিয়াল";
+    const taglineEn = "Termux Bangla Tutorial";
+
+    function createCard(ep) {
+      const isComing = ep.link === 'coming-soon.html';
+      const btnClass = isComing ? 'btn-static' : 'btn';
+      const btnTextBn = isComing ? 'শীঘ্রই' : 'পড়ুন →';
+      const btnTextEn = isComing ? 'Soon' : 'Read →';
+      return `<a href="${ep.link}" class="card-link">
+        <div class="card">
+          <img src="${ep.img}" alt="" onerror="this.style.display='none'">
+          <div class="card-content">
+            <div class="top-content">
+              <span class="episode-number bn lang-content active" data-lang="bn">${ep.noBn}</span>
+              <span class="episode-number en lang-content" data-lang="en">${ep.noEn}</span>
+              <h3><span class="bn lang-content active" data-lang="bn">${ep.tBn}</span><span class="en lang-content" data-lang="en">${ep.tEn}</span></h3>
+              <p class="desc"><span class="bn lang-content active" data-lang="bn">${ep.descBn}</span><span class="en lang-content" data-lang="en">${ep.descEn}</span></p>
+              <div class="episode-meta"><span><i class="far fa-clock"></i> ${ep.time}</span></div>
+            </div>
+            <span class="${btnClass}"><span class="bn lang-content active" data-lang="bn">${btnTextBn}</span><span class="en lang-content" data-lang="en">${btnTextEn}</span></span>
+            <div class="tagline"><span class="bn lang-content active" data-lang="bn">${taglineBn}</span><span class="en lang-content" data-lang="en">${taglineEn}</span></div>
+          </div>
+        </div>
+      </a>`;
+    }
+
+    const scrollC = document.getElementById('episodeScroll');
+    const gridC = document.getElementById('episodeGrid');
+    episodes.forEach(ep => {
+      const html = createCard(ep);
+      scrollC.innerHTML += html;
+      gridC.innerHTML += html;
+    });
+
+    function applyLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+      document.querySelectorAll('.lang-content').forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => { const lang = btn.dataset.lang; applyLang(lang); localStorage.setItem('blogSeriesLang', lang); });
+    });
+
+    const themeBtn = document.getElementById('themeToggle');
+    function setTheme(theme) {
+      if (theme === 'light') { document.body.classList.add('light'); themeBtn.textContent = '☀️'; }
+      else { document.body.classList.remove('light'); themeBtn.textContent = '🌙'; }
+      localStorage.setItem('blogSeriesTheme', theme);
+    }
+    themeBtn.addEventListener('click', () => setTheme(document.body.classList.contains('light') ? 'dark' : 'light'));
+
+    const seeMoreBtn = document.getElementById('seeMoreEpisodes');
+    const scrollWrapper = document.getElementById('episodeScrollWrapper');
+    let gridActive = false;
+    seeMoreBtn.addEventListener('click', () => {
+      if (!gridActive) { scrollWrapper.style.display = 'none'; gridC.style.display = 'grid'; gridActive = true; }
+      else { scrollWrapper.style.display = 'block'; gridC.style.display = 'none'; gridActive = false; }
+      const currentLang = document.querySelector('.lang-btn.active').dataset.lang;
+      seeMoreBtn.innerHTML = gridActive ? (currentLang === 'bn' ? '← কমপ্যাক্ট ভিউ' : '← Compact View') : (currentLang === 'bn' ? 'সব পর্ব দেখুন →' : 'See All Episodes →');
+    });
+
+    const modal = document.getElementById('contactModal');
+    document.getElementById('openContactBtn').addEventListener('click', e => { e.preventDefault(); modal.classList.add('show'); });
+    document.getElementById('closeContactBtn').addEventListener('click', () => modal.classList.remove('show'));
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
+
+    applyLang(localStorage.getItem('blogSeriesLang') || 'bn');
+    setTheme(localStorage.getItem('blogSeriesTheme') || 'dark');
+  })();
+</script>
+
+</body>
+</html>
