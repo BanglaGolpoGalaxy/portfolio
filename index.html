@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
   
+  <!-- Browser & Platform Meta -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#020617">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="avatar.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="avatar.png">
+  
   <meta name="google-site-verification" content="EFKZ__SGNwsPC-hOlrKDHH-bJDzpIeZDTLDlve-SxtU" />
   
   <title>Milan Biswas | Web Developer, Teacher & Author</title>
@@ -105,7 +116,7 @@
       font-family: var(--font-main);
       line-height: 1.6;
       transition: background 0.3s, color 0.2s;
-      padding-top: 100px; /* header height (fixed) */
+      padding-top: 100px;
     }
     .container {
       max-width: 1100px;
@@ -234,10 +245,15 @@
       text-decoration: none;
       font-weight: 600;
       display: inline-block;
-      transition: 0.2s;
+      transition: 0.25s ease;
       font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(56,189,248,0.15);
     }
-    .btn:hover { transform: translateY(-2px); background: var(--accent-hover); }
+    .btn:hover {
+      transform: translateY(-3px);
+      background: var(--accent-hover);
+      box-shadow: 0 10px 24px rgba(56,189,248,0.35);
+    }
     
     /* ========== SECTIONS ========== */
     .section { padding: 20px 0; border-bottom: 1px solid var(--border); }
@@ -273,19 +289,23 @@
       display: flex; flex-direction: column; height: 100%;
     }
     .scroll-cards > .card-link {
-      flex: 0 0 260px;
-      width: 260px;
+      flex: 0 0 280px;
+      width: 280px;
     }
     
     .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-      padding: 14px; transition: 0.3s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      padding: 20px; transition: 0.3s ease;
       display: flex; flex-direction: column; justify-content: space-between;
       flex: 1; word-break: break-word; position: relative;
     }
-    .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--card-shadow); }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: var(--card-shadow);
+    }
     .card img {
-      width: 100%; height: 120px; object-fit: cover; border-radius: 10px;
+      width: 100%; height: 160px; object-fit: cover; border-radius: 12px;
       margin-bottom: 8px; background: #1e293b;
     }
     .card h3 { color: var(--accent); margin-bottom: 6px; font-weight: 600; font-size: 0.95rem; }
@@ -294,16 +314,48 @@
       font-size: 0.7rem; color: var(--text-sec); margin-top: 4px;
       display: flex; flex-wrap: wrap; gap: 6px;
     }
-    /* Footer of card pushed to bottom */
     .card-footer {
       margin-top: auto;
       padding-top: 10px;
+    }
+    /* bullet points inside experience cards */
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .card ul li {
+      color: var(--text-sec);
+      font-size: 0.8rem;
+      line-height: 1.5;
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+    .card ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
     }
     
     .experience-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
+    }
+    /* 3D lifted effect + larger border-radius for experience cards */
+    .experience-grid .card {
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.2);
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    }
+    .experience-grid .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.25);
+      border-color: var(--accent);
     }
     .experience-grid .card:nth-child(1) { background: var(--exp-card-1); }
     .experience-grid .card:nth-child(2) { background: var(--exp-card-2); }
@@ -335,9 +387,14 @@
     .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent); }
     .contact-form button {
       background: var(--accent); color: #020617; border: none; padding: 10px 24px;
-      border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.2s;
+      border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.25s ease;
+      box-shadow: 0 4px 12px rgba(56,189,248,0.15);
     }
-    .contact-form button:hover { background: var(--accent-hover); }
+    .contact-form button:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 10px 24px rgba(56,189,248,0.35);
+      transform: translateY(-2px);
+    }
     
     /* ========== FOOTER ========== */
     footer {
@@ -381,7 +438,7 @@
       .section-title { font-size: 1.8rem; }
       .grid-cards { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
       .experience-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-      .card img { height: 140px; }
+      .card img { height: 160px; }
       .blog-meta { font-size: 0.75rem; }
     }
   </style>
@@ -430,13 +487,69 @@
     <div class="container">
       <h2 class="section-title">💼 Work Experience</h2>
       <div class="experience-grid">
-        <div class="card"><h3>📚 Teaching Assistant (Coaching Center)</h3><div class="job-date">2018 – 2019</div><p>Typing notes, preparing question papers, taking exams, checking copies, and taking classes when teachers were absent.</p></div>
-        <div class="card"><h3>🤝 Manager (Local Society – Apyon)</h3><div class="job-date">2018 – 2019</div><p>Collected money from collectors, verified loans, did data entry in Excel, managed accounts.</p></div>
-        <div class="card"><h3>🏍️ Supervisor & Marketing (Hero Bike Showroom)</h3><div class="job-date">2020</div><p>Collected customer data, arranged bike shows, trained new employees, supervised a small team. (Stopped due to COVID)</p></div>
-        <div class="card"><h3>📱 Promoter (Airtel)</h3><div class="job-date">2021</div><p>Door-to-door SIM card sales, porting, customer support.</p></div>
-        <div class="card"><h3>🌻 Manager (Mallick Enterprise – Flower Company)</h3><div class="job-date">2022 – 2025</div><p>Supervised 4-5 workers, handled packing, loading, created bills, maintained full business accounts and daily expenses.</p></div>
-        <div class="card"><h3>📖 Private Tutor</h3><div class="job-date">2025 – present</div><p>Teaching local students while learning web development and writing tutorials.</p></div>
-        <div class="card"><h3>🏫 Teacher (Disha Academy)</h3><div class="job-date">2026 – present</div><p>Currently teaching at Disha Academy Kindergarten. Responsible for student development and classroom management.</p></div>
+        <div class="card">
+          <h3>📚 Teaching Assistant (Coaching Center)</h3>
+          <div class="job-date">2018 – 2019</div>
+          <ul>
+            <li>Typed study notes and prepared question papers</li>
+            <li>Conducted exams and evaluated answer copies</li>
+            <li>Took substitute classes when teachers were absent</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🤝 Manager (Local Society – Apyon)</h3>
+          <div class="job-date">2018 – 2019</div>
+          <ul>
+            <li>Collected money from field collectors</li>
+            <li>Verified loans and performed data entry in Excel</li>
+            <li>Managed daily accounts and financial records</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏍️ Supervisor & Marketing (Hero Bike Showroom)</h3>
+          <div class="job-date">2020</div>
+          <ul>
+            <li>Collected and organized customer data</li>
+            <li>Arranged bike shows and promotional events</li>
+            <li>Trained new employees and supervised a small team</li>
+            <li>(Discontinued due to COVID‑19)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📱 Promoter (Airtel)</h3>
+          <div class="job-date">2021</div>
+          <ul>
+            <li>Executed door‑to‑door SIM card sales and porting</li>
+            <li>Opened Airtel Payments Bank accounts and performed KYC verification</li>
+            <li>Delivered end‑to‑end customer support for all services</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🌻 Manager (Mallick Enterprise – Flower Company)</h3>
+          <div class="job-date">2022 – 2025</div>
+          <ul>
+            <li>Supervised 4–5 workers in packing and loading operations</li>
+            <li>Created invoices and maintained full business accounts</li>
+            <li>Tracked daily expenses and prepared financial summaries</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📖 Private Tutor</h3>
+          <div class="job-date">2025 – present</div>
+          <ul>
+            <li>Teaching local students across multiple subjects</li>
+            <li>Simultaneously learning web development</li>
+            <li>Writing free educational tutorials in Bengali</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏫 Teacher (Disha Academy)</h3>
+          <div class="job-date">2026 – present</div>
+          <ul>
+            <li>Teaching at Disha Academy Kindergarten</li>
+            <li>Responsible for student development and classroom management</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
