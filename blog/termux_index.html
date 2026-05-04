@@ -9,7 +9,7 @@
   <!-- গুগল সার্চ কনসোল ভেরিফিকেশন -->
   <meta name="google-site-verification" content="EFKZ__SGNwsPC-hOlrKDHH-bJDzpIeZDTLDlve-SxtU" />
   
-  <!-- প্রাইমারি সিও -->
+  <!-- প্রাইমারি সিও ট্যাগ -->
   <title>মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট শিখুন | বাংলা টিউটোরিয়াল সিরিজ</title>
   <meta name="title" content="মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট শিখুন">
   <meta name="description" content="একটি বাস্তব দোকান ম্যানেজমেন্ট সিস্টেম তৈরি করতে করতে শিখুন Termux, Node.js, Express, API, JSON, এবং ফুল স্ট্যাক ওয়েব ডেভেলপমেন্ট। সম্পূর্ণ ফ্রি, সম্পূর্ণ বাংলায়।">
@@ -17,7 +17,7 @@
   <meta name="author" content="Milan Biswas">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   
-  <!-- ওপেন গ্রাফ (Facebook, LinkedIn) -->
+  <!-- ওপেন গ্রাফ ট্যাগ (Facebook, LinkedIn ইত্যাদি) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/">
   <meta property="og:title" content="মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট শিখুন">
@@ -28,15 +28,51 @@
   <meta property="og:site_name" content="Milan Biswas - Blog">
   <meta property="og:locale" content="bn_BD">
   
-  <!-- টুইটার কার্ড -->
+  <!-- টুইটার কার্ড ট্যাগ -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/">
   <meta property="twitter:title" content="মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট শিখুন">
   <meta property="twitter:description" content="দোকান ম্যানেজমেন্ট সিস্টেম তৈরি করতে করতে শিখুন Termux, Node.js, Express, API। সম্পূর্ণ ফ্রি, সম্পূর্ণ বাংলায়।">
   <meta property="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/images/series-cover.jpg">
   
-  <!-- ক্যানোনিকাল লিংক -->
+  <!-- ক্যানোনিকাল URL - ডুপ্লিকেট কন্টেন্ট এড়াতে -->
   <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/">
+  
+  <!-- JSON-LD স্ট্রাকচার্ড ডেটা (সিরিজের তথ্য) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট",
+    "description": "একটি বাস্তব দোকান ম্যানেজমেন্ট সিস্টেম তৈরি করতে করতে শিখুন Termux, Node.js, Express, API, JSON ডেটাবেস। সম্পূর্ণ ফ্রি, সম্পূর্ণ বাংলায়।",
+    "provider": {
+      "@type": "Person",
+      "name": "Milan Biswas",
+      "url": "https://banglagolpogalaxy.github.io/portfolio/"
+    },
+    "inLanguage": "bn",
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "Beginner Web Developers"
+    },
+    "teaches": [
+      "Termux Setup",
+      "Node.js Basics",
+      "Express.js REST API",
+      "JSON Database",
+      "CRUD Operations",
+      "Frontend API Integration",
+      "JWT Authentication",
+      "SQLite Database"
+    ],
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "courseWorkload": "PT10H",
+      "isAccessibleForFree": true
+    }
+  }
+  </script>
   
   <!-- ফন্ট ও আইকন -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -61,7 +97,7 @@
       --font-bn: 'Hind Siliguri', sans-serif;
       --font-en: 'Poppins', sans-serif;
       
-      /* দর্শক কার্ডের ব্যাকগ্রাউন্ড */
+      /* দর্শক (audience) কার্ডের ব্যাকগ্রাউন্ড */
       --audience-1: linear-gradient(135deg, #1e2a4a, #0f1a2f);
       --audience-2: linear-gradient(135deg, #1a3a2a, #0f1f18);
       --audience-3: linear-gradient(135deg, #3a3520, #1f1c10);
@@ -82,7 +118,7 @@
       --ep-card-12: linear-gradient(135deg, #7c3aed20, #7c3aed10), linear-gradient(135deg, #1e293b, #162032);
     }
     
-    /* লাইট মোড */
+    /* ========== লাইট মোড ========== */
     body.light {
       --bg: #f8fafc;
       --surface: #ffffff;
@@ -113,6 +149,7 @@
       --ep-card-12: linear-gradient(135deg, #f5f0ff, #d4c4f0);
     }
     
+    /* ========== বেসিক পেজ স্টাইল ========== */
     body {
       background: var(--bg);
       color: var(--text);
@@ -126,7 +163,7 @@
     
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
     
-    /* ========== হেডার ========== */
+    /* ========== হেডার (স্টিকি) ========== */
     header {
       background: var(--surface);
       border-bottom: 2px solid var(--accent);
@@ -139,6 +176,7 @@
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
     }
     
+    /* লোগো ও সিরিজের নাম */
     .logo-section { display: flex; align-items: center; gap: 14px; }
     .series-icon {
       width: 48px; height: 48px; border-radius: 12px;
@@ -150,7 +188,7 @@
     
     .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     
-    /* ভাষা টগল */
+    /* ভাষা টগল বাটন */
     .lang-toggle {
       display: flex; background: var(--surface2); border-radius: 30px; padding: 3px;
       border: 1px solid var(--border);
@@ -162,7 +200,7 @@
     }
     .lang-btn.active { background: var(--accent); color: #fff; }
     
-    /* ডার্ক/লাইট টগল */
+    /* ডার্ক/লাইট মোড টগল */
     .theme-toggle {
       background: var(--surface2); border: 1px solid var(--border); border-radius: 30px;
       padding: 8px 14px; cursor: pointer; font-size: 1.1rem; color: var(--text);
@@ -193,14 +231,14 @@
     .stat-number { font-size: 2rem; font-weight: 700; color: var(--accent); }
     .stat-label { font-size: 0.85rem; color: var(--text-sec); }
     
-    /* ========== সেকশন ও শিরোনাম ========== */
+    /* ========== সেকশন শিরোনাম ========== */
     .section { padding: 50px 0; }
     .section-title {
       font-size: 1.6rem; color: var(--accent); border-left: 4px solid var(--accent);
       padding-left: 16px; margin-bottom: 32px; font-weight: 600;
     }
     
-    /* ========== কাদের জন্য (অডিয়েন্স) কার্ড ========== */
+    /* ========== "কাদের জন্য" কার্ড ========== */
     .audience-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
     .audience-card {
       border-radius: 16px; padding: 24px; transition: 0.3s; border: 1px solid var(--border); color: var(--text);
@@ -244,7 +282,7 @@
       background: var(--surface);
     }
     
-    /* সমস্ত কার্ডের 3D হোভার */
+    /* সমস্ত কার্ডের জন্য 3D হোভার ইফেক্ট */
     .card:hover {
       transform: translateY(-8px);
       border-color: var(--accent);
@@ -357,11 +395,11 @@
     .feature-list li { padding: 6px 0; color: var(--text-sec); }
     .feature-list li i { color: var(--accent2); margin-right: 8px; }
     
-    /* ========== কল-টু-অ্যাকশন ========== */
+    /* ========== কল-টু-অ্যাকশন (CTA) ========== */
     .cta { text-align: center; padding: 50px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin: 40px 0; }
     .cta h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--text); }
     .cta p { color: var(--text-sec); margin-bottom: 20px; }
-    /* বড় বাটন যেন ১ সংখ্যাটি পরিষ্কার দেখা যায় */
+    /* বড় বাটন - ১ সংখ্যাটি পরিষ্কার বোঝার জন্য */
     .cta .big-btn {
       font-size: 1.3rem;
       font-weight: 700;
@@ -410,7 +448,7 @@
     }
     footer .social-icons a:hover .indeed-icon { color: var(--accent); }
     
-    /* ========== প্রতিটি পর্ব কার্ডের ব্যাকগ্রাউন্ড ========== */
+    /* ========== পর্ব কার্ডের ব্যাকগ্রাউন্ড (প্রতিটি আলাদা রং) ========== */
     .scroll-cards .card-link:nth-child(1) .card, .grid-cards .card-link:nth-child(1) .card { background: var(--ep-card-1); }
     .scroll-cards .card-link:nth-child(2) .card, .grid-cards .card-link:nth-child(2) .card { background: var(--ep-card-2); }
     .scroll-cards .card-link:nth-child(3) .card, .grid-cards .card-link:nth-child(3) .card { background: var(--ep-card-3); }
@@ -424,7 +462,7 @@
     .scroll-cards .card-link:nth-child(11) .card, .grid-cards .card-link:nth-child(11) .card { background: var(--ep-card-11); }
     .scroll-cards .card-link:nth-child(12) .card, .grid-cards .card-link:nth-child(12) .card { background: var(--ep-card-12); }
     
-    /* ========== প্রতিটি পর্ব কার্ডের চকচকে গ্লো ও বর্ডার (নিজস্ব রঙ) ========== */
+    /* ========== পর্ব কার্ডের গ্লো ও বর্ডার (প্রত্যেকের নিজস্ব রং) ========== */
     /* পর্ব ১ - কমলা */
     .scroll-cards .card-link:nth-child(1) .card, .grid-cards .card-link:nth-child(1) .card {
       box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
@@ -486,7 +524,7 @@
       border-color: rgba(139, 92, 246, 0.6);
     }
     
-    /* ========== রেস্পন্সিভ ========== */
+    /* ========== রেস্পন্সিভ ডিজাইন ========== */
     @media (max-width: 700px) {
       .header-flex { flex-direction: column; align-items: stretch; }
       .header-actions { justify-content: center; }
@@ -503,9 +541,10 @@
 </head>
 <body>
 
-<!-- ========== হেডার (স্টিকি) ========== -->
+<!-- ==================== হেডার (স্টিকি) ==================== -->
 <header>
   <div class="container header-flex">
+    <!-- লোগো ও সিরিজের নাম -->
     <div class="logo-section">
       <div class="series-icon">📱</div>
       <div class="logo-text">
@@ -519,22 +558,24 @@
         </div>
       </div>
     </div>
+    
+    <!-- অ্যাকশন বাটন -->
     <div class="header-actions">
       <!-- ভাষা পরিবর্তন -->
       <div class="lang-toggle">
         <button class="lang-btn active" data-lang="bn">বাংলা</button>
         <button class="lang-btn" data-lang="en">English</button>
       </div>
-      <!-- ডার্ক/লাইট মোড -->
+      <!-- ডার্ক/লাইট মোড টগল -->
       <button id="themeToggle" class="theme-toggle">🌙</button>
-      <!-- পোর্টফোলিওর হোম -->
-      <a href="../../index.html" class="home-btn"><i class="fas fa-home"></i></a>
+      <!-- পোর্টফোলিওতে ফিরুন (হোম বাটন) -->
+      <a href="../../index.html" class="home-btn" title="পোর্টফোলিওতে ফিরুন"><i class="fas fa-home"></i></a>
     </div>
   </div>
 </header>
 
 <main>
-  <!-- ========== হিরো ========== -->
+  <!-- ==================== হিরো সেকশন ==================== -->
   <section class="hero">
     <div class="container">
       <div class="hero-badge">
@@ -557,34 +598,38 @@
     </div>
   </section>
   
-  <!-- ========== কাদের জন্য? ========== -->
+  <!-- ==================== কাদের জন্য? ==================== -->
   <section class="section">
     <div class="container">
       <h2 class="section-title"><span class="bn lang-content active" data-lang="bn">🎯 কাদের জন্য এই সিরিজ?</span><span class="en lang-content" data-lang="en">🎯 Who Is This For?</span></h2>
       <div class="audience-grid">
+        <!-- ১ম দর্শক -->
         <div class="audience-card"><div class="icon">💻</div><h3><span class="bn lang-content active" data-lang="bn">ফ্রিল্যান্সার ও জব সিকার</span><span class="en lang-content" data-lang="en">Freelancers & Job Seekers</span></h3><p><span class="bn lang-content active" data-lang="bn">HTML, CSS, JS জানেন কিন্তু ল্যাপটপ নেই? Termux দিয়েই Node.js, Express, API শিখুন।</span><span class="en lang-content" data-lang="en">Know HTML, CSS, JS but no laptop? Learn Node.js, Express, API with Termux.</span></p></div>
+        <!-- ২য় দর্শক -->
         <div class="audience-card"><div class="icon">🏪</div><h3><span class="bn lang-content active" data-lang="bn">ক্ষুদ্র ব্যবসায়ী</span><span class="en lang-content" data-lang="en">Small Business Owners</span></h3><p><span class="bn lang-content active" data-lang="bn">আপনার দোকানের জন্য বিলিং ও স্টক সিস্টেম নিজেই বানান, একদম ফ্রিতে।</span><span class="en lang-content" data-lang="en">Build your own billing & stock system for your shop, completely free.</span></p></div>
+        <!-- ৩য় দর্শক -->
         <div class="audience-card"><div class="icon">🎓</div><h3><span class="bn lang-content active" data-lang="bn">শিক্ষার্থী ও টেক এনথুসিয়াস্ট</span><span class="en lang-content" data-lang="en">Students & Tech Enthusiasts</span></h3><p><span class="bn lang-content active" data-lang="bn">মোবাইল দিয়ে কী কী সম্ভব? Termux আপনার বিশাল খেলার মাঠ।</span><span class="en lang-content" data-lang="en">What's possible with just a phone? Termux is your playground.</span></p></div>
+        <!-- ৪র্থ দর্শক -->
         <div class="audience-card"><div class="icon">✍️</div><h3><span class="bn lang-content active" data-lang="bn">কন্টেন্ট ক্রিয়েটর</span><span class="en lang-content" data-lang="en">Content Creators</span></h3><p><span class="bn lang-content active" data-lang="bn">বাংলায় Termux শেখার রিসোর্স চান? এই সিরিজ থেকে শিখুন এবং তৈরি করুন।</span><span class="en lang-content" data-lang="en">Looking for Bangla Termux resources? Learn and create from this series.</span></p></div>
       </div>
     </div>
   </section>
   
-  <!-- ========== পর্ব সমূহ (কার্ড) ========== -->
+  <!-- ==================== পর্ব সমূহ (কার্ড) ==================== -->
   <section class="section">
     <div class="container">
       <h2 class="section-title"><span class="bn lang-content active" data-lang="bn">📺 পর্ব সমূহ</span><span class="en lang-content" data-lang="en">📺 Episodes</span></h2>
       <div class="card-section">
         <!-- স্ক্রল ভিউ (মোবাইলের জন্য) -->
         <div class="scroll-wrapper" id="episodeScrollWrapper"><div class="scroll-cards" id="episodeScroll"></div></div>
-        <!-- গ্রিড ভিউ (বড় স্ক্রিন/সব দেখুন) -->
+        <!-- গ্রিড ভিউ (বড় স্ক্রিনের জন্য) -->
         <div class="grid-cards" id="episodeGrid"></div>
         <div class="see-more-btn"><button id="seeMoreEpisodes"><span class="bn lang-content active" data-lang="bn">সব পর্ব দেখুন →</span><span class="en lang-content" data-lang="en">See All Episodes →</span></button></div>
       </div>
     </div>
   </section>
   
-  <!-- ========== সিরিজ সম্পর্কে ========== -->
+  <!-- ==================== সিরিজ সম্পর্কে ==================== -->
   <section class="section">
     <div class="container">
       <div class="about-series">
@@ -607,7 +652,7 @@
     </div>
   </section>
   
-  <!-- ========== শুরু করার কল-টু-অ্যাকশন ========== -->
+  <!-- ==================== কল-টু-অ্যাকশন (শুরু করুন) ==================== -->
   <section class="cta">
     <div class="container">
       <h3><span class="bn lang-content active" data-lang="bn">🚀 প্রস্তুত তো?</span><span class="en lang-content" data-lang="en">🚀 Ready?</span></h3>
@@ -618,7 +663,7 @@
   </section>
 </main>
 
-<!-- ========== কন্ট্যাক্ট মোডাল ========== -->
+<!-- ==================== কন্ট্যাক্ট মোডাল ==================== -->
 <div class="contact-modal" id="contactModal">
   <div class="contact-box">
     <button class="close-btn" id="closeContactBtn">&times;</button>
@@ -632,24 +677,27 @@
   </div>
 </div>
 
-<!-- ========== ফুটার ========== -->
+<!-- ==================== ফুটার ==================== -->
 <footer>
   <div class="container">
+    <!-- সোশ্যাল মিডিয়া লিংক -->
     <div class="social-icons">
       <a href="https://github.com/BanglaGolpoGalaxy" target="_blank"><i class="fab fa-github"></i></a>
       <a href="https://in.linkedin.com/in/milan-biswas-066a5b366" target="_blank"><i class="fab fa-linkedin"></i></a>
       <a href="https://profile.indeed.com/p/y5b84wd" target="_blank"><span class="indeed-icon">i</span></a>
       <a href="#" id="openContactBtn"><i class="fas fa-envelope"></i></a>
     </div>
+    <!-- কপিরাইট -->
     <p style="color:var(--text-sec);"><span class="bn lang-content active" data-lang="bn">© 2026 Milan Biswas | ভালোবাসা আর শেখার ইচ্ছা দিয়ে তৈরি</span><span class="en lang-content" data-lang="en">© 2026 Milan Biswas | Built with love and passion for learning</span></p>
+    <!-- পোর্টফোলিওতে ফিরুন লিংক -->
     <p style="margin-top:8px;"><a href="../../index.html" style="color:var(--accent); text-decoration:none;"><span class="bn lang-content active" data-lang="bn">← পোর্টফোলিওতে ফিরুন</span><span class="en lang-content" data-lang="en">← Back to Portfolio</span></a></p>
   </div>
 </footer>
 
-<!-- ========== জাভাস্ক্রিপ্ট ========== -->
+<!-- ==================== জাভাস্ক্রিপ্ট ==================== -->
 <script>
   (function() {
-    // প্রতিটি পর্বের তথ্য
+    // ---- প্রতিটি পর্বের তথ্য ----
     const episodes = [
       { noBn:"পর্ব ১", noEn:"Part 1", tBn:"Termux সেটআপ ও প্রথম ফাইল", tEn:"Termux Setup & First File", descBn:"Termux ইন্সটল, বেসিক কমান্ড, প্রথম Node.js ফাইল", descEn:"Install Termux, basic commands, first Node.js file", time:"10 min", img:"images/part-1-cover.jpg", link:"../termux_part1.html" },
       { noBn:"পর্ব ২", noEn:"Part 2", tBn:"Express API: প্রোডাক্ট লিস্ট", tEn:"Express API: Product List", descBn:"Express ইন্সটল, products.json, GET API তৈরি", descEn:"Install Express, products.json, GET API creation", time:"12 min", img:"images/part-2-cover.jpg", link:"part-2.html" },
@@ -668,7 +716,7 @@
     const taglineBn = "Termux বাংলা টিউটোরিয়াল";
     const taglineEn = "Termux Bangla Tutorial";
 
-    // কার্ড তৈরি করার ফাংশন
+    // ---- কার্ড তৈরির ফাংশন ----
     function createCard(ep) {
       const isComing = ep.link === 'coming-soon.html';
       const btnClass = isComing ? 'btn-static' : 'btn';
@@ -692,7 +740,7 @@
       </a>`;
     }
 
-    // কার্ডগুলো ইনজেক্ট করা
+    // ---- কার্ড ইনজেক্ট করা ----
     const scrollC = document.getElementById('episodeScroll');
     const gridC = document.getElementById('episodeGrid');
     episodes.forEach(ep => {
@@ -701,7 +749,7 @@
       gridC.innerHTML += html;
     });
 
-    // ভাষা পরিবর্তন
+    // ---- ভাষা পরিবর্তন ----
     function applyLang(lang) {
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
       document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
@@ -718,7 +766,7 @@
       });
     });
 
-    // থিম পরিবর্তন
+    // ---- থিম পরিবর্তন ----
     const themeBtn = document.getElementById('themeToggle');
     function setTheme(theme) {
       if (theme === 'light') { document.body.classList.add('light'); themeBtn.textContent = '☀️'; }
@@ -727,7 +775,7 @@
     }
     themeBtn.addEventListener('click', () => setTheme(document.body.classList.contains('light') ? 'dark' : 'light'));
 
-    // "সব পর্ব দেখুন" টগল
+    // ---- "সব পর্ব দেখুন" টগল ----
     const seeMoreBtn = document.getElementById('seeMoreEpisodes');
     const scrollWrapper = document.getElementById('episodeScrollWrapper');
     let gridActive = false;
@@ -738,13 +786,13 @@
       seeMoreBtn.innerHTML = gridActive ? (currentLang === 'bn' ? '← কমপ্যাক্ট ভিউ' : '← Compact View') : (currentLang === 'bn' ? 'সব পর্ব দেখুন →' : 'See All Episodes →');
     });
 
-    // কন্ট্যাক্ট মোডাল
+    // ---- কন্ট্যাক্ট মোডাল ----
     const modal = document.getElementById('contactModal');
     document.getElementById('openContactBtn').addEventListener('click', e => { e.preventDefault(); modal.classList.add('show'); });
     document.getElementById('closeContactBtn').addEventListener('click', () => modal.classList.remove('show'));
     modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
 
-    // প্রাথমিক ভাষা ও থিম সেট করা
+    // ---- প্রাথমিক ভাষা ও থিম সেট ----
     applyLang(localStorage.getItem('blogSeriesLang') || 'bn');
     setTheme(localStorage.getItem('blogSeriesTheme') || 'dark');
   })();
