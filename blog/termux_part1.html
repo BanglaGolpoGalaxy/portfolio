@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <meta name="google-site-verification" content="EFKZ__SGNwsPC-hOlrKDHH-bJDzpIeZDTLDlve-SxtU" />
+  
+  <title>পর্ব ১: Termux সেটআপ, বেসিক কমান্ড ও প্রথম ফাইল | মোবাইলেই ব্যাকএন্ড</title>
+  <meta name="title" content="পর্ব ১: Termux সেটআপ, বেসিক কমান্ড ও প্রথম ফাইল তৈরি">
+  <meta name="description" content="পর্ব ১-এ জেনে নিন কেন এই সিরিজ, কাদের জন্য, সম্পূর্ণ রোডম্যাপ, এবং হাতে-কলমে Termux ইন্সটল ও প্রথম Node.js ফাইল তৈরি।">
+  <meta name="keywords" content="Termux বাংলা টিউটোরিয়াল, Node.js বাংলা, Express বাংলা, দোকান ম্যানেজমেন্ট সিস্টেম, Termux কমান্ড, Micro Editor">
+  <meta name="author" content="Milan Biswas">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/part-1.html">
+  <meta property="og:title" content="পর্ব ১: Termux সেটআপ, বেসিক কমান্ড ও প্রথম ফাইল তৈরি">
+  <meta property="og:description" content="কেন এই সিরিজ, কাদের জন্য, এবং হাতে-কলমে Termux ইন্সটল ও Node.js প্রথম স্ক্রিপ্ট।">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/images/part-1-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Milan Biswas - Blog">
+  <meta property="og:locale" content="bn_BD">
+  
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/part-1.html">
+  <meta property="twitter:title" content="পর্ব ১: Termux সেটআপ, বেসিক কমান্ড ও প্রথম ফাইল তৈরি">
+  <meta property="twitter:description" content="কেন এই সিরিজ, কাদের জন্য, এবং হাতে-কলমে Termux ইন্সটল ও Node.js প্রথম স্ক্রিপ্ট।">
+  <meta property="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/images/part-1-cover.jpg">
+  
+  <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/part-1.html">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #020617;
+      --surface: #0f172a;
+      --surface2: #1e293b;
+      --text: #e0e0e0;
+      --text-sec: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #a78bfa;
+      --border: #1e293b;
+      --font-bn: 'Hind Siliguri', sans-serif;
+      --font-en: 'Poppins', sans-serif;
+    }
+    
+    body.light {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface2: #f1f5f9;
+      --text: #0f172a;
+      --text-sec: #475569;
+      --accent: #2563eb;
+      --accent2: #7c3aed;
+      --border: #e2e8f0;
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-bn);
+      line-height: 1.7;
+      transition: background 0.3s, color 0.2s;
+    }
+    
+    .en { font-family: var(--font-en); }
+    .bn { font-family: var(--font-bn); }
+    
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .article-container { max-width: 800px; margin: 0 auto; }
+    
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--accent);
+      padding: 16px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    
+    .header-flex {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    
+    .logo-section { display: flex; align-items: center; gap: 14px; }
+    .series-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .logo-text h2 { font-size: 1.1rem; color: var(--text); line-height: 1.3; }
+    .logo-text .sub { font-size: 0.8rem; color: var(--text-sec); }
+    
+    .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    
+    .lang-toggle {
+      display: flex; background: var(--surface2); border-radius: 30px; padding: 3px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 6px 14px; border-radius: 30px; border: none; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; transition: 0.2s;
+      background: transparent; color: var(--text-sec); font-family: var(--font-bn);
+    }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+    
+    .theme-toggle {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 30px;
+      padding: 8px 14px; cursor: pointer; font-size: 1.1rem; color: var(--text);
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    
+    .home-btn {
+      color: var(--text-sec); text-decoration: none; font-size: 1.2rem;
+      padding: 6px 10px; border-radius: 8px;
+    }
+    .home-btn:hover { color: var(--accent); background: var(--surface2); }
+    
+    /* Post Meta */
+    .post-header {
+      text-align: center; padding: 50px 20px 30px;
+    }
+    .post-header .episode-badge {
+      display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; padding: 4px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .post-header h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--accent); line-height: 1.4; }
+    .post-meta { color: var(--text-sec); margin-top: 12px; font-size: 0.9rem; }
+    
+    .post-content {
+      padding: 20px 20px 40px;
+    }
+    .post-content p { margin-bottom: 1.5em; color: var(--text-sec); }
+    .post-content h2 { color: var(--accent); margin: 2em 0 0.8em; font-size: 1.5rem; border-left: 4px solid var(--accent); padding-left: 14px; }
+    .post-content h3 { color: var(--text); margin: 1.5em 0 0.5em; font-size: 1.2rem; }
+    .post-content ul, .post-content ol { margin: 1em 0 1.5em 1.5em; color: var(--text-sec); }
+    .post-content li { margin-bottom: 0.5em; }
+    pre {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 1.5em 0;
+      color: var(--text);
+    }
+    code { font-family: monospace; }
+    
+    /* Navigation Buttons (coding page style) */
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    
+    .post-navigation {
+      display: flex;
+      align-items: center;
+      margin: 40px 0 20px;
+    }
+    .post-navigation a.btn {
+      margin: 0 8px;
+    }
+    .post-navigation a.btn:first-child {
+      margin-left: 0;
+    }
+    .post-navigation a.btn:last-child {
+      margin-right: 0;
+    }
+    .post-navigation .spacer {
+      flex: 1;
+    }
+    
+    /* Comments always light */
+    .comments-section {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 16px;
+      padding: 30px;
+      margin-top: 40px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      --text: #0f172a;
+      --text-sec: #475569;
+    }
+    .comments-section h3 { color: #0f172a; margin-bottom: 20px; }
+    
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      text-align: center; padding: 30px 20px; margin-top: 60px;
+    }
+    footer .social-icons { display: flex; justify-content: center; gap: 20px; margin-bottom: 16px; }
+    footer .social-icons a { color: var(--text-sec); font-size: 1.5rem; transition: 0.2s; }
+    footer .social-icons a:hover { color: var(--accent); }
+    
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+    span.lang-content.active { display: inline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-flex">
+    <div class="logo-section">
+      <div class="series-icon">📱</div>
+      <div class="logo-text">
+        <h2>
+          <span class="bn lang-content active" data-lang="bn">মোবাইলেই ব্যাকএন্ড</span>
+          <span class="en lang-content" data-lang="en">Backend on Mobile</span>
+        </h2>
+        <div class="sub">
+          <span class="bn lang-content active" data-lang="bn">Termux বাংলা টিউটোরিয়াল সিরিজ</span>
+          <span class="en lang-content" data-lang="en">Termux Bangla Tutorial Series</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="bn">বাংলা</button>
+        <button class="lang-btn" data-lang="en">English</button>
+      </div>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+      <a href="index.html" class="home-btn"><i class="fas fa-home"></i></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article>
+    <div class="post-header">
+      <div class="episode-badge">
+        <span class="bn lang-content active" data-lang="bn">পর্ব ১</span>
+        <span class="en lang-content" data-lang="en">Part 1</span>
+      </div>
+      <h1>
+        <span class="bn lang-content active" data-lang="bn">Termux সেটআপ, বেসিক কমান্ড ও প্রথম ফাইল তৈরি</span>
+        <span class="en lang-content" data-lang="en">Termux Setup, Basic Commands & First File</span>
+      </h1>
+      <p class="post-meta">
+        <span class="bn lang-content active" data-lang="bn">সাব-টাইটেল: মোবাইলই যখন হয়ে ওঠে লিনাক্স সার্ভার</span>
+        <span class="en lang-content" data-lang="en">Subtitle: When Your Phone Becomes a Linux Server</span>
+      </p>
+      <div class="post-meta">
+        <span class="bn lang-content active" data-lang="bn">⏱️ ১৫ মিনিট পড়া | 🗓️ আপডেটেড</span>
+        <span class="en lang-content" data-lang="en">⏱️ 15 min read | 🗓️ Updated</span>
+      </div>
+    </div>
+    
+    <div class="post-content article-container">
+      <!-- বাংলা কন্টেন্ট -->
+      <div class="bn lang-content active" data-lang="bn">
+        <h2>ভূমিকা: কেন এই সিরিজ?</h2>
+        <p>স্বাগতম! আপনি যদি এই পৃষ্ঠায় এসে থাকেন, তাহলে নিশ্চয়ই আপনার হাতে একটি অ্যান্ড্রয়েড ফোন আছে আর মাথায় একটা স্বপ্ন—<strong>কিছু একটা শিখবেন, কিছু একটা বানাবেন।</strong> কিন্তু ল্যাপটপ নেই, কম্পিউটার নেই, অথবা দামি কোর্স করার সামর্থ্য নেই।</p>
+        <p>আমি আপনাকে স্বাগত জানাই এক নতুন সম্ভাবনার জগতে। এই জগতে আপনার ফোনটাই হয়ে উঠবে আপনার সবচেয়ে শক্তিশালী সার্ভার। <strong>Termux</strong> নামের একটি জাদুর বাক্স খুলে আমরা সেই ফোন দিয়েই তৈরি করব বাস্তব জিনিস—ওয়েবসাইটের ব্যাকএন্ড, API, ডাটাবেস, এমনকি নিজস্ব ক্লাউড স্টোরেজ!</p>
+        
+        <h2>🎯 এই সিরিজ যাদের জন্য</h2>
+        <ul>
+          <li><strong>ফ্রিল্যান্সার ও জব সিকার:</strong> HTML, CSS, JS জানেন কিন্তু ব্যাকএন্ড শেখার জন্য ল্যাপটপ নেই? Termux দিয়ে Node.js, Express, API শিখে ফেলুন আর পোর্টফোলিও তৈরি করুন।</li>
+          <li><strong>ক্ষুদ্র ব্যবসায়ী:</strong> আপনার ফার্মেসি বা মুদি দোকানের জন্য বিলিং ও স্টক ম্যানেজমেন্ট সিস্টেম নিজেই বানাতে চান, একদম ফ্রিতে? এই সিরিজ আপনাকে সেই ক্ষমতা দেবে।</li>
+          <li><strong>শিক্ষার্থী ও টেক এনথুসিয়াস্ট:</strong> মোবাইল দিয়ে কী কী করা যায় জানতে চান? Termux আপনার জন্য এক বিশাল খেলার মাঠ। পকেট লিনাক্সের রাজ্যে স্বাগতম!</li>
+          <li><strong>কন্টেন্ট ক্রিয়েটর:</strong> বাংলায় Termux শেখার ভালো রিসোর্স খুঁজছেন? এই সিরিজ থেকে শিখে নিজেও তৈরি করতে পারেন দারুণ কন্টেন্ট।</li>
+        </ul>
+        
+        <h2>🛠️ পুরো সিরিজের রোডম্যাপ</h2>
+        <ol>
+          <li><strong>পর্ব ১:</strong> Termux সেটআপ, বেসিক কমান্ড ও প্রথম ফাইল</li>
+          <li><strong>পর্ব ২:</strong> Express.js ইন্সটল ও প্রথম API (GET /products)</li>
+          <li><strong>পর্ব ৩:</strong> POST API – নতুন প্রোডাক্ট যোগ করা</li>
+          <li><strong>পর্ব ৪:</strong> DELETE API – প্রোডাক্ট ডিলিট</li>
+          <li><strong>পর্ব ৫:</strong> PUT API – প্রোডাক্ট আপডেট ও স্টক পরিবর্তন</li>
+          <li><strong>পর্ব ৬:</strong> ফ্রন্টএন্ড: HTML টেবিলে API ডেটা দেখানো</li>
+          <li><strong>পর্ব ৭:</strong> ফর্ম তৈরি: নতুন প্রোডাক্ট যোগ করার UI</li>
+          <li><strong>পর্ব ৮:</strong> বিলিং সিস্টেম: প্রোডাক্ট সিলেক্ট ও কার্ট</li>
+          <li><strong>পর্ব ৯:</strong> স্টক অটো-আপডেট: বিল কাটলে স্টক কমানো</li>
+          <li><strong>পর্ব ১০:</strong> JWT লগইন: API সুরক্ষিত করা</li>
+          <li><strong>পর্ব ১১:</strong> ডেইলি রিপোর্ট ও লাভ-ক্ষতি হিসাব</li>
+          <li><strong>পর্ব ১২:</strong> SQLite ডাটাবেস – JSON ছেড়ে বাস্তব ডাটাবেস</li>
+        </ol>
+        
+        <hr style="margin: 2em 0; border-color: var(--border);">
+        
+        <h2>🔧 যা যা লাগবে</h2>
+        <ul>
+          <li>একটি অ্যান্ড্রয়েড ফোন (Android 7 বা তার উপরে)</li>
+          <li>ইন্টারনেট কানেকশন (শুধু ইন্সটলের সময়)</li>
+          <li>কৌতূহল আর ধৈর্য</li>
+        </ul>
+        
+        <h2>১. Termux ইন্সটল করা</h2>
+        <p>Termux পাওয়া যায় F-Droid স্টোর থেকে। প্লে স্টোরের ভার্সনটি পুরোনো, তাই F-Droid থেকেই নেওয়া ভালো।</p>
+        <ol>
+          <li>মোবাইলের ব্রাউজার থেকে f-droid.org খোলো।</li>
+          <li>সার্চ দাও "Termux"।</li>
+          <li>সর্বশেষ ভার্সন ডাউনলোড করে ইন্সটল করো।</li>
+          <li>ইন্সটলের পর অ্যাপটি ওপেন করো। দেখবে সাদা-কালো একটা টার্মিনাল, যেখানে কিছু লেখা থাকবে।</li>
+        </ol>
+        <p>এটাই Termux! এখন থেকে এখানেই আমরা সব জাদু দেখাব।</p>
+        
+        <h2>২. প্রথম আপডেট ও জরুরি টুলস ইন্সটল</h2>
+        <p>Termux খোলার সাথে সাথেই নিচের কমান্ডটি দাও:</p>
+        <pre><code>pkg update && pkg upgrade -y</code></pre>
+        <p><code>pkg</code> হলো Termux-এর প্যাকেজ ম্যানেজার। এটা অ্যাপ স্টোরের মতো। <code>update</code> আর <code>upgrade</code> একসাথে দিয়ে আমরা সবকিছু হালনাগাদ করে নিচ্ছি।</p>
+        <p>এখন কিছু দরকারি প্রোগ্রাম ইন্সটল করি:</p>
+        <pre><code>pkg install nodejs micro -y</code></pre>
+        <p><strong>nodejs</strong>: জাভাস্ক্রিপ্ট রান করার ইঞ্জিন। এটা দিয়েই আমরা সার্ভার বানাব। <strong>micro</strong>: একটা টেক্সট এডিটর (মোবাইলের ভেতরের Notepad), যা মোবাইলের টাচ স্ক্রিনে দারুণ কাজ করে।</p>
+        
+        <h2>৩. টার্মিনালে চলাফেরার বেসিক কমান্ড</h2>
+        <p>টার্মিনালে কাজ মানেই কমান্ড টাইপ করা। কিছু কমান্ড শিখে নিলে সারা জীবন কাজে লাগবে।</p>
+        <table style="width:100%; border-collapse: collapse; margin:1em 0;">
+          <tr style="background:var(--surface2); color:var(--text);"><th style="padding:8px; border:1px solid var(--border);">কমান্ড</th><th style="padding:8px; border:1px solid var(--border);">কাজ</th></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>pwd</code></td><td style="padding:8px; border:1px solid var(--border);">এখন কোন ফোল্ডারে আছি, তা দেখায়।</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>ls</code></td><td style="padding:8px; border:1px solid var(--border);">ওই ফোল্ডারের ভেতরের ফাইল-ফোল্ডারের তালিকা দেখায়। (LS = List)</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>mkdir ফোল্ডারের_নাম</code></td><td style="padding:8px; border:1px solid var(--border);">নতুন খালি ফোল্ডার তৈরি করে। (MKDIR = Make Directory)</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>cd ফোল্ডারের_নাম</code></td><td style="padding:8px; border:1px solid var(--border);">ওই ফোল্ডারের ভেতরে ঢোকা। (CD = Change Directory)</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>cd ..</code></td><td style="padding:8px; border:1px solid var(--border);">এক ধাপ উপরে (প্যারেন্ট ফোল্ডারে) ফিরে যাওয়া।</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>touch ফাইলের_নাম</code></td><td style="padding:8px; border:1px solid var(--border);">একটা নতুন খালি ফাইল তৈরি করে।</td></tr>
+        </table>
+        
+        <p><strong>প্রথম প্র্যাকটিস:</strong></p>
+        <pre><code>mkdir my-first-project
+cd my-first-project
+pwd</code></pre>
+        <p>তুমি এখন <code>my-first-project</code> ফোল্ডারের ভেতরে আছো।</p>
+        
+        <h2>৪. প্রথম ফাইল তৈরি ও কন্টেন্ট দেখা</h2>
+        <p>এখন আমরা এই ফোল্ডারের ভেতরে একটা ফাইল বানাই:</p>
+        <pre><code>touch hello.txt</code></pre>
+        <p>এটা সম্পূর্ণ খালি ফাইল। এবার এতে কিছু লিখি। আমরা micro এডিটর ব্যবহার করব, যা আগে ইন্সটল করেছি।</p>
+        <pre><code>micro hello.txt</code></pre>
+        <p>এবার মাইক্রো এডিটর ওপেন হবে। উপরে টাইপ করো:</p>
+        <pre><code>এই তো আমার Termux-এ প্রথম ফাইল!</code></pre>
+        <p>সেভ করো: <strong>Ctrl + S</strong> (ভলিউম ডাউন + S চেপেও করতে পারো)<br>বের হও: <strong>Ctrl + Q</strong></p>
+        <p>এখন ফাইলটির ভেতরে কী লিখেছ, তা দেখার জন্য:</p>
+        <pre><code>cat hello.txt</code></pre>
+        <p>পর্দায় তোমার লেখা লাইনটি দেখাবে। <code>cat</code> মানে কনক্যাটিনেট, কিন্তু আমরা সহজভাবে বলি "ফাইল পড়া"।</p>
+        
+        <h2>৫. ফোল্ডার কাঠামো (প্রজেক্টের জন্য আদর্শ)</h2>
+        <p>একটা বাস্তব প্রজেক্টে ফাইল-ফোল্ডার এলোমেলো থাকলে সমস্যা হয়। চলো, আমরা একটা সুন্দর ফোল্ডার স্ট্রাকচার বানাই:</p>
+        <pre><code>mkdir -p shop-api/public shop-api/data</code></pre>
+        <p><code>mkdir -p</code> একবারে ভেতরের সব ফোল্ডার তৈরি করবে। এখানে <code>shop-api</code>-র ভেতর <code>public</code> (ওয়েবসাইটের ফাইল রাখার জন্য) আর <code>data</code> (ডেটা ফাইল রাখার জন্য) ফোল্ডার তৈরি হলো। <code>ls shop-api</code> দিয়ে দেখো।</p>
+        
+        <h2>৬. আজকের শেষ কাজ: প্রথম Node.js স্ক্রিপ্ট</h2>
+        <p>আমরা এখন Node.js-এর সাথে একটু পরিচিত হই। <code>my-first-project</code>-এ ফিরে আসি:</p>
+        <pre><code>cd ~/my-first-project</code></pre>
+        <p>একটা ফাইল বানাই <code>app.js</code>:</p>
+        <pre><code>micro app.js</code></pre>
+        <p>ভেতরে লিখো:</p>
+        <pre><code>console.log("আমার Termux জয়ন হয়ে গেছে! Node.js চলছে!");</code></pre>
+        <p>রান করো:</p>
+        <pre><code>node app.js</code></pre>
+        <p>তুমি কনসোলে সেই লাইনটি দেখতে পাবে। এটাই হলো তোমার লেখা প্রথম জাভাস্ক্রিপ্ট কোড, যা Node.js চালালো!</p>
+        
+        <h2>🎯 পর্ব ১-এর শেষ কথা</h2>
+        <p>আজ আমরা যা শিখলাম:</p>
+        <ul>
+          <li>Termux হলো মোবাইলের ভেতরের লিনাক্স কম্পিউটার।</li>
+          <li><code>pkg</code> দিয়ে জিনিস ইন্সটল করা।</li>
+          <li><code>pwd</code>, <code>ls</code>, <code>mkdir</code>, <code>cd</code>, <code>touch</code>, <code>cat</code> কমান্ড।</li>
+          <li><code>micro</code> দিয়ে ফাইল এডিট করা।</li>
+          <li><code>node</code> দিয়ে জাভাস্ক্রিপ্ট চালানো।</li>
+        </ul>
+        <p>এগুলোই হলো ভিত। আজকের এই ছোট্ট শেখাটাই আগামী দিনে বড় বড় প্রজেক্টের ভিত হবে।</p>
+        <p><strong>পরবর্তী পর্বে:</strong> আমরা Express.js ইন্সটল করে একটি লাইভ API বানাব, যেখানে ব্রাউজার থেকে প্রোডাক্ট লিস্ট দেখতে পারব। সেটাই হবে দোকান ম্যানেজমেন্ট সিস্টেমের প্রথম ইট।</p>
+        <p>ততক্ষণ পর্যন্ত এই কমান্ডগুলো প্র্যাকটিস করো। কোনো প্রশ্ন থাকলে কমেন্টে জানিও। শুভ কোডিং! 😊📱✨</p>
+      </div>
+      
+      <!-- English Content -->
+      <div class="en lang-content" data-lang="en">
+        <h2>Introduction: Why This Series?</h2>
+        <p>Welcome! If you've landed here, you probably have an Android phone and a dream—<strong>to learn, to build something.</strong> But you lack a laptop or funds for expensive courses.</p>
+        <p>I welcome you to a world of new possibilities. Here, your phone becomes your most powerful server. Using a magical box called <strong>Termux</strong>, we'll build real things—backend for websites, APIs, databases, even your own cloud storage!</p>
+        
+        <h2>🎯 Who This Series Is For</h2>
+        <ul>
+          <li><strong>Freelancers &amp; Job Seekers:</strong> Know HTML, CSS, JS but no laptop for backend? Learn Node.js, Express, API with Termux and build a portfolio.</li>
+          <li><strong>Small Business Owners:</strong> Want a billing & stock system for your shop, completely free? This series empowers you.</li>
+          <li><strong>Students &amp; Tech Enthusiasts:</strong> Curious what a phone can do? Termux is a huge playground. Welcome to pocket Linux!</li>
+          <li><strong>Content Creators:</strong> Looking for quality Bangla Termux resources? Learn from this series and create your own awesome content.</li>
+        </ul>
+        
+        <h2>🛠️ Series Roadmap</h2>
+        <ol>
+          <li><strong>Part 1:</strong> Termux setup, basic commands & first file</li>
+          <li><strong>Part 2:</strong> Express install & first API (GET /products)</li>
+          <li><strong>Part 3:</strong> POST API – add new products</li>
+          <li><strong>Part 4:</strong> DELETE API – delete products</li>
+          <li><strong>Part 5:</strong> PUT API – update products & stock</li>
+          <li><strong>Part 6:</strong> Frontend: display API data in HTML table</li>
+          <li><strong>Part 7:</strong> Form: UI for adding products</li>
+          <li><strong>Part 8:</strong> Billing system: select & cart</li>
+          <li><strong>Part 9:</strong> Auto stock update on bill</li>
+          <li><strong>Part 10:</strong> JWT login – secure API</li>
+          <li><strong>Part 11:</strong> Daily report & profit-loss</li>
+          <li><strong>Part 12:</strong> SQLite database – from JSON to real DB</li>
+        </ol>
+        
+        <hr style="margin: 2em 0; border-color: var(--border);">
+        
+        <h2>🔧 Requirements</h2>
+        <ul>
+          <li>Android phone (Android 7 or above)</li>
+          <li>Internet (only during install)</li>
+          <li>Curiosity and patience</li>
+        </ul>
+        
+        <h2>1. Install Termux</h2>
+        <p>Get the latest Termux from F-Droid.</p>
+        <ol>
+          <li>Open f-droid.org in your browser.</li>
+          <li>Search "Termux" and download the latest APK.</li>
+          <li>Install and open. A white-and-black terminal will appear.</li>
+        </ol>
+        <p>That's Termux! Now we'll do all our magic here.</p>
+        
+        <h2>2. First Update & Install Tools</h2>
+        <pre><code>pkg update && pkg upgrade -y</code></pre>
+        <p>Then install essential packages:</p>
+        <pre><code>pkg install nodejs micro -y</code></pre>
+        <p><strong>nodejs</strong> runs JavaScript; <strong>micro</strong> is a touch-friendly text editor.</p>
+        
+        <h2>3. Basic Navigation Commands</h2>
+        <table style="width:100%; border-collapse: collapse; margin:1em 0;">
+          <tr style="background:var(--surface2); color:var(--text);"><th style="padding:8px; border:1px solid var(--border);">Command</th><th style="padding:8px; border:1px solid var(--border);">What it does</th></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>pwd</code></td><td style="padding:8px; border:1px solid var(--border);">Show current folder</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>ls</code></td><td style="padding:8px; border:1px solid var(--border);">List files & folders</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>mkdir &lt;name&gt;</code></td><td style="padding:8px; border:1px solid var(--border);">Create a folder</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>cd &lt;folder&gt;</code></td><td style="padding:8px; border:1px solid var(--border);">Enter folder</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>cd ..</code></td><td style="padding:8px; border:1px solid var(--border);">Go up one level</td></tr>
+          <tr><td style="padding:8px; border:1px solid var(--border);"><code>touch &lt;file&gt;</code></td><td style="padding:8px; border:1px solid var(--border);">Create empty file</td></tr>
+        </table>
+        
+        <p><strong>First practice:</strong></p>
+        <pre><code>mkdir my-first-project
+cd my-first-project
+pwd</code></pre>
+        <p>You are now inside <code>my-first-project</code>.</p>
+        
+        <h2>4. Create & View First File</h2>
+        <pre><code>touch hello.txt
+micro hello.txt</code></pre>
+        <p>Write: <code>This is my first Termux file!</code><br>
+        Save: <strong>Ctrl+S</strong>, Exit: <strong>Ctrl+Q</strong>.<br>
+        To view: <code>cat hello.txt</code></p>
+        
+        <h2>5. Build Folder Structure</h2>
+        <pre><code>mkdir -p shop-api/public shop-api/data</code></pre>
+        
+        <h2>6. First Node.js Script</h2>
+        <pre><code>cd ~/my-first-project
+micro app.js</code></pre>
+        <pre><code>console.log("My Termux journey has begun! Node.js is running!");</code></pre>
+        <p>Run: <code>node app.js</code></p>
+        
+        <h2>🎯 Summary of Part 1</h2>
+        <ul>
+          <li>Termux – the Linux computer inside your phone</li>
+          <li>Installing packages with <code>pkg</code></li>
+          <li>Essential commands: <code>pwd</code>, <code>ls</code>, <code>mkdir</code>, <code>cd</code>, <code>touch</code>, <code>cat</code></li>
+          <li>Editing files with <code>micro</code></li>
+          <li>Running JavaScript with <code>node</code></li>
+        </ul>
+        <p><strong>Next episode:</strong> We'll install Express.js and build a live API to show a product list in the browser. The first brick of our shop management system!</p>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="post-navigation">
+        <a href="index.html" class="btn">← সিরিজ হোম</a>
+        <div class="spacer"></div>
+        <a href="part-2.html" class="btn">পর্ব ২ →</a>
+      </div>
+    </div>
+    
+    <!-- Cusdis Comments (always light) -->
+    <div class="comments-section article-container">
+      <h3>💬 মন্তব্য / Comments</h3>
+      <div id="cusdis_thread"
+           data-host="https://cusdis.com"
+           data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a"
+           data-page-id="part-1"
+           data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/part-1.html"
+           data-page-title="পর্ব ১: Termux সেটআপ ও বেসিক কমান্ড"
+           data-theme="light">
+      </div>
+      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="social-icons">
+      <a href="https://github.com/BanglaGolpoGalaxy" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://in.linkedin.com/in/milan-biswas-066a5b366" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="color:var(--text-sec);">
+      <span class="bn lang-content active" data-lang="bn">© 2026 Milan Biswas | ভালোবাসা আর শেখার ইচ্ছা দিয়ে তৈরি</span>
+      <span class="en lang-content" data-lang="en">© 2026 Milan Biswas | Built with love and passion for learning</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    function applyLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+      document.querySelectorAll('.lang-content').forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        applyLang(lang);
+        localStorage.setItem('blogSeriesLang', lang);
+      });
+    });
+    
+    const themeBtn = document.getElementById('themeToggle');
+    function setTheme(theme) {
+      if (theme === 'light') {
+        document.body.classList.add('light');
+        themeBtn.textContent = '☀️';
+      } else {
+        document.body.classList.remove('light');
+        themeBtn.textContent = '🌙';
+      }
+      localStorage.setItem('blogSeriesTheme', theme);
+    }
+    themeBtn.addEventListener('click', () => setTheme(document.body.classList.contains('light') ? 'dark' : 'light'));
+    
+    applyLang(localStorage.getItem('blogSeriesLang') || 'bn');
+    setTheme(localStorage.getItem('blogSeriesTheme') || 'dark');
+  })();
+</script>
+
+</body>
+</html>
