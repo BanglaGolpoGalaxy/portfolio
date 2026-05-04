@@ -229,7 +229,7 @@
     }
     .btn:hover { background: var(--accent2); }
 
-    /* Post navigation */
+    /* Post navigation – three buttons layout */
     .post-navigation {
       display: flex;
       align-items: center;
@@ -238,7 +238,13 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-    .post-navigation .nav-spacer { flex: 1; }
+    .post-navigation .nav-left, .post-navigation .nav-right {
+      flex: 0 0 auto;
+    }
+    .post-navigation .nav-center {
+      flex: 1;
+      text-align: center;
+    }
 
     /* Comments section */
     .comments-section {
@@ -764,17 +770,26 @@ micro products.html</code></pre>
         <p>Your grocery shop now has a live API! In the <strong>next part</strong>, we'll build the POST API to add new products and take a big step toward a true management system. Practice well, and drop any questions in the comments. Happy coding! 😊🛒✨</p>
       </div>
 
-      <!-- Post navigation -->
+      <!-- Post navigation with three buttons: Previous Part | Home | Next Part -->
       <div class="post-navigation">
-        <a href="termux_index.html" class="btn">
-          <span class="bn lang-content active" data-lang="bn">← হোম</span>
-          <span class="en lang-content" data-lang="en">← Home</span>
-        </a>
-        <div class="nav-spacer"></div>
-        <a href="part-3.html" class="btn">
-          <span class="bn lang-content active" data-lang="bn">পরবর্তী পর্ব →</span>
-          <span class="en lang-content" data-lang="en">Next Part →</span>
-        </a>
+        <div class="nav-left">
+          <a href="termux_part1.html" class="btn">
+            <span class="bn lang-content active" data-lang="bn">← পূর্ববর্তী</span>
+            <span class="en lang-content" data-lang="en">← Previous</span>
+          </a>
+        </div>
+        <div class="nav-center">
+          <a href="termux_index.html" class="btn" title="সিরিজ হোম">
+            <span class="bn lang-content active" data-lang="bn">🏠 হোম</span>
+            <span class="en lang-content" data-lang="en">🏠 Home</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="termux_part3.html" class="btn">
+            <span class="bn lang-content active" data-lang="bn">পরবর্তী →</span>
+            <span class="en lang-content" data-lang="en">Next →</span>
+          </a>
+        </div>
       </div>
     </div>
   </article>
