@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ফেভিকন -->
+  <link rel="icon" href="https://banglagolpogalaxy.github.io/avatar.png">
+  
+  <!-- ফন্ট অসাম আইকন (হোম বাটনের জন্য) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- প্রাইমারি মেটা ট্যাগ -->
+  <title>ভাষা টগল – JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ ওয়েবপেজ (বাংলা/English/हिंदी) | মিলন বিশ্বাস</title>
+  <meta name="title" content="ভাষা টগল – JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ পেজ বানানোর টিউটোরিয়াল">
+  <meta name="description" content="HTML, CSS ও JavaScript ব্যবহার করে কীভাবে একটি ভাষা টগল বানাতে হয় — প্রতিটি লাইনের ব্যাখ্যা বাংলায়। বিগিনারদের জন্য ধাপে ধাপে টিউটোরিয়াল।">
+  <meta name="keywords" content="ভাষা টগল, language toggle, multilingual website, JavaScript, CSS, localStorage, বাংলা টিউটোরিয়াল, हिंदी ट्यूटोरियल, English tutorial">
+  <meta name="author" content="Milan Biswas">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- বহুভাষিক মেটা -->
+  <meta name="description" lang="bn" content="HTML, CSS ও JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ ওয়েবপেজের ভাষা টগল বানানোর টিউটোরিয়াল। প্রতিটি লাইনের ব্যাখ্যা বাংলায়।">
+  <meta name="keywords" lang="bn" content="ভাষা টগল, মাল্টি-ল্যাংগুয়েজ, JavaScript, CSS, localStorage">
+  <meta name="description" lang="en" content="Step-by-step tutorial on building a language toggle for multilingual websites using HTML, CSS and JavaScript. Fully explained line by line in Bengali, English and Hindi.">
+  <meta name="keywords" lang="en" content="language toggle, multilingual, JavaScript, CSS, localStorage, tutorial">
+  <meta name="description" lang="hi" content="HTML, CSS और JavaScript का उपयोग करके भाषा टॉगल कैसे बनाएं – हर लाइन की व्याख्या हिंदी में।">
+  <meta name="keywords" lang="hi" content="भाषा टॉगल, मल्टी-लैंग्वेज, जावास्क्रिप्ट, CSS, localStorage">
+
+  <!-- ক্যানোনিকাল -->
+  <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/language-toggle-trick.html">
+
+  <!-- JSON‑LD স্ট্রাকচার্ড ডেটা -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "ভাষা টগল – JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ ওয়েবপেজ",
+    "description": "HTML, CSS ও JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ সাইটের ভাষা টগল বানানোর টিউটোরিয়াল – বাংলা, ইংরেজি ও হিন্দিতে সম্পূর্ণ ব্যাখ্যা।",
+    "author": { "@type": "Person", "name": "Milan Biswas" },
+    "datePublished": "2026-05-05",
+    "inLanguage": ["bn","en","hi"],
+    "educationalLevel": "beginner"
+  }
+  </script>
+
+  <!-- ওপেন গ্রাফ -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/language-toggle-trick.html">
+  <meta property="og:title" content="ভাষা টগল – JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ ওয়েবপেজ (বাংলা/English/हिंदी)">
+  <meta property="og:description" content="HTML, CSS ও JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ সাইটের ভাষা টগল বানানোর টিউটোরিয়াল – বাংলা, ইংরেজি ও হিন্দি ভাষায় সম্পূর্ণ ব্যাখ্যা।">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/language-toggle-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="bn_BD">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="article:published_time" content="2026-05-05T10:00:00+06:00">
+  <meta property="article:modified_time" content="2026-05-05T10:00:00+06:00">
+  <meta property="article:author" content="Milan Biswas">
+  <meta property="article:tag" content="language toggle">
+  <meta property="article:tag" content="multilingual">
+  <meta property="article:tag" content="JavaScript">
+  <meta property="article:tag" content="localStorage">
+
+  <!-- টুইটার কার্ড -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/language-toggle-trick.html">
+  <meta name="twitter:title" content="Language Toggle – JavaScript Multilingual Tutorial (Bengali/English/Hindi)">
+  <meta name="twitter:description" content="Build a language toggle for your website – line by line explanation in three languages.">
+  <meta name="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/language-toggle-card.jpg">
+  <meta name="twitter:image:alt" content="Language toggle preview card">
+
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-sec: #475569;
+      --accent: #2563eb;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+    }
+    body.dark {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text: #e2e8f0;
+      --text-sec: #94a3b8;
+      --accent: #38bdf8;
+      --border: #334155;
+      --code-bg: #0f172a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Noto Sans Bengali', 'Noto Sans Devanagari', system-ui, sans-serif;
+      line-height: 1.7;
+      transition: background-color 0.3s, color 0.2s;
+    }
+
+    /* ========== টপ বার ========== */
+    .top-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+    .top-bar-inner {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .lang-btn,
+    .theme-toggle-btn {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 40px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    .theme-toggle-btn {
+      font-size: 1rem;
+      padding: 6px 12px;
+      margin-left: 8px;
+    }
+
+    /* পোর্টফোলিওতে ফিরুন বাটন (হোম আইকন) */
+    .home-link {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin-right: 10px;
+      transition: color 0.2s;
+    }
+    .home-link:hover { color: var(--accent); }
+
+    /* ========== মূল কন্টেইনার ========== */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid var(--border);
+    }
+
+    /* ভাষার কন্টেন্ট */
+    .lang-bn { display: block; }
+    .lang-en { display: none; }
+    .lang-hi { display: none; }
+    body.bn .lang-bn { display: block; }
+    body.bn .lang-en { display: none; }
+    body.bn .lang-hi { display: none; }
+    body.en .lang-bn { display: none; }
+    body.en .lang-en { display: block; }
+    body.en .lang-hi { display: none; }
+    body.hi .lang-bn { display: none; }
+    body.hi .lang-en { display: none; }
+    body.hi .lang-hi { display: block; }
+
+    h1 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--accent);
+      padding-left: 18px;
+    }
+    .meta {
+      color: var(--text-sec);
+      font-size: 0.85rem;
+      margin-bottom: 30px;
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 1.4rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 12px;
+    }
+    p { margin-bottom: 16px; }
+    pre {
+      background: var(--code-bg);
+      padding: 16px;
+      border-radius: 16px;
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+    }
+    .explanation {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      margin: 10px 0 20px 0;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 6px;
+      font-family: monospace;
+    }
+    .btn-demo {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin: 10px 0;
+    }
+    .demo-box {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+    }
+    .related-posts {
+      margin-top: 40px;
+      padding: 20px;
+      background: var(--code-bg);
+      border-radius: 20px;
+    }
+    .related-posts h3 {
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    .related-posts ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .related-posts li {
+      margin-bottom: 10px;
+    }
+    .related-posts a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .related-posts a:hover {
+      text-decoration: underline;
+    }
+    /* মন্তব্য সেকশন */
+    .comments-section {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 16px;
+      padding: 30px;
+      margin-top: 40px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .comments-section h3 {
+      color: #0f172a;
+      margin-bottom: 20px;
+    }
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 20px; }
+      h1 { font-size: 1.4rem; }
+      .top-bar-inner { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body class="bn">
+
+  <!-- ==================== টপ বার ==================== -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <!-- পোর্টফোলিওতে ফিরুন (হোম আইকন) -->
+      <a href="../index.html" class="home-link" title="পোর্টফোলিওতে ফিরুন"><i class="fas fa-home"></i></a>
+
+      <button class="lang-btn active" data-lang="bn">বাংলা</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="hi">हिंदी</button>
+      <button class="theme-toggle-btn" id="themeToggle" title="ডার্ক/লাইট মোড বদলান">🌓</button>
+    </div>
+  </div>
+
+  <!-- ==================== মূল কন্টেন্ট ==================== -->
+  <div class="container">
+
+    <!-- ************ বাংলা ************ -->
+    <div class="lang-bn" lang="bn">
+      <h1>🌐 ভাষা টগল – JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ ওয়েবপেজ (লাইন বাই লাইন)</h1>
+      <div class="meta">
+        <span>⏱️ ১২ মিনিট পড়া</span>
+        <span>✍️ মিলন বিশ্বাস</span>
+      </div>
+      <p>এই টিউটোরিয়ালে আমরা শিখব কীভাবে একই ওয়েবপেজে একাধিক ভাষার কন্টেন্ট রাখা যায় এবং একটি টগল বাটন দিয়ে ব্যবহারকারী নিজের পছন্দের ভাষা বেছে নিতে পারেন। <strong>প্রতিটি লাইনের কাজ বাংলায় ব্যাখ্যা করা হবে</strong>, তাই আপনি যদি একদম নতুন হন, তবুও সব বুঝতে পারবেন।</p>
+
+      <div class="demo-box">
+        <p style="font-weight:500;">⚡ এই পেজটিই একটি লাইভ ডেমো! <br>উপরের <strong>বাংলা | English | हिंदी</strong> বাটনে ক্লিক করে দেখুন।</p>
+      </div>
+
+      <h2>🧱 ১. HTML – তিনটি আলাদা কন্টেইনার</h2>
+      <p>প্রথমে আমরা প্রতিটি ভাষার জন্য আলাদা <code>&lt;div&gt;</code> বানাবো। প্রতিটি div-কে একটি নির্দিষ্ট ক্লাস দেব—যেমন <code>lang-bn</code>, <code>lang-en</code>, <code>lang-hi</code>।</p>
+      <pre><code>&lt;body&gt;
+  &lt;div class="lang-bn"&gt;
+    &lt;h1&gt;বাংলা শিরোনাম&lt;/h1&gt;
+    &lt;p&gt;এটি বাংলা কন্টেন্ট&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="lang-en"&gt;
+    &lt;h1&gt;English Title&lt;/h1&gt;
+    &lt;p&gt;This is English content&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="lang-hi"&gt;
+    &lt;h1&gt;हिंदी शीर्षक&lt;/h1&gt;
+    &lt;p&gt;यह हिंदी कंटेंट है&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 ব্যাখ্যা:</strong><br>
+        • তিনটি ডিভ একসাথে রাখা হয়েছে। কিন্তু ব্রাউজারে একসাথে সব দেখা যাবে না—আমরা CSS দিয়ে নির্ধারণ করব কোন ভাষাটি দেখাবে।<br>
+        • ক্লাসের নাম যেকোনো কিছু হতে পারে, তবে অর্থপূর্ণ রাখাই ভালো।
+      </div>
+
+      <h2>🎨 ২. CSS – ভাষা অনুযায়ী দেখানো/লুকানো</h2>
+      <p><code>&lt;body&gt;</code> ট্যাগে একটি ক্লাস দেব যা নির্ধারণ করবে কোন ভাষা চালু আছে (যেমন <code>class="bn"</code>)। তার ভিত্তিতে CSS দিয়ে প্রাসঙ্গিক div দেখাবো আর বাকি গুলো লুকাবো।</p>
+      <pre><code>/* ডিফল্ট: শুধু বাংলা দেখাবে */
+.lang-bn { display: block; }
+.lang-en { display: none; }
+.lang-hi { display: none; }
+
+/* যখন body-তে 'en' ক্লাস থাকবে */
+body.en .lang-bn { display: none; }
+body.en .lang-en { display: block; }
+body.en .lang-hi { display: none; }
+
+/* যখন body-তে 'hi' ক্লাস থাকবে */
+body.hi .lang-bn { display: none; }
+body.hi .lang-en { display: none; }
+body.hi .lang-hi { display: block; }</code></pre>
+      <div class="explanation">
+        <strong>🔍 ব্যাখ্যা:</strong><br>
+        • <code>body.en .lang-en</code> – এটি সিলেক্টর মানে “body যার ক্লাস 'en', তার ভেতরের .lang-en ক্লাসের div”।<br>
+        • <code>display: none</code> দিয়ে লুকানো হয়, <code>display: block</code> দিয়ে দেখানো।<br>
+        • আমরা ডিফল্ট হিসেবে বাংলা দেখাতে চাই, তাই শুরুতেই .lang-bn ব্লক আর বাকি গুলো none।
+      </div>
+
+      <h2>🖱️ ৩. HTML বাটন – ভাষা পরিবর্তনের সুইচ</h2>
+      <p>তিনটি বাটন দরকার। প্রতিটি বাটনে <code>data-lang</code> অ্যাট্রিবিউট দিয়ে বোঝাবো এটি কোন ভাষার জন্য।</p>
+      <pre><code>&lt;button class="lang-btn" data-lang="bn"&gt;বাংলা&lt;/button&gt;
+&lt;button class="lang-btn" data-lang="en"&gt;English&lt;/button&gt;
+&lt;button class="lang-btn" data-lang="hi"&gt;हिंदी&lt;/button&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 ব্যাখ্যা:</strong><br>
+        • <code>data-lang</code> একটি কাস্টম ডেটা অ্যাট্রিবিউট। JavaScript দিয়ে আমরা এর মান পড়তে পারব।<br>
+        • আমরা চাইলে বাটনের ভেতরে ইমোজি বা আইকনও দিতে পারি।
+      </div>
+
+      <h2>⚙️ ৪. জাভাস্ক্রিপ্ট – ক্লিক ইভেন্ট, ক্লাস পরিবর্তন ও লোকাল স্টোরেজ</h2>
+      <p>এবার প্রাণ ঢালবো জাভাস্ক্রিপ্ট দিয়ে। যখন কেউ বাটনে ক্লিক করবে, আমরা body-র ক্লাস পরিবর্তন করব এবং পছন্দটি localStorage-এ সেভ করব।</p>
+      <pre><code>&lt;script&gt;
+  // ১. সব ভাষার বাটন ধরি
+  const langBtns = document.querySelectorAll('.lang-btn');
+
+  // ২. প্রতিটি বাটনে ক্লিক ইভেন্ট লাগাই
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang'); // 'bn', 'en', 'hi'
+
+      // ৩. বর্তমান সব ভাষার ক্লাস সরিয়ে নতুনটি যোগ করি
+      document.body.classList.remove('bn', 'en', 'hi');
+      document.body.classList.add(lang);
+
+      // ৪. <html lang="..."> আপডেট করি
+      document.documentElement.lang = lang;
+
+      // ৫. অ্যাক্টিভ বাটন হাইলাইট করি
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // ৬. পছন্দ localStorage-এ জমা রাখি
+      localStorage.setItem('blogLang', lang);
+    });
+  });
+
+  // ৭. পেজ লোডে পূর্বের পছন্দ ফিরিয়ে আনি
+  const savedLang = localStorage.getItem('blogLang');
+  if (savedLang) {
+    document.body.classList.remove('bn', 'en', 'hi');
+    document.body.classList.add(savedLang);
+    document.documentElement.lang = savedLang;
+    // সংশ্লিষ্ট বাটনকে active করি
+    document.querySelector(`.lang-btn[data-lang="${savedLang}"]`).classList.add('active');
+  }
+&lt;/script&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 লাইন বাই লাইন:</strong><br>
+        • <code>document.querySelectorAll('.lang-btn')</code> – একই ক্লাসের সব বাটনের তালিকা আনে।<br>
+        • <code>btn.getAttribute('data-lang')</code> – বাটনের ভেতরে রাখা ভাষার কোড পড়ে।<br>
+        • <code>document.body.classList.remove('bn','en','hi')</code> – আগের ভাষার ক্লাস সরায় (তিনটাই সরালে কোনো সমস্যা নেই) — এতে <code>dark</code> ক্লাস অক্ষুণ্ন থাকে।<br>
+        • <code>document.body.classList.add(lang)</code> – নতুন ভাষার ক্লাস যোগ করে।<br>
+        • <code>document.documentElement.lang = lang</code> – পেজের প্রাথমিক ভাষাও আপডেট হয়।<br>
+        • <code>classList.toggle('active')</code> বা <code>add/remove</code> – বাটনের স্টাইল বদলাতে।<br>
+        • <code>localStorage.setItem('blogLang', lang)</code> – ব্রাউজারের স্থায়ী স্টোরেজে ভ্যালু সেভ করে, যাতে পরেরবার পেজ ওপেন করলে আগের পছন্দ পাওয়া যায়।<br>
+        • শেষ অংশে <code>localStorage.getItem('blogLang')</code> দিয়ে চেক করে আগের পছন্দ লোড করছি।
+      </div>
+
+      <h2>🎯 পুরো কোড একসাথে (কপি-পেস্ট করে চালান)</h2>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .lang-bn { display: block; }
+  .lang-en { display: none; }
+  .lang-hi { display: none; }
+  body.en .lang-bn { display: none; }
+  body.en .lang-en { display: block; }
+  body.hi .lang-bn { display: none; }
+  body.hi .lang-hi { display: block; }
+  .lang-btn { padding: 8px 16px; cursor: pointer; }
+  .lang-btn.active { background: blue; color: white; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body class="bn"&gt;
+  &lt;button class="lang-btn active" data-lang="bn"&gt;বাংলা&lt;/button&gt;
+  &lt;button class="lang-btn" data-lang="en"&gt;English&lt;/button&gt;
+  &lt;button class="lang-btn" data-lang="hi"&gt;हिंदी&lt;/button&gt;
+
+  &lt;div class="lang-bn"&gt;&lt;h1&gt;বাংলা&lt;/h1&gt;&lt;/div&gt;
+  &lt;div class="lang-en"&gt;&lt;h1&gt;English&lt;/h1&gt;&lt;/div&gt;
+  &lt;div class="lang-hi"&gt;&lt;h1&gt;हिंदी&lt;/h1&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    const btns = document.querySelectorAll('.lang-btn');
+    btns.forEach(b => {
+      b.addEventListener('click', () => {
+        const l = b.dataset.lang;
+        document.body.className = l;
+        document.documentElement.lang = l;
+        btns.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        localStorage.setItem('lang', l);
+      });
+    });
+    const saved = localStorage.getItem('lang');
+    if (saved) {
+      document.body.className = saved;
+      document.documentElement.lang = saved;
+      document.querySelector(`[data-lang="${saved}"]`).classList.add('active');
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h2>💡 বাস্তব প্রকল্পে ব্যবহার করার টিপস</h2>
+      <ul style="margin-left:20px; margin-bottom:20px;">
+        <li><strong>ক্লাস রিসেটে সতর্কতা:</strong> উপরের কোডে <code>document.body.className = lang</code> দিলে body-তে অন্য কোনো ক্লাস (যেমন <code>dark</code>) মুছে যেতে পারে। তাই বাস্তবে <code>classList.remove + add</code> ব্যবহার করাই নিরাপদ (আমাদের উন্নত ভার্সনের মতো)।</li>
+        <li><strong>অ্যাক্সেসিবিলিটি:</strong> প্রতিটি ভাষার div-এ <code>lang</code> অ্যাট্রিবিউট যোগ করুন (<code>&lt;div lang="bn"&gt;</code>) যাতে স্ক্রিন রিডার সঠিক ভাষায় পড়তে পারে।</li>
+        <li><strong>ইউআরএল আপডেট:</strong> চাইলে ইতিহাসে সংরক্ষণ করতে <code>history.pushState</code> ব্যবহার করতে পারেন যাতে ব্যাক বাটনে ভাষা বদলায়।</li>
+        <li><strong>অনুবাদ ফাইল:</strong> বড় সাইটের জন্য JSON বা JavaScript অবজেক্টে অনুবাদ সংরক্ষণ করাই ভালো।</li>
+      </ul>
+
+      <div class="explanation">
+        <strong>📢 শেষ কথা:</strong> এই টিউটোরিয়ালটি শেষ করে আপনি যেকোনো সাইটে ভাষা টগল যোগ করতে পারবেন। আর আপনি তো এখনই উপরের বাটনে ক্লিক করে দেখতে পারছেন! কোনো জিজ্ঞাসা থাকলে কমেন্ট করুন।
+      </div>
+
+      <div class="related-posts">
+        <h3>📚 আরও পড়ুন</h3>
+        <ul>
+          <li><a href="dark-mode-trick.html">🌙 ডার্ক মোড টগল – CSS ভেরিয়েবল ও JavaScript</a></li>
+          <li><a href="my-web-dev-journey.html">🧑‍💻 আমার ওয়েব ডেভেলপমেন্ট জার্নি</a></li>
+          <li><a href="termux-backend-series/termux_index.html">📱 বাংলায় Termux শিখুন – ব্যাকএন্ড সিরিজ</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ************ English ************ -->
+    <div class="lang-en" lang="en">
+      <h1>🌐 Language Toggle – Multilingual Webpage with JavaScript (Line by Line)</h1>
+      <div class="meta">
+        <span>⏱️ 12 min read</span>
+        <span>✍️ Milan Biswas</span>
+      </div>
+      <p>In this tutorial we'll learn how to keep content in multiple languages on a single webpage and let users switch between them using a toggle button. <strong>Every single line of code is explained</strong>, so even absolute beginners can follow along.</p>
+
+      <div class="demo-box">
+        <p style="font-weight:500;">⚡ This page itself is a live demo! <br>Try clicking the <strong>বাংলা | English | हिंदी</strong> buttons above.</p>
+      </div>
+
+      <h2>🧱 1. HTML – Three Separate Containers</h2>
+      <p>First we create a separate <code>&lt;div&gt;</code> for each language, giving each a distinct class like <code>lang-bn</code>, <code>lang-en</code>, <code>lang-hi</code>.</p>
+      <pre><code>&lt;body&gt;
+  &lt;div class="lang-bn"&gt;
+    &lt;h1&gt;Bangla Title&lt;/h1&gt;
+    &lt;p&gt;Bangla content&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="lang-en"&gt;
+    &lt;h1&gt;English Title&lt;/h1&gt;
+    &lt;p&gt;English content&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="lang-hi"&gt;
+    &lt;h1&gt;Hindi Title&lt;/h1&gt;
+    &lt;p&gt;Hindi content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 Explanation:</strong><br>
+        • The three divs are siblings. We'll use CSS to decide which one is visible.<br>
+        • The class names can be anything meaningful.
+      </div>
+
+      <h2>🎨 2. CSS – Show/Hide Based on Body Class</h2>
+      <p>We'll add a class to the <code>&lt;body&gt;</code> (e.g., <code>class="en"</code>) and use CSS combinators to hide or show the appropriate div.</p>
+      <pre><code>/* Default: show Bangla only */
+.lang-bn { display: block; }
+.lang-en { display: none; }
+.lang-hi { display: none; }
+
+/* When body has class 'en' */
+body.en .lang-bn { display: none; }
+body.en .lang-en { display: block; }
+body.en .lang-hi { display: none; }
+
+/* When body has class 'hi' */
+body.hi .lang-bn { display: none; }
+body.hi .lang-en { display: none; }
+body.hi .lang-hi { display: block; }</code></pre>
+      <div class="explanation">
+        <strong>🔍 Explanation:</strong><br>
+        • `body.en .lang-en` targets the `.lang-en` div only when the body has the `en` class.<br>
+        • `display: none` hides the element completely.
+      </div>
+
+      <h2>🖱️ 3. HTML Buttons – The Language Switcher</h2>
+      <p>We need three buttons, each with a `data-lang` attribute to identify which language it controls.</p>
+      <pre><code>&lt;button class="lang-btn" data-lang="bn"&gt;বাংলা&lt;/button&gt;
+&lt;button class="lang-btn" data-lang="en"&gt;English&lt;/button&gt;
+&lt;button class="lang-btn" data-lang="hi"&gt;हिंदी&lt;/button&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 Explanation:</strong><br>
+        • `data-lang` is a custom data attribute that JavaScript can read easily using `getAttribute` or `dataset`.
+      </div>
+
+      <h2>⚙️ 4. JavaScript – Click Handling, Class Toggle & LocalStorage</h2>
+      <p>When a button is clicked, we remove all previous language classes from the body, add the new one, update active button style, and save the preference.</p>
+      <pre><code>&lt;script&gt;
+  const langBtns = document.querySelectorAll('.lang-btn');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang'); // 'bn', 'en', 'hi'
+      document.body.classList.remove('bn', 'en', 'hi');
+      document.body.classList.add(lang);
+      document.documentElement.lang = lang;
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      localStorage.setItem('blogLang', lang);
+    });
+  });
+
+  const savedLang = localStorage.getItem('blogLang');
+  if (savedLang) {
+    document.body.classList.remove('bn', 'en', 'hi');
+    document.body.classList.add(savedLang);
+    document.documentElement.lang = savedLang;
+    document.querySelector(`.lang-btn[data-lang="${savedLang}"]`).classList.add('active');
+  }
+&lt;/script&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 Line‑by‑line explanation:</strong><br>
+        • `querySelectorAll` grabs all buttons.<br>
+        • `getAttribute('data-lang')` reads the language code.<br>
+        • `classList.remove` / `classList.add` safely swap classes without touching other classes (like `dark`).<br>
+        • `document.documentElement.lang = lang` updates the page language for screen readers.<br>
+        • `localStorage.setItem` saves the preference across sessions.<br>
+        • On page load, we restore the saved language.
+      </div>
+
+      <h2>🎯 Full Code (Copy & Paste)</h2>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .lang-bn { display: block; }
+  .lang-en { display: none; }
+  .lang-hi { display: none; }
+  body.en .lang-bn { display: none; }
+  body.en .lang-en { display: block; }
+  body.hi .lang-bn { display: none; }
+  body.hi .lang-hi { display: block; }
+  .lang-btn { padding: 8px 16px; cursor: pointer; }
+  .lang-btn.active { background: blue; color: white; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body class="bn"&gt;
+  &lt;button class="lang-btn active" data-lang="bn"&gt;বাংলা&lt;/button&gt;
+  &lt;button class="lang-btn" data-lang="en"&gt;English&lt;/button&gt;
+  &lt;button class="lang-btn" data-lang="hi"&gt;हिंदी&lt;/button&gt;
+
+  &lt;div class="lang-bn"&gt;&lt;h1&gt;Bangla&lt;/h1&gt;&lt;/div&gt;
+  &lt;div class="lang-en"&gt;&lt;h1&gt;English&lt;/h1&gt;&lt;/div&gt;
+  &lt;div class="lang-hi"&gt;&lt;h1&gt;Hindi&lt;/h1&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    const btns = document.querySelectorAll('.lang-btn');
+    btns.forEach(b => {
+      b.addEventListener('click', () => {
+        const l = b.dataset.lang;
+        document.body.className = l;
+        document.documentElement.lang = l;
+        btns.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        localStorage.setItem('lang', l);
+      });
+    });
+    const saved = localStorage.getItem('lang');
+    if (saved) {
+      document.body.className = saved;
+      document.documentElement.lang = saved;
+      document.querySelector(`[data-lang="${saved}"]`).classList.add('active');
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h2>💡 Real‑World Tips</h2>
+      <ul style="margin-left:20px; margin-bottom:20px;">
+        <li><strong>Don't replace classes:</strong> In the simple version we used `body.className = lang`. In production, use `classList` to avoid wiping out other classes (like `dark`).</li>
+        <li><strong>Accessibility:</strong> Add a `lang` attribute to each language div and ensure the buttons are keyboard‑accessible.</li>
+        <li><strong>URL updates:</strong> Use `history.pushState` to reflect the language in the URL without reloading.</li>
+        <li><strong>Structured translations:</strong> For larger sites, keep translations in a JSON file rather than duplicated HTML.</li>
+      </ul>
+
+      <div class="explanation">
+        <strong>📢 Final word:</strong> You now know how to build a language toggle. Try clicking the buttons above – this page responds instantly! If you have questions, leave a comment.
+      </div>
+
+      <div class="related-posts">
+        <h3>📚 Read More</h3>
+        <ul>
+          <li><a href="dark-mode-trick.html">🌙 Dark Mode Toggle – CSS Variables & JavaScript</a></li>
+          <li><a href="my-web-dev-journey.html">🧑‍💻 My Web Development Journey</a></li>
+          <li><a href="termux-backend-series/termux_index.html">📱 Learn Termux in Bangla – Backend Series</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ************ हिंदी ************ -->
+    <div class="lang-hi" lang="hi">
+      <h1>🌐 भाषा टॉगल – JavaScript से मल्टी-लैंग्वेज वेबपेज (हर लाइन की व्याख्या)</h1>
+      <div class="meta">
+        <span>⏱️ 12 मिनट में पढ़ें</span>
+        <span>✍️ मिलन बिस्वास</span>
+      </div>
+      <p>इस ट्यूटोरियल में हम सीखेंगे कि एक ही वेबपेज पर कई भाषाओं की सामग्री कैसे रखें और यूज़र को एक टॉगल बटन से भाषा बदलने की सुविधा दें। <strong>हर लाइन की व्याख्या हिंदी में</strong> की गई है, ताकि बिलकुल शुरुआती भी समझ सकें।</p>
+
+      <div class="demo-box">
+        <p style="font-weight:500;">⚡ यह पेज खुद एक लाइव डेमो है! <br>ऊपर दिए <strong>বাংলা | English | हिंदी</strong> बटन पर क्लिक करके देखें।</p>
+      </div>
+
+      <h2>🧱 1. HTML – तीन अलग-अलग कंटेनर</h2>
+      <p>पहले हम हर भाषा के लिए एक अलग <code>&lt;div&gt;</code> बनाएँगे और हर डिव को एक ख़ास क्लास देंगे जैसे <code>lang-bn</code>, <code>lang-en</code>, <code>lang-hi</code>।</p>
+      <pre><code>&lt;body&gt;
+  &lt;div class="lang-bn"&gt;
+    &lt;h1&gt;बंगाली शीर्षक&lt;/h1&gt;
+    &lt;p&gt;यह बंगाली कंटेंट है&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="lang-en"&gt;
+    &lt;h1&gt;English Title&lt;/h1&gt;
+    &lt;p&gt;This is English content&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="lang-hi"&gt;
+    &lt;h1&gt;हिंदी शीर्षक&lt;/h1&gt;
+    &lt;p&gt;यह हिंदी कंटेंट है&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 व्याख्या:</strong><br>
+        • तीनों डिव साथ-साथ हैं। CSS के ज़रिए हम तय करेंगे कि कौन-सी भाषा दिखे।<br>
+        • क्लास के नाम कुछ भी हो सकते हैं।
+      </div>
+
+      <h2>🎨 2. CSS – भाषा के अनुसार दिखाना/छुपाना</h2>
+      <p><code>&lt;body&gt;</code> पर एक क्लास लगाएँगे (जैसे <code>class="en"</code>) और उसी के आधार पर CSS कॉम्बिनेटर से सही डिव दिखाएँगे।</p>
+      <pre><code>/* डिफ़ॉल्ट: सिर्फ़ बंगाली दिखे */
+.lang-bn { display: block; }
+.lang-en { display: none; }
+.lang-hi { display: none; }
+
+/* जब body में 'en' क्लास हो */
+body.en .lang-bn { display: none; }
+body.en .lang-en { display: block; }
+body.en .lang-hi { display: none; }
+
+/* जब body में 'hi' क्लास हो */
+body.hi .lang-bn { display: none; }
+body.hi .lang-en { display: none; }
+body.hi .lang-hi { display: block; }</code></pre>
+      <div class="explanation">
+        <strong>🔍 व्याख्या:</strong><br>
+        • <code>body.en .lang-en</code> – यह सेलेक्टर तभी लागू होता है जब body पर <code>en</code> क्लास हो।<br>
+        • <code>display: none</code> एलिमेंट को पूरी तरह छुपा देता है।
+      </div>
+
+      <h2>🖱️ 3. HTML बटन – भाषा बदलने का स्विच</h2>
+      <p>तीन बटन चाहिए, हर बटन में <code>data-lang</code> एट्रिब्यूट देंगे ताकि पता चले यह किस भाषा का है।</p>
+      <pre><code>&lt;button class="lang-btn" data-lang="bn"&gt;বাংলা&lt;/button&gt;
+&lt;button class="lang-btn" data-lang="en"&gt;English&lt;/button&gt;
+&lt;button class="lang-btn" data-lang="hi"&gt;हिंदी&lt;/button&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 व्याख्या:</strong><br>
+        • <code>data-lang</code> एक कस्टम डेटा एट्रिब्यूट है, जिसे JavaScript आसानी से पढ़ सकता है।
+      </div>
+
+      <h2>⚙️ 4. जावास्क्रिप्ट – क्लिक इवेंट, क्लास बदलना और localStorage</h2>
+      <p>बटन पर क्लिक होने पर हम body की सारी भाषा क्लास हटाकर नई क्लास जोड़ेंगे, एक्टिव बटन हाइलाइट करेंगे और पसंद को सेव करेंगे।</p>
+      <pre><code>&lt;script&gt;
+  const langBtns = document.querySelectorAll('.lang-btn');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      document.body.classList.remove('bn', 'en', 'hi');
+      document.body.classList.add(lang);
+      document.documentElement.lang = lang;
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      localStorage.setItem('blogLang', lang);
+    });
+  });
+
+  const savedLang = localStorage.getItem('blogLang');
+  if (savedLang) {
+    document.body.classList.remove('bn', 'en', 'hi');
+    document.body.classList.add(savedLang);
+    document.documentElement.lang = savedLang;
+    document.querySelector(`.lang-btn[data-lang="${savedLang}"]`).classList.add('active');
+  }
+&lt;/script&gt;</code></pre>
+      <div class="explanation">
+        <strong>🔍 लाइन-दर-लाइन:</strong><br>
+        • <code>querySelectorAll</code> सभी बटन लाता है।<br>
+        • <code>classList.remove / add</code> सिर्फ़ भाषा की क्लास हटाता/जोड़ता है, बाकी क्लास (जैसे <code>dark</code>) को नहीं छूता।<br>
+        • <code>document.documentElement.lang = lang</code> पेज की प्राथमिक भाषा भी अपडेट करता है।<br>
+        • <code>localStorage.setItem</code> पसंद को ब्राउज़र में सेव करता है।<br>
+        • पेज लोड पर <code>getItem</code> से पिछली पसंद वापस लाते हैं।
+      </div>
+
+      <h2>🎯 पूरा कोड (कॉपी-पेस्ट करें)</h2>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .lang-bn { display: block; }
+  .lang-en { display: none; }
+  .lang-hi { display: none; }
+  body.en .lang-bn { display: none; }
+  body.en .lang-en { display: block; }
+  body.hi .lang-bn { display: none; }
+  body.hi .lang-hi { display: block; }
+  .lang-btn { padding: 8px 16px; cursor: pointer; }
+  .lang-btn.active { background: blue; color: white; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body class="bn"&gt;
+  &lt;button class="lang-btn active" data-lang="bn"&gt;বাংলা&lt;/button&gt;
+  &lt;button class="lang-btn" data-lang="en"&gt;English&lt;/button&gt;
+  &lt;button class="lang-btn" data-lang="hi"&gt;हिंदी&lt;/button&gt;
+
+  &lt;div class="lang-bn"&gt;&lt;h1&gt;बंगाली&lt;/h1&gt;&lt;/div&gt;
+  &lt;div class="lang-en"&gt;&lt;h1&gt;English&lt;/h1&gt;&lt;/div&gt;
+  &lt;div class="lang-hi"&gt;&lt;h1&gt;हिंदी&lt;/h1&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    const btns = document.querySelectorAll('.lang-btn');
+    btns.forEach(b => {
+      b.addEventListener('click', () => {
+        const l = b.dataset.lang;
+        document.body.className = l;
+        document.documentElement.lang = l;
+        btns.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        localStorage.setItem('lang', l);
+      });
+    });
+    const saved = localStorage.getItem('lang');
+    if (saved) {
+      document.body.className = saved;
+      document.documentElement.lang = saved;
+      document.querySelector(`[data-lang="${saved}"]`).classList.add('active');
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h2>💡 असली प्रोजेक्ट के लिए सुझाव</h2>
+      <ul style="margin-left:20px; margin-bottom:20px;">
+        <li><strong>क्लास रीसेट न करें:</strong> सरल उदाहरण में <code>body.className = lang</code> इस्तेमाल हुआ है, जो बाकी क्लास हटा सकता है। बेहतर है <code>classList.remove/add</code> करें।</li>
+        <li><strong>ऐक्सेसिबिलिटी:</strong> हर भाषा के डिव पर <code>lang</code> एट्रिब्यूट लगाएँ और बटन कीबोर्ड से चलने लायक हों।</li>
+        <li><strong>URL अपडेट:</strong> <code>history.pushState</code> से बिना रीलोड भाषा बदलने पर URL भी बदल सकते हैं।</li>
+        <li><strong>अनुवाद फ़ाइल:</strong> बड़ी साइटों के लिए JSON फ़ाइल में अनुवाद रखना बेहतर है।</li>
+      </ul>
+
+      <div class="explanation">
+        <strong>📢 अंतिम शब्द:</strong> अब आप जान गए हैं कि भाषा टॉगल कैसे बनाया जाता है। ऊपर दिए बटन पर क्लिक करके इस पेज पर ही आज़माइए। कोई सवाल हो तो कमेंट करें।
+      </div>
+
+      <div class="related-posts">
+        <h3>📚 और पढ़ें</h3>
+        <ul>
+          <li><a href="dark-mode-trick.html">🌙 डार्क मोड टॉगल – CSS वेरिएबल और JavaScript</a></li>
+          <li><a href="my-web-dev-journey.html">🧑‍💻 मेरी वेब डेवलपमेंट यात्रा</a></li>
+          <li><a href="termux-backend-series/termux_index.html">📱 बंगाली में Termux सीखें – बैकएंड सीरीज़</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ==================== কমেন্ট সেকশন ==================== -->
+    <div class="comments-section">
+      <h3>💬 মন্তব্য / Comments</h3>
+      <div id="cusdis_thread"
+           data-host="https://cusdis.com"
+           data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a"
+           data-page-id="language-toggle-trick"
+           data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/language-toggle-trick.html"
+           data-page-title="ভাষা টগল – JavaScript দিয়ে মাল্টি-ল্যাংগুয়েজ ওয়েবপেজ"
+           data-theme="light">
+      </div>
+      <script async src="https://cusdis.com/js/cusdis.es.js"></script>
+    </div>
+
+    <!-- ফুটার -->
+    <div class="footer-note">
+      <p>© 2026 Milan Biswas | বাংলা | English | हिंदी</p>
+      <p><a href="../index.html" style="color: var(--accent);">← পোর্টফোলিওতে ফিরুন</a></p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const body = document.body;
+
+      // ---------- ভাষা টগল ----------
+      const langBtns = document.querySelectorAll('.lang-btn');
+      function setLanguage(lang) {
+        body.classList.remove('bn', 'en', 'hi');
+        body.classList.add(lang);
+        document.documentElement.lang = lang;
+        langBtns.forEach(b => {
+          const isActive = b.getAttribute('data-lang') === lang;
+          b.classList.toggle('active', isActive);
+        });
+        localStorage.setItem('blogLang', lang);
+      }
+
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('blogLang');
+      if (savedLang && ['bn','en','hi'].includes(savedLang)) {
+        setLanguage(savedLang);
+      } else {
+        // ডিফল্ট বাংলা সক্রিয় করি
+        document.querySelector('.lang-btn[data-lang="bn"]').classList.add('active');
+        document.documentElement.lang = 'bn';
+      }
+
+      // ---------- ডার্ক মোড টগল ----------
+      const themeToggle = document.getElementById('themeToggle');
+
+      function applyTheme(theme) {
+        if (theme === 'dark') {
+          body.classList.add('dark');
+        } else {
+          body.classList.remove('dark');
+        }
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const isDark = body.classList.contains('dark');
+        if (isDark) {
+          body.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else {
+        applyTheme('light');
+      }
+    })();
+  </script>
+</body>
+</html>
