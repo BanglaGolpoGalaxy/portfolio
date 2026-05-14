@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- গুগল সার্চ কনসোল ভেরিফিকেশন -->
+    <meta name="google-site-verification" content="EFKZ__SGNwsPC-hOlrKDHH-bJDzpIeZDTLDlve-SxtU" />
+
+    <!-- ========== SEO মেটা ট্যাগ ========== -->
+    <title>Termux কমান্ড চিট শিট – বাংলায় সম্পূর্ণ গাইড | বেসিক থেকে অ্যাডভান্সড</title>
+    <meta name="title" content="Termux কমান্ড তালিকা – বাংলায় প্রয়োজনীয় সব কমান্ড | চিট শিট">
+    <meta name="description" content="Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায় শিখুন – ফাইল ম্যানেজমেন্ট, প্যাকেজ, গিট, নেটওয়ার্ক, Node.js, পারমিশন ও কাস্টমাইজেশন। বাস্তব প্রজেক্টে ব্যবহৃত কমান্ডসহ।">
+    <meta name="keywords" content="Termux কমান্ড, termux command, termux all commands, termux basic commands, termux command list, termux command in Bengali, git command, npm command, linux command, real project commands">
+    <meta name="author" content="Milan Biswas">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+    <!-- ওপেন গ্রাফ -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-commands.html">
+    <meta property="og:title" content="Termux কমান্ড চিট শিট – বাংলায় সম্পূর্ণ গাইড | বেসিক থেকে অ্যাডভান্সড">
+    <meta property="og:description" content="Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায় – ফাইল, গিট, নেটওয়ার্ক, Node.js। বাস্তব প্রজেক্টে ব্যবহৃত কমান্ডসহ।">
+    <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/termux-commands-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Milan Biswas - Blog">
+    <meta property="og:locale" content="bn_BD">
+
+    <!-- টুইটার কার্ড -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-commands.html">
+    <meta property="twitter:title" content="Termux কমান্ড চিট শিট – বাংলায় সম্পূর্ণ গাইড | বেসিক থেকে অ্যাডভান্সড">
+    <meta property="twitter:description" content="Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায় – ফাইল, গিট, নেটওয়ার্ক, Node.js। বাস্তব প্রজেক্টে ব্যবহৃত কমান্ডসহ।">
+    <meta property="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/images/termux-commands-cover.jpg">
+
+    <!-- ক্যানোনিকাল -->
+    <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/termux-commands.html">
+
+    <!-- গুগল অ্যানালিটিক্স -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQ4HS2936B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DQ4HS2936B');
+    </script>
+
+    <!-- JSON‑LD স্ট্রাকচার্ড ডেটা -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Termux কমান্ড চিট শিট – বাংলায় সম্পূর্ণ গাইড",
+        "description": "Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায় শিখুন – ফাইল ম্যানেজমেন্ট, প্যাকেজ, গিট, নেটওয়ার্ক, Node.js, পারমিশন ও কাস্টমাইজেশন। বাস্তব প্রজেক্টে ব্যবহৃত কমান্ডসহ।",
+        "author": { "@type": "Person", "name": "Milan Biswas", "url": "https://banglagolpogalaxy.github.io/portfolio/" },
+        "datePublished": "2026-05-14",
+        "dateModified": "2026-05-14",
+        "inLanguage": "bn",
+        "educationalLevel": "beginner",
+        "about": ["Termux", "Linux commands", "Git", "npm", "Node.js", "pkg", "apt", "cheatsheet"]
+    }
+    </script>
+
+    <!-- ফন্ট ও আইকন -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #fdf6ec;
+            --surface: #fffcf5;
+            --border: #dcc8a0;
+            --text: #2e1e0f;
+            --text-sec: #5c4a3a;
+            --primary: #8b5a2b;
+            --accent: #c67a4b;
+            --cmd-bg: #1e1e1e;
+            --cmd-text: #e0e0e0;
+            --font-bn: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+            --font-en: 'Poppins', sans-serif;
+            --font-code: 'Fira Code', 'Courier New', monospace;
+        }
+        body.dark {
+            --bg: #1a120b;
+            --surface: #2a1f14;
+            --border: #5c4a3a;
+            --text: #f0e4d0;
+            --text-sec: #bfa88a;
+            --primary: #bf8f5a;
+            --accent: #dbb07b;
+            --cmd-bg: #0d0d0d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-bn);
+            line-height: 1.7;
+            transition: background 0.3s, color 0.2s;
+            padding-top: 80px;
+        }
+        .en { font-family: var(--font-en); }
+        .bn { font-family: var(--font-bn); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .article-container { max-width: 800px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 10px; color: var(--primary); font-size: 1.8rem; }
+        h2 { color: var(--primary); margin: 2em 0 0.8em; font-size: 1.5rem; border-left: 5px solid var(--primary); padding-left: 14px; }
+        h3 { color: var(--accent); margin: 1.5em 0 0.5em; font-size: 1.2rem; }
+        p { margin-bottom: 1.5em; line-height: 1.8; color: var(--text-sec); }
+
+        /* Header */
+        header {
+            background: var(--surface);
+            border-bottom: 2px solid var(--accent);
+            padding: 16px 0;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+        }
+        .header-flex {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+            max-width: 1100px; margin: 0 auto; padding: 0 20px;
+        }
+        .logo-section { display: flex; align-items: center; gap: 14px; }
+        .series-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+        }
+        .logo-text h2 { font-size: 1.1rem; color: var(--text); line-height: 1.3; border: none; padding: 0; margin: 0; }
+        .logo-text .sub { font-size: 0.8rem; color: var(--text-sec); }
+        .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .lang-toggle {
+            display: flex; background: var(--surface); border-radius: 30px; padding: 3px;
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            padding: 6px 14px; border-radius: 30px; border: none; cursor: pointer;
+            font-size: 0.85rem; font-weight: 600; transition: 0.2s;
+            background: transparent; color: var(--text-sec); font-family: var(--font-bn);
+        }
+        .lang-btn.active { background: var(--primary); color: #fff; }
+        .theme-toggle {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 30px;
+            padding: 8px 14px; cursor: pointer; font-size: 1.1rem; color: var(--text);
+        }
+        .theme-toggle:hover { border-color: var(--accent); }
+        .home-btn {
+            color: var(--text-sec); text-decoration: none; font-size: 1.2rem;
+            padding: 6px 10px; border-radius: 8px;
+        }
+        .home-btn:hover { color: var(--accent); background: var(--surface); }
+
+        /* Post Meta */
+        .post-header {
+            text-align: center; padding: 50px 20px 30px;
+        }
+        .post-header .episode-badge {
+            display: inline-block; background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: #fff; padding: 4px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .post-header h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--primary); line-height: 1.4; }
+        .post-meta { color: var(--text-sec); margin-top: 12px; font-size: 0.9rem; }
+        .post-subtitle {
+            font-size: 1.2rem;
+            color: #fbbf24;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .post-content { padding: 20px 20px 40px; }
+        .post-content p { margin-bottom: 1.5em; color: var(--text-sec); }
+        .post-content h2 { color: var(--primary); margin: 2em 0 0.8em; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 14px; }
+        .post-content h3 { color: var(--text); margin: 1.5em 0 0.5em; font-size: 1.2rem; }
+        .post-content ul, .post-content ol { margin: 1em 0 1.5em 1.5em; color: var(--text-sec); }
+        .post-content li { margin-bottom: 0.5em; }
+
+        /* Code blocks */
+        pre {
+            background: var(--cmd-bg);
+            color: var(--cmd-text);
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 2px 0;
+            line-height: 1.6;
+        }
+        code { font-family: var(--font-code); }
+
+        /* Commands table - প্রথম কোডের স্টাইল */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        th {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            text-align: center;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+            font-size: 0.9rem;
+        }
+        tr:last-child td { border-bottom: none; }
+        .cmd-cell {
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            word-break: break-word;
+            max-width: 400px;
+        }
+        .cmd-group {
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+        }
+        .btn:hover { background: var(--accent); }
+
+        /* Post navigation */
+        .post-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 40px 0 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Comments section */
+        .comments-section {
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .comments-section h3 { color: #0f172a; margin-bottom: 20px; }
+
+        /* Contact modal */
+        .contact-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;
+            z-index: 200; visibility: hidden; opacity: 0; transition: 0.3s;
+        }
+        .contact-modal.show { visibility: visible; opacity: 1; }
+        .contact-box {
+            background: var(--surface); border: 2px solid var(--accent); border-radius: 20px;
+            padding: 30px; max-width: 500px; width: 90%; position: relative;
+        }
+        .contact-box h3 { color: var(--accent); margin-bottom: 20px; }
+        .contact-box .close-btn {
+            position: absolute; top: 12px; right: 16px; background: none; border: none;
+            color: var(--text-sec); font-size: 1.5rem; cursor: pointer;
+        }
+        .contact-box .close-btn:hover { color: var(--accent); }
+        .contact-box input, .contact-box textarea {
+            width: 100%; padding: 12px; margin: 8px 0 16px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 12px; color: var(--text); font-family: var(--font-bn);
+        }
+        .contact-box button {
+            background: var(--primary); color: #fff; border: none; padding: 10px 24px;
+            border-radius: 40px; font-weight: 600; cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface); border-top: 1px solid var(--border);
+            text-align: center; padding: 30px 20px; margin-top: 60px;
+        }
+        footer .social-icons { display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px; }
+        footer .social-icons a { color: var(--text-sec); font-size: 1.5rem; transition: 0.2s; text-decoration: none; }
+        footer .social-icons a:hover { color: var(--primary); }
+
+        .indeed-icon {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 2rem; height: 2rem; border-radius: 50%;
+            background-color: #2a5b84;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: Arial, sans-serif;
+            transition: 0.2s;
+        }
+        footer .social-icons a:hover .indeed-icon { background-color: var(--primary); color: #020617; }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+        span.lang-content.active { display: inline; }
+
+        @media (max-width: 700px) {
+            .header-flex { flex-direction: column; align-items: stretch; }
+            .header-actions { justify-content: center; }
+            .logo-section { justify-content: center; }
+            th, td { padding: 10px 8px; font-size: 0.8rem; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-flex">
+        <div class="logo-section">
+            <div class="series-icon">📱</div>
+            <div class="logo-text">
+                <h2><span class="bn lang-content active" data-lang="bn">Termux কমান্ড চিট শিট</span><span class="en lang-content" data-lang="en">Termux Command Cheat Sheet</span></h2>
+                <div class="sub"><span class="bn lang-content active" data-lang="bn">বাংলায় সম্পূর্ণ গাইড</span><span class="en lang-content" data-lang="en">Complete Guide in Bengali</span></div>
+            </div>
+        </div>
+        <div class="header-actions">
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="bn">বাংলা</button>
+                <button class="lang-btn" data-lang="en">English</button>
+            </div>
+            <button id="themeToggle" class="theme-toggle">🌙</button>
+            <a href="../index.html" class="home-btn"><i class="fas fa-home"></i></a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <div class="post-header">
+            <div class="episode-badge">
+                <span class="bn lang-content active" data-lang="bn">চিট শিট</span>
+                <span class="en lang-content" data-lang="en">Cheat Sheet</span>
+            </div>
+            <h1>
+                <span class="bn lang-content active" data-lang="bn">Termux কমান্ড তালিকা – বাংলায় প্রয়োজনীয় সব কমান্ড</span>
+                <span class="en lang-content" data-lang="en">Termux Command List – All Essential Commands in Bengali</span>
+            </h1>
+            <p class="post-subtitle">
+                <span class="bn lang-content active" data-lang="bn">বেসিক থেকে অ্যাডভান্সড – ফাইল, গিট, নেটওয়ার্ক, Node.js সহ সব কিছু</span>
+                <span class="en lang-content" data-lang="en">From Basic to Advanced – File, Git, Network, Node.js & more</span>
+            </p>
+            <div class="post-meta">
+                <span class="bn lang-content active" data-lang="bn">⏱️ ১৫ মিনিট পড়া</span>
+                <span class="en lang-content" data-lang="en">⏱️ 15 min read</span>
+            </div>
+        </div>
+
+        <div class="post-content article-container">
+            <!-- ========== বাংলা কন্টেন্ট ========== -->
+            <div class="bn lang-content active" data-lang="bn">
+                <p>এটি Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ডের একমাত্র বাংলা চিট শিট, যেখানে শুধু তালিকা নয়, আমার বাস্তব প্রজেক্টে (আদিম ভল্ট, সুপার ক্যালকুলেটর) ব্যবহৃত কমান্ডগুলোও দেওয়া আছে।</p>
+
+                <!-- ====== ১. বেসিক ফাইল ও ফোল্ডার ====== -->
+                <h2>📁 ১. বেসিক ফাইল ও ফোল্ডার অপারেশন</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>pwd</pre></td><td>বর্তমান ফোল্ডারের পুরো পাথ দেখায়</td><td><code>pwd</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ls</pre></td><td>বর্তমান ফোল্ডারের ফাইল-ফোল্ডার তালিকা</td><td><code>ls -la</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cd ফোল্ডার</pre></td><td>নির্দিষ্ট ফোল্ডারে প্রবেশ</td><td><code>cd storage/downloads</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cd ..</pre></td><td>এক ধাপ উপরে যাওয়া</td><td><code>cd ..</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cd ~</pre></td><td>হোম ফোল্ডারে ফিরে যাওয়া</td><td><code>cd ~</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>mkdir ফোল্ডার</pre></td><td>নতুন খালি ফোল্ডার তৈরি</td><td><code>mkdir project</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>mkdir -p path</pre></td><td>nested ফোল্ডার তৈরি</td><td><code>mkdir -p a/b/c</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>touch ফাইল</pre></td><td>নতুন খালি ফাইল তৈরি</td><td><code>touch hello.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cp source target</pre></td><td>ফাইল/ফোল্ডার কপি</td><td><code>cp a.txt b.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cp -r source target</pre></td><td>ফোল্ডার রিকার্সিভলি কপি</td><td><code>cp -r dir1 dir2</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>mv source target</pre></td><td>সরানো / নাম বদলানো</td><td><code>mv old.txt new.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>rm ফাইল</pre></td><td>ফাইল মুছে ফেলা (সাবধান!)</td><td><code>rm junk.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -r ফোল্ডার</pre></td><td>ফোল্ডার ও ভেতরের সব মুছে ফেলা</td><td><code>rm -r old_project</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>rmdir ফোল্ডার</pre></td><td>খালি ফোল্ডার মুছে ফেলা</td><td><code>rmdir empty_dir</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>tree</pre></td><td>ফোল্ডারের গঠন গাছের মতো দেখায়</td><td><code>tree</code> (আগে <code>pkg install tree</code>)</td></tr>
+                    <tr><td class="cmd-cell"><pre>find . -name "*.txt"</pre></td><td>নির্দিষ্ট নামের ফাইল খোঁজা</td><td><code>find . -name "*.html"</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>grep "টেক্সট" ফাইল</pre></td><td>ফাইলের ভেতর টেক্সট খোঁজা</td><td><code>grep "error" log.txt</code></td></tr>
+                </table>
+
+                <!-- ====== ২. প্যাকেজ ম্যানেজমেন্ট ====== -->
+                <h2>📦 ২. প্যাকেজ ম্যানেজমেন্ট (pkg / apt)</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>pkg update</pre></td><td>প্যাকেজ তালিকা আপডেট</td><td><code>pkg update</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg upgrade</pre></td><td>সব প্যাকেজ আপগ্রেড</td><td><code>pkg upgrade</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg install নাম</pre></td><td>প্যাকেজ ইন্সটল</td><td><code>pkg install nodejs</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg search নাম</pre></td><td>প্যাকেজ খোঁজা</td><td><code>pkg search python</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg list-installed</pre></td><td>ইন্সটল করা প্যাকেজের তালিকা</td><td><code>pkg list-installed</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg uninstall নাম</pre></td><td>প্যাকেজ আনইন্সটল</td><td><code>pkg uninstall nodejs</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg clean</pre></td><td>ক্যাশ পরিষ্কার</td><td><code>pkg clean</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>apt list --upgradable</pre></td><td>আপগ্রেডযোগ্য প্যাকেজ দেখায়</td><td><code>apt list --upgradable</code></td></tr>
+                </table>
+
+                <!-- ====== ৩. টেক্সট এডিটিং ====== -->
+                <h2>✍️ ৩. টেক্সট এডিটিং ও ফাইল কন্টেন্ট দেখা</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>micro ফাইল</pre></td><td>মাইক্রো এডিটরে ফাইল খোলা</td><td><code>micro server.js</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>nano ফাইল</pre></td><td>ন্যানো এডিটরে ফাইল খোলা</td><td><code>nano script.sh</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cat ফাইল</pre></td><td>সম্পূর্ণ ফাইল দেখা</td><td><code>cat hello.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>head ফাইল</pre></td><td>প্রথম ১০ লাইন দেখা</td><td><code>head log.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>tail ফাইল</pre></td><td>শেষ ১০ লাইন দেখা</td><td><code>tail log.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>wc ফাইল</pre></td><td>লাইন, ওয়ার্ড, ক্যারেক্টার গোনা</td><td><code>wc -l data.csv</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>echo "টেক্সট"</pre></td><td>পর্দায় লেখা বা ফাইলে আউটপুট</td><td><code>echo "হ্যালো" > test.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>sed</pre></td><td>স্ট্রিম এডিটর – কন্টেন্ট বদলানো</td><td><code>sed -i 's/old/new/g' file.txt</code></td></tr>
+                </table>
+
+                <!-- ====== ৪. গিট ====== -->
+                <h2>🔧 ৪. গিট (Git) – ভার্সন কন্ট্রোল</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>git init</pre></td><td>নতুন রিপোজিটরি শুরু</td><td><code>git init</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git clone URL</pre></td><td>রিমোট রিপো ক্লোন</td><td><code>git clone https://github.com/user/repo.git</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git status</pre></td><td>বর্তমান অবস্থা</td><td><code>git status</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git add ফাইল</pre></td><td>ফাইল স্টেজিং</td><td><code>git add index.html</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git add .</pre></td><td>সব ফাইল স্টেজ</td><td><code>git add .</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git commit -m "বার্তা"</pre></td><td>স্টেজ করা ফাইল কমিট</td><td><code>git commit -m "initial commit"</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git push origin main</pre></td><td>রিমোটে পুশ</td><td><code>git push origin main</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git pull origin main</pre></td><td>রিমোট থেকে টানা</td><td><code>git pull origin main</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git branch</pre></td><td>ব্রাঞ্চের তালিকা</td><td><code>git branch</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git checkout -b নাম</pre></td><td>নতুন ব্রাঞ্চ তৈরি ও সুইচ</td><td><code>git checkout -b feature-x</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git merge ব্রাঞ্চ</pre></td><td>ব্রাঞ্চ মার্জ</td><td><code>git merge feature-x</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git log</pre></td><td>কমিট ইতিহাস</td><td><code>git log --oneline</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git diff</pre></td><td>অস্টেজড পরিবর্তন দেখায়</td><td><code>git diff</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git stash</pre></td><td>পরিবর্তন অস্থায়ীভাবে সরানো</td><td><code>git stash</code> | <code>git stash pop</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git reset --hard</pre></td><td>পূর্বের অবস্থায় ফিরে যাওয়া (সাবধান!)</td><td><code>git reset --hard HEAD~1</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git remote -v</pre></td><td>রিমোট URL দেখায়</td><td><code>git remote -v</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git push origin --delete ব্রাঞ্চ</pre></td><td>রিমোট ব্রাঞ্চ মুছে ফেলা</td><td><code>git push origin --delete old-branch</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git pull --rebase</pre></td><td>রিবেস করে পুল</td><td><code>git pull --rebase origin main</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git tag নাম</pre></td><td>ভার্সন ট্যাগ</td><td><code>git tag v1.0.0</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git fetch origin</pre></td><td>রিমোটের পরিবর্তন ডাউনলোড (মার্জ নয়)</td><td><code>git fetch origin</code></td></tr>
+                </table>
+
+                <!-- ====== ৫. নেটওয়ার্ক ====== -->
+                <h2>🌐 ৫. নেটওয়ার্ক ও ডাউনলোড</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>ping ঠিকানা</pre></td><td>নেটওয়ার্ক কানেকশন চেক</td><td><code>ping google.com</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>curl URL</pre></td><td>URL থেকে ডেটা আনা / API কল</td><td><code>curl https://api.example.com</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>wget URL</pre></td><td>ফাইল ডাউনলোড</td><td><code>wget https://example.com/file.zip</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ssh user@host</pre></td><td>রিমোট সার্ভারে SSH</td><td><code>ssh root@192.168.1.10</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ifconfig</pre></td><td>নেটওয়ার্ক ইন্টারফেস তথ্য</td><td><code>ifconfig</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ip addr</pre></td><td>আইপি অ্যাড্রেস দেখা</td><td><code>ip addr</code></td></tr>
+                </table>
+
+                <!-- ====== ৬. Node.js ও npm ====== -->
+                <h2>🟢 ৬. Node.js ও npm</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>node ফাইল</pre></td><td>জাভাস্ক্রিপ্ট ফাইল রান</td><td><code>node server.js</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm init</pre></td><td>package.json তৈরি</td><td><code>npm init -y</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm install প্যাকেজ</pre></td><td>প্যাকেজ ইন্সটল</td><td><code>npm install express</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm start</pre></td><td>start স্ক্রিপ্ট চালানো</td><td><code>npm start</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm run dev</pre></td><td>dev স্ক্রিপ্ট চালানো</td><td><code>npm run dev</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm list -g</pre></td><td>গ্লোবাল প্যাকেজ তালিকা</td><td><code>npm list -g --depth=0</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm update</pre></td><td>সব প্যাকেজ আপডেট</td><td><code>npm update</code></td></tr>
+                </table>
+
+                <!-- ====== ৭. পারমিশন ====== -->
+                <h2>👤 ৭. পারমিশন ও ইউজার</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>chmod +x ফাইল</pre></td><td>ফাইল এক্সিকিউটেবল করা</td><td><code>chmod +x script.sh</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>chmod 755 ফাইল</pre></td><td>নির্দিষ্ট পারমিশন দেওয়া</td><td><code>chmod 755 server.js</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>whoami</pre></td><td>বর্তমান ইউজার নাম দেখায়</td><td><code>whoami</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>su</pre></td><td>ইউজার পরিবর্তন (সীমিত)</td><td><code>su root</code></td></tr>
+                </table>
+
+                <!-- ====== ৮. টার্মিনাল টুলস ====== -->
+                <h2>🛠️ ৮. টার্মিনাল কাস্টমাইজেশন ও টুলস</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>clear</pre></td><td>স্ক্রিন পরিষ্কার</td><td><code>clear</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>history</pre></td><td>কমান্ড ইতিহাস</td><td><code>history</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>alias</pre></td><td>কমান্ডের ছোট নাম</td><td><code>alias ll='ls -la'</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>date</pre></td><td>তারিখ ও সময়</td><td><code>date</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cal</pre></td><td>ক্যালেন্ডার</td><td><code>cal</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>uptime</pre></td><td>কতক্ষণ চলছে</td><td><code>uptime</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>df -h</pre></td><td>ডিস্ক ব্যবহার</td><td><code>df -h</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>du -sh ফোল্ডার</pre></td><td>ফোল্ডারের আকার</td><td><code>du -sh project</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ps aux</pre></td><td>চলমান প্রসেস</td><td><code>ps aux</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>kill PID</pre></td><td>প্রসেস বন্ধ</td><td><code>kill 1234</code></td></tr>
+                </table>
+
+                <!-- ====== ৯. Termux-নির্দিষ্ট ====== -->
+                <h2>📱 ৯. Termux-নির্দিষ্ট কমান্ড</h2>
+                <table>
+                    <tr><th>কমান্ড</th><th>কাজ</th><th>উদাহরণ</th></tr>
+                    <tr><td class="cmd-cell"><pre>termux-setup-storage</pre></td><td>স্টোরেজ অ্যাক্সেস</td><td><code>termux-setup-storage</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-open ফাইল</pre></td><td>অন্য অ্যাপ দিয়ে ফাইল খোলা</td><td><code>termux-open index.html</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-open-url URL</pre></td><td>ব্রাউজারে URL খোলা</td><td><code>termux-open-url https://google.com</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-vibrate</pre></td><td>ফোন ভাইব্রেট</td><td><code>termux-vibrate</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-notification</pre></td><td>নোটিফিকেশন দেখানো</td><td><code>termux-notification -t "Hello"</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-battery-status</pre></td><td>ব্যাটারি অবস্থা</td><td><code>termux-battery-status</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-change-repo</pre></td><td>মিরর পরিবর্তন</td><td><code>termux-change-repo</code></td></tr>
+                </table>
+
+                <!-- ====== ১০. প্রজেক্ট কমান্ড ====== -->
+                <h2>📦 ১০. আমার প্রজেক্টের বাস্তব কমান্ড</h2>
+                <p>নিচের টেবিলে আমি আমার আদিম ভল্ট (aadimvault) ও সুপার ক্যালকুলেটর PWA প্রোজেক্ট তৈরির সময় ব্যবহৃত কমান্ডগুলো দিয়েছি।</p>
+
+                <table>
+                    <tr><th>প্রজেক্ট / ধাপ</th><th>কমান্ড</th><th>কাজ কী করে</th></tr>
+                    <!-- Termux সাধারণ সেটআপ -->
+                    <tr><td rowspan="3" class="cmd-group">Termux সাধারণ সেটআপ</td><td class="cmd-cell"><pre>pkg update -y && pkg upgrade -y</pre></td><td>প্যাকেজ রিপো আপডেট</td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg install nodejs git micro imagemagick -y</pre></td><td>জরুরি টুল ইন্সটল</td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-setup-storage</pre></td><td>শেয়ার্ড স্টোরেজ এক্সেস</td></tr>
+                    <!-- গিট কনফিগারেশন -->
+                    <tr><td rowspan="2" class="cmd-group">গিট কনফিগারেশন</td><td class="cmd-cell"><pre>git config --global user.name "Milan Biswas"</pre></td><td>গিট ইউজারনেম সেট</td></tr>
+                    <tr><td class="cmd-cell"><pre>git config --global user.email "milanbiswasmilan19@gmail.com"</pre></td><td>গিট ইমেইল সেট</td></tr>
+                    <!-- আদিম ভল্ট — ক্লোন ও কাঠামো -->
+                    <tr><td rowspan="10" class="cmd-group">আদিম ভল্ট — ক্লোন ও কাঠামো</td><td class="cmd-cell"><pre>cd ~/storage/shared/</pre></td><td>শেয়ার্ড স্টোরেজে যাও</td></tr>
+                    <tr><td class="cmd-cell"><pre>git clone https://github.com/BanglaGolpoGalaxy/aadimvault.git</pre></td><td>রিপো ক্লোন</td></tr>
+                    <tr><td class="cmd-cell"><pre>cd aadimvault</pre></td><td>প্রোজেক্ট ফোল্ডারে ঢোকা</td></tr>
+                    <tr><td class="cmd-cell"><pre>mkdir -p database middleware routes uploads public/css public/js public/images public/blog</pre></td><td>সব ফোল্ডার তৈরি</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch server.js .env .env.example .gitignore README.md BLUEPRINT.md LICENSE</pre></td><td>রুট ফাইল তৈরি</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch database/db.js middleware/auth.js routes/auth.js routes/products.js</pre></td><td>ব্যাকএন্ড ফাইল</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch public/index.html public/login.html public/upload.html public/product.html public/cart.html public/admin.html</pre></td><td>ফ্রন্টএন্ড পেজ</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch public/css/style.css public/js/main.js public/js/auth.js public/js/products.js public/js/utils.js public/js/admin.js</pre></td><td>CSS ও JS ফাইল</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch uploads/.gitkeep public/images/.gitkeep</pre></td><td>খালি ফোল্ডার গিট ট্র্যাক</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch public/blog/episode-01.html</pre></td><td>ব্লগ পর্ব ফাইল</td></tr>
+                    <!-- আদিম ভল্ট — প্যাকেজ -->
+                    <tr><td rowspan="2" class="cmd-group">আদিম ভল্ট — প্যাকেজ</td><td class="cmd-cell"><pre>npm init -y</pre></td><td>package.json বানানো</td></tr>
+                    <tr><td class="cmd-cell"><pre>npm install express sql.js multer jsonwebtoken bcryptjs cors dotenv</pre></td><td>মূল প্যাকেজ ইন্সটল</td></tr>
+                    <!-- আদিম ভল্ট — ফাইল এডিট -->
+                    <tr><td rowspan="7" class="cmd-group">আদিম ভল্ট — ফাইল এডিট</td><td class="cmd-cell"><pre>micro .gitignore<br>micro .env<br>micro README.md<br>micro BLUEPRINT.md</pre></td><td>কনফিগ ফাইল পূরণ</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro server.js</pre></td><td>প্রধান সার্ভার ফাইল</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro database/db.js</pre></td><td>SQLite ডাটাবেস লজিক</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro middleware/auth.js</pre></td><td>JWT মিডলওয়্যার</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro routes/auth.js</pre></td><td>রেজিস্টার/লগইন রাউট</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro routes/products.js</pre></td><td>প্রোডাক্ট CRUD API</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro public/index.html<br>micro public/css/style.css<br>micro public/js/main.js<br>micro public/login.html<br>micro public/upload.html<br>micro public/product.html<br>micro public/admin.html<br>micro public/js/admin.js</pre></td><td>ফ্রন্টএন্ড ফাইল</td></tr>
+                    <!-- আদিম ভল্ট — লোকাল টেস্ট -->
+                    <tr><td rowspan="7" class="cmd-group">আদিম ভল্ট — লোকাল টেস্ট</td><td class="cmd-cell"><pre>node server.js</pre></td><td>সার্ভার চালু</td></tr>
+                    <tr><td class="cmd-cell"><pre>node test-db.js</pre></td><td>ডাটাবেস টেবিল চেক</td></tr>
+                    <tr><td class="cmd-cell"><pre>curl -X POST http://localhost:3000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Milan","email":"milan@example.com","password":"123456"}'</pre></td><td>রেজিস্টার টেস্ট</td></tr>
+                    <tr><td class="cmd-cell"><pre>curl -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"milan@example.com","password":"123456"}'</pre></td><td>লগইন টেস্ট</td></tr>
+                    <tr><td class="cmd-cell"><pre>TOKEN="eyJ..."
+curl -X POST http://localhost:3000/api/products \
+  -H "Authorization: Bearer $TOKEN" \
+  -F "image=@test.jpg" \
+  -F "title=প্রাচীন ব্রোঞ্জ মূর্তি" \
+  -F "price=25000"</pre></td><td>প্রোডাক্ট আপলোড টেস্ট</td></tr>
+                    <tr><td class="cmd-cell"><pre>curl http://localhost:3000/api/products</pre></td><td>সব প্রোডাক্ট দেখা</td></tr>
+                    <tr><td class="cmd-cell"><pre>sqlite3 database/bazaar.db "UPDATE users SET role='admin' WHERE email='milan@example.com';"</pre></td><td>প্রথম অ্যাডমিন তৈরি</td></tr>
+                    <!-- আদিম ভল্ট — গিট -->
+                    <tr><td rowspan="3" class="cmd-group">আদিম ভল্ট — গিট</td><td class="cmd-cell"><pre>git config --global --add safe.directory /storage/emulated/0/aadimvault</pre></td><td>dubious ownership ঠিক করা</td></tr>
+                    <tr><td class="cmd-cell"><pre>git add -A</pre></td><td>সব ফাইল স্টেজ</td></tr>
+                    <tr><td class="cmd-cell"><pre>git commit -m "পরিবর্তনের বিবরণ" && git push origin main</pre></td><td>কমিট করে পুশ</td></tr>
+                    <!-- রেন্ডার ডিপ্লয়মেন্ট -->
+                    <tr><td rowspan="5" class="cmd-group">রেন্ডার ডিপ্লয়মেন্ট</td><td class="cmd-cell"><pre>rm -f database/db.js && micro database/db.js</pre></td><td>DB_PATH এডিট</td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -f server.js && micro server.js</pre></td><td>আপলোড পাথ ও ফোল্ডার তৈরি</td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -f routes/products.js && micro routes/products.js</pre></td><td>Multer ডাইনামিক পাথ</td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -f routes/admin.js && micro routes/admin.js</pre></td><td>ফোর্স-অ্যাডমিন রুট</td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -f middleware/admin.js && micro middleware/admin.js</pre></td><td>অ্যাডমিন মিডলওয়্যার</td></tr>
+                    <!-- সুপার ক্যালকুলেটর PWA -->
+                    <tr><td rowspan="12" class="cmd-group">সুপার ক্যালকুলেটর PWA</td><td class="cmd-cell"><pre>cd ~/storage/shared/
+git clone https://github.com/BanglaGolpoGalaxy/portfolio.git</pre></td><td>পোর্টফোলিও ক্লোন</td></tr>
+                    <tr><td class="cmd-cell"><pre>cd portfolio && mkdir -p super_calculator</pre></td><td>ক্যালকুলেটর ফোল্ডার তৈরি</td></tr>
+                    <tr><td class="cmd-cell"><pre>mv super_calculator.html manifest.json service-worker.js icon-*.png super_calculator/</pre></td><td>ফাইল সরানো</td></tr>
+                    <tr><td class="cmd-cell"><pre>cd super_calculator && micro manifest.json</pre></td><td>PWA ম্যানিফেস্ট</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro service-worker.js</pre></td><td>সার্ভিস ওয়ার্কার</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro super_calculator.html</pre></td><td>PWA লিংক ও ইন্সটল বাটন</td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg install imagemagick -y</pre></td><td>আইকন বানানোর টুল</td></tr>
+                    <tr><td class="cmd-cell"><pre>convert -size 192x192 xc:'#1e293b' -fill '#38bdf8' \
+  -gravity center -pointsize 90 -annotate 0 'SC' icon-192.png</pre></td><td>ছোট আইকন তৈরি</td></tr>
+                    <tr><td class="cmd-cell"><pre>convert -size 512x512 xc:'#1e293b' -fill '#38bdf8' \
+  -gravity center -pointsize 250 -annotate 0 'SC' icon-512.png</pre></td><td>বড় আইকন তৈরি</td></tr>
+                    <tr><td class="cmd-cell"><pre>cd ~/storage/shared/portfolio
+git add super_calculator/
+git commit -m "PWA ও আইকন"
+git push origin main</pre></td><td>পুশ</td></tr>
+                    <tr><td class="cmd-cell"><pre>git config --global --add safe.directory /storage/emulated/0/portfolio</pre></td><td>dubious ownership ঠিক</td></tr>
+                    <tr><td class="cmd-cell"><pre>git pull origin main --no-rebase && git push origin main</pre></td><td>মার্জ সমাধান</td></tr>
+                    <!-- সাধারণ গিট -->
+                    <tr><td rowspan="5" class="cmd-group">সাধারণ গিট কমান্ড</td><td class="cmd-cell"><pre>git status</pre></td><td>বর্তমান অবস্থা</td></tr>
+                    <tr><td class="cmd-cell"><pre>git log --oneline</pre></td><td>কমিটের তালিকা</td></tr>
+                    <tr><td class="cmd-cell"><pre>git remote -v</pre></td><td>রিমোট URL</td></tr>
+                    <tr><td class="cmd-cell"><pre>git stash</pre></td><td>অস্থায়ী পরিবর্তন লুকানো</td></tr>
+                    <tr><td class="cmd-cell"><pre>git checkout -- &lt;file&gt;</pre></td><td>একটি ফাইল আগের অবস্থায় ফেরানো</td></tr>
+                </table>
+
+                <!-- ফুটার নোট -->
+                <div class="footer-note">
+                    <p>© 2026 Milan Biswas | এই পেজটি বুকমার্ক করে রাখো — কাজের সময় সব কমান্ড এক জায়গায় পাবে।</p>
+                </div>
+            </div>
+
+            <!-- ========== ইংলিশ কন্টেন্ট ========== -->
+            <div class="en lang-content" data-lang="en">
+                <p>If you're new to Termux, the first thing you need is a <strong>list of commands</strong> — what each command does and how to use it. The real power of Termux lies in its command line. Here I've organized <strong>all essential commands</strong> from basic to advanced level in table format.</p>
+                <p>Each command is explained in simple English with examples. At the end, I've included the exact commands I used in my real projects (AadimVault, Super Calculator) so you can see them in action.</p>
+
+                <!-- ====== 1. Basic File & Folder ====== -->
+                <h2>📁 1. Basic File & Folder Operations</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>pwd</pre></td><td>Print working directory</td><td><code>pwd</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ls</pre></td><td>List files and folders</td><td><code>ls -la</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cd folder</pre></td><td>Change directory</td><td><code>cd storage/downloads</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cd ..</pre></td><td>Go up one level</td><td><code>cd ..</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cd ~</pre></td><td>Go to home directory</td><td><code>cd ~</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>mkdir folder</pre></td><td>Create a new folder</td><td><code>mkdir project</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>mkdir -p path</pre></td><td>Create nested folders</td><td><code>mkdir -p a/b/c</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>touch file</pre></td><td>Create an empty file</td><td><code>touch hello.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cp source target</pre></td><td>Copy file or folder</td><td><code>cp a.txt b.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cp -r source target</pre></td><td>Copy folder recursively</td><td><code>cp -r dir1 dir2</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>mv source target</pre></td><td>Move or rename</td><td><code>mv old.txt new.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>rm file</pre></td><td>Remove file (caution!)</td><td><code>rm junk.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -r folder</pre></td><td>Remove folder and contents</td><td><code>rm -r old_project</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>rmdir folder</pre></td><td>Remove empty folder</td><td><code>rmdir empty_dir</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>tree</pre></td><td>Show folder structure as tree</td><td><code>tree</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>find . -name "*.txt"</pre></td><td>Find files by name</td><td><code>find . -name "*.html"</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>grep "text" file</pre></td><td>Search text inside files</td><td><code>grep "error" log.txt</code></td></tr>
+                </table>
+
+                <!-- ====== 2. Package Management ====== -->
+                <h2>📦 2. Package Management (pkg / apt)</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>pkg update</pre></td><td>Update package list</td><td><code>pkg update</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg upgrade</pre></td><td>Upgrade all packages</td><td><code>pkg upgrade</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg install name</pre></td><td>Install a package</td><td><code>pkg install nodejs</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg search name</pre></td><td>Search for a package</td><td><code>pkg search python</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg list-installed</pre></td><td>List installed packages</td><td><code>pkg list-installed</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg uninstall name</pre></td><td>Uninstall a package</td><td><code>pkg uninstall nodejs</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg clean</pre></td><td>Clean package cache</td><td><code>pkg clean</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>apt list --upgradable</pre></td><td>Show upgradable packages</td><td><code>apt list --upgradable</code></td></tr>
+                </table>
+
+                <!-- ====== 3. Text Editing ====== -->
+                <h2>✍️ 3. Text Editing & File Content</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>micro file</pre></td><td>Open file in micro editor</td><td><code>micro server.js</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>nano file</pre></td><td>Open file in nano editor</td><td><code>nano script.sh</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cat file</pre></td><td>View entire file content</td><td><code>cat hello.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>head file</pre></td><td>View first 10 lines</td><td><code>head log.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>tail file</pre></td><td>View last 10 lines</td><td><code>tail log.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>wc file</pre></td><td>Count lines, words, characters</td><td><code>wc -l data.csv</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>echo "text"</pre></td><td>Print text or write to file</td><td><code>echo "Hello" > test.txt</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>sed</pre></td><td>Stream editor – replace text</td><td><code>sed -i 's/old/new/g' file.txt</code></td></tr>
+                </table>
+
+                <!-- ====== 4. Git ====== -->
+                <h2>🔧 4. Git – Version Control</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>git init</pre></td><td>Initialize a new git repository</td><td><code>git init</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git clone URL</pre></td><td>Clone a remote repository</td><td><code>git clone https://github.com/user/repo.git</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git status</pre></td><td>Show working tree status</td><td><code>git status</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git add file</pre></td><td>Stage a file</td><td><code>git add index.html</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git add .</pre></td><td>Stage all files</td><td><code>git add .</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git commit -m "msg"</pre></td><td>Commit staged changes</td><td><code>git commit -m "initial commit"</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git push origin main</pre></td><td>Push to remote</td><td><code>git push origin main</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git pull origin main</pre></td><td>Pull from remote</td><td><code>git pull origin main</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git branch</pre></td><td>List branches</td><td><code>git branch</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git checkout -b name</pre></td><td>Create and switch to new branch</td><td><code>git checkout -b feature-x</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git merge branch</pre></td><td>Merge a branch</td><td><code>git merge feature-x</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git log</pre></td><td>Show commit history</td><td><code>git log --oneline</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git diff</pre></td><td>Show unstaged differences</td><td><code>git diff</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git stash</pre></td><td>Temporarily save changes</td><td><code>git stash</code> | <code>git stash pop</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git reset --hard</pre></td><td>Reset to previous state (caution!)</td><td><code>git reset --hard HEAD~1</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git remote -v</pre></td><td>Show remote URLs</td><td><code>git remote -v</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git push origin --delete branch</pre></td><td>Delete remote branch</td><td><code>git push origin --delete old-branch</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git pull --rebase</pre></td><td>Pull with rebase for clean history</td><td><code>git pull --rebase origin main</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git tag name</pre></td><td>Tag a commit (version marker)</td><td><code>git tag v1.0.0</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>git fetch origin</pre></td><td>Download remote changes (no merge)</td><td><code>git fetch origin</code></td></tr>
+                </table>
+
+                <!-- ====== 5. Network ====== -->
+                <h2>🌐 5. Network & Download</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>ping address</pre></td><td>Check network connectivity</td><td><code>ping google.com</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>curl URL</pre></td><td>Fetch data from URL / API call</td><td><code>curl https://api.example.com</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>wget URL</pre></td><td>Download a file</td><td><code>wget https://example.com/file.zip</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ssh user@host</pre></td><td>SSH into a remote server</td><td><code>ssh root@192.168.1.10</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ifconfig</pre></td><td>Network interface info</td><td><code>ifconfig</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ip addr</pre></td><td>Show IP addresses</td><td><code>ip addr</code></td></tr>
+                </table>
+
+                <!-- ====== 6. Node.js ====== -->
+                <h2>🟢 6. Node.js & npm</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>node file</pre></td><td>Run a JavaScript file</td><td><code>node server.js</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm init</pre></td><td>Create package.json</td><td><code>npm init -y</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm install package</pre></td><td>Install a package</td><td><code>npm install express</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm start</pre></td><td>Run start script</td><td><code>npm start</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm run dev</pre></td><td>Run dev script</td><td><code>npm run dev</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm list -g</pre></td><td>List global packages</td><td><code>npm list -g --depth=0</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>npm update</pre></td><td>Update all packages</td><td><code>npm update</code></td></tr>
+                </table>
+
+                <!-- ====== 7. Permissions ====== -->
+                <h2>👤 7. Permissions & User</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>chmod +x file</pre></td><td>Make file executable</td><td><code>chmod +x script.sh</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>chmod 755 file</pre></td><td>Set specific permissions</td><td><code>chmod 755 server.js</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>whoami</pre></td><td>Show current user</td><td><code>whoami</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>su</pre></td><td>Switch user (limited in Termux)</td><td><code>su root</code></td></tr>
+                </table>
+
+                <!-- ====== 8. Terminal Tools ====== -->
+                <h2>🛠️ 8. Terminal Customization & Tools</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>clear</pre></td><td>Clear terminal screen</td><td><code>clear</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>history</pre></td><td>Show command history</td><td><code>history</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>alias</pre></td><td>Create command shortcut</td><td><code>alias ll='ls -la'</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>date</pre></td><td>Show current date & time</td><td><code>date</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>cal</pre></td><td>Show calendar</td><td><code>cal</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>uptime</pre></td><td>Show system uptime</td><td><code>uptime</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>df -h</pre></td><td>Show disk usage</td><td><code>df -h</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>du -sh folder</pre></td><td>Show folder size</td><td><code>du -sh project</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>ps aux</pre></td><td>List running processes</td><td><code>ps aux</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>kill PID</pre></td><td>Kill a process</td><td><code>kill 1234</code></td></tr>
+                </table>
+
+                <!-- ====== 9. Termux-specific ====== -->
+                <h2>📱 9. Termux-Specific Commands</h2>
+                <table>
+                    <tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+                    <tr><td class="cmd-cell"><pre>termux-setup-storage</pre></td><td>Grant storage access</td><td><code>termux-setup-storage</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-open file</pre></td><td>Open file with other app</td><td><code>termux-open index.html</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-open-url URL</pre></td><td>Open URL in browser</td><td><code>termux-open-url https://google.com</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-vibrate</pre></td><td>Vibrate phone</td><td><code>termux-vibrate</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-notification</pre></td><td>Show notification</td><td><code>termux-notification -t "Hello"</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-battery-status</pre></td><td>Show battery status</td><td><code>termux-battery-status</code></td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-change-repo</pre></td><td>Change mirror</td><td><code>termux-change-repo</code></td></tr>
+                </table>
+
+                <!-- ====== 10. Real Project Commands ====== -->
+                <h2>📦 10. Real Project Commands</h2>
+                <p>Below are the exact commands I used while building my AadimVault and Super Calculator PWA projects.</p>
+                <table>
+                    <tr><th>Project / Step</th><th>Command</th><th>What it does</th></tr>
+                    <tr><td rowspan="3" class="cmd-group">Termux Basic Setup</td><td class="cmd-cell"><pre>pkg update -y && pkg upgrade -y</pre></td><td>Update package repo</td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg install nodejs git micro imagemagick -y</pre></td><td>Install essential tools</td></tr>
+                    <tr><td class="cmd-cell"><pre>termux-setup-storage</pre></td><td>Access shared storage</td></tr>
+                    <tr><td rowspan="2" class="cmd-group">Git Configuration</td><td class="cmd-cell"><pre>git config --global user.name "Milan Biswas"</pre></td><td>Set git username</td></tr>
+                    <tr><td class="cmd-cell"><pre>git config --global user.email "milanbiswasmilan19@gmail.com"</pre></td><td>Set git email</td></tr>
+                    <tr><td rowspan="10" class="cmd-group">AadimVault — Clone & Structure</td><td class="cmd-cell"><pre>cd ~/storage/shared/</pre></td><td>Go to shared storage</td></tr>
+                    <tr><td class="cmd-cell"><pre>git clone https://github.com/BanglaGolpoGalaxy/aadimvault.git</pre></td><td>Clone repo</td></tr>
+                    <tr><td class="cmd-cell"><pre>cd aadimvault</pre></td><td>Enter project folder</td></tr>
+                    <tr><td class="cmd-cell"><pre>mkdir -p database middleware routes uploads public/css public/js public/images public/blog</pre></td><td>Create all folders</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch server.js .env .env.example .gitignore README.md BLUEPRINT.md LICENSE</pre></td><td>Create root files</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch database/db.js middleware/auth.js routes/auth.js routes/products.js</pre></td><td>Backend files</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch public/index.html public/login.html public/upload.html public/product.html public/cart.html public/admin.html</pre></td><td>Frontend pages</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch public/css/style.css public/js/main.js public/js/auth.js public/js/products.js public/js/utils.js public/js/admin.js</pre></td><td>CSS & JS files</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch uploads/.gitkeep public/images/.gitkeep</pre></td><td>Track empty folders</td></tr>
+                    <tr><td class="cmd-cell"><pre>touch public/blog/episode-01.html</pre></td><td>Blog episode file</td></tr>
+                    <tr><td rowspan="2" class="cmd-group">AadimVault — Packages</td><td class="cmd-cell"><pre>npm init -y</pre></td><td>Create package.json</td></tr>
+                    <tr><td class="cmd-cell"><pre>npm install express sql.js multer jsonwebtoken bcryptjs cors dotenv</pre></td><td>Install core packages</td></tr>
+                    <tr><td rowspan="7" class="cmd-group">AadimVault — File Edit</td><td class="cmd-cell"><pre>micro .gitignore<br>micro .env<br>micro README.md<br>micro BLUEPRINT.md</pre></td><td>Fill config files</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro server.js</pre></td><td>Main server file</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro database/db.js</pre></td><td>SQLite database logic</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro middleware/auth.js</pre></td><td>JWT middleware</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro routes/auth.js</pre></td><td>Register/Login routes</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro routes/products.js</pre></td><td>Product CRUD API</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro public/index.html<br>micro public/css/style.css<br>micro public/js/main.js<br>micro public/login.html<br>micro public/upload.html<br>micro public/product.html<br>micro public/admin.html<br>micro public/js/admin.js</pre></td><td>Frontend files</td></tr>
+                    <tr><td rowspan="7" class="cmd-group">AadimVault — Local Test</td><td class="cmd-cell"><pre>node server.js</pre></td><td>Start server</td></tr>
+                    <tr><td class="cmd-cell"><pre>node test-db.js</pre></td><td>Check database tables</td></tr>
+                    <tr><td class="cmd-cell"><pre>curl -X POST http://localhost:3000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Milan","email":"milan@example.com","password":"123456"}'</pre></td><td>Test register</td></tr>
+                    <tr><td class="cmd-cell"><pre>curl -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"milan@example.com","password":"123456"}'</pre></td><td>Test login</td></tr>
+                    <tr><td class="cmd-cell"><pre>TOKEN="eyJ..."
+curl -X POST http://localhost:3000/api/products \
+  -H "Authorization: Bearer $TOKEN" \
+  -F "image=@test.jpg" \
+  -F "title=Ancient Bronze Statue" \
+  -F "price=25000"</pre></td><td>Test product upload</td></tr>
+                    <tr><td class="cmd-cell"><pre>curl http://localhost:3000/api/products</pre></td><td>View all products</td></tr>
+                    <tr><td class="cmd-cell"><pre>sqlite3 database/bazaar.db "UPDATE users SET role='admin' WHERE email='milan@example.com';"</pre></td><td>Create first admin</td></tr>
+                    <tr><td rowspan="3" class="cmd-group">AadimVault — Git</td><td class="cmd-cell"><pre>git config --global --add safe.directory /storage/emulated/0/aadimvault</pre></td><td>Fix dubious ownership</td></tr>
+                    <tr><td class="cmd-cell"><pre>git add -A</pre></td><td>Stage all files</td></tr>
+                    <tr><td class="cmd-cell"><pre>git commit -m "Changes description" && git push origin main</pre></td><td>Commit and push</td></tr>
+                    <tr><td rowspan="5" class="cmd-group">Render Deployment</td><td class="cmd-cell"><pre>rm -f database/db.js && micro database/db.js</pre></td><td>Edit DB_PATH</td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -f server.js && micro server.js</pre></td><td>Edit upload path</td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -f routes/products.js && micro routes/products.js</pre></td><td>Dynamic Multer path</td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -f routes/admin.js && micro routes/admin.js</pre></td><td>Force-admin route</td></tr>
+                    <tr><td class="cmd-cell"><pre>rm -f middleware/admin.js && micro middleware/admin.js</pre></td><td>Admin middleware</td></tr>
+                    <tr><td rowspan="12" class="cmd-group">Super Calculator PWA</td><td class="cmd-cell"><pre>cd ~/storage/shared/
+git clone https://github.com/BanglaGolpoGalaxy/portfolio.git</pre></td><td>Clone portfolio</td></tr>
+                    <tr><td class="cmd-cell"><pre>cd portfolio && mkdir -p super_calculator</pre></td><td>Create calculator folder</td></tr>
+                    <tr><td class="cmd-cell"><pre>mv super_calculator.html manifest.json service-worker.js icon-*.png super_calculator/</pre></td><td>Move files</td></tr>
+                    <tr><td class="cmd-cell"><pre>cd super_calculator && micro manifest.json</pre></td><td>Edit PWA manifest</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro service-worker.js</pre></td><td>Edit service worker</td></tr>
+                    <tr><td class="cmd-cell"><pre>micro super_calculator.html</pre></td><td>Add PWA link & install button</td></tr>
+                    <tr><td class="cmd-cell"><pre>pkg install imagemagick -y</pre></td><td>Install icon tool</td></tr>
+                    <tr><td class="cmd-cell"><pre>convert -size 192x192 xc:'#1e293b' -fill '#38bdf8' \
+  -gravity center -pointsize 90 -annotate 0 'SC' icon-192.png</pre></td><td>Create small icon</td></tr>
+                    <tr><td class="cmd-cell"><pre>convert -size 512x512 xc:'#1e293b' -fill '#38bdf8' \
+  -gravity center -pointsize 250 -annotate 0 'SC' icon-512.png</pre></td><td>Create large icon</td></tr>
+                    <tr><td class="cmd-cell"><pre>cd ~/storage/shared/portfolio
+git add super_calculator/
+git commit -m "PWA and icons"
+git push origin main</pre></td><td>Push</td></tr>
+                    <tr><td class="cmd-cell"><pre>git config --global --add safe.directory /storage/emulated/0/portfolio</pre></td><td>Fix dubious ownership</td></tr>
+                    <tr><td class="cmd-cell"><pre>git pull origin main --no-rebase && git push origin main</pre></td><td>Merge fix</td></tr>
+                    <tr><td rowspan="5" class="cmd-group">General Git Commands</td><td class="cmd-cell"><pre>git status</pre></td><td>Current status</td></tr>
+                    <tr><td class="cmd-cell"><pre>git log --oneline</pre></td><td>Commit list</td></tr>
+                    <tr><td class="cmd-cell"><pre>git remote -v</pre></td><td>Remote URL</td></tr>
+                    <tr><td class="cmd-cell"><pre>git stash</pre></td><td>Temporarily hide changes</td></tr>
+                    <tr><td class="cmd-cell"><pre>git checkout -- &lt;file&gt;</pre></td><td>Restore a file</td></tr>
+                </table>
+
+                <div class="footer-note">
+                    <p>© 2026 Milan Biswas | Bookmark this page — you'll find all commands in one place when you need them.</p>
+                </div>
+            </div>
+
+            <!-- Post navigation -->
+            <div class="post-navigation">
+                <a href="../index.html" class="btn">
+                    <span class="bn lang-content active" data-lang="bn">← পোর্টফোলিও</span>
+                    <span class="en lang-content" data-lang="en">← Portfolio</span>
+                </a>
+                <a href="termux-backend-series/termux_index.html" class="btn">
+                    <span class="bn lang-content active" data-lang="bn">Termux সিরিজ →</span>
+                    <span class="en lang-content" data-lang="en">Termux Series →</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ========== কাসডিস কমেন্ট ========== -->
+        <div class="comments-section article-container" style="margin-top: 40px;">
+            <h3>💬 মন্তব্য / Comments</h3>
+            <div id="cusdis_thread"
+                 data-host="https://cusdis.com"
+                 data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a"
+                 data-page-id="termux-commands-cheatsheet"
+                 data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/termux-commands.html"
+                 data-page-title="Termux কমান্ড চিট শিট – বাংলায় সম্পূর্ণ গাইড"
+                 data-theme="light">
+            </div>
+            <script async src="https://cusdis.com/js/cusdis.es.js"></script>
+        </div>
+    </article>
+</main>
+
+<!-- ==================== কন্ট্যাক্ট মোডাল ==================== -->
+<div class="contact-modal" id="contactModal">
+    <div class="contact-box">
+        <button class="close-btn" id="closeContactBtn">&times;</button>
+        <h3><span class="bn lang-content active" data-lang="bn">যোগাযোগ করুন</span><span class="en lang-content" data-lang="en">Contact Me</span></h3>
+        <form action="https://formspree.io/f/mpqowyld" method="POST">
+            <input type="text" name="name" placeholder="আপনার নাম / Your Name" required>
+            <input type="email" name="email" placeholder="ইমেইল / Email" required>
+            <textarea name="message" rows="4" placeholder="আপনার বার্তা লিখুন... / Write your message..." required></textarea>
+            <button type="submit"><span class="bn lang-content active" data-lang="bn">পাঠিয়ে দিন</span><span class="en lang-content" data-lang="en">Send Message</span></button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://github.com/BanglaGolpoGalaxy" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://in.linkedin.com/in/milan-biswas-066a5b366" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://profile.indeed.com/p/y5b84wd" target="_blank">
+                <span class="indeed-icon">i</span>
+            </a>
+            <a href="#" id="openContactBtn"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="color:var(--text-sec);"><span class="bn lang-content active" data-lang="bn">© 2026 Milan Biswas | ভালোবাসা আর শেখার ইচ্ছা দিয়ে তৈরি</span><span class="en lang-content" data-lang="en">© 2026 Milan Biswas | Built with love and passion for learning</span></p>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        // ভাষা টগল
+        function applyLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+            });
+            document.documentElement.lang = lang;
+        }
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                applyLang(lang);
+                localStorage.setItem('blogLang', lang);
+            });
+        });
+
+        // থিম টগল (প্রথম কোডের মতো)
+        const themeBtn = document.getElementById('themeToggle');
+        function setTheme(theme) {
+            if (theme === 'light') {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                themeBtn.textContent = '🌙';
+            } else {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+                themeBtn.textContent = '☀️';
+            }
+            localStorage.setItem('cmdTableTheme', theme);
+        }
+        themeBtn.addEventListener('click', () => setTheme(document.body.classList.contains('light') ? 'dark' : 'light'));
+
+        // কন্টাক্ট মোডাল
+        const modal = document.getElementById('contactModal');
+        document.getElementById('openContactBtn').addEventListener('click', e => {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+        document.getElementById('closeContactBtn').addEventListener('click', () => modal.classList.remove('show'));
+        modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
+
+        // শুরুতে সেট
+        applyLang(localStorage.getItem('blogLang') || 'bn');
+        const savedTheme = localStorage.getItem('cmdTableTheme') || 'light';
+        setTheme(savedTheme);
+    })();
+</script>
+
+</body>
+</html>
