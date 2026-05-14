@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -12,13 +11,11 @@
 <meta name="robots" content="index, follow">
 
 <!-- ====== ক্যানোনিকাল লিংক ====== -->
-<link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/super_calculator.html">
+<link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/super_calculator/super_calculator.html">
+
+<!-- ====== PWA ম্যানিফেস্ট ====== -->
 <link rel="manifest" href="manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-  }
-</script>
+
 <!-- ====== গুগল অ্যানালিটিক্স (gtag.js) ====== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQ4HS2936B"></script>
 <script>
@@ -38,125 +35,141 @@
   "description": "বাংলায় অল-ইন-ওয়ান সুপার ক্যালকুলেটর – সাধারণ গণিত, জ্যামিতি পরিমিতি, ইএমআই, বিএমআই, লাভ-ক্ষতি, বয়স, জমির পরিমাপ, একক রূপান্তর। ফুল বাজার, ত্রিকোণমিতি।",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "Web",
-  "author": {
-    "@type": "Person",
-    "name": "Milan Biswas"
-  }
+  "author": { "@type": "Person", "name": "Milan Biswas" }
 }
 </script>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; user-select:none; }
-    :root {
-      --bg: #0a0f1c;
-      --surface: #0f172a;
-      --surface2: #1e293b;
-      --text: #e0e0e0;
-      --text-secondary: #94a3b8;
-      --accent: #3b82f6;
-      --accent2: #facc15;
-      --border: #334155;
-    }
-    body.light {
-      --bg: #f1f5f9;
-      --surface: #ffffff;
-      --surface2: #e2e8f0;
-      --text: #1e293b;
-      --text-secondary: #475569;
-      --accent: #2563eb;
-      --accent2: #b45309;
-      --border: #cbd5e1;
-    }
-    body {
-      background: var(--bg);
-      font-family: 'Segoe UI','Poppins',system-ui,sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 12px;
-      transition: background 0.3s, color 0.2s;
-    }
-    .super-calc {
-      max-width: 620px;
-      width: 100%;
-      background: var(--surface);
-      border-radius: 40px;
-      padding: 20px;
-      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.8);
-      border: 1px solid var(--border);
-      position: relative;
-    }
-    .calc-title { text-align:center; color:var(--accent2); font-size:1rem; font-weight:600; margin-bottom:14px; }
-    .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; border-bottom:1px solid var(--border); padding-bottom:12px; }
-    .tab-btn { background:var(--surface2); border:none; color:var(--text-secondary); padding:6px 12px; border-radius:40px; cursor:pointer; font-size:0.7rem; font-weight:600; transition:0.2s; }
-    .tab-btn.active { background:var(--accent); color:white; }
-    .tab-pane { display:none; }
-    .tab-pane.active-pane { display:block; }
 
-    .theme-toggle {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      transition: 0.2s;
-    }
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; user-select:none; }
+  :root {
+    --bg: #0a0f1c;
+    --surface: #0f172a;
+    --surface2: #1e293b;
+    --text: #e0e0e0;
+    --text-secondary: #94a3b8;
+    --accent: #3b82f6;
+    --accent2: #facc15;
+    --border: #334155;
+  }
+  body.light {
+    --bg: #f1f5f9;
+    --surface: #ffffff;
+    --surface2: #e2e8f0;
+    --text: #1e293b;
+    --text-secondary: #475569;
+    --accent: #2563eb;
+    --accent2: #b45309;
+    --border: #cbd5e1;
+  }
+  body {
+    background: var(--bg);
+    font-family: 'Segoe UI','Poppins',system-ui,sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 12px;
+    transition: background 0.3s, color 0.2s;
+  }
+  .super-calc {
+    max-width: 620px;
+    width: 100%;
+    background: var(--surface);
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 25px 45px -12px rgba(0,0,0,0.8);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .calc-title { text-align:center; color:var(--accent2); font-size:1rem; font-weight:600; margin-bottom:14px; }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; border-bottom:1px solid var(--border); padding-bottom:12px; }
+  .tab-btn { background:var(--surface2); border:none; color:var(--text-secondary); padding:6px 12px; border-radius:40px; cursor:pointer; font-size:0.7rem; font-weight:600; transition:0.2s; }
+  .tab-btn.active { background:var(--accent); color:white; }
+  .tab-pane { display:none; }
+  .tab-pane.active-pane { display:block; }
 
-    .calc-display { background:#020617; border-radius:28px; padding:20px; margin-bottom:20px; text-align:right; box-shadow:inset 0 2px 6px rgba(0,0,0,0.4); }
-    .term-counter { font-size:0.75rem; color:#facc15; text-align:left; margin-bottom:8px; }
-    .expression { font-size:1.8rem; color:#f8fafc; font-weight:500; min-height:2.8rem; font-family:monospace; word-break:break-all; letter-spacing:1px; }
-    .result { font-size:2rem; font-weight:bold; color:#38bdf8; word-break:break-all; margin-top:8px; }
-    .fraction-result { font-size:0.85rem; color:#facc15; margin-top:8px; text-align:left; }
-    .buttons { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
-    button { border:none; padding:14px 0; border-radius:28px; font-size:1.2rem; font-weight:bold; cursor:pointer; transition:0.05s linear; background:var(--surface2); color:var(--text); }
-    button:active { transform:scale(0.96); }
-    .num-btn { background:#0f172a; color:white; }
-    .bracket-btn { background:#3b82f6; color:white; }
-    .op-btn { background:#f97316; color:#0f172a; }
-    .clear-btn { background:#ef4444; color:white; }
-    .eq-btn { background:#10b981; color:white; grid-column:span 2; }
-    .large-plus { background:#f97316; color:#0f172a; grid-row:span 2; display:flex; align-items:center; justify-content:center; font-size:1.8rem; border-radius:28px; cursor:pointer; }
+  .theme-toggle {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    transition: 0.2s;
+  }
 
-    .input-group { margin-bottom:14px; }
-    .input-group label { display:block; color:var(--text); font-size:0.85rem; margin-bottom:6px; font-weight:500; }
-    .input-group input, .input-group select {
-      width:100%; padding:12px 14px; border-radius:24px;
-      border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:0.95rem; outline:none;
-    }
-    .calc-submit { background:#10b981; color:white; border:none; padding:12px 18px; border-radius:40px; font-weight:bold; width:100%; margin-top:12px; cursor:pointer; font-size:0.9rem; }
-    .clear-submit { background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:40px; font-weight:bold; margin-top:8px; cursor:pointer; font-size:0.8rem; }
-    .result-box { background:var(--bg); padding:14px; border-radius:20px; margin-top:14px; text-align:center; color:#38bdf8; font-weight:bold; font-size:1rem; line-height:1.6; border:1px solid var(--border); }
-    .unit-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); gap:8px; background:var(--bg); padding:12px; border-radius:20px; margin-top:12px; }
-    .unit-item { background:var(--surface2); padding:6px; border-radius:16px; text-align:center; color:var(--text); font-size:0.7rem; }
-    .unit-item span:first-child { font-weight:bold; color:#38bdf8; display:block; }
+  .calc-display { background:#020617; border-radius:28px; padding:20px; margin-bottom:20px; text-align:right; box-shadow:inset 0 2px 6px rgba(0,0,0,0.4); }
+  .term-counter { font-size:0.75rem; color:#facc15; text-align:left; margin-bottom:8px; }
+  .expression { font-size:1.8rem; color:#f8fafc; font-weight:500; min-height:2.8rem; font-family:monospace; word-break:break-all; letter-spacing:1px; }
+  .result { font-size:2rem; font-weight:bold; color:#38bdf8; word-break:break-all; margin-top:8px; }
+  .fraction-result { font-size:0.85rem; color:#facc15; margin-top:8px; text-align:left; }
+  .buttons { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  button { border:none; padding:14px 0; border-radius:28px; font-size:1.2rem; font-weight:bold; cursor:pointer; transition:0.05s linear; background:var(--surface2); color:var(--text); }
+  button:active { transform:scale(0.96); }
+  .num-btn { background:#0f172a; color:white; }
+  .bracket-btn { background:#3b82f6; color:white; }
+  .op-btn { background:#f97316; color:#0f172a; }
+  .clear-btn { background:#ef4444; color:white; }
+  .eq-btn { background:#10b981; color:white; grid-column:span 2; }
+  .large-plus { background:#f97316; color:#0f172a; grid-row:span 2; display:flex; align-items:center; justify-content:center; font-size:1.8rem; border-radius:28px; cursor:pointer; }
 
-    .calc-footer { text-align:center; color:var(--text-secondary); font-size:0.7rem; margin-top:20px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; }
-    .contact-btn { background:transparent; border:1px solid #facc15; color:#facc15; padding:6px 12px; border-radius:20px; cursor:pointer; font-size:0.7rem; }
-    .contact-btn:hover { background:#facc15; color:#020617; }
+  .input-group { margin-bottom:14px; }
+  .input-group label { display:block; color:var(--text); font-size:0.85rem; margin-bottom:6px; font-weight:500; }
+  .input-group input, .input-group select {
+    width:100%; padding:12px 14px; border-radius:24px;
+    border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:0.95rem; outline:none;
+  }
+  .calc-submit { background:#10b981; color:white; border:none; padding:12px 18px; border-radius:40px; font-weight:bold; width:100%; margin-top:12px; cursor:pointer; font-size:0.9rem; }
+  .clear-submit { background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:40px; font-weight:bold; margin-top:8px; cursor:pointer; font-size:0.8rem; }
+  .result-box { background:var(--bg); padding:14px; border-radius:20px; margin-top:14px; text-align:center; color:#38bdf8; font-weight:bold; font-size:1rem; line-height:1.6; border:1px solid var(--border); }
+  .unit-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); gap:8px; background:var(--bg); padding:12px; border-radius:20px; margin-top:12px; }
+  .unit-item { background:var(--surface2); padding:6px; border-radius:16px; text-align:center; color:var(--text); font-size:0.7rem; }
+  .unit-item span:first-child { font-weight:bold; color:#38bdf8; display:block; }
 
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center; z-index:200; }
-    .modal.show { display:flex; }
-    .modal-content { background:var(--surface); padding:20px; border-radius:24px; width:90%; max-width:400px; border:1px solid var(--accent); }
-    .modal-content h3 { color:#facc15; margin-bottom:16px; }
-    .modal-content input, .modal-content textarea { width:100%; padding:10px; margin:8px 0; border-radius:12px; border:1px solid var(--border); background:var(--bg); color:var(--text); }
-    .modal-content button { background:#10b981; color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; }
-    .close-modal { float:right; background:none; border:none; color:var(--text); font-size:1.2rem; cursor:pointer; }
+  .calc-footer { text-align:center; color:var(--text-secondary); font-size:0.7rem; margin-top:20px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; }
+  .contact-btn { background:transparent; border:1px solid #facc15; color:#facc15; padding:6px 12px; border-radius:20px; cursor:pointer; font-size:0.7rem; }
+  .contact-btn:hover { background:#facc15; color:#020617; }
 
-    @media (max-width:480px) {
-      .super-calc { padding:14px; }
-      button { padding:10px 0; font-size:1rem; }
-      .expression { font-size:1.4rem; }
-    }
-  </style>
+  .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center; z-index:200; }
+  .modal.show { display:flex; }
+  .modal-content { background:var(--surface); padding:20px; border-radius:24px; width:90%; max-width:400px; border:1px solid var(--accent); }
+  .modal-content h3 { color:#facc15; margin-bottom:16px; }
+  .modal-content input, .modal-content textarea { width:100%; padding:10px; margin:8px 0; border-radius:12px; border:1px solid var(--border); background:var(--bg); color:var(--text); }
+  .modal-content button { background:#10b981; color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; }
+  .close-modal { float:right; background:none; border:none; color:var(--text); font-size:1.2rem; cursor:pointer; }
+
+  /* PWA ইন্সটল বাটন */
+  #install-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #38bdf8;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    z-index: 1000;
+    cursor: pointer;
+  }
+
+  @media (max-width:480px) {
+    .super-calc { padding:14px; }
+    button { padding:10px 0; font-size:1rem; }
+    .expression { font-size:1.4rem; }
+  }
+</style>
 </head>
 <body class="light">
 <div class="super-calc">
@@ -197,7 +210,7 @@
     </div>
   </div>
 
-  <!-- ফুল বাজার (সংশোধিত) -->
+  <!-- ফুল বাজার -->
   <div id="flower" class="tab-pane">
     <div class="input-group"><label>মোট ওজন (কেজি)</label><input type="number" id="flowerTotal" step="any"></div>
     <div class="input-group"><label>ব্যাগের ওজন (কেজি)</label><input type="number" id="flowerBag" step="any"></div>
@@ -324,10 +337,14 @@
 
   <!-- ইএমআই -->
   <div id="emi" class="tab-pane">
+    <div class="input-group"><label>সুদের ধরন</label><select id="emiType">
+      <option value="compound">চক্রবৃদ্ধি সুদ</option>
+      <option value="simple">সরল সুদ</option>
+    </select></div>
     <div class="input-group"><label>মূলধন (P)</label><input type="number" id="emiPrincipal" step="any"></div>
     <div class="input-group"><label>বার্ষিক সুদের হার (R%)</label><input type="number" id="emiRate" step="any"></div>
-    <div class="input-group"><label>মাসিক কিস্তি (M)</label><input type="number" id="emiMonthly" step="any"></div>
-    <div class="input-group"><label>সময় (N মাস)</label><input type="number" id="emiMonths" step="any"></div>
+    <div class="input-group"><label>মাসিক কিস্তি (M) — ঐচ্ছিক</label><input type="number" id="emiMonthly" step="any"></div>
+    <div class="input-group"><label>সময় (N মাস) — ঐচ্ছিক</label><input type="number" id="emiMonths" step="any"></div>
     <button class="calc-submit" id="emiBtn">গণনা</button>
     <div class="result-box" id="emiResult">ফলাফল</div>
     <button class="clear-submit" onclick="clearTab('emi')">🗑️ ক্লিয়ার</button>
@@ -347,6 +364,9 @@
   </div>
 </div>
 
+<!-- PWA ইন্সটল বাটন -->
+<button id="install-btn">📲 অ্যাপ ইন্সটল করুন</button>
+
 <!-- কন্টাক্ট মোডাল -->
 <div class="modal" id="contactModal">
   <div class="modal-content">
@@ -362,6 +382,31 @@
 </div>
 
 <script>
+  // সার্ভিস ওয়ার্কার রেজিস্টার
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+
+  // PWA ইন্সটল বাটন
+  let deferredPrompt;
+  const installBtn = document.getElementById('install-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'block';
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response: ${outcome}`);
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+    }
+  });
+
   (function() {
     // ট্যাব সুইচিং
     const tabs = document.querySelectorAll('.tab-btn');
@@ -601,18 +646,19 @@
 
     // জমির পরিমাপ
     const landUnits = { shotangsho: 435.6, katha: 720, bigha: 14400, acre: 43560, sqft: 1, sqm: 10.764, sqyd: 9 };
-const landLabels = { shotangsho: 'শতাংশ', katha: 'কাঠা', bigha: 'বিঘা', acre: 'একর', sqft: 'বর্গফুট', sqm: 'বর্গমিটার', sqyd: 'বর্গগজ' };
-document.getElementById('convertLandBtn').addEventListener('click', () => {
-  let val = parseFloat(document.getElementById('landValue').value) || 0;
-  let unit = document.getElementById('landUnit').value;
-  if (!val) return;
-  let sqft = val * (landUnits[unit] || 1);
-  let html = '';
-  for (let [key, factor] of Object.entries(landUnits)) {
-    html += `<div class="unit-item"><span>${(sqft/factor).toFixed(4)}</span>${landLabels[key] || key}</div>`;
-  }
-  document.getElementById('landResults').innerHTML = html;
-});
+    const landLabels = { shotangsho: 'শতাংশ', katha: 'কাঠা', bigha: 'বিঘা', acre: 'একর', sqft: 'বর্গফুট', sqm: 'বর্গমিটার', sqyd: 'বর্গগজ' };
+    document.getElementById('convertLandBtn').addEventListener('click', () => {
+      let val = parseFloat(document.getElementById('landValue').value) || 0;
+      let unit = document.getElementById('landUnit').value;
+      if (!val) return;
+      let sqft = val * (landUnits[unit] || 1);
+      let html = '';
+      for (let [key, factor] of Object.entries(landUnits)) {
+        html += `<div class="unit-item"><span>${(sqft/factor).toFixed(4)}</span>${landLabels[key] || key}</div>`;
+      }
+      document.getElementById('landResults').innerHTML = html;
+    });
+
     // ইউনিট কনভার্টার (বাংলা লেবেল সহ)
     const lengthLabels = { m:'মিটার', cm:'সেমি', mm:'মিমি', km:'কিমি', in:'ইঞ্চি', ft:'ফুট', yd:'গজ' };
     const volumeLabels = { l:'লিটার', ml:'মিলিলিটার', m3:'ঘনমিটার', gal:'গ্যালন' };
@@ -671,14 +717,24 @@ document.getElementById('convertLandBtn').addEventListener('click', () => {
       document.getElementById('flowerResult').textContent = `নিট ওজন: ${netWeight.toFixed(2)} কেজি | মোট মূল্য: ${totalPrice.toFixed(2)} টাকা`;
     });
 
-    // ইএমআই
-    function emiPMT(P,R,N) { if(R===0) return P/N; let r=R/1200; return (P*r*Math.pow(1+r,N))/(Math.pow(1+r,N)-1); }
+    // ইএমআই — চক্রবৃদ্ধি ও সরল উভয়ই
+    function emiPMT_compound(P,R,N) { if(R===0) return P/N; let r=R/1200; return (P*r*Math.pow(1+r,N))/(Math.pow(1+r,N)-1); }
+    function emiPMT_simple(P,R,N) { if(R===0) return P/N; let totalInterest = P * (R/100) * (N/12); let totalAmount = P + totalInterest; return totalAmount / N; }
+
     document.getElementById('emiBtn').addEventListener('click', () => {
+      let type = document.getElementById('emiType').value;
       let P=parseFloat(document.getElementById('emiPrincipal').value)||0, R=parseFloat(document.getElementById('emiRate').value)||0;
       let M=parseFloat(document.getElementById('emiMonthly').value)||0, N=parseFloat(document.getElementById('emiMonths').value)||0;
-      if(P&&R&&N){ let emi=emiPMT(P,R,N); let total=emi*N; let interest=total-P; document.getElementById('emiResult').textContent=`মাসিক কিস্তি: ${emi.toFixed(2)} টাকা, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
-      else if(P&&R&&M){ let r=R/1200; if(M<=P*r){ document.getElementById('emiResult').textContent='কিস্তি খুব কম'; return; } let n=Math.log(M/(M-P*r))/Math.log(1+r); let months=Math.ceil(n); let total=M*months; let interest=total-P; document.getElementById('emiResult').textContent=`সময়: ${months} মাস, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
-      else { document.getElementById('emiResult').textContent='P, R, N অথবা P, R, M দিন'; }
+
+      if (type === 'compound') {
+        if(P&&R&&N){ let emi=emiPMT_compound(P,R,N); let total=emi*N; let interest=total-P; document.getElementById('emiResult').textContent=`(চক্রবৃদ্ধি) মাসিক কিস্তি: ${emi.toFixed(2)} টাকা, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
+        else if(P&&R&&M){ let r=R/1200; if(M<=P*r){ document.getElementById('emiResult').textContent='কিস্তি খুব কম'; return; } let n=Math.log(M/(M-P*r))/Math.log(1+r); let months=Math.ceil(n); let total=M*months; let interest=total-P; document.getElementById('emiResult').textContent=`(চক্রবৃদ্ধি) সময়: ${months} মাস, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
+        else { document.getElementById('emiResult').textContent='P, R, N অথবা P, R, M দিন'; }
+      } else if (type === 'simple') {
+        if(P&&R&&N){ let emi=emiPMT_simple(P,R,N); let total=emi*N; let interest=total-P; document.getElementById('emiResult').textContent=`(সরল সুদ) মাসিক কিস্তি: ${emi.toFixed(2)} টাকা, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
+        else if(P&&R&&M){ let totalInterest = P * (R/100) * (1.0/12); if(M <= totalInterest){ document.getElementById('emiResult').textContent='কিস্তি খুব কম (সুদের চেয়েও কম)'; return; } let months = Math.ceil(P / (M - totalInterest)); let total = M * months; let interest = total - P; document.getElementById('emiResult').textContent=`(সরল সুদ) সময়: ${months} মাস, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
+        else { document.getElementById('emiResult').textContent='P, R, N অথবা P, R, M দিন'; }
+      }
     });
 
     // BMI
