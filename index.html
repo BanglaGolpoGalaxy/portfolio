@@ -403,7 +403,7 @@
     { title:"Dark Mode Toggle: Simple CSS + JS Trick", excerpt:"How I added dark/light mode to my portfolio and banking book using CSS variables.", readTime:"10 min read", languages:"🌐 বাংলা · English . हिंदी", image:"blog/images/darkmode.jpg", link:"blog/dark-mode-trick.html" },
     { title:"Adding Bilingual Toggle to Your Website", excerpt:"Learn how to support multiple languages on your blog or portfolio.", readTime:"8 min read", languages:"🌐 বাংলা · English . हिंदी", image:"blog/images/language_toggel.jpg", link:"blog/en_bn_toggle.html" },
     // 📝 ADD NEW BLOG CARD ABOVE THIS LINE (copy the format above and paste before this comment)
-    { title:"Termux কমান্ড চিট শিট – সম্পূর্ণ গাইড", excerpt:"Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায়। ফাইল, গিট, নেটওয়ার্ক, Node.js, বাস্তব প্রজেক্ট কমান্ড সহ।", readTime:"15 min read", languages:"🌐 বাংলা · English", image:"blog/images/termux-commands-cover.jpg", link:"blog/termux_all_command.html" }
+    { title:"Termux কমান্ড চিট শিট – সম্পূর্ণ গাইড", excerpt:"Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায়। ফাইল, গিট, নেটওয়ার্ক, Node.js, বাস্তব প্রজেক্ট কমান্ড সহ।", readTime:"15 min read", languages:"🌐 বাংলা · English", image:"blog/images/termux_all_command.jpg", link:"blog/termux_all_command.html" }
   ];
 
   function createProjectCard(p){ return `<a href="${p.link}" class="card-link" target="_blank" rel="noopener"><div class="card"><img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'"><h3>${p.title}</h3><p>${p.description}</p><div class="tech-tags">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div><div class="card-footer"><span class="btn">${p.btnText}</span></div></div></a>`; }
