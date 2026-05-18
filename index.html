@@ -247,6 +247,12 @@
     .scroll-top { position: fixed; bottom: 16px; right: 16px; background: var(--accent); color: #020617; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 1.2rem; cursor: pointer; z-index: 99; opacity: 0; visibility: hidden; transition: 0.2s; }
     .scroll-top.show { opacity: 1; visibility: visible; }
     
+    /* ANIMATIONS FOR LOGO CARD */
+    @keyframes float { 0% { transform: translate(-50%, -50%) translateY(0px); } 50% { transform: translate(-50%, -50%) translateY(-8px); } 100% { transform: translate(-50%, -50%) translateY(0px); } }
+    @keyframes gearRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes openDoor { 0% { transform: rotate(-22deg); } 50% { transform: rotate(-35deg); } 100% { transform: rotate(-22deg); } }
+    @keyframes shine { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+    
     /* DESKTOP */
     @media (min-width: 600px) {
       .container { padding: 0 24px; }
@@ -391,13 +397,13 @@
 <script>
   const projects = [
     { 
-  title:"🏛️ Aadim Vault (আদিম ভল্ট)", 
-  description:"A Reliquium — Where Forgotten Objects Live Again. A global digital vault preserving heritage through stories, auctions & exchange. Built entirely on mobile with Termux.", 
-  image:"golden-logo.html", 
-  link:"https://aadimvault.onrender.com", 
-  btnText:"🔧 Under Development", 
-  tech:["Node.js","Express","SQLite","JWT","Multer","Render","Termux","HTML","CSS","JS"]
-},
+      title:"🏛️ Aadim Vault (আদিম ভল্ট)", 
+      description:"A Reliquium — Where Forgotten Objects Live Again. A global digital vault preserving heritage through stories, auctions & exchange. Built entirely on mobile with Termux.", 
+      logoData: true,
+      link:"https://aadimvault.onrender.com", 
+      btnText:"🔧 Under Development", 
+      tech:["Node.js","Express","SQLite","JWT","Multer","Render","Termux","HTML","CSS","JS"]
+    },
     { title:"🏪 Shop Manager System", description:"Full-stack shop management system with billing, inventory, QR scanner, sales reports, JWT auth, and SQLite database. Deployed live on Render.", image:"images/shop_management.jpg", link:"https://shop-manager-ywa4.onrender.com", btnText:"Try Live Demo →", tech:["Node.js","Express","SQLite","JWT","QR","Render"] },
     { title:"🌌 Bangla Golpo Galaxy", description:"A fully functional Bengali story website built with HTML, CSS, JS. Includes search, dark mode, comment system (Cusdis).", image:"images/bangla_golpo_galaxy.jpg", link:"https://banglagolpogalaxy.github.io", btnText:"Live Demo", tech:["HTML","CSS","JS","Cusdis"] },
     { title:"📘 Banking Knowledge Book", description:"A complete Bengali guide to banking products, accounts, loans, investments, EMI calculation, and interview Q&A.", image:"images/banking_knowledge.jpg", link:"books/banking-knowledge/index.html", btnText:"Read Book →", tech:["HTML","CSS","JS","Bilingual"] },
@@ -414,7 +420,38 @@
   ];
 
   function createProjectCard(p){ 
-    const imgHtml = p.image.endsWith('.html') 
+    // যদি এটি অ্যানিমেটেড লোগো কার্ড হয়
+    if (p.logoData) {
+      return `
+      <a href="${p.link}" class="card-link" target="_blank" rel="noopener">
+        <div class="card">
+          <div class="logo-card-wrapper" style="width:100%;height:160px;overflow:hidden;position:relative;border-radius:12px;margin-bottom:8px;background:radial-gradient(circle at center, rgba(255,190,80,0.15), transparent 70%), #040301;">
+            <div class="logo-wrapper" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.55);width:520px;height:520px;border-radius:50%;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle at top, #4a2f12, #120b05 70%);border:4px solid rgba(255,210,120,0.6);box-shadow:0 0 20px rgba(255,200,100,0.3),0 0 80px rgba(255,180,50,0.15),inset 0 0 40px rgba(255,220,150,0.08);overflow:hidden;animation:float 5s ease-in-out infinite;">
+              <div class="outer-ring" style="position:absolute;width:450px;height:450px;border-radius:50%;border:2px solid rgba(255,220,150,0.35);box-shadow:0 0 30px rgba(255,190,80,0.15);"></div>
+              <div class="outer-ring" style="position:absolute;width:480px;height:480px;opacity:0.35;border-radius:50%;border:2px solid rgba(255,220,150,0.35);box-shadow:0 0 30px rgba(255,190,80,0.15);"></div>
+              <div class="gear-layer gear1" style="position:absolute;width:420px;height:420px;border-radius:50%;border:10px solid rgba(255,210,120,0.22);animation:gearRotate 18s linear infinite;box-shadow:0 0 30px rgba(255,190,80,0.08),inset 0 0 25px rgba(255,220,150,0.08);"></div>
+              <div class="gear-layer gear2" style="position:absolute;width:300px;height:300px;border-radius:50%;border:10px solid rgba(255,210,120,0.22);animation:gearRotate 10s linear infinite reverse;box-shadow:0 0 30px rgba(255,190,80,0.08),inset 0 0 25px rgba(255,220,150,0.08);"></div>
+              <div class="gear-layer gear3" style="position:absolute;width:180px;height:180px;border-radius:50%;border:10px solid rgba(255,210,120,0.22);animation:gearRotate 7s linear infinite;box-shadow:0 0 30px rgba(255,190,80,0.08),inset 0 0 25px rgba(255,220,150,0.08);"></div>
+              <div class="vault" style="position:relative;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at top, #c38b2d, #6f4314 70%);border:10px solid #d8a34c;box-shadow:inset 0 0 30px rgba(255,240,200,0.35),0 0 40px rgba(255,180,60,0.35);">
+                <div class="light" style="position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle, rgba(255,245,210,1), rgba(255,220,130,0.8), rgba(255,180,60,0.2), transparent 70%);filter:blur(10px);animation:shine 3s ease-in-out infinite;"></div>
+                <div class="vault-door" style="position:absolute;width:190px;height:190px;border-radius:50%;top:5px;left:90px;transform:rotate(-22deg);transform-origin:left center;background:radial-gradient(circle at top, #f0bd63, #7a4917 75%);border:8px solid #e5b561;box-shadow:0 0 30px rgba(255,200,80,0.35),inset 0 0 20px rgba(255,255,255,0.15);animation:openDoor 5s ease-in-out infinite;"></div>
+                <div class="vault-center" style="position:absolute;width:55px;height:55px;border-radius:50%;background:#5e340d;top:50%;left:50%;transform:translate(-50%,-50%);border:4px solid #f1c26a;z-index:10;"></div>
+                <div class="line line1" style="position:absolute;width:85px;height:7px;background:#f2c773;top:50%;left:50%;transform-origin:center;border-radius:10px;box-shadow:0 0 10px rgba(255,220,120,0.6);transform:translate(-50%,-50%) rotate(0deg);"></div>
+                <div class="line line2" style="position:absolute;width:85px;height:7px;background:#f2c773;top:50%;left:50%;transform-origin:center;border-radius:10px;box-shadow:0 0 10px rgba(255,220,120,0.6);transform:translate(-50%,-50%) rotate(60deg);"></div>
+                <div class="line line3" style="position:absolute;width:85px;height:7px;background:#f2c773;top:50%;left:50%;transform-origin:center;border-radius:10px;box-shadow:0 0 10px rgba(255,220,120,0.6);transform:translate(-50%,-50%) rotate(120deg);"></div>
+              </div>
+            </div>
+          </div>
+          <h3>${p.title}</h3>
+          <p>${p.description}</p>
+          <div class="tech-tags">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div>
+          <div class="card-footer"><span class="btn">${p.btnText}</span></div>
+        </div>
+      </a>`;
+    }
+    
+    // সাধারণ ইমেজ বা iframe কার্ড
+    const imgHtml = p.image && p.image.endsWith('.html') 
       ? `<iframe src="${p.image}" style="width:100%;height:160px;border:none;overflow:hidden;border-radius:12px;margin-bottom:8px;" scrolling="no"></iframe>`
       : `<img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'">`;
     return `<a href="${p.link}" class="card-link" target="_blank" rel="noopener"><div class="card">${imgHtml}<h3>${p.title}</h3><p>${p.description}</p><div class="tech-tags">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div><div class="card-footer"><span class="btn">${p.btnText}</span></div></div></a>`; 
