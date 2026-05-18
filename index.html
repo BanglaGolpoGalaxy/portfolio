@@ -18,7 +18,7 @@
   <title>Milan Biswas | Web Developer, Teacher & Author</title>
   <meta name="title" content="Milan Biswas – Web Development Learner & Teacher">
   <meta name="description" content="Milan Biswas – B.Sc graduate, ITI COPA trainee. Learning web development. Experience: teaching assistant, manager, supervisor, promoter.">
-  <meta name="keywords" content="Milan Biswas, portfolio, web developer, ITI COPA, teacher, manager, Bangla Golpo Galaxy, banking knowledge, calculator tool, shop manager">
+  <meta name="keywords" content="Milan Biswas, portfolio, web developer, ITI COPA, teacher, manager, Bangla Golpo Galaxy, banking knowledge, calculator tool, shop manager, Aadim Vault">
   <meta name="author" content="Milan Biswas">
   <meta name="robots" content="index, follow, max-image-preview:large">
   
@@ -200,6 +200,7 @@
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px; transition: 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; flex: 1; word-break: break-word; position: relative; height: 100%; min-height: 100%; }
     .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--card-shadow); }
     .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 8px; background: #1e293b; display: block; }
+    .card iframe { width: 100%; height: 160px; border-radius: 12px; margin-bottom: 8px; border: none; overflow: hidden; }
     .card h3 { color: var(--accent); margin-bottom: 6px; font-weight: 600; font-size: 0.95rem; }
     .card p { color: var(--text-sec); font-size: 0.8rem; margin: 4px 0 0; line-height: 1.4; flex: 1; }
     .blog-meta { font-size: 0.7rem; color: var(--text-sec); margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px; }
@@ -389,12 +390,19 @@
 
 <script>
   const projects = [
+    { 
+      title:"🏛️ Aadim Vault (আদিম ভল্ট)", 
+      description:"A Reliquium — Where Forgotten Objects Live Again. A global digital vault preserving heritage through stories, auctions & exchange. Built entirely on mobile with Termux.", 
+      image:"images/aadimvault.jpg",
+      link:"https://aadimvault.onrender.com", 
+      btnText:"🔧 Under Development", 
+      tech:["Node.js","Express","SQLite","JWT","Multer","Render","Termux","HTML","CSS","JS"]
+    },
     { title:"🏪 Shop Manager System", description:"Full-stack shop management system with billing, inventory, QR scanner, sales reports, JWT auth, and SQLite database. Deployed live on Render.", image:"images/shop_management.jpg", link:"https://shop-manager-ywa4.onrender.com", btnText:"Try Live Demo →", tech:["Node.js","Express","SQLite","JWT","QR","Render"] },
     { title:"🌌 Bangla Golpo Galaxy", description:"A fully functional Bengali story website built with HTML, CSS, JS. Includes search, dark mode, comment system (Cusdis).", image:"images/bangla_golpo_galaxy.jpg", link:"https://banglagolpogalaxy.github.io", btnText:"Live Demo", tech:["HTML","CSS","JS","Cusdis"] },
     { title:"📘 Banking Knowledge Book", description:"A complete Bengali guide to banking products, accounts, loans, investments, EMI calculation, and interview Q&A.", image:"images/banking_knowledge.jpg", link:"books/banking-knowledge/index.html", btnText:"Read Book →", tech:["HTML","CSS","JS","Bilingual"] },
     { title:"🧮 Super Calculator Tool", description:"All-in-1 calculator: Flower market, EMI, BMI, Age, length, weight, volume, temperature, Profit-Loss.", image:"images/super_calculator.jpg", link:"super_calculator/super_calculator.html", btnText:"Use Calculator →", tech:["HTML","CSS","JS"] },
     { title:"📁 Portfolio Website", description:"This very portfolio – responsive, dark/light mode, smooth scroll, contact form.", image:"images/portfolio_cover.jpg", link:"https://banglagolpogalaxy.github.io/portfolio/", btnText:"View Live →", tech:["HTML","CSS","JS","GitHub Pages"] }
-    // 🔧 ADD NEW PROJECT CARD ABOVE THIS LINE (copy the format above and paste before this comment)
   ];
   const blogPosts = [
     { title:"My Web Development Journey", excerpt:"How I learned to code using just a mobile phone – no laptop, no desktop.", readTime:"7 min read", languages:"🌐 বাংলা · English · हिन्दी", image:"blog/images/coding_journy_card.jpg", link:"blog/coding_journey.html" },
@@ -402,11 +410,15 @@
     { title:"How I Built a Multi-Calculator Tool", excerpt:"A step-by-step guide to creating 7 calculators in one page using HTML/CSS/JS.", readTime:"6 min read", languages:"🌐 বাংলা · English . हिंदी", image:"blog/images/multi_cal_blog_card.jpg", link:"blog/how_i_built_multi_calculator.html" },
     { title:"Dark Mode Toggle: Simple CSS + JS Trick", excerpt:"How I added dark/light mode to my portfolio and banking book using CSS variables.", readTime:"10 min read", languages:"🌐 বাংলা · English . हिंदी", image:"blog/images/darkmode.jpg", link:"blog/dark-mode-trick.html" },
     { title:"Adding Bilingual Toggle to Your Website", excerpt:"Learn how to support multiple languages on your blog or portfolio.", readTime:"8 min read", languages:"🌐 বাংলা · English . हिंदी", image:"blog/images/language_toggel.jpg", link:"blog/en_bn_toggle.html" },
-    // 📝 ADD NEW BLOG CARD ABOVE THIS LINE (copy the format above and paste before this comment)
-    { title:"Termux কমান্ড চিট শিট – সম্পূর্ণ গাইড", excerpt:"Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায়। ফাইল, গিট, নেটওয়ার্ক, Node.js, বাস্তব প্রজেক্ট কমান্ড সহ।", readTime:"15 min read", languages:"🌐 বাংলা · English", image:"blog/images/termux-commands-cover.jpg", link:"blog/termux_all_command.html" }
+    { title:"Termux কমান্ড চিট শিট – সম্পূর্ণ গাইড", excerpt:"Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায়। ফাইল, গিট, নেটওয়ার্ক, Node.js, বাস্তব প্রজেক্ট কমান্ড সহ।", readTime:"15 min read", languages:"🌐 বাংলা · English", image:"blog/images/termux_all_command.jpg", link:"blog/termux_all_command.html" }
   ];
 
-  function createProjectCard(p){ return `<a href="${p.link}" class="card-link" target="_blank" rel="noopener"><div class="card"><img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'"><h3>${p.title}</h3><p>${p.description}</p><div class="tech-tags">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div><div class="card-footer"><span class="btn">${p.btnText}</span></div></div></a>`; }
+  function createProjectCard(p){ 
+    const imgHtml = p.image && p.image.endsWith('.html') 
+      ? `<iframe src="${p.image}" style="width:100%;height:160px;border:none;overflow:hidden;border-radius:12px;margin-bottom:8px;" scrolling="no"></iframe>`
+      : `<img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'">`;
+    return `<a href="${p.link}" class="card-link" target="_blank" rel="noopener"><div class="card">${imgHtml}<h3>${p.title}</h3><p>${p.description}</p><div class="tech-tags">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div><div class="card-footer"><span class="btn">${p.btnText}</span></div></div></a>`; 
+  }
   function createBlogCard(p){ return `<a href="${p.link}" class="card-link"><div class="card"><img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'"><h3>${p.title}</h3><div class="blog-meta"><span>⏱️ ${p.readTime}</span><span>${p.languages}</span></div><p>${p.excerpt}</p><div class="card-footer"><span style="color:var(--accent);font-weight:500;font-size:0.85rem;">→ Read More</span></div></div></a>`; }
 
   function populate(s,g,items,fn){ const a=document.getElementById(s),b=document.getElementById(g); if(!a||!b)return; a.innerHTML=items.map(fn).join(''); b.innerHTML=items.map(fn).join(''); }
