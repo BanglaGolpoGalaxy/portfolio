@@ -3,7 +3,6 @@
 const blogSeries = [
   {
     title: "🏪 Shop Manager (Termux Backend Series)",
-    link: "https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/"
   },
   {
     title: "🧮 Super Calculator (All-in-One)",
@@ -11,11 +10,9 @@ const blogSeries = [
   },
   {
     title: "🏛️ AadimVault Build Series",
-    link: "https://banglagolpogalaxy.github.io/portfolio/blog/aadimvault-series/"
   },
   {
     title: "📚 Mobile Backend Series (Termux Tutorials)",
-    link: "https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/"
   },
   {
     title: "🌌 Bangla Golpo Galaxy",
