@@ -1,5 +1,4 @@
 // blog/series-list.js
-// তোমার সব ব্লগ সিরিজ ও প্রোজেক্টের তালিকা
 const blogSeries = [
   {
     title: "🏪 Shop Manager (Termux Backend Series)",
@@ -24,40 +23,33 @@ const blogSeries = [
   {
     title: "📖 Banking Knowledge Book",
     link: "https://banglagolpogalaxy.github.io/portfolio/books/banking-knowledge/index.html"
-  },
-  {
-    title: "🕷️ সাইটম্যাপ অটোমেশন ব্লগ",
-    link: "https://banglagolpogalaxy.github.io/portfolio/blog/sitemap-automation.html"
-  },
-  {
-    title: "🔗 ব্লগে অটোমেটিক লিংক টেবিল",
-    link: "https://banglagolpogalaxy.github.io/portfolio/blog/auto-series-table.html"
   }
   // 🔧 নতুন সিরিজ যোগ করতে এখানে লাইন যোগ করো
 ];
 
-// ========== অটোমেটিক টেবিল রেন্ডারার ==========
+// ========== টেবিল ঠিক জায়গায় বসানোর রোবট ==========
 (function() {
   document.addEventListener('DOMContentLoaded', function() {
-    // ১. আগে থেকেই #blog-series-table থাকলে সেখানে বসাও
-    let container = document.getElementById('blog-series-table');
-    
-    // ২. না থাকলে, ফুটারের আগে নতুন ডিভ তৈরি করো
-    if (!container) {
-      const footer = document.querySelector('footer');
-      if (footer) {
-        container = document.createElement('div');
-        container.id = 'blog-series-table';
-        footer.parentNode.insertBefore(container, footer);
-      } else {
-        // ফুটারও না থাকলে, বডির শেষে বসাও (fallback)
-        container = document.createElement('div');
-        container.id = 'blog-series-table';
-        document.body.appendChild(container);
-      }
+    // ১. footer খোঁজো
+    const footer = document.querySelector('footer');
+    let container;
+
+    if (footer) {
+      // ফুটারের আগে নতুন div বানাও
+      container = document.createElement('div');
+      container.id = 'blog-series-table';
+      footer.parentNode.insertBefore(container, footer);
+    } else {
+      // ফুটার না থাকলে article বা main-এর শেষে বসাও
+      const article = document.querySelector('article');
+      const main = document.querySelector('main');
+      const target = article || main || document.body;
+      container = document.createElement('div');
+      container.id = 'blog-series-table';
+      target.appendChild(container);
     }
 
-    // ৩. টেবিল তৈরি করো
+    // ২. টেবিল তৈরি করো
     let html = '<h3>📚 My Other Projects & Series</h3>';
     html += '<table style="width:100%; border-collapse: collapse; margin-top: 10px;">';
     html += '<thead><tr><th style="text-align:left; padding:10px; border-bottom:1px solid var(--border);">Project</th><th style="padding:10px; border-bottom:1px solid var(--border);">Link</th></tr></thead>';
