@@ -2,31 +2,21 @@
 // তোমার সব ব্লগ সিরিজের তালিকা
 const blogSeries = [
   {
-    title: "🏪 Shop Manager (Termux Backend Series)",
+    "title": "🧮 Super Calculator (All-in-One)",
+    "link": "https://banglagolpogalaxy.github.io/portfolio/super_calculator/super_calculator.html"
   },
   {
-    title: "🧮 Super Calculator (All-in-One)",
-    link: "https://banglagolpogalaxy.github.io/portfolio/super_calculator/super_calculator.html"
+    "title": "🌌 Bangla Golpo Galaxy",
+    "link": "https://banglagolpogalaxy.github.io/"
   },
   {
-    title: "🏛️ AadimVault Build Series",
+    "title": "🧑‍💻 My Coding Journey",
+    "link": "https://banglagolpogalaxy.github.io/portfolio/blog/coding_journey.html"
   },
   {
-    title: "📚 Mobile Backend Series (Termux Tutorials)",
-  },
-  {
-    title: "🌌 Bangla Golpo Galaxy",
-    link: "https://banglagolpogalaxy.github.io/"
-  },
-  {
-    title: "🧑‍💻 My Coding Journey",
-    link: "https://banglagolpogalaxy.github.io/portfolio/blog/coding_journey.html"
-  },
-  {
-    title: "📋 Termux Command Cheat Sheet",
-    link: "https://banglagolpogalaxy.github.io/portfolio/blog/termux_all_command.html"
+    "title": "📋 Termux Command Cheat Sheet",
+    "link": "https://banglagolpogalaxy.github.io/portfolio/blog/termux_all_command.html"
   }
-  // 🔧 নতুন সিরিজ যোগ করতে এখানে লাইন যোগ করো
 ];
 
 // ========== অটোমেটিক টেবিল রেন্ডারার (ডুপ্লিকেট চেক সহ) ==========
