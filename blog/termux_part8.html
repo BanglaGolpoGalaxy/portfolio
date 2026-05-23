@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <meta name="google-site-verification" content="EFKZ__SGNwsPC-hOlrKDHH-bJDzpIeZDTLDlve-SxtU" />
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DQ4HS2936B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DQ4HS2936B');
+</script>
+  <!-- ========== SEO META TAGS ========== -->
+  <title>পর্ব ৮: বিলিং সিস্টেম — প্রোডাক্ট সিলেক্ট ও কার্টে যোগ | মোবাইলেই ব্যাকএন্ড</title>
+  <meta name="title" content="পর্ব ৮: বিলিং সিস্টেম — প্রোডাক্ট সিলেক্ট ও কার্টে যোগ">
+  <meta name="description" content="এই পর্বে শিখুন কীভাবে সার্চ বার ও কার্ট UI তৈরি করে বিলিং সিস্টেমের প্রথম ধাপ বানাতে হয়। প্রোডাক্ট সিলেক্ট, কার্টে যোগ, পরিমাণ পরিবর্তন ও মোট দাম দেখানো।">
+  <meta name="keywords" content="বিলিং সিস্টেম, কার্ট UI, সার্চ বার, প্রোডাক্ট সিলেক্ট, Termux বাংলা টিউটোরিয়াল, ফ্রন্টএন্ড কার্ট, বিলিং কাউন্টার">
+  <meta name="author" content="Milan Biswas">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+  <!-- ========== OPEN GRAPH ========== -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/part-8.html">
+  <meta property="og:title" content="পর্ব ৮: বিলিং সিস্টেম — প্রোডাক্ট সিলেক্ট ও কার্টে যোগ | মোবাইলেই ব্যাকএন্ড">
+  <meta property="og:description" content="সার্চ বার ও কার্ট UI তৈরি করে প্রোডাক্ট সিলেক্ট, কার্টে যোগ, পরিমাণ পরিবর্তন ও মোট দাম দেখানোর সম্পূর্ণ গাইড।">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/images/part-8-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Milan Biswas - Blog">
+  <meta property="og:locale" content="bn_BD">
+
+  <!-- ========== TWITTER ========== -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/part-8.html">
+  <meta property="twitter:title" content="পর্ব ৮: বিলিং সিস্টেম — প্রোডাক্ট সিলেক্ট ও কার্টে যোগ | মোবাইলেই ব্যাকএন্ড">
+  <meta property="twitter:description" content="সার্চ বার ও কার্ট UI তৈরি করে প্রোডাক্ট সিলেক্ট, কার্টে যোগ, পরিমাণ পরিবর্তন ও মোট দাম দেখানোর সম্পূর্ণ গাইড।">
+  <meta property="twitter:image" content="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/images/part-8-cover.jpg">
+
+  <!-- ========== CANONICAL ========== -->
+  <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/part-8.html">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ========== JSON-LD SCHEMA ========== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "পর্ব ৮: বিলিং সিস্টেম — প্রোডাক্ট সিলেক্ট ও কার্টে যোগ",
+    "description": "এই পর্বে শিখুন কীভাবে সার্চ বার ও কার্ট UI তৈরি করে বিলিং সিস্টেমের প্রথম ধাপ বানাতে হয়। প্রোডাক্ট সিলেক্ট, কার্টে যোগ, পরিমাণ পরিবর্তন ও মোট দাম দেখানো।",
+    "author": { "@type": "Person", "name": "Milan Biswas", "url": "https://banglagolpogalaxy.github.io/portfolio/" },
+    "datePublished": "2026-05-08",
+    "dateModified": "2026-05-08",
+    "image": "https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/images/part-8-cover.jpg",
+    "inLanguage": "bn",
+    "isPartOf": {
+      "@type": "Course",
+      "name": "মোবাইলেই ব্যাকএন্ড: Termux দিয়ে ফুল স্ট্যাক ডেভেলপমেন্ট",
+      "url": "https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/"
+    },
+    "educationalLevel": "beginner"
+  }
+  </script>
+
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+
+    :root {
+      --bg: #020617;
+      --surface: #0f172a;
+      --surface2: #1e293b;
+      --text: #e0e0e0;
+      --text-sec: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #a78bfa;
+      --border: #1e293b;
+      --font-bn: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+      --font-en: 'Poppins', sans-serif;
+    }
+
+    body.light {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface2: #f1f5f9;
+      --text: #0f172a;
+      --text-sec: #475569;
+      --accent: #2563eb;
+      --accent2: #7c3aed;
+      --border: #e2e8f0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-bn);
+      line-height: 1.7;
+      transition: background 0.3s, color 0.2s;
+    }
+
+    .en { font-family: var(--font-en); }
+    .bn { font-family: var(--font-bn); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .article-container { max-width: 800px; margin: 0 auto; }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--accent);
+      padding: 16px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+
+    .header-flex {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+
+    .logo-section { display: flex; align-items: center; gap: 14px; }
+    .series-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .logo-text h2 { font-size: 1.1rem; color: var(--text); line-height: 1.3; }
+    .logo-text .sub { font-size: 0.8rem; color: var(--text-sec); }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    .lang-toggle {
+      display: flex; background: var(--surface2); border-radius: 30px; padding: 3px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 6px 14px; border-radius: 30px; border: none; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; transition: 0.2s;
+      background: transparent; color: var(--text-sec); font-family: var(--font-bn);
+    }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+
+    .theme-toggle {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 30px;
+      padding: 8px 14px; cursor: pointer; font-size: 1.1rem; color: var(--text);
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+
+    .home-btn {
+      color: var(--text-sec); text-decoration: none; font-size: 1.2rem;
+      padding: 6px 10px; border-radius: 8px;
+    }
+    .home-btn:hover { color: var(--accent); background: var(--surface2); }
+
+    /* Post Meta */
+    .post-header {
+      text-align: center; padding: 50px 20px 30px;
+    }
+    .post-header .episode-badge {
+      display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; padding: 4px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .post-header h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--accent); line-height: 1.4; }
+    .post-meta { color: var(--text-sec); margin-top: 12px; font-size: 0.9rem; }
+
+    .post-subtitle {
+      font-size: 1.2rem;
+      color: #fbbf24;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    .post-content { padding: 20px 20px 40px; }
+    .post-content p { margin-bottom: 1.5em; color: var(--text-sec); }
+    .post-content h2 { color: var(--accent); margin: 2em 0 0.8em; font-size: 1.5rem; border-left: 4px solid var(--accent); padding-left: 14px; }
+    .post-content h3 { color: var(--text); margin: 1.5em 0 0.5em; font-size: 1.2rem; }
+    .post-content ul, .post-content ol { margin: 1em 0 1.5em 1.5em; color: var(--text-sec); }
+    .post-content li { margin-bottom: 0.5em; }
+
+    /* Code blocks */
+    pre {
+      background: #0f1a2f;
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      margin: 1.5em 0;
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    code { font-family: 'Fira Code', 'Courier New', monospace; }
+
+    /* Commands table */
+    .commands-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5em 0;
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .commands-table th {
+      background: #6d28d9;
+      color: #fff;
+      padding: 12px 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .commands-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .commands-table td:first-child { text-align: left; }
+    .commands-table td:last-child { text-align: center; }
+    .commands-table tr:nth-child(even) td { background: rgba(147, 112, 219, 0.15); }
+    .commands-table tr:nth-child(odd) td  { background: rgba(56, 189, 248, 0.15); }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn:hover { background: var(--accent2); }
+
+    /* Post navigation */
+    .post-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 40px 0 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .post-navigation .nav-left, .post-navigation .nav-right { flex: 0 0 auto; }
+    .post-navigation .nav-center { flex: 1; text-align: center; }
+
+    /* Comments section */
+    .comments-section {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 16px;
+      padding: 30px;
+      margin-top: 40px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .comments-section h3 { color: #0f172a; margin-bottom: 20px; }
+
+    /* Contact modal */
+    .contact-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;
+      z-index: 200; visibility: hidden; opacity: 0; transition: 0.3s;
+    }
+    .contact-modal.show { visibility: visible; opacity: 1; }
+    .contact-box {
+      background: var(--surface); border: 2px solid var(--accent); border-radius: 20px;
+      padding: 30px; max-width: 500px; width: 90%; position: relative;
+    }
+    .contact-box h3 { color: var(--accent); margin-bottom: 20px; }
+    .contact-box .close-btn {
+      position: absolute; top: 12px; right: 16px; background: none; border: none;
+      color: var(--text-sec); font-size: 1.5rem; cursor: pointer;
+    }
+    .contact-box .close-btn:hover { color: var(--accent); }
+    .contact-box input, .contact-box textarea {
+      width: 100%; padding: 12px; margin: 8px 0 16px; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 12px; color: var(--text); font-family: var(--font-bn);
+    }
+    .contact-box button {
+      background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+      border-radius: 40px; font-weight: 600; cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      text-align: center; padding: 30px 20px; margin-top: 60px;
+    }
+    footer .social-icons { display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px; }
+    footer .social-icons a { color: var(--text-sec); font-size: 1.5rem; transition: 0.2s; text-decoration: none; }
+    footer .social-icons a:hover { color: var(--accent); }
+
+    .indeed-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 2rem; height: 2rem; border-radius: 50%;
+      background-color: #2a5b84;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      font-family: Arial, sans-serif;
+      transition: 0.2s;
+    }
+    footer .social-icons a:hover .indeed-icon { background-color: var(--accent); color: #020617; }
+
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+    span.lang-content.active { display: inline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-flex">
+    <div class="logo-section">
+      <div class="series-icon">📱</div>
+      <div class="logo-text">
+        <h2>
+          <span class="bn lang-content active" data-lang="bn">মোবাইলেই ব্যাকএন্ড</span>
+          <span class="en lang-content" data-lang="en">Backend on Mobile</span>
+        </h2>
+        <div class="sub">
+          <span class="bn lang-content active" data-lang="bn">Termux বাংলা টিউটোরিয়াল সিরিজ</span>
+          <span class="en lang-content" data-lang="en">Termux Bangla Tutorial Series</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="bn">বাংলা</button>
+        <button class="lang-btn" data-lang="en">English</button>
+      </div>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+      <a href="../index.html" class="home-btn"><i class="fas fa-home"></i></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article>
+    <div class="post-header">
+      <div class="episode-badge">
+        <span class="bn lang-content active" data-lang="bn">পর্ব ৮</span>
+        <span class="en lang-content" data-lang="en">Part 8</span>
+      </div>
+      <h1>
+        <span class="bn lang-content active" data-lang="bn">বিলিং সিস্টেম — প্রোডাক্ট সিলেক্ট ও কার্টে যোগ</span>
+        <span class="en lang-content" data-lang="en">Billing System — Selecting Products & Adding to Cart</span>
+      </h1>
+      <p class="post-subtitle">
+        <span class="bn lang-content active" data-lang="bn">দোকানের বিলিং কাউন্টার এখন তৈরি হবে আমাদের হাতে</span>
+        <span class="en lang-content" data-lang="en">The shop billing counter will now be built by us</span>
+      </p>
+      <div class="post-meta">
+        <span class="bn lang-content active" data-lang="bn">⏱️ ১৮ মিনিট পড়া | 🗓️ আপডেটেড</span>
+        <span class="en lang-content" data-lang="en">⏱️ 18 min read | 🗓️ Updated</span>
+      </div>
+    </div>
+
+    <div class="post-content article-container">
+      <!-- ========== বাংলা কন্টেন্ট ========== -->
+      <div class="bn lang-content active" data-lang="bn">
+        <p>এখন পর্যন্ত আমরা প্রোডাক্ট ম্যানেজমেন্ট (যোগ, এডিট, ডিলিট) শিখেছি। আজ আমরা দোকানের সবচেয়ে গুরুত্বপূর্ণ অংশ—<strong>বিলিং কাউন্টার</strong> বানানো শুরু করবো। প্রথম ধাপে আমরা একটি সার্চ বার ও কার্ট তৈরি করবো, যাতে দোকানদার সহজেই প্রোডাক্ট খুঁজে বের করে কার্টে যোগ করতে পারে এবং মোট দাম দেখতে পারে।</p>
+
+        <h2>বিলিং সিস্টেমের অংশ</h2>
+        <p>একটি পূর্ণাঙ্গ বিলিং সিস্টেমে যে যে অংশ থাকে, আমরা ধাপে ধাপে সবগুলোই বানাবো:</p>
+        <table class="commands-table">
+          <tr><th>অংশ</th><th>কী করবে?</th></tr>
+          <tr><td>সার্চ বার</td><td>নাম লিখলেই প্রোডাক্ট খুঁজে দেখাবে</td></tr>
+          <tr><td>প্রোডাক্ট লিস্ট</td><td>সার্চ রেজাল্ট দেখাবে, ক্লিক করলেই কার্টে যোগ হবে</td></tr>
+          <tr><td>কার্ট</td><td>সিলেক্ট করা সব প্রোডাক্ট জমা রাখবে</td></tr>
+          <tr><td>পরিমাণ কন্ট্রোল</td><td>+/− বাটন দিয়ে কতগুলো নিচ্ছে তা ঠিক করা</td></tr>
+          <tr><td>মোট দাম</td><td>কার্টের সব আইটেমের দাম × পরিমাণ-এর যোগফল দেখাবে</td></tr>
+        </table>
+
+        <h2>ধাপ ১: bill.html তৈরি করো</h2>
+        <pre><code>cd ~/shop-api/public
+micro bill.html</code></pre>
+
+        <h2>ধাপ ২: সম্পূর্ণ bill.html কোড</h2>
+        <p>নিচের সম্পূর্ণ কোডটি হুবহু কপি করে পেস্ট করো। আমরা গ্রিড লেআউট ব্যবহার করছি—বাঁ দিকে প্রোডাক্ট লিস্ট, ডান দিকে কার্ট।</p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="bn"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;🧾 বিলিং কাউন্টার - মুদি দোকান&lt;/title&gt;
+  &lt;style&gt;
+    :root { --bg: #f1f5f9; --surface: #ffffff; --text: #1e293b; --accent: #2563eb; }
+    body.dark { --bg: #0f172a; --surface: #1e293b; --text: #e2e8f0; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI', sans-serif; background:var(--bg); color:var(--text); padding:1rem; }
+    .container { max-width:1000px; margin:0 auto; }
+    h1 { text-align:center; margin-bottom:1rem; }
+    #searchInput { width:100%; padding:0.75rem; border:2px solid var(--accent); border-radius:8px; font-size:1rem; margin-bottom:1rem; }
+    .main-layout { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .panel { background:var(--surface); border-radius:12px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .product-item { display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #e2e8f0; cursor:pointer; transition:0.2s; }
+    .product-item:hover { background:#f1f5f9; }
+    .cart-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #e2e8f0; }
+    .qty-control { display:flex; align-items:center; gap:8px; }
+    .qty-btn { background:var(--accent); color:#fff; border:none; width:28px; height:28px; border-radius:6px; cursor:pointer; font-size:1rem; font-weight:bold; }
+    .qty-btn:hover { opacity:0.8; }
+    .total-row { display:flex; justify-content:space-between; padding:12px 0; font-size:1.2rem; font-weight:bold; margin-top:8px; border-top:2px solid var(--accent); }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;🧾 বিলিং কাউন্টার&lt;/h1&gt;
+    &lt;input type="text" id="searchInput" placeholder="🔍 প্রোডাক্ট খুঁজুন (নাম লিখুন)..." oninput="searchProducts()"&gt;
+    &lt;div class="main-layout"&gt;
+      &lt;div class="panel"&gt;
+        &lt;h3&gt;📦 প্রোডাক্ট&lt;/h3&gt;
+        &lt;div id="productResults"&gt;&lt;p style="color:#64748b;"&gt;উপরে সার্চ করুন...&lt;/p&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="panel"&gt;
+        &lt;h3&gt;🛒 কার্ট&lt;/h3&gt;
+        &lt;div id="cartItems"&gt;&lt;p style="color:#64748b;"&gt;কার্ট খালি&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="total-row"&gt;&lt;span&gt;মোট&lt;/span&gt;&lt;span id="cartTotal"&gt;০ ৳&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    let cart = [];
+    const PRODUCTS_URL = '/products';
+
+    async function searchProducts() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const res = await fetch(PRODUCTS_URL);
+      const all = await res.json();
+      const filtered = q ? all.filter(p =&gt; p.name.toLowerCase().includes(q)) : [];
+      const container = document.getElementById('productResults');
+      if (filtered.length === 0) { container.innerHTML = '&lt;p style="color:#64748b;"&gt;কোনো প্রোডাক্ট পাওয়া যায়নি&lt;/p&gt;'; return; }
+      container.innerHTML = filtered.map(p =&gt; `
+        &lt;div class="product-item" onclick="addToCart(${p.id})"&gt;
+          &lt;span&gt;${p.name}&lt;/span&gt;
+          &lt;span&gt;৳ ${p.price}&lt;/span&gt;
+        &lt;/div&gt;
+      `).join('');
+    }
+
+    async function addToCart(id) {
+      const res = await fetch(PRODUCTS_URL);
+      const all = await res.json();
+      const product = all.find(p =&gt; p.id === id);
+      if (!product) return;
+      const existing = cart.find(item =&gt; item.id === id);
+      if (existing) { existing.qty += 1; }
+      else { cart.push({ id:product.id, name:product.name, price:product.price, qty:1 }); }
+      renderCart();
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i =&gt; i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) { cart = cart.filter(i =&gt; i.id !== id); }
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cartItems');
+      if (cart.length === 0) { container.innerHTML = '&lt;p style="color:#64748b;"&gt;কার্ট খালি&lt;/p&gt;'; document.getElementById('cartTotal').textContent = '০ ৳'; return; }
+      container.innerHTML = cart.map(item =&gt; `
+        &lt;div class="cart-item"&gt;
+          &lt;span&gt;${item.name}&lt;/span&gt;
+          &lt;div class="qty-control"&gt;
+            &lt;button class="qty-btn" onclick="changeQty(${item.id}, -1)"&gt;−&lt;/button&gt;
+            &lt;span&gt;${item.qty}&lt;/span&gt;
+            &lt;button class="qty-btn" onclick="changeQty(${item.id}, 1)"&gt;+&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;span&gt;৳ ${item.price * item.qty}&lt;/span&gt;
+        &lt;/div&gt;
+      `).join('');
+      const total = cart.reduce((sum, item) =&gt; sum + item.price * item.qty, 0);
+      document.getElementById('cartTotal').textContent = total + ' ৳';
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h2>লাইন-বাই-লাইন ব্যাখ্যা</h2>
+        <table class="commands-table">
+          <tr><th>ফাংশন/অংশ</th><th>কী করছে?</th><th>সহজ ভাষায়</th></tr>
+          <tr><td><code>searchProducts()</code></td><td>সার্চ বারের টেক্সট ধরে API থেকে সব প্রোডাক্ট এনে ফিল্টার করছে</td><td>"যে নাম দিয়েছো, সেটা খুঁজো"</td></tr>
+          <tr><td><code>addToCart(id)</code></td><td>নির্দিষ্ট id-র প্রোডাক্ট কার্টে যোগ করে; যদি আগে থেকে থাকে তবে qty ১ বাড়ায়</td><td>"এই জিনিসটা কার্টে দাও"</td></tr>
+          <tr><td><code>changeQty(id, delta)</code></td><td>পরিমাণ +১ বা −১ করে; qty শূন্য হলে আইটেম সরিয়ে দেয়</td><td>"একটা বাড়াও / কমান"</td></tr>
+          <tr><td><code>renderCart()</code></td><td>কার্টের সব আইটেম দেখায় এবং মোট দাম আপডেট করে</td><td>"কার্টটা আবার দেখাও"</td></tr>
+          <tr><td><code>cart</code> অ্যারে</td><td>সব সিলেক্ট করা প্রোডাক্ট (id, name, price, qty) জমা থাকে</td><td>"কী কী নিচ্ছে তার তালিকা"</td></tr>
+        </table>
+
+        <h2>ধাপ ৩: টেস্ট করো</h2>
+        <pre><code>node server.js
+termux-open-url http://localhost:3000/bill.html</code></pre>
+
+        <p>এখন সার্চ বারে কিছু লিখলেই প্রোডাক্টের তালিকা আসবে। প্রোডাক্টে ক্লিক করলে সেটা কার্টে যোগ হবে। +/− বাটন দিয়ে পরিমাণ ঠিক করতে পারবে, আর নিচে মোট দাম দেখাবে।</p>
+
+        <h2>আজ তুমি কী শিখলে</h2>
+        <ul>
+          <li><strong>সার্চ বার</strong> — <code>oninput</code> ইভেন্টে রিয়েল-টাইম সার্চ</li>
+          <li><strong>কার্ট অ্যারে</strong> — জাভাস্ক্রিপ্ট অ্যারেতে সাময়িক ডেটা রাখা</li>
+          <li><strong>পরিমাণ কন্ট্রোল</strong> — +/− বাটন দিয়ে qty পরিবর্তন</li>
+          <li><strong>মোট দাম হিসাব</strong> — <code>reduce</code> দিয়ে সব আইটেমের <code>price × qty</code> যোগ করে টোটাল দেখানো</li>
+          <li><strong>ডুপ্লিকেট হ্যান্ডলিং</strong> — একই প্রোডাক্ট আবার যোগ করলে qty শুধু বাড়বে, নতুন করে যোগ হবে না</li>
+        </ul>
+
+        <p style="text-align:center; margin-top:2em; font-weight:500; color:var(--accent);">পরবর্তী পর্বে আমরা <strong>সম্পূর্ণ বিক্রয় (Complete Sale)</strong> ফিচার যোগ করবো — বিল কাটলে অটো স্টক কমে যাবে এবং সেলস রেকর্ড জমা হবে।</p>
+      </div>
+
+      <!-- ========== ইংলিশ কন্টেন্ট ========== -->
+      <div class="en lang-content" data-lang="en">
+        <p>So far we've learned product management (add, edit, delete). Today we'll start building the most important part of any shop—the <strong>Billing Counter</strong>. First, we'll create a search bar and cart where the shopkeeper can easily find products, add them to the cart, and see the total price.</p>
+
+        <h2>Parts of the Billing System</h2>
+        <table class="commands-table">
+          <tr><th>Part</th><th>Function</th></tr>
+          <tr><td>Search Bar</td><td>Real-time product search as you type</td></tr>
+          <tr><td>Product List</td><td>Shows filtered results, click to add to cart</td></tr>
+          <tr><td>Cart</td><td>Holds all selected products temporarily</td></tr>
+          <tr><td>Quantity Control</td><td>+/− buttons to adjust quantity</td></tr>
+          <tr><td>Total Price</td><td>Displays sum of price × quantity for all cart items</td></tr>
+        </table>
+
+        <h2>Step 1: Create bill.html</h2>
+        <pre><code>cd ~/shop-api/public
+micro bill.html</code></pre>
+
+        <h2>Step 2: Add full code with search, cart & total logic</h2>
+        <p>Copy the complete HTML code provided in the Bengali section above—it includes <code>searchProducts()</code>, <code>addToCart()</code>, <code>changeQty()</code>, and <code>renderCart()</code> functions.</p>
+
+        <h2>Step 3: Test</h2>
+        <pre><code>node server.js
+termux-open-url http://localhost:3000/bill.html</code></pre>
+
+        <p style="text-align:center; margin-top:2em; font-weight:500; color:var(--accent);">Next episode: <strong>Complete Sale</strong> — auto stock update and sales record when a bill is finalized.</p>
+      </div>
+
+      <!-- ========== পোস্ট নেভিগেশন (তিন বাটন) ========== -->
+      <div class="post-navigation">
+        <div class="nav-left">
+          <a href="termux_part7.html" class="btn">
+            <span class="bn lang-content active" data-lang="bn">← পূর্ববর্তী</span>
+            <span class="en lang-content" data-lang="en">← Previous</span>
+          </a>
+        </div>
+        <div class="nav-center">
+          <a href="termux_index.html" class="btn" title="সিরিজ হোম">
+            <span class="bn lang-content active" data-lang="bn">🏠 হোম</span>
+            <span class="en lang-content" data-lang="en">🏠 Home</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="termux_part9.html" class="btn">
+            <span class="bn lang-content active" data-lang="bn">পরবর্তী →</span>
+            <span class="en lang-content" data-lang="en">Next →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== কাসডিস কমেন্ট ========== -->
+    <div class="comments-section article-container" style="margin-top: 40px;">
+      <h3>💬 মন্তব্য / Comments</h3>
+      <div id="cusdis_thread"
+           data-host="https://cusdis.com"
+           data-app-id="6bf38bc4-dcc7-46ff-b711-47dcda6d2f5a"
+           data-page-id="termux-part-8"
+           data-page-url="https://banglagolpogalaxy.github.io/portfolio/blog/termux-backend-series/part-8.html"
+           data-page-title="পর্ব ৮: বিলিং সিস্টেম"
+           data-theme="light">
+      </div>
+      <script async src="https://cusdis.com/js/cusdis.es.js"></script>
+    </div>
+  </article>
+</main>
+
+<!-- ========== কন্ট্যাক্ট মোডাল ========== -->
+<div class="contact-modal" id="contactModal">
+  <div class="contact-box">
+    <button class="close-btn" id="closeContactBtn">&times;</button>
+    <h3>
+      <span class="bn lang-content active" data-lang="bn">যোগাযোগ করুন</span>
+      <span class="en lang-content" data-lang="en">Contact Me</span>
+    </h3>
+    <form action="https://formspree.io/f/mpqowyld" method="POST">
+      <input type="text" name="name" placeholder="আপনার নাম / Your Name" required>
+      <input type="email" name="email" placeholder="ইমেইল / Email" required>
+      <textarea name="message" rows="4" placeholder="আপনার বার্তা লিখুন... / Write your message..." required></textarea>
+      <button type="submit">
+        <span class="bn lang-content active" data-lang="bn">পাঠিয়ে দিন</span>
+        <span class="en lang-content" data-lang="en">Send Message</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="social-icons">
+      <a href="https://github.com/BanglaGolpoGalaxy" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://in.linkedin.com/in/milan-biswas-066a5b366" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://profile.indeed.com/p/y5b84wd" target="_blank">
+        <span class="indeed-icon">i</span>
+      </a>
+      <a href="#" id="openContactBtn"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="color:var(--text-sec);">
+      <span class="bn lang-content active" data-lang="bn">© 2026 Milan Biswas | ভালোবাসা আর শেখার ইচ্ছা দিয়ে তৈরি</span>
+      <span class="en lang-content" data-lang="en">© 2026 Milan Biswas | Built with love and passion for learning</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // Language toggle
+    function applyLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+      document.querySelectorAll('.lang-content').forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        applyLang(lang);
+        localStorage.setItem('blogSeriesLang', lang);
+      });
+    });
+
+    // Theme toggle
+    const themeBtn = document.getElementById('themeToggle');
+    function setTheme(theme) {
+      if (theme === 'light') { document.body.classList.add('light'); themeBtn.textContent = '☀️'; }
+      else { document.body.classList.remove('light'); themeBtn.textContent = '🌙'; }
+      localStorage.setItem('blogSeriesTheme', theme);
+    }
+    themeBtn.addEventListener('click', () => setTheme(document.body.classList.contains('light') ? 'dark' : 'light'));
+
+    // Apply saved preferences
+    applyLang(localStorage.getItem('blogSeriesLang') || 'bn');
+    setTheme(localStorage.getItem('blogSeriesTheme') || 'dark');
+
+    // Contact modal
+    const modal = document.getElementById('contactModal');
+    document.getElementById('openContactBtn').addEventListener('click', e => {
+      e.preventDefault();
+      modal.classList.add('show');
+    });
+    document.getElementById('closeContactBtn').addEventListener('click', () => modal.classList.remove('show'));
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
+  })();
+</script>
+
+</body>
+</html>
