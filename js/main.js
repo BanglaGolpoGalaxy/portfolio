@@ -59,7 +59,7 @@ document.querySelectorAll('nav a, .btn[href^="#"]').forEach(a=>a.addEventListene
 
 // ========== AI CHATBOT ==========
 // ⚠️ নিচের Gemini API Key টা বসাও
-const GEMINI_API_KEY = 'AIzaSyCzM_e8tOfKJrFiYH7Suu99JlB9l8j8XLA';
+const GEMINI_API_KEY = 'YOUR_GAIzaSyCzM_e8tOfKJrFiYH7Suu99JlB9l8j8XLAEMINI_API_KEY';
 
 const MILAN_CONTEXT = `You are Milan's AI assistant on his portfolio website.
 Milan Biswas is a full-stack web developer who builds apps entirely from a mobile phone using Termux.
@@ -101,26 +101,33 @@ async function sendMessage() {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{
-                        text: `${MILAN_CONTEXT}\n\nUser question: ${message}`
+        const response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{ text: `${MILAN_CONTEXT}\n\nUser question: ${message}` }]
                     }]
-                }]
-            })
-        });
+                })
+            }
+        );
+
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`API error ${response.status}: ${errText}`);
+        }
 
         const data = await response.json();
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not process that. Please try again.';
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text ||
+                      'Sorry, I could not process that. Please try again.';
 
         document.getElementById(`typing-${typingId}`)?.remove();
         messagesDiv.innerHTML += `<div class="ai-message bot">${reply}</div>`;
     } catch (err) {
         document.getElementById(`typing-${typingId}`)?.remove();
-        messagesDiv.innerHTML += `<div class="ai-message bot">❌ Error: Unable to reach AI. Please check your API key.</div>`;
+        messagesDiv.innerHTML += `<div class="ai-message bot">❌ ${err.message}</div>`;
     }
 
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
