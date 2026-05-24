@@ -41,6 +41,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
+  <link rel="stylesheet" href="css/style.css">
+  
   <!-- ========== JSON-LD SCHEMA ========== -->
   <script type="application/ld+json">
   {
@@ -69,203 +71,6 @@
     gtag('js', new Date());
     gtag('config', 'G-DQ4HS2936B');
   </script>
-  
-  <style>
-    * { margin:0; padding:0; box-sizing: border-box; }
-    
-    :root {
-      --bg: #020617;
-      --surface: #0f172a;
-      --surface2: #1e293b;
-      --text: #e0e0e0;
-      --text-sec: #94a3b8;
-      --accent: #38bdf8;
-      --accent2: #a78bfa;
-      --accent-hover: #facc15;
-      --border: #1e293b;
-      --header-bg: linear-gradient(135deg, #0b0f2a, #020617);
-      --exp-card-1: linear-gradient(135deg, #2a1a2e, #1a0f1e);
-      --exp-card-2: linear-gradient(135deg, #1a2e2a, #0f1e1a);
-      --exp-card-3: linear-gradient(135deg, #2e2a1a, #1e1a0f);
-      --exp-card-4: linear-gradient(135deg, #1a2a2e, #0f1a1e);
-      --exp-card-5: linear-gradient(135deg, #2e1a2a, #1e0f1a);
-      --exp-card-6: linear-gradient(135deg, #1a1a2e, #0f0f1e);
-      --exp-card-7: linear-gradient(135deg, #3a2a1e, #1f180f);
-      --card-shadow: 0 8px 30px rgba(0,0,0,0.3);
-      --font-main: 'Poppins', sans-serif;
-      --tag-bg: #334155;
-      --tag-text: #cbd5e1;
-      --skill-bg: linear-gradient(135deg, #1e2a3a, #0f1820);
-      --skill-text: #bae6fd;
-      --skill-border: #38bdf8;
-      --about-me-bg: linear-gradient(135deg, #1e293b, #162032);
-      --about-skill-bg: linear-gradient(135deg, #1e2a4a, #121a2f);
-    }
-    body.light {
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --text: #0f172a;
-      --text-sec: #475569;
-      --accent: #2563eb;
-      --accent2: #7c3aed;
-      --accent-hover: #1e40af;
-      --border: #e2e8f0;
-      --header-bg: linear-gradient(135deg, #cbd5e1, #f1f5f9);
-      --exp-card-1: linear-gradient(135deg, #fdf2f8, #fce7f3);
-      --exp-card-2: linear-gradient(135deg, #f0fdf4, #dcfce7);
-      --exp-card-3: linear-gradient(135deg, #fefce8, #fef08a);
-      --exp-card-4: linear-gradient(135deg, #e0f7fa, #b2ebf2);
-      --exp-card-5: linear-gradient(135deg, #ede7f6, #d1c4e9);
-      --exp-card-6: linear-gradient(135deg, #fff8e1, #ffecb3);
-      --exp-card-7: linear-gradient(135deg, #fff8e1, #ffecb3);
-      --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --tag-bg: #e2e8f0;
-      --tag-text: #334155;
-      --skill-bg: linear-gradient(135deg, #eff6ff, #dbeafe);
-      --skill-text: #1e40af;
-      --skill-border: #2563eb;
-      --about-me-bg: linear-gradient(135deg, #f8fafc, #e2e8f0);
-      --about-skill-bg: linear-gradient(135deg, #eff6ff, #dbeafe);
-    }
-    html, body { width: 100%; overflow-x: hidden; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-main);
-      line-height: 1.6;
-      transition: background 0.3s, color 0.2s;
-    }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
-    
-    /* HEADER */
-    header {
-      background: var(--header-bg);
-      border-bottom: 2px solid transparent;
-      padding: 14px 0;
-      width: 100%;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-      transition: 0.3s;
-    }
-    @media (min-width: 600px) {
-      header { position: fixed; top: 0; left: 0; }
-      header.scrolled { border-bottom-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
-      body { padding-top: 100px; }
-    }
-    .header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 1100px; margin: 0 auto; padding: 0 16px; }
-    .header-info { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .profile-img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); transition: 0.3s; flex-shrink: 0; }
-    .profile-img:hover { transform: scale(1.05); border-color: var(--accent-hover); }
-    .header-text h1 { color: var(--accent); font-size: 1.4rem; font-weight: 600; letter-spacing: -0.5px; line-height: 1.2; }
-    .tagline { color: var(--text-sec); font-size: 0.8rem; font-weight: 400; line-height: 1.3; }
-    nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-    nav a { color: var(--text); text-decoration: none; padding: 4px 10px; border-radius: 40px; transition: 0.2s; font-weight: 500; font-size: 0.8rem; }
-    nav a:hover { background: var(--accent); color: #020617; }
-    .theme-toggle { background: rgba(255,255,255,0.1); border: 1px solid var(--accent); border-radius: 40px; padding: 6px 12px; cursor: pointer; font-size: 1rem; color: var(--text); transition: 0.3s; white-space: nowrap; }
-    .theme-toggle:hover { background: var(--accent); color: #020617; }
-    
-    /* HERO */
-    .hero { text-align: center; padding: 40px 0 30px; }
-    .hero h2 { font-size: 1.6rem; color: var(--accent); margin-bottom: 12px; min-height: 2.5rem; word-break: break-word; }
-    #typed-text { border-right: 2px solid var(--accent); padding-right: 4px; animation: blink 0.7s step-end infinite; }
-    @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--accent); } }
-    .hero p { max-width: 600px; margin: 0 auto 20px; color: var(--text-sec); font-weight: 300; font-size: 0.95rem; padding: 0 8px; }
-    .btn { background: var(--accent); color: #020617; padding: 8px 24px; border-radius: 40px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.25s ease; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(56,189,248,0.15); }
-    .btn:hover { transform: translateY(-3px); background: var(--accent-hover); box-shadow: 0 10px 24px rgba(56,189,248,0.35); }
-    
-    /* SECTIONS */
-    .section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-    .section-title { font-size: 1.5rem; color: var(--accent); border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 24px; font-weight: 600; }
-    
-    /* ABOUT CARDS (stacked) */
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-    .about-card { border: 1px solid var(--border); border-radius: 24px; padding: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-    .about-card:first-child { background: var(--about-me-bg); }
-    .about-card:last-child { background: var(--about-skill-bg); }
-    .about-card h3 { color: var(--accent); margin-bottom: 14px; }
-    .about-card p { font-size: 0.95rem; line-height: 1.8; color: var(--text); opacity: 0.9; font-weight: 300; letter-spacing: 0.01em; }
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-    .skill-tag { background: var(--skill-bg); color: var(--skill-text); border: 1px solid var(--skill-border); padding: 6px 14px; border-radius: 22px; font-size: 0.8rem; font-weight: 500; }
-    
-    /* CARDS */
-    .card-section { margin: 16px 0; }
-    .scroll-wrapper { margin-bottom: 20px; }
-    .scroll-cards { display: flex; overflow-x: auto; gap: 12px; padding: 8px 0 16px; scrollbar-width: thin; align-items: stretch; }
-    .scroll-cards::-webkit-scrollbar { height: 6px; }
-    .scroll-cards::-webkit-scrollbar-track { background: var(--border); border-radius: 10px; }
-    .scroll-cards::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
-    .grid-cards { display: none; grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
-    .card-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; }
-    .scroll-cards > .card-link { flex: 0 0 285px; width: 285px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px; transition: 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; flex: 1; word-break: break-word; position: relative; height: 100%; min-height: 100%; }
-    .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--card-shadow); }
-    .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 8px; background: #1e293b; display: block; }
-    .card iframe { width: 100%; height: 160px; border-radius: 12px; margin-bottom: 8px; border: none; overflow: hidden; }
-    .card h3 { color: var(--accent); margin-bottom: 6px; font-weight: 600; font-size: 0.95rem; }
-    .card p { color: var(--text-sec); font-size: 0.8rem; margin: 4px 0 0; line-height: 1.4; flex: 1; }
-    .blog-meta { font-size: 0.7rem; color: var(--text-sec); margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .card-footer { margin-top: auto; padding-top: 10px; }
-    .card ul { list-style: none; padding: 0; margin: 0; }
-    .card ul li { color: var(--text-sec); font-size: 0.8rem; line-height: 1.5; padding-left: 16px; position: relative; margin-bottom: 2px; }
-    .card ul li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
-    
-    /* TECH TAGS */
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-    .tech-tags span { background: var(--tag-bg); color: var(--tag-text); padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 500; }
-    
-    .experience-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-    .experience-grid .card { border-radius: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.2); }
-    .experience-grid .card:nth-child(1) { background: var(--exp-card-1); }
-    .experience-grid .card:nth-child(2) { background: var(--exp-card-2); }
-    .experience-grid .card:nth-child(3) { background: var(--exp-card-3); }
-    .experience-grid .card:nth-child(4) { background: var(--exp-card-4); }
-    .experience-grid .card:nth-child(5) { background: var(--exp-card-5); }
-    .experience-grid .card:nth-child(6) { background: var(--exp-card-6); }
-    
-    .see-more-btn { text-align: center; margin: 16px 0 8px; }
-    .see-more-btn button { background: var(--surface); border: 1px solid var(--accent); color: var(--accent); padding: 6px 18px; border-radius: 40px; cursor: pointer; font-weight: 500; transition: 0.2s; font-family: var(--font-main); font-size: 0.85rem; }
-    .see-more-btn button:hover { background: var(--accent); color: #020617; }
-    .job-date { font-size: 0.75rem; color: var(--accent); margin-bottom: 4px; font-weight: 500; }
-    
-    /* CONTACT */
-    .contact-form { max-width: 500px; margin: 0 auto; }
-    .contact-form .form-group { margin-bottom: 1rem; }
-    .contact-form label { display: block; margin-bottom: 0.2rem; color: var(--text); font-weight: 500; font-size: 0.9rem; }
-    .contact-form input, .contact-form textarea { width: 100%; padding: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: var(--font-main); transition: border 0.2s; font-size: 0.9rem; }
-    .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent); }
-    .contact-form button { background: var(--accent); color: #020617; border: none; padding: 10px 24px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(56,189,248,0.15); }
-    .contact-form button:hover { background: var(--accent-hover); box-shadow: 0 10px 24px rgba(56,189,248,0.35); transform: translateY(-2px); }
-    
-    /* FOOTER */
-    footer { background: var(--surface); border-top: 1px solid var(--border); text-align: center; padding: 24px 0; margin-top: 30px; }
-    .social-icons { display: flex; justify-content: center; align-items: center; gap: 16px; }
-    .social-icons a { color: var(--text-sec); font-size: 1.6rem; transition: 0.2s; text-decoration: none; }
-    .social-icons a:hover { color: var(--accent); transform: translateY(-2px); }
-    .indeed-icon { display: inline-block; width: 1.6rem; height: 1.6rem; border-radius: 50%; text-align: center; line-height: 1.6rem; color: white; font-weight: bold; font-family: Arial, sans-serif; font-size: 0.9rem; transition: 0.2s; background-color: #2a5b84; }
-    .social-icons a:hover .indeed-icon { background-color: var(--accent); color: #020617; }
-    
-    .scroll-top { position: fixed; bottom: 16px; right: 16px; background: var(--accent); color: #020617; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 1.2rem; cursor: pointer; z-index: 99; opacity: 0; visibility: hidden; transition: 0.2s; }
-    .scroll-top.show { opacity: 1; visibility: visible; }
-    
-    /* DESKTOP */
-    @media (min-width: 600px) {
-      .container { padding: 0 24px; }
-      header { padding: 14px 0; }
-      .header-flex { padding: 0 24px; }
-      .profile-img { width: 70px; height: 70px; }
-      .header-text h1 { font-size: 1.6rem; }
-      .tagline { font-size: 0.9rem; }
-      nav a { font-size: 0.9rem; padding: 4px 12px; }
-      .hero { padding: 20px 0 30px; }
-      .hero h2 { font-size: 2rem; }
-      .hero p { font-size: 1rem; }
-      .section-title { font-size: 1.8rem; }
-      .grid-cards { grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); }
-      .experience-grid { grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); }
-      .card img { height: 160px; }
-      .blog-meta { font-size: 0.75rem; }
-    }
-  </style>
 </head>
 <body>
 
@@ -386,65 +191,25 @@
   </div>
 </footer>
 
+<!-- ========== AI CHATBOT UI ========== -->
+<button id="ai-chat-btn" onclick="toggleChat()" title="Ask Milan's AI">💬</button>
+
+<div id="ai-chat-window">
+    <div id="ai-chat-header">
+        <span>🤖 Milan's AI Assistant</span>
+        <button id="ai-chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div id="ai-chat-messages">
+        <div class="ai-message bot">👋 Hello! I'm Milan's AI assistant. Ask me about his projects, skills, or how to contact him!</div>
+    </div>
+    <div id="ai-chat-input-area">
+        <input type="text" id="ai-chat-input" placeholder="Ask something..." onkeypress="if(event.key==='Enter') sendMessage()">
+        <button id="ai-chat-send" onclick="sendMessage()">➤</button>
+    </div>
+</div>
+
 <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">↑</button>
 
-<script>
-  const projects = [
-    { 
-      title:"🏛️ Aadim Vault (আদিম ভল্ট)", 
-      description:"A Reliquium — Where Forgotten Objects Live Again. A global digital vault preserving heritage through stories, auctions & exchange. Built entirely on mobile with Termux.", 
-      image:"images/aadimvault.jpg",
-      link:"https://aadimvault.onrender.com", 
-      btnText:"🔧 Under Development", 
-      tech:["Node.js","Express","SQLite","JWT","Multer","Render","Termux","HTML","CSS","JS"]
-    },
-    { title:"🏪 Shop Manager System", description:"Full-stack shop management system with billing, inventory, QR scanner, sales reports, JWT auth, and SQLite database. Deployed live on Render.", image:"images/shop_management.jpg", link:"https://shop-manager-ywa4.onrender.com", btnText:"Try Live Demo →", tech:["Node.js","Express","SQLite","JWT","QR","Render"] },
-    { title:"🌌 Bangla Golpo Galaxy", description:"A fully functional Bengali story website built with HTML, CSS, JS. Includes search, dark mode, comment system (Cusdis).", image:"images/bangla_golpo_galaxy.jpg", link:"https://banglagolpogalaxy.github.io", btnText:"Live Demo", tech:["HTML","CSS","JS","Cusdis"] },
-    { title:"📘 Banking Knowledge Book", description:"A complete Bengali guide to banking products, accounts, loans, investments, EMI calculation, and interview Q&A.", image:"images/banking_knowledge.jpg", link:"books/banking-knowledge/index.html", btnText:"Read Book →", tech:["HTML","CSS","JS","Bilingual"] },
-    { title:"🧮 Super Calculator Tool", description:"All-in-1 calculator: Flower market, EMI, BMI, Age, length, weight, volume, temperature, Profit-Loss.", image:"images/super_calculator.jpg", link:"super_calculator/super_calculator.html", btnText:"Use Calculator →", tech:["HTML","CSS","JS"] },
-    { title:"📁 Portfolio Website", description:"This very portfolio – responsive, dark/light mode, smooth scroll, contact form.", image:"images/portfolio_cover.jpg", link:"https://banglagolpogalaxy.github.io/portfolio/", btnText:"View Live →", tech:["HTML","CSS","JS","GitHub Pages"] }
-  ];
-  const blogPosts = [
-    { title:"My Web Development Journey", excerpt:"How I learned to code using just a mobile phone – no laptop, no desktop.", readTime:"7 min read", languages:"🌐 বাংলা · English · हिन्दी", image:"blog/images/coding_journy_card.jpg", link:"blog/coding_journey.html" },
-    { title:"Backend on Mobile: Termux Tutorial Series", excerpt:"Learn backend development by building a real shop management system.", readTime:"Series", languages:"🌐 বাংলা · English", image:"blog/images/termux_cover.jpg", link:"blog/termux_index.html" },
-    { title:"How I Built a Multi-Calculator Tool", excerpt:"A step-by-step guide to creating 7 calculators in one page using HTML/CSS/JS.", readTime:"6 min read", languages:"🌐 বাংলা · English . हिंदी", image:"blog/images/multi_cal_blog_card.jpg", link:"blog/how_i_built_multi_calculator.html" },
-    { title:"Dark Mode Toggle: Simple CSS + JS Trick", excerpt:"How I added dark/light mode to my portfolio and banking book using CSS variables.", readTime:"10 min read", languages:"🌐 বাংলা · English . हिंदी", image:"blog/images/darkmode.jpg", link:"blog/dark-mode-trick.html" },
-    { title:"Adding Bilingual Toggle to Your Website", excerpt:"Learn how to support multiple languages on your blog or portfolio.", readTime:"8 min read", languages:"🌐 বাংলা · English . हिंदी", image:"blog/images/language_toggel.jpg", link:"blog/en_bn_toggle.html" },
-    { title:"Termux কমান্ড চিট শিট – সম্পূর্ণ গাইড", excerpt:"Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায়। ফাইল, গিট, নেটওয়ার্ক, Node.js, বাস্তব প্রজেক্ট কমান্ড সহ।", readTime:"15 min read", languages:"🌐 বাংলা · English", image:"blog/images/termux_all_command.jpg", link:"blog/termux_all_command.html" }
-  ];
-
-  function createProjectCard(p){ 
-    const imgHtml = p.image && p.image.endsWith('.html') 
-      ? `<iframe src="${p.image}" style="width:100%;height:160px;border:none;overflow:hidden;border-radius:12px;margin-bottom:8px;" scrolling="no"></iframe>`
-      : `<img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'">`;
-    return `<a href="${p.link}" class="card-link" target="_blank" rel="noopener"><div class="card">${imgHtml}<h3>${p.title}</h3><p>${p.description}</p><div class="tech-tags">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div><div class="card-footer"><span class="btn">${p.btnText}</span></div></div></a>`; 
-  }
-  function createBlogCard(p){ return `<a href="${p.link}" class="card-link"><div class="card"><img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'"><h3>${p.title}</h3><div class="blog-meta"><span>⏱️ ${p.readTime}</span><span>${p.languages}</span></div><p>${p.excerpt}</p><div class="card-footer"><span style="color:var(--accent);font-weight:500;font-size:0.85rem;">→ Read More</span></div></div></a>`; }
-
-  function populate(s,g,items,fn){ const a=document.getElementById(s),b=document.getElementById(g); if(!a||!b)return; a.innerHTML=items.map(fn).join(''); b.innerHTML=items.map(fn).join(''); }
-  populate("projectsScroll","projectsGrid",projects,createProjectCard);
-  populate("blogScroll","blogGrid",blogPosts,createBlogCard);
-
-  function setupMore(btn,wrapper,grid){ const b=document.getElementById(btn),w=document.getElementById(wrapper)?.parentElement,g=document.getElementById(grid); let on=false; b.onclick=()=>{on=!on;w.style.display=on?'none':'block';g.style.display=on?'grid':'none';b.textContent=on?'← Back to Compact View':'See All Projects →';}; }
-  setupMore("seeMoreProjects","projectsScroll","projectsGrid"); setupMore("seeMoreBlog","blogScroll","blogGrid");
-
-  // Typing
-  const phrases=["Building web skills to empower Bengali learners","Code. Create. Empower.","Sharing what I learn"]; let i=0,j=0,del=false; const el=document.getElementById("typed-text");
-  function type(){ const c=phrases[i]; el.textContent=c.substring(0,j); if(!del){j++;if(j>c.length){del=true;setTimeout(type,1500);return}}else{j--;if(j===0){del=false;i=(i+1)%phrases.length}} setTimeout(type,del?60:120); }
-  type();
-
-  // Theme
-  const tb=document.getElementById("themeToggle"); tb.onclick=()=>{document.body.classList.toggle("light");tb.innerHTML=document.body.classList.contains("light")?"☀️ Light":"🌙 Dark";localStorage.setItem("portfolioTheme",document.body.classList.contains("light")?"light":"dark");};
-  if(localStorage.getItem("portfolioTheme")==="light"){document.body.classList.add("light");tb.innerHTML="☀️ Light";}
-
-  // Scroll top
-  const st=document.getElementById("scrollTopBtn"); window.onscroll=()=>st.classList.toggle("show",scrollY>300); st.onclick=()=>scrollTo({top:0,behavior:"smooth"});
-
-  // Sticky shadow (desktop)
-  window.addEventListener("scroll",()=>{if(innerWidth>=600){const h=document.getElementById("mainHeader");h.classList.toggle("scrolled",scrollY>10);}});
-
-  // Smooth scroll
-  document.querySelectorAll('nav a, .btn[href^="#"]').forEach(a=>a.addEventListener("click",function(e){const h=this.getAttribute("href");if(h&&h!=="#"&&h.startsWith("#")){e.preventDefault();document.querySelector(h)?.scrollIntoView({behavior:"smooth"});}}));
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
