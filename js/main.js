@@ -59,7 +59,7 @@ document.querySelectorAll('nav a, .btn[href^="#"]').forEach(a=>a.addEventListene
 
 // ========== AI CHATBOT ==========
 // ⚠️ নিচের Gemini API Key টা বসাও
-const GEMINI_API_KEY = 'YOUR_GAIzaSyCzM_e8tOfKJrFiYH7Suu99JlB9l8j8XLAEMINI_API_KEY';
+const GEMINI_API_KEY = 'GAIzaSyCzM_e8tOfKJrFiYH7Suu99JlB9l8j8XLAEMINI_API_KEY';
 
 const MILAN_CONTEXT = `You are Milan's AI assistant on his portfolio website.
 Milan Biswas is a full-stack web developer who builds apps entirely from a mobile phone using Termux.
