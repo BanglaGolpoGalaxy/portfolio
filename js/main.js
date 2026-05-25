@@ -59,7 +59,7 @@ document.querySelectorAll('nav a, .btn[href^="#"]').forEach(a=>a.addEventListene
 
 // ========== AI CHATBOT ==========
 // ⚠️ নিচের Gemini API Key টা বসাও
-const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY';
+const GEMINI_API_KEY = 'AIzaSyCzM_e8tOfKJrFiYH7Suu99JlB9l8j8XLA';
 
 const MILAN_CONTEXT = `You are Milan's AI assistant. Milan builds full-stack apps from a phone. Projects: AadimVault, Shop Manager, Super Calculator, Bangla Golpo Galaxy, Banking Book, Exam Guide. Skills: HTML, CSS, JS, Node.js, Express, SQLite, Git, Render. Answer in user's language. Keep it very short. If irrelevant, politely refuse.`;
 
