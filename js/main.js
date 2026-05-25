@@ -59,26 +59,9 @@ document.querySelectorAll('nav a, .btn[href^="#"]').forEach(a=>a.addEventListene
 
 // ========== AI CHATBOT ==========
 // ⚠️ নিচের Gemini API Key টা বসাও
-const GEMINI_API_KEY = 'GAIzaSyCzM_e8tOfKJrFiYH7Suu99JlB9l8j8XLAEMINI_API_KEY';
+const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY';
 
-const MILAN_CONTEXT = `You are Milan's AI assistant on his portfolio website.
-Milan Biswas is a full-stack web developer who builds apps entirely from a mobile phone using Termux.
-His major projects:
-1. AadimVault (https://aadimvault.onrender.com) - A global digital vault for heritage & stories. Built with Node.js, Express, SQLite, JWT, Multer.
-2. Shop Manager System (https://shop-manager-ywa4.onrender.com) - Full-stack shop management with billing, inventory, QR scanner, JWT auth.
-3. Super Calculator PWA - All-in-1 calculator: EMI, BMI, Age, Length, Weight, Volume, Temperature, Profit-Loss, Geometry.
-4. Bangla Golpo Galaxy (https://banglagolpogalaxy.github.io) - A Bengali story website with dark mode, search, comment system.
-5. Banking Knowledge Book - Complete Bengali guide to banking products.
-6. Exam Guide India - Free exam preparation guide for WBCS, PSC, SSC, Railway.
-His skills: HTML, CSS, JavaScript, Node.js, Express, SQLite, JWT, Git, GitHub, Termux, Render deployment, PWA.
-He writes free Bengali tutorials on web development.
-He is open to freelance projects, collaborations, and job opportunities.
-If users ask about coding or programming, you may answer from your general knowledge and help them learn.
-If users ask about Milan personally (his hobbies, favorite food, favorite music, etc.), tell them: "Milan loves reading historical books, his favorite food is Bengali traditional rice with fish curry, and he enjoys listening to Rabindra Sangeet and folk music."
-If asked something completely irrelevant (like politics, sports, entertainment), politely say: "I'm Milan's personal assistant. I can help you with his portfolio, projects, coding questions, or contact him directly."
-If someone faces a critical problem you cannot solve, ask them to contact Milan directly via the contact form on the portfolio.
-Keep answers short, friendly, and within 2-3 sentences.
-If the user asks in Bengali, respond in Bengali. If they ask in English, respond in English. If they ask in Hindi, respond in Hindi.`;
+const MILAN_CONTEXT = `You are Milan's AI assistant. Milan builds full-stack apps from a phone. Projects: AadimVault, Shop Manager, Super Calculator, Bangla Golpo Galaxy, Banking Book, Exam Guide. Skills: HTML, CSS, JS, Node.js, Express, SQLite, Git, Render. Answer in user's language. Keep it very short. If irrelevant, politely refuse.`;
 
 let chatOpen = false;
 function toggleChat() {
@@ -100,35 +83,53 @@ async function sendMessage() {
     messagesDiv.innerHTML += `<div class="ai-message bot" id="typing-${typingId}">⏳ Typing...</div>`;
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-    try {
-        const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{ text: `${MILAN_CONTEXT}\n\nUser question: ${message}` }]
-                    }]
-                })
+    // ====== রেট-লিমিট হ্যান্ডলার ======
+    let reply = '';
+    let success = false;
+    const MAX_RETRIES = 3;
+    const BASE_DELAY = 3000;
+
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        try {
+            const response = await fetch(
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `${MILAN_CONTEXT}\n\nUser question: ${message}` }]
+                        }]
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                const errText = await response.text();
+                if (response.status === 429) {
+                    document.getElementById(`typing-${typingId}`).textContent = `⏳ Rate limit hit, retrying in ${(attempt * BASE_DELAY) / 1000}s...`;
+                    await new Promise(r => setTimeout(r, attempt * BASE_DELAY));
+                    continue;
+                }
+                throw new Error(`API error ${response.status}: ${errText}`);
             }
-        );
 
-        if (!response.ok) {
-            const errText = await response.text();
-            throw new Error(`API error ${response.status}: ${errText}`);
+            const data = await response.json();
+            reply = data.candidates?.[0]?.content?.parts?.[0]?.text ||
+                    'Sorry, I could not process that. Please try again.';
+            success = true;
+            break;
+        } catch (err) {
+            if (attempt === MAX_RETRIES) {
+                reply = `❌ ${err.message}`;
+            } else {
+                document.getElementById(`typing-${typingId}`).textContent = `⏳ Error, retrying in ${(attempt * BASE_DELAY) / 1000}s...`;
+                await new Promise(r => setTimeout(r, attempt * BASE_DELAY));
+            }
         }
-
-        const data = await response.json();
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text ||
-                      'Sorry, I could not process that. Please try again.';
-
-        document.getElementById(`typing-${typingId}`)?.remove();
-        messagesDiv.innerHTML += `<div class="ai-message bot">${reply}</div>`;
-    } catch (err) {
-        document.getElementById(`typing-${typingId}`)?.remove();
-        messagesDiv.innerHTML += `<div class="ai-message bot">❌ ${err.message}</div>`;
     }
 
+    document.getElementById(`typing-${typingId}`)?.remove();
+    messagesDiv.innerHTML += `<div class="ai-message bot">${reply}</div>`;
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
