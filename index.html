@@ -196,11 +196,22 @@
 
 <div id="ai-chat-window">
     <div id="ai-chat-header">
-        <span>🤖 Milan's AI Assistant</span>
+        <span>🤖 মিলান সহায়</span>
         <button id="ai-chat-close" onclick="toggleChat()">✕</button>
     </div>
     <div id="ai-chat-messages">
-        <div class="ai-message bot">👋 Hello! I'm Milan's AI assistant. Ask me about his projects, skills, or how to contact him!</div>
+        <div class="ai-message bot">
+            👋 নমস্কার! আমি <b>মিলান সহায়</b> — মিলানের পোর্টফোলিও সহকারী।<br><br>
+            আপনি চাইলে নিচের বাটনে ক্লিক করেই প্রশ্ন করতে পারেন, অথবা সরাসরি টাইপ করতে পারেন।
+        </div>
+    </div>
+    <!-- সাজেস্টেড বাটন -->
+    <div id="ai-suggestions">
+        <button class="suggest-btn" onclick="askSuggested('What projects has Milan built?')">🚀 প্রজেক্ট</button>
+        <button class="suggest-btn" onclick="askSuggested('What are your skills?')">🛠️ স্কিল</button>
+        <button class="suggest-btn" onclick="askSuggested('How can I contact you?')">📧 যোগাযোগ</button>
+        <button class="suggest-btn" onclick="askSuggested('What is AadimVault?')">🏛️ আদিম ভল্ট</button>
+        <button class="suggest-btn" onclick="askSuggested('Show me Termux tutorials')">📱 টিউটোরিয়াল</button>
     </div>
     <div id="ai-chat-input-area">
         <input type="text" id="ai-chat-input" placeholder="Ask something..." onkeypress="if(event.key==='Enter') sendMessage()">
