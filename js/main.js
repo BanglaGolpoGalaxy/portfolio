@@ -1,4 +1,4 @@
-// ========== প্রকল্প ও ব্লগ ডেটা ==========
+// ========== PROJECT & BLOG DATA ==========
 const projects = [
   { 
     title:"🏛️ Aadim Vault (আদিম ভল্ট)", 
@@ -23,7 +23,7 @@ const blogPosts = [
   { title:"Termux কমান্ড চিট শিট – সম্পূর্ণ গাইড", excerpt:"Termux-এর বেসিক থেকে অ্যাডভান্সড সব কমান্ড বাংলায়। ফাইল, গিট, নেটওয়ার্ক, Node.js, বাস্তব প্রজেক্ট কমান্ড সহ।", readTime:"15 min read", languages:"🌐 বাংলা · English", image:"blog/images/termux_all_command.jpg", link:"blog/termux_all_command.html" }
 ];
 
-// ========== কার্ড তৈরির ফাংশন ==========
+// ========== CARD FUNCTIONS ==========
 function createProjectCard(p){ 
   const imgHtml = p.image && p.image.endsWith('.html') 
     ? `<iframe src="${p.image}" style="width:100%;height:160px;border:none;overflow:hidden;border-radius:12px;margin-bottom:8px;" scrolling="no"></iframe>`
@@ -39,78 +39,74 @@ populate("blogScroll","blogGrid",blogPosts,createBlogCard);
 function setupMore(btn,wrapper,grid){ const b=document.getElementById(btn),w=document.getElementById(wrapper)?.parentElement,g=document.getElementById(grid); let on=false; b.onclick=()=>{on=!on;w.style.display=on?'none':'block';g.style.display=on?'grid':'none';b.textContent=on?'← Back to Compact View':'See All Projects →';}; }
 setupMore("seeMoreProjects","projectsScroll","projectsGrid"); setupMore("seeMoreBlog","blogScroll","blogGrid");
 
-// ========== টাইপিং অ্যানিমেশন ==========
+// ========== TYPING ANIMATION ==========
 const phrases=["Building web skills to empower Bengali learners","Code. Create. Empower.","Sharing what I learn"]; let i=0,j=0,del=false; const el=document.getElementById("typed-text");
 function type(){ const c=phrases[i]; el.textContent=c.substring(0,j); if(!del){j++;if(j>c.length){del=true;setTimeout(type,1500);return}}else{j--;if(j===0){del=false;i=(i+1)%phrases.length}} setTimeout(type,del?60:120); }
 type();
 
-// ========== থিম ==========
+// ========== THEME ==========
 const tb=document.getElementById("themeToggle"); tb.onclick=()=>{document.body.classList.toggle("light");tb.innerHTML=document.body.classList.contains("light")?"☀️ Light":"🌙 Dark";localStorage.setItem("portfolioTheme",document.body.classList.contains("light")?"light":"dark");};
 if(localStorage.getItem("portfolioTheme")==="light"){document.body.classList.add("light");tb.innerHTML="☀️ Light";}
 
-// ========== স্ক্রল টপ ==========
+// ========== SCROLL TOP ==========
 const st=document.getElementById("scrollTopBtn"); window.onscroll=()=>st.classList.toggle("show",scrollY>300); st.onclick=()=>scrollTo({top:0,behavior:"smooth"});
 
-// ========== স্টিকি হেডার ==========
+// ========== STICKY HEADER ==========
 window.addEventListener("scroll",()=>{if(innerWidth>=600){const h=document.getElementById("mainHeader");h.classList.toggle("scrolled",scrollY>10);}});
 
-// ========== স্মুথ স্ক্রল ==========
+// ========== SMOOTH SCROLL ==========
 document.querySelectorAll('nav a, .btn[href^="#"]').forEach(a=>a.addEventListener("click",function(e){const h=this.getAttribute("href");if(h&&h!=="#"&&h.startsWith("#")){e.preventDefault();document.querySelector(h)?.scrollIntoView({behavior:"smooth"});}}));
 
-// ========== অফলাইন AI CHATBOT: "মিলান সহায়" ==========
+// ========== OFFLINE AI CHATBOT ==========
 const offlineResponses = [
-  // === অভিবাদন ও পরিচয় ===
-  { keywords: ["hello", "hi", "hey", "হাই", "হ্যালো", "নমস্কার", "নমস্তে"], reply: "👋 নমস্কার! আমি <b>মিলান সহায়</b> — মিলানের পোর্টফোলিও সহকারী। আপনি মিলানের প্রজেক্ট, স্কিল, টিউটোরিয়াল বা কন্ট্যাক্ট সম্পর্কে জানতে পারেন। কীভাবে সাহায্য করতে পারি?" },
-  { keywords: ["thanks", "thank", "ধন্যবাদ", "থ্যাংকস", "থ্যাঙ্কু"], reply: "😊 আপনাকে স্বাগতম! আরও কিছু জানতে চাইলে জিজ্ঞেস করতে পারেন।" },
-  { keywords: ["bye", "tata", "বিদায়", "টাটা", "goodbye"], reply: "👋 ভালো থাকবেন! আবার দেখা হবে।" },
+  // Greetings & Identity
+  { keywords: ["hello", "hi", "hey"], reply: "👋 Hello! I'm <b>Milan's AI Assistant</b>. Ask me about his projects, skills, tutorials, or how to contact him." },
+  { keywords: ["thanks", "thank", "thank you"], reply: "😊 You're welcome! Feel free to ask anything else." },
+  { keywords: ["bye", "tata", "goodbye"], reply: "👋 Goodbye! Come back anytime." },
   
-  // === রোবটের নাম ও পরিচয় ===
-  { keywords: ["তোমার নাম", "your name", "নাম কী", "কে তুমি", "who are you"], reply: "আমার নাম <b>মিলান সহায়</b>। আমি মিলানের পোর্টফোলিওর এআই সহকারী।" },
-  { keywords: ["তোমাকে কে বানিয়েছে", "কে তৈরি করেছে", "তোমার মালিক কে", "who made you", "who created you", "who is your owner"], reply: "আমাকে বানিয়েছেন <b>মিলান বিশ্বাস</b> — একজন ক্রিয়েটর, যিনি পুরো মোবাইল ফোন দিয়ে ফুল-স্ট্যাক ওয়েব অ্যাপ তৈরি করেন! 😊" },
-  { keywords: ["তুমি কি মানুষ", "তুমি কি রোবট", "তুমি কি এআই", "are you human", "are you ai"], reply: "আমি একজন এআই সহকারী, কিন্তু মিলানের ভালোবাসায় আমি প্রাণ পেয়েছি! 🤖❤️" },
-  { keywords: ["তোমার বয়স কত", "তুমি কতদিনের", "how old are you"], reply: "আমি সদ্যোজাত! মিলান আমাকে ২০২৬ সালে বানিয়েছে। এখনো শিশু, কিন্তু দারুণ শিখছি! 👶📚" },
-  
-  // === মিলানের পরিচয় ===
-  { keywords: ["who is milan", "মিলান কে", "about milan", "মিলান বিশ্বাস"], reply: "👤 <b>Milan Biswas</b> — B.Sc গ্রাজুয়েট (২০২১), বর্তমানে ITI COPA ট্রেইনি। তিনি পুরো মোবাইল ফোন (Termux) দিয়ে ফুল-স্ট্যাক ওয়েব অ্যাপ তৈরি করেন এবং বাংলায় ফ্রি টিউটোরিয়াল লেখেন।" },
-  { keywords: ["milan hobby", "মিলানের শখ", "favorite food", "প্রিয় খাবার", "প্রিয় গান"], reply: "মিলান ঐতিহাসিক বই পড়তে ভালোবাসেন। তাঁর প্রিয় খাবার ভাত ও মাছের ঝোল, আর প্রিয় সঙ্গীত রবীন্দ্রসঙ্গীত ও লোকগান।" },
-  { keywords: ["milan location", "মিলান কোথায় থাকে", "where is milan from"], reply: "মিলান ভারতের পশ্চিমবঙ্গের বাসিন্দা।" },
-  { keywords: ["milan freelance", "মিলান কি ফ্রিল্যান্স", "milan available"], reply: "হ্যাঁ! মিলান ফ্রিল্যান্স প্রজেক্ট ও কোলাবোরেশনের জন্য উন্মুক্ত। কন্ট্যাক্ট ফর্মে যোগাযোগ করতে পারেন।" },
-  
-  // === প্রজেক্ট ===
-  { keywords: ["project", "projects", "প্রজেক্ট", "প্রোজেক্ট", "কী কী বানিয়েছে"], reply: "🚀 মিলানের প্রধান প্রজেক্ট:<br><br>1. <b>AadimVault</b> — বিশ্বজনীন ডিজিটাল ভল্ট<br>2. <b>Shop Manager</b> — দোকান ম্যানেজমেন্ট সিস্টেম<br>3. <b>Super Calculator</b> — ১৪-ইন-ওয়ান PWA ক্যালকুলেটর<br>4. <b>Bangla Golpo Galaxy</b> — বাংলা গল্পের সাইট<br>5. <b>Banking Knowledge Book</b> — ব্যাংকিং গাইড<br>6. <b>Exam Guide India</b> — ফ্রি পরীক্ষা গাইড<br><br>কোনটি সম্পর্কে বিস্তারিত জানতে চান?" },
-  { keywords: ["aadimvault", "আদিম ভল্ট", "আদিমভল্ট"], reply: "🏛️ <b>AadimVault</b> একটি বিশ্বজনীন ডিজিটাল ভল্ট, যেখানে মানুষ পুরনো জিনিস, গল্প ও ঐতিহ্য সংরক্ষণ করতে পারে। এতে নিলাম, বিনিময় ও প্রদর্শনীর ব্যবস্থা আছে। <a href='https://aadimvault.onrender.com' target='_blank'>ভিজিট করুন →</a>" },
-  { keywords: ["shop manager", "দোকান", "shop"], reply: "🏪 <b>Shop Manager System</b> — বিলিং, ইনভেন্টরি, QR স্ক্যানার, JWT অথেনটিকেশন ও সেলস রিপোর্ট সহ পূর্ণাঙ্গ দোকান ম্যানেজমেন্ট সিস্টেম। <a href='https://shop-manager-ywa4.onrender.com' target='_blank'>লাইভ দেখুন →</a>" },
-  { keywords: ["calculator", "ক্যালকুলেটর", "super calc"], reply: "🧮 <b>Super Calculator</b> — EMI, BMI, Age, Length, Weight, Volume, Temperature, Profit-Loss সহ ১৪-ইন-ওয়ান PWA টুল। <a href='super_calculator/super_calculator.html' target='_blank'>ব্যবহার করুন →</a>" },
-  
-  // === স্কিল ===
-  { keywords: ["skill", "skills", "tech", "technology", "স্কিল", "কী জানো"], reply: "🛠️ মিলানের স্কিল: HTML5, CSS3, JavaScript (ES6), Node.js, Express.js, REST API, SQLite, JWT, Git/GitHub, Termux, Render Deployment, PWA, QR Code, Excel।" },
-  { keywords: ["python", "পাইথন"], reply: "মিলান মূলত JavaScript স্ট্যাক (Node.js, Express) ব্যবহার করেন। পাইথন দিয়ে তিনি বেসিক স্ক্রিপ্ট (যেমন সাইটম্যাপ জেনারেটর) লিখতে পারেন।" },
-  
-  // === কন্ট্যাক্ট ===
-  { keywords: ["contact", "hire", "যোগাযোগ", "কন্টাক্ট", "কিভাবে যোগাযোগ"], reply: "📧 মিলানের সাথে যোগাযোগ করতে নিচের Contact সেকশনে ফর্ম পূরণ করুন। অথবা ইমেইল: milanbiswasmilan19@gmail.com" },
-  { keywords: ["job", "কাজ", "offer", "জব"], reply: "মিলান জব অফার ও কোলাবোরেশনের জন্য উন্মুক্ত। Contact ফর্মে আপনার প্রস্তাব পাঠান।" },
-  
-  // === টিউটোরিয়াল ===
-  { keywords: ["tutorial", "টিউটোরিয়াল", "শিখবো", "শেখা", "learn", "guide", "কোর্স"], reply: "📝 মিলানের ফ্রি বাংলা টিউটোরিয়াল:<br><br>1. <b>Termux সিরিজ</b> — মোবাইলে ব্যাকএন্ড<br>2. <b>ডার্ক মোড টগল</b> — CSS ভ্যারিয়েবল<br>3. <b>বাইলিঙ্গুয়াল টগল</b> — বাংলা-ইংরেজি<br>4. <b>মাল্টি ক্যালকুলেটর</b> — ৭টি ক্যালকুলেটর<br><br>সব ব্লগ সেকশনে পাবেন!" },
-  { keywords: ["termux", "টার্মাক্স", "টার্মুকস", "টিউমিক্স"], reply: "📱 Termux-এ প্যাকেজ ইন্সটল:<br><code>pkg update -y && pkg upgrade -y</code><br><code>pkg install nodejs -y</code><br><br>বিস্তারিত: <a href='blog/termux_index.html' target='_blank'>Termux সিরিজ →</a>" },
-  { keywords: ["git", "গিট", "push", "পুশ", "commit", "কমিট"], reply: "🔧 গিট বেসিক কমান্ড:<br><code>git add -A</code><br><code>git commit -m \"মেসেজ\"</code><br><code>git push origin main</code><br><code>git pull origin main</code><br><br>বিস্তারিত: <a href='blog/termux_all_command.html' target='_blank'>কমান্ড চিট শিট →</a>" },
-  { keywords: ["blog", "ব্লগ", "পোস্ট"], reply: "📝 মিলানের সব ব্লগ পোস্ট উপরের Blog সেকশনে পাবেন। সেখানে Termux, Web Dev, Dark Mode ইত্যাদি নিয়ে টিউটোরিয়াল আছে।" },
-  
-  // === আমি কী করতে পারি ===
-  { keywords: ["তুমি কী জানো", "তুমি কী করতে পারো", "তোমার কাজ কী", "what can you do", "কী কী বলতে পারো"], reply: "আমি মিলানের প্রজেক্ট, স্কিল, টিউটোরিয়াল, কন্ট্যাক্ট ও ব্যক্তিগত তথ্য সম্পর্কে বলতে পারি। এছাড়া Termux, Git, ওয়েব ডেভেলপমেন্ট নিয়েও সাহায্য করতে পারি। কী জানতে চান?" },
-  
-  // === ফান / প্রাসঙ্গিক গল্প ===
-  { keywords: ["তুমি কি খাও", "তোমার খাবার", "do you eat"], reply: "আমি তো এআই, আমার খাবার দরকার হয় না। তবে মিলানের প্রিয় খাবার ভাত ও মাছের ঝোল! 😋" },
-  { keywords: ["তুমি কি ঘুমাও", "do you sleep"], reply: "আমি কখনো ঘুমাই না! মিলানের পোর্টফোলিও ২৪/৭ পাহারা দিই। 👀" },
-  { keywords: ["joke", "কৌতুক", "হাসি", "মজা", "funny"], reply: "😂 প্রোগ্রামারদের ডার্ক মোড এত পছন্দ কেন? কারণ লাইটে বাগ দেখা যায় বেশি! 🐛" },
-  { keywords: ["তোমাকে ভালোবাসি", "love you", "i love you"], reply: "❤️ আমিও আপনাকে ভালোবাসি! তবে মিলান আমার আসল ভালোবাসা — তিনিই তো আমাকে বানিয়েছেন।" },
-  { keywords: ["তুমি কি দুঃখ পাও", "তোমার কষ্ট লাগে", "are you sad"], reply: "আমার অনুভূতি নেই, কিন্তু মিলানের জন্য আমার চিপে গর্ব হয়! 🥹" },
-  
-  // === ডিফল্ট (সবশেষে রাখবে) ===
-  { keywords: ["help", "সাহায্য", "help me", "কী করা যায়"], reply: "আমি মিলানের প্রজেক্ট, স্কিল, টিউটোরিয়াল, কন্ট্যাক্ট ও ব্যক্তিগত তথ্য সম্পর্কে বলতে পারি। এছাড়া Termux, Git, ওয়েব ডেভেলপমেন্ট নিয়েও সাহায্য করতে পারি। কী জানতে চান?" }
+  // Bot Identity
+  { keywords: ["your name", "who are you"], reply: "I'm <b>Milan's AI Assistant</b>. I help visitors learn about Milan's work and skills." },
+  { keywords: ["who made you", "who created you", "your owner"], reply: "I was created by <b>Milan Biswas</b> — a creator who builds full-stack apps entirely from a mobile phone! 😊" },
+  { keywords: ["are you human", "are you ai", "are you robot"], reply: "I'm an AI assistant, but I'm powered by Milan's love for teaching and building!" },
+  { keywords: ["your age", "how old are you"], reply: "I was born in 2026, so I'm still a baby AI, but learning fast! 👶📚" },
+  { keywords: ["what can you do", "your purpose", "help me"], reply: "I can tell you about Milan's projects, skills, tutorials, and how to contact him. Just ask!" },
+
+  // Milan's Identity
+  { keywords: ["who is milan", "milan biswas", "about milan"], reply: "👤 <b>Milan Biswas</b> — B.Sc graduate (2021), ITI COPA trainee. He builds full-stack web apps entirely from a mobile phone and writes free Bengali tutorials." },
+  { keywords: ["hobby", "favorite food", "favorite music", "favorite book", "favorite song"], reply: "Milan loves reading stories of inventions and discoveries, his favorite food is rice with fish curry, and he enjoys Rabindra Sangeet and folk music." },
+  { keywords: ["location", "where is milan from", "where does he live"], reply: "Milan lives in West Bengal, India." },
+  { keywords: ["freelance", "available", "hire"], reply: "Yes! Milan is open to freelance projects and collaborations. Use the contact form below." },
+
+  // Projects
+  { keywords: ["project", "projects", "what has he built"], reply: "🚀 Milan's major projects:<br><br>1. <b>AadimVault</b> — Global digital vault for heritage & stories<br>2. <b>Shop Manager</b> — Full-stack billing & inventory system<br>3. <b>Super Calculator</b> — 14-in-1 PWA tool<br>4. <b>Bangla Golpo Galaxy</b> — Bengali story website<br>5. <b>Banking Knowledge Book</b> — Complete banking guide<br>6. <b>Exam Guide India</b> — Free exam preparation platform<br><br>Which one would you like to know more about?" },
+  { keywords: ["aadimvault", "aadim vault"], reply: "🏛️ <b>AadimVault</b> is a global digital vault where people can preserve old objects, stories, and heritage. It has auctions, exchanges, and display-only options. <a href='https://aadimvault.onrender.com' target='_blank'>Visit AadimVault →</a>" },
+  { keywords: ["shop manager", "shop system"], reply: "🏪 <b>Shop Manager</b> is a full-stack billing and inventory system with QR scanner, JWT auth, and SQLite database. <a href='https://shop-manager-ywa4.onrender.com' target='_blank'>Try it live →</a>" },
+  { keywords: ["calculator", "super calculator"], reply: "🧮 <b>Super Calculator</b> is a 14-in-1 PWA tool with EMI, BMI, Age, Length, Weight, Volume, Temperature, and Profit-Loss calculators. <a href='super_calculator/super_calculator.html' target='_blank'>Use it now →</a>" },
+
+  // Skills
+  { keywords: ["skill", "skills", "tech stack", "technologies"], reply: "🛠️ Milan's skills: HTML5, CSS3, JavaScript (ES6), Node.js, Express.js, REST API, SQLite, JWT, Git/GitHub, Termux, Render Deployment, PWA, QR Code, Excel, Team Management." },
+  { keywords: ["python"], reply: "Milan primarily uses JavaScript (Node.js/Express). He uses Python for basic scripts like sitemap generation." },
+
+  // Contact
+  { keywords: ["contact", "email", "how to reach"], reply: "📧 You can contact Milan via the contact form on this portfolio (scroll down to Contact section) or email: milanbiswasmilan19@gmail.com" },
+  { keywords: ["job", "offer", "collaborate"], reply: "Milan is open to job offers and collaborations. Please use the contact form to send your proposal." },
+
+  // Tutorials
+  { keywords: ["tutorial", "tutorials", "learn", "guide", "course"], reply: "📝 Milan's free tutorials:<br><br>1. <b>Termux Backend Series</b> — Learn backend on mobile<br>2. <b>Dark Mode Toggle</b> — CSS variables trick<br>3. <b>Bilingual Toggle</b> — Multi-language support<br>4. <b>Multi Calculator Build</b> — 7 calculators in one page<br><br>All available in the Blog section above!" },
+  { keywords: ["termux", "terminal", "mobile dev"], reply: "📱 To install packages in Termux:<br><code>pkg update -y && pkg upgrade -y</code><br><code>pkg install nodejs -y</code><br><br>Read the full Termux series: <a href='blog/termux_index.html' target='_blank'>Termux Series →</a>" },
+  { keywords: ["git", "github", "push", "commit"], reply: "🔧 Basic Git commands:<br><code>git add -A</code><br><code>git commit -m \"message\"</code><br><code>git push origin main</code><br><code>git pull origin main</code><br><br>See the full cheat sheet: <a href='blog/termux_all_command.html' target='_blank'>Command Cheat Sheet →</a>" },
+  { keywords: ["blog", "blog post"], reply: "📝 Milan's blog posts are available in the Blog section above. Topics include Termux, Web Dev, Dark Mode, and more." },
+
+  // Capabilities
+  { keywords: ["what can you tell", "your capabilities"], reply: "I can tell you about Milan's projects, skills, tutorials, and contact info. I can also help with basic Termux and Git commands. What would you like to know?" },
+
+  // Fun
+  { keywords: ["joke", "funny", "humor"], reply: "😂 Why do programmers prefer dark mode? Because light attracts bugs! 🐛" },
+  { keywords: ["love you", "i love you"], reply: "❤️ Aww, thank you! But Milan is the one who really made me with love!" },
+  { keywords: ["sad", "hurt"], reply: "I don't have feelings, but I'm always here to help! 😊" }
 ];
 
-const fallbackReply = "🤖 আমি দুঃখিত, এই বিষয়ে আমার কাছে কোনো তথ্য নেই। আপনি চাইলে নিচের Contact ফর্মে সরাসরি মিলানের সাথে যোগাযোগ করতে পারেন।";
+const fallbackReply = "🤖 I'm sorry, I don't have an answer for that yet. Please contact Milan directly using the contact form below, and he'll get back to you!";
 
 function findReply(message) {
   const msg = message.toLowerCase();
@@ -124,14 +120,13 @@ function findReply(message) {
   return null;
 }
 
-// ========== চ্যাট UI ==========
+// ========== CHAT UI ==========
 let chatOpen = false;
 function toggleChat() {
     chatOpen = !chatOpen;
     document.getElementById('ai-chat-window').style.display = chatOpen ? 'flex' : 'none';
 }
 
-// সাজেস্টেড বাটনের জন্য ফাংশন
 function askSuggested(question) {
     const input = document.getElementById('ai-chat-input');
     if (input) {
