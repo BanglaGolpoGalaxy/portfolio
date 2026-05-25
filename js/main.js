@@ -57,12 +57,35 @@ window.addEventListener("scroll",()=>{if(innerWidth>=600){const h=document.getEl
 // ========== স্মুথ স্ক্রল ==========
 document.querySelectorAll('nav a, .btn[href^="#"]').forEach(a=>a.addEventListener("click",function(e){const h=this.getAttribute("href");if(h&&h!=="#"&&h.startsWith("#")){e.preventDefault();document.querySelector(h)?.scrollIntoView({behavior:"smooth"});}}));
 
-// ========== AI CHATBOT ==========
-// ⚠️ নিচের Gemini API Key টা বসাও
-const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY';
+// ========== অফলাইন AI CHATBOT ==========
+const offlineResponses = [
+  { keywords: ["hello", "hi", "hey", "হাই", "হ্যালো", "নমস্কার"], reply: "👋 Hello! I'm Milan's AI assistant. I can tell you about his projects, skills, or how to contact him. What would you like to know?" },
+  { keywords: ["project", "projects", "প্রজেক্ট", "প্রোজেক্ট"], reply: "🚀 Milan has built several projects:<br><br>1. <b>AadimVault</b> — A global digital vault for heritage & stories.<br>2. <b>Shop Manager System</b> — Full-stack shop management.<br>3. <b>Super Calculator</b> — All-in-1 PWA calculator.<br>4. <b>Bangla Golpo Galaxy</b> — Bengali story website.<br>5. <b>Banking Knowledge Book</b> — Complete banking guide.<br>6. <b>Exam Guide India</b> — Free exam preparation guide.<br><br>Which one would you like to know more about?" },
+  { keywords: ["skill", "skills", "tech", "technology", "স্কিল"], reply: "🛠️ Milan's skills: HTML, CSS, JavaScript, Node.js, Express, SQLite, JWT, Git, GitHub, Termux, Render deployment, PWA, QR Code, Excel, Team Management, Teaching." },
+  { keywords: ["contact", "hire", "যোগাযোগ", "কন্টাক্ট"], reply: "📧 You can contact Milan directly using the contact form on this portfolio. Just scroll down to the Contact section!" },
+  { keywords: ["about", "milan", "who", "কে", "পরিচয়"], reply: "👤 Milan Biswas is a B.Sc graduate and ITI COPA trainee. He builds full-stack web apps entirely from a mobile phone and writes free Bengali tutorials. He loves history, Bengali food, and Rabindra Sangeet." },
+  { keywords: ["calculator", "ক্যালকুলেটর"], reply: "🧮 <b>Super Calculator</b> is an all-in-1 PWA tool with EMI, BMI, Age, Length, Weight, Volume, Temperature, Profit-Loss calculators. <a href='super_calculator/super_calculator.html' target='_blank'>Open it here →</a>" },
+  { keywords: ["aadimvault", "আদিম ভল্ট"], reply: "🏛️ <b>AadimVault</b> is a global digital vault where people can preserve old objects, stories, and heritage. It has auctions, exchanges, and multilingual support. <a href='https://aadimvault.onrender.com' target='_blank'>Visit AadimVault →</a>" },
+  { keywords: ["shop", "manager", "দোকান"], reply: "🏪 <b>Shop Manager System</b> is a full-stack billing & inventory management app with QR scanner, JWT auth, and SQLite database. <a href='https://shop-manager-ywa4.onrender.com' target='_blank'>Try it →</a>" },
+  { keywords: ["blog", "tutorial", "টিউটোরিয়াল", "ব্লগ"], reply: "📝 Milan writes free Bengali tutorials on web development. Check out his blog series on Termux, backend, and more! Scroll up to the Blog section." },
+  { keywords: ["thanks", "thank", "ধন্যবাদ", "থ্যাংকস"], reply: "😊 You're welcome! Feel free to ask anything else." }
+];
 
-const MILAN_CONTEXT = `You are Milan's AI assistant. Milan builds full-stack apps from a phone. Projects: AadimVault, Shop Manager, Super Calculator, Bangla Golpo Galaxy, Banking Book, Exam Guide. Skills: HTML, CSS, JS, Node.js, Express, SQLite, Git, Render. Answer in user's language. Keep it very short. If irrelevant, politely refuse.`;
+const fallbackReply = "🤖 I'm sorry, I don't have an answer for that yet. Please contact Milan directly using the contact form below, and he'll get back to you!";
 
+function findReply(message) {
+  const msg = message.toLowerCase();
+  for (const item of offlineResponses) {
+    for (const kw of item.keywords) {
+      if (msg.includes(kw.toLowerCase())) {
+        return item.reply;
+      }
+    }
+  }
+  return null;
+}
+
+// ========== UI ==========
 let chatOpen = false;
 function toggleChat() {
     chatOpen = !chatOpen;
@@ -83,51 +106,10 @@ async function sendMessage() {
     messagesDiv.innerHTML += `<div class="ai-message bot" id="typing-${typingId}">⏳ Typing...</div>`;
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-    // ====== রেট-লিমিট হ্যান্ডলার ======
-    let reply = '';
-    let success = false;
-    const MAX_RETRIES = 3;
-    const BASE_DELAY = 3000;
+    // সামান্য দেরি করে উত্তর দেখাও (প্রাকৃতিক অনুভূতি)
+    await new Promise(r => setTimeout(r, 1000));
 
-    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-        try {
-            const response = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
-                {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{ text: `${MILAN_CONTEXT}\n\nUser question: ${message}` }]
-                        }]
-                    })
-                }
-            );
-
-            if (!response.ok) {
-                const errText = await response.text();
-                if (response.status === 429) {
-                    document.getElementById(`typing-${typingId}`).textContent = `⏳ Rate limit hit, retrying in ${(attempt * BASE_DELAY) / 1000}s...`;
-                    await new Promise(r => setTimeout(r, attempt * BASE_DELAY));
-                    continue;
-                }
-                throw new Error(`API error ${response.status}: ${errText}`);
-            }
-
-            const data = await response.json();
-            reply = data.candidates?.[0]?.content?.parts?.[0]?.text ||
-                    'Sorry, I could not process that. Please try again.';
-            success = true;
-            break;
-        } catch (err) {
-            if (attempt === MAX_RETRIES) {
-                reply = `❌ ${err.message}`;
-            } else {
-                document.getElementById(`typing-${typingId}`).textContent = `⏳ Error, retrying in ${(attempt * BASE_DELAY) / 1000}s...`;
-                await new Promise(r => setTimeout(r, attempt * BASE_DELAY));
-            }
-        }
-    }
+    const reply = findReply(message) || fallbackReply;
 
     document.getElementById(`typing-${typingId}`)?.remove();
     messagesDiv.innerHTML += `<div class="ai-message bot">${reply}</div>`;
