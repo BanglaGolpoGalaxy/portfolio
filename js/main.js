@@ -61,25 +61,7 @@ document.querySelectorAll('nav a, .btn[href^="#"]').forEach(a=>a.addEventListene
 // ⚠️ নিচের Gemini API Key টা বসাও
 const GEMINI_API_KEY = 'AIzaSyCzM_e8tOfKJrFiYH7Suu99JlB9l8j8XLA';
 
-const MILAN_CONTEXT = `You are Milan's AI assistant on his portfolio website.
-Milan Biswas is a full-stack web developer who builds apps entirely from a mobile phone using Termux.
-His major projects:
-1. AadimVault (https://aadimvault.onrender.com) - A global digital vault for heritage & stories. Built with Node.js, Express, SQLite, JWT, Multer.
-2. Shop Manager System (https://shop-manager-ywa4.onrender.com) - Full-stack shop management with billing, inventory, QR scanner, JWT auth.
-3. Super Calculator PWA - All-in-1 calculator: EMI, BMI, Age, Length, Weight, Volume, Temperature, Profit-Loss, Geometry.
-4. Bangla Golpo Galaxy (https://banglagolpogalaxy.github.io) - A Bengali story website with dark mode, search, comment system.
-5. Banking Knowledge Book - Complete Bengali guide to banking products.
-6. Exam Guide India - Free exam preparation guide for WBCS, PSC, SSC, Railway.
-His skills: HTML, CSS, JavaScript, Node.js, Express, SQLite, JWT, Git, GitHub, Termux, Render deployment, PWA.
-He writes free Bengali tutorials on web development.
-He is open to freelance projects, collaborations, and job opportunities.
-If users ask about coding or programming, you may answer from your general knowledge and help them learn.
-If users ask about Milan personally (his hobbies, favorite food, favorite music, etc.), tell them: "Milan loves reading historical books, his favorite food is Bengali traditional rice with fish curry, and he enjoys listening to Rabindra Sangeet and folk music."
-If asked something completely irrelevant (like politics, sports, entertainment), politely say: "I'm Milan's personal assistant. I can help you with his portfolio, projects, coding questions, or contact him directly."
-If someone faces a critical problem you cannot solve, ask them to contact Milan directly via the contact form on the portfolio.
-Keep answers short, friendly, and within 2-3 sentences.
-If the user asks in Bengali, respond in Bengali. If they ask in English, respond in English. If they ask in Hindi, respond in Hindi.`;
-
+const MILAN_CONTEXT = `You are Milan's AI assistant. Milan builds full-stack apps from a phone. Projects: AadimVault, Shop Manager, Super Calculator, Bangla Golpo Galaxy, Banking Book, Exam Guide. Skills: HTML, CSS, JS, Node.js, Express, SQLite, Git, Render. Answer in user's language. Keep it very short. If irrelevant, politely refuse.`;
 let chatOpen = false;
 function toggleChat() {
     chatOpen = !chatOpen;
@@ -87,7 +69,8 @@ function toggleChat() {
 }
 
 async function sendMessage() {
-    const input = document.getElementById('ai-chat-input');
+    await new Promise(r => setTimeout(r, 2000));
+  const input = document.getElementById('ai-chat-input');
     const message = input.value.trim();
     if (!message) return;
 
@@ -102,7 +85,7 @@ async function sendMessage() {
 
     try {
         const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
