@@ -73,7 +73,7 @@ const offlineResponses = [
 
   // Milan's Identity
   { keywords: ["who is milan", "milan biswas", "about milan"], reply: "👤 <b>Milan Biswas</b> — B.Sc graduate (2021), ITI COPA trainee. He builds full-stack web apps entirely from a mobile phone and writes free Bengali tutorials." },
-  { keywords: ["hobby", "favorite food", "favorite music", "favorite book", "favorite song"], reply: "Milan loves reading stories of inventions and discoveries, his favorite food is rice with fish curry, and he enjoys Rabindra Sangeet and folk music." },
+  { keywords: ["hobby", "favorite food", "favorite music"], reply: "Milan loves reading stories of inventions and discoveries, his favorite food is rice with fish curry, and he enjoys Rabindra Sangeet and folk music." },
   { keywords: ["location", "where is milan from", "where does he live"], reply: "Milan lives in West Bengal, India." },
   { keywords: ["freelance", "available", "hire"], reply: "Yes! Milan is open to freelance projects and collaborations. Use the contact form below." },
 
@@ -103,7 +103,18 @@ const offlineResponses = [
   // Fun
   { keywords: ["joke", "funny", "humor"], reply: "😂 Why do programmers prefer dark mode? Because light attracts bugs! 🐛" },
   { keywords: ["love you", "i love you"], reply: "❤️ Aww, thank you! But Milan is the one who really made me with love!" },
-  { keywords: ["sad", "hurt"], reply: "I don't have feelings, but I'm always here to help! 😊" }
+  { keywords: ["sad", "hurt"], reply: "I don't have feelings, but I'm always here to help! 😊" },
+
+  // ========== INTERVIEW QUESTIONS ==========
+  { keywords: ["interview", "background", "tell me about yourself", "yourself"], reply: "👤 <b>About Me:</b><br>I'm Milan Biswas, a B.Sc graduate (2021) and ITI COPA trainee. I build full-stack web applications entirely from my mobile phone using Termux. I'm passionate about creating free Bengali resources to help beginners learn coding without expensive courses or laptops." },
+  { keywords: ["why should we hire you", "why you", "strength", "strengths"], reply: "💪 <b>My Strengths:</b><br>1. <b>Self-taught & Resourceful:</b> I learned full-stack development on my own, using just a mobile phone.<br>2. <b>Problem Solver:</b> I built AadimVault (a global digital vault) and a complete Shop Manager System from scratch.<br>3. <b>Teacher & Communicator:</b> I write free Bengali tutorials, explaining complex topics in simple words.<br>4. <b>Real Projects:</b> I don't just know theory — I have 6+ live projects deployed on Render and GitHub Pages." },
+  { keywords: ["project you built", "most challenging", "difficult", "complex"], reply: "🏛️ My most challenging project is <b>AadimVault</b> — a global digital vault where people can preserve heritage items, stories, and even auction them. I built it alone from a phone: Node.js, Express, SQLite, JWT, Multer for file uploads, and a full auction/bidding system. The biggest challenge was implementing the real-time auction timer and the admin panel." },
+  { keywords: ["how did you learn", "learning", "education", "study"], reply: "📱 I learned entirely through self-study. I didn't have a laptop, so I used Termux on my Android phone. I started with HTML/CSS/JS, then moved to Node.js, Express, SQLite. I built real projects alongside learning — that's how I understood concepts deeply. I also documented my journey in a 12-part Bengali blog series." },
+  { keywords: ["where do you see yourself", "future", "goal", "ambition"], reply: "🚀 In the next 2-3 years, I see myself as a full-stack developer building impactful products. I want to turn <b>Exam Guide India</b> into a widely-used platform, and scale <b>AadimVault</b> into a global heritage marketplace. Long-term, I want to create a startup that makes technology education accessible in regional languages." },
+  { keywords: ["teamwork", "team player", "collaborate"], reply: "🤝 Although I built most projects solo, I understand the value of teamwork. While managing a flower company (2022-2025), I supervised 4-5 workers daily. I'm comfortable with Git/GitHub for collaboration, and I'm eager to work in a team where I can learn from others and contribute my skills." },
+  { keywords: ["weakness", "weaknesses", "area of improvement"], reply: "🎯 I sometimes focus too deeply on perfecting one feature, which can delay other tasks. I'm learning to balance 'perfection' with 'progress'. Also, since I'm self-taught, I'm actively working on understanding advanced DSA concepts and system design." },
+  { keywords: ["why coding", "passion", "interest", "chose development"], reply: "💻 I discovered coding accidentally at my ITI class, when I saw students writing HTML in Notepad. I was fascinated that a simple text file could create a webpage! Since I didn't have a computer, I searched 'how to code on mobile' and found Termux. The day I ran my first Node.js server on my phone, I knew — this is what I want to do." },
+  { keywords: ["salary", "expected", "compensation"], reply: "💰 As a fresher with real-world projects, I'm looking for a competitive salary that values my skills. However, I'm more focused on learning opportunities and the chance to work on meaningful projects. I'm open to discussion based on the role and company." }
 ];
 
 const fallbackReply = "🤖 I'm sorry, I don't have an answer for that yet. Please contact Milan directly using the contact form below, and he'll get back to you!";

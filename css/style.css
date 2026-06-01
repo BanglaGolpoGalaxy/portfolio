@@ -176,10 +176,10 @@ footer { background: var(--surface); border-top: 1px solid var(--border); text-a
 
 /* AI CHATBOT */
 #ai-chat-btn {
-  position: fixed; bottom: 20px; right: 16px;
+  position: fixed; top: 80px; right: 12px;
   background: linear-gradient(135deg, #8b5a2b, #d4a74a);
   color: white; border: none; border-radius: 50%;
-  width: 56px; height: 56px; font-size: 1.5rem;
+  width: 48px; height: 48px; font-size: 1.3rem;
   cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   z-index: 999; display: flex; align-items: center; justify-content: center;
   transition: transform 0.2s;
@@ -233,6 +233,13 @@ footer { background: var(--surface); border-top: 1px solid var(--border); text-a
 }
 .suggest-btn:hover {
   background: var(--accent); color: #020617;
+}
+body.light .suggest-btn {
+  background: var(--surface2); color: var(--text);
+  border: 1px solid var(--border);
+}
+body.light .suggest-btn:hover {
+  background: var(--accent); color: white;
 }
 
 #ai-chat-input-area {
