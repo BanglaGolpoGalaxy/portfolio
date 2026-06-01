@@ -1,757 +1,85 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-<!-- ====== SEO ও প্ল্যাটফর্ম মেটা ====== -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-<title>সুপার ক্যালকুলেটর | অল-ইন-ওয়ান – জ্যামিতি, EMI, BMI, লাভ-ক্ষতি, জমি</title>
-<meta name="description" content="বাংলায় অল-ইন-ওয়ান সুপার ক্যালকুলেটর – সাধারণ গণিত, জ্যামিতি পরিমিতি, ইএমআই, বিএমআই, লাভ-ক্ষতি, বয়স, জমির পরিমাপ, একক রূপান্তর। ফুল বাজার, ত্রিকোণমিতি।">
-<meta name="keywords" content="ক্যালকুলেটর, super calculator, all in one calculator, multi calculator, জ্যামিতি ক্যালকুলেটর, EMI calculator, BMI calculator, লাভ ক্ষতি ক্যালকুলেটর, জমির পরিমাপ ক্যালকুলেটর, বয়স ক্যালকুলেটর, ফুল বাজার ক্যালকুলেটর">
-<meta name="author" content="Milan Biswas">
-<meta name="robots" content="index, follow">
-
-<!-- ====== ক্যানোনিকাল লিংক ====== -->
-<link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/super_calculator/super_calculator.html">
-
-<!-- ====== PWA ম্যানিফেস্ট ====== -->
-<link rel="manifest" href="manifest.json">
-
-<!-- ====== গুগল অ্যানালিটিক্স (gtag.js) ====== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DQ4HS2936B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DQ4HS2936B');
-</script>
-
-<!-- ====== JSON‑LD স্ট্রাকচার্ড ডেটা ====== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "সুপার ক্যালকুলেটর – অল-ইন-ওয়ান",
-  "url": "https://banglagolpogalaxy.github.io/portfolio/super_calculator.html",
-  "description": "বাংলায় অল-ইন-ওয়ান সুপার ক্যালকুলেটর – সাধারণ গণিত, জ্যামিতি পরিমিতি, ইএমআই, বিএমআই, লাভ-ক্ষতি, বয়স, জমির পরিমাপ, একক রূপান্তর। ফুল বাজার, ত্রিকোণমিতি।",
-  "applicationCategory": "EducationalApplication",
-  "operatingSystem": "Web",
-  "author": { "@type": "Person", "name": "Milan Biswas" }
-}
-</script>
-
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; user-select:none; }
-  :root {
-    --bg: #0a0f1c;
-    --surface: #0f172a;
-    --surface2: #1e293b;
-    --text: #e0e0e0;
-    --text-secondary: #94a3b8;
-    --accent: #3b82f6;
-    --accent2: #facc15;
-    --border: #334155;
-  }
-  body.light {
-    --bg: #f1f5f9;
-    --surface: #ffffff;
-    --surface2: #e2e8f0;
-    --text: #1e293b;
-    --text-secondary: #475569;
-    --accent: #2563eb;
-    --accent2: #b45309;
-    --border: #cbd5e1;
-  }
-  body {
-    background: var(--bg);
-    font-family: 'Segoe UI','Poppins',system-ui,sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 12px;
-    transition: background 0.3s, color 0.2s;
-  }
-  .super-calc {
-    max-width: 620px;
-    width: 100%;
-    background: var(--surface);
-    border-radius: 40px;
-    padding: 20px;
-    box-shadow: 0 25px 45px -12px rgba(0,0,0,0.8);
-    border: 1px solid var(--border);
-    position: relative;
-  }
-  .calc-title { text-align:center; color:var(--accent2); font-size:1rem; font-weight:600; margin-bottom:14px; }
-  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; border-bottom:1px solid var(--border); padding-bottom:12px; }
-  .tab-btn { background:var(--surface2); border:none; color:var(--text-secondary); padding:6px 12px; border-radius:40px; cursor:pointer; font-size:0.7rem; font-weight:600; transition:0.2s; }
-  .tab-btn.active { background:var(--accent); color:white; }
-  .tab-pane { display:none; }
-  .tab-pane.active-pane { display:block; }
-
-  .theme-toggle {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text);
-    transition: 0.2s;
-  }
-
-  .calc-display { background:#020617; border-radius:28px; padding:20px; margin-bottom:20px; text-align:right; box-shadow:inset 0 2px 6px rgba(0,0,0,0.4); }
-  .term-counter { font-size:0.75rem; color:#facc15; text-align:left; margin-bottom:8px; }
-  .expression { font-size:1.8rem; color:#f8fafc; font-weight:500; min-height:2.8rem; font-family:monospace; word-break:break-all; letter-spacing:1px; }
-  .result { font-size:2rem; font-weight:bold; color:#38bdf8; word-break:break-all; margin-top:8px; }
-  .fraction-result { font-size:0.85rem; color:#facc15; margin-top:8px; text-align:left; }
-  .buttons { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
-  button { border:none; padding:14px 0; border-radius:28px; font-size:1.2rem; font-weight:bold; cursor:pointer; transition:0.05s linear; background:var(--surface2); color:var(--text); }
-  button:active { transform:scale(0.96); }
-  .num-btn { background:#0f172a; color:white; }
-  .bracket-btn { background:#3b82f6; color:white; }
-  .op-btn { background:#f97316; color:#0f172a; }
-  .clear-btn { background:#ef4444; color:white; }
-  .eq-btn { background:#10b981; color:white; grid-column:span 2; }
-  .large-plus { background:#f97316; color:#0f172a; grid-row:span 2; display:flex; align-items:center; justify-content:center; font-size:1.8rem; border-radius:28px; cursor:pointer; }
-
-  .input-group { margin-bottom:14px; }
-  .input-group label { display:block; color:var(--text); font-size:0.85rem; margin-bottom:6px; font-weight:500; }
-  .input-group input, .input-group select {
-    width:100%; padding:12px 14px; border-radius:24px;
-    border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:0.95rem; outline:none;
-  }
-  .calc-submit { background:#10b981; color:white; border:none; padding:12px 18px; border-radius:40px; font-weight:bold; width:100%; margin-top:12px; cursor:pointer; font-size:0.9rem; }
-  .clear-submit { background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:40px; font-weight:bold; margin-top:8px; cursor:pointer; font-size:0.8rem; }
-  .result-box { background:var(--bg); padding:14px; border-radius:20px; margin-top:14px; text-align:center; color:#38bdf8; font-weight:bold; font-size:1rem; line-height:1.6; border:1px solid var(--border); }
-  .unit-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); gap:8px; background:var(--bg); padding:12px; border-radius:20px; margin-top:12px; }
-  .unit-item { background:var(--surface2); padding:6px; border-radius:16px; text-align:center; color:var(--text); font-size:0.7rem; }
-  .unit-item span:first-child { font-weight:bold; color:#38bdf8; display:block; }
-
-  .calc-footer { text-align:center; color:var(--text-secondary); font-size:0.7rem; margin-top:20px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; }
-  .contact-btn { background:transparent; border:1px solid #facc15; color:#facc15; padding:6px 12px; border-radius:20px; cursor:pointer; font-size:0.7rem; }
-  .contact-btn:hover { background:#facc15; color:#020617; }
-
-  .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center; z-index:200; }
-  .modal.show { display:flex; }
-  .modal-content { background:var(--surface); padding:20px; border-radius:24px; width:90%; max-width:400px; border:1px solid var(--accent); }
-  .modal-content h3 { color:#facc15; margin-bottom:16px; }
-  .modal-content input, .modal-content textarea { width:100%; padding:10px; margin:8px 0; border-radius:12px; border:1px solid var(--border); background:var(--bg); color:var(--text); }
-  .modal-content button { background:#10b981; color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; }
-  .close-modal { float:right; background:none; border:none; color:var(--text); font-size:1.2rem; cursor:pointer; }
-
-  /* PWA ইন্সটল বাটন */
-  #install-btn {
-      display: none;
-      position: fixed;
-      bottom: 16px;
-      right: 16px;
-      background: #38bdf8;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 24px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-      z-index: 1000;
-      cursor: pointer;
-  }
-
-  @media (max-width:480px) {
-    .super-calc { padding:14px; }
-    button { padding:10px 0; font-size:1rem; }
-    .expression { font-size:1.4rem; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Super Calculator | All-in-One</title>
+    <meta name="description" content="All-in-1 calculator: Basic, Geometry, EMI, BMI, Age, Profit-Loss, Unit Converters.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="light">
+<body data-lang="en">
+
 <div class="super-calc">
-  <button class="theme-toggle" id="themeToggle">☀️</button>
-  <div class="calc-title">সুপার ক্যালকুলেটর — অল-ইন-ওয়ান টুলস</div>
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="basic">🧮 সাধারণ</button>
-    <button class="tab-btn" data-tab="flower">🌻 ফুল বাজার</button>
-    <button class="tab-btn" data-tab="trig">📐 ত্রিকোণমিতি</button>
-    <button class="tab-btn" data-tab="geometry">📏 পরিমিতি</button>
-    <button class="tab-btn" data-tab="profitLoss">💰 লাভ-ক্ষতি</button>
-    <button class="tab-btn" data-tab="age">🎂 বয়স</button>
-    <button class="tab-btn" data-tab="work">⚒️ সময়-কাজ</button>
-    <button class="tab-btn" data-tab="land">🏞️ জমির পরিমাপ</button>
-    <button class="tab-btn" data-tab="unitLength">📏 দৈর্ঘ্য</button>
-    <button class="tab-btn" data-tab="unitVolume">🧴 আয়তন</button>
-    <button class="tab-btn" data-tab="unitTemp">🌡️ তাপমাত্রা</button>
-    <button class="tab-btn" data-tab="weight">⚖️ ওজন</button>
-    <button class="tab-btn" data-tab="emi">💰 ইএমআই</button>
-    <button class="tab-btn" data-tab="bmi">⚖️ বিএমআই</button>
-  </div>
-
-  <!-- সাধারণ ক্যালকুলেটর -->
-  <div id="basic" class="tab-pane active-pane">
-    <div class="calc-display">
-      <div class="term-counter" id="termCounter">👉 0</div>
-      <div class="expression" id="exprDisplay">0</div>
-      <div class="result" id="decimalResult">= 0</div>
-      <div class="fraction-result" id="fractionResult">ভগ্নাংশ: —</div>
+    <div class="calc-title">
+        <span class="lang-en">🧮 Super Calculator — All-in-One Tools</span>
+        <span class="lang-bn">🧮 সুপার ক্যালকুলেটর — অল-ইন-ওয়ান টুলস</span>
     </div>
-    <div class="buttons">
-      <button class="bracket-btn" data-char="(">(</button><button class="bracket-btn" data-char=")">)</button><button class="bracket-btn" data-char="{">{</button><button class="bracket-btn" data-char="}">}</button><button class="clear-btn" id="clearBtn">AC</button>
-      <button class="bracket-btn" data-char="[">[</button><button class="bracket-btn" data-char="]">]</button><button class="sqrt-btn" id="sqrtBtn">√</button><button class="square-btn" id="squareBtn">x²</button><button class="del-btn" id="delBtn">⌫</button>
-      <button class="num-btn" data-char="7">7</button><button class="num-btn" data-char="8">8</button><button class="num-btn" data-char="9">9</button><button class="percent-btn" id="percentBtn">%</button><button class="op-btn" id="divideBtn">÷</button>
-      <button class="num-btn" data-char="4">4</button><button class="num-btn" data-char="5">5</button><button class="num-btn" data-char="6">6</button><div class="large-plus" id="largePlusBtn">+</div><button class="op-btn" id="multiplyBtn">×</button>
-      <button class="num-btn" data-char="1">1</button><button class="num-btn" data-char="2">2</button><button class="num-btn" data-char="3">3</button><button class="op-btn" id="minusBtn">-</button>
-      <button class="num-btn" data-char="00">00</button><button class="num-btn" data-char="0">0</button><button class="num-btn" data-char=".">.</button><button class="eq-btn" id="equalBtn">=</button>
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle-wrapper">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="bn">বাংলা</button>
     </div>
-  </div>
 
-  <!-- ফুল বাজার -->
-  <div id="flower" class="tab-pane">
-    <div class="input-group"><label>মোট ওজন (কেজি)</label><input type="number" id="flowerTotal" step="any"></div>
-    <div class="input-group"><label>ব্যাগের ওজন (কেজি)</label><input type="number" id="flowerBag" step="any"></div>
-    <div class="input-group"><label>বর্জ্য (কেজি)</label><input type="number" id="flowerWaste" step="any"></div>
-    <div class="input-group"><label>দাম/কেজি (টাকা)</label><input type="number" id="flowerPrice" step="any"></div>
-    <button class="calc-submit" id="flowerBtn">হিসাব</button>
-    <div class="result-box" id="flowerResult"></div>
-    <button class="clear-submit" onclick="clearTab('flower')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- ত্রিকোণমিতি -->
-  <div id="trig" class="tab-pane">
-    <div class="input-group"><label>কোণ (ডিগ্রি)</label><input type="number" id="angleDeg" step="any" placeholder="0"></div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-      <button class="calc-submit" id="sinBtn">sin</button><button class="calc-submit" id="cosBtn">cos</button><button class="calc-submit" id="tanBtn">tan</button>
-      <button class="calc-submit" id="asinBtn">sin⁻¹</button><button class="calc-submit" id="acosBtn">cos⁻¹</button><button class="calc-submit" id="atanBtn">tan⁻¹</button>
+    <!-- Scrollable Tabs -->
+    <div class="tabs-scroll">
+        <div class="tabs" id="tabContainer">
+            <button class="tab-btn active" data-tab="basic">🧮 <span class="lang-en">Basic</span><span class="lang-bn">সাধারণ</span></button>
+            <button class="tab-btn" data-tab="flower">🌻 <span class="lang-en">Flower</span><span class="lang-bn">ফুল বাজার</span></button>
+            <button class="tab-btn" data-tab="trig">📐 <span class="lang-en">Trigonometry</span><span class="lang-bn">ত্রিকোণমিতি</span></button>
+            <button class="tab-btn" data-tab="geometry">📏 <span class="lang-en">Geometry</span><span class="lang-bn">পরিমিতি</span></button>
+            <button class="tab-btn" data-tab="profitLoss">💰 <span class="lang-en">Profit-Loss</span><span class="lang-bn">লাভ-ক্ষতি</span></button>
+            <button class="tab-btn" data-tab="age">🎂 <span class="lang-en">Age</span><span class="lang-bn">বয়স</span></button>
+            <button class="tab-btn" data-tab="work">⚒️ <span class="lang-en">Work</span><span class="lang-bn">সময়-কাজ</span></button>
+            <button class="tab-btn" data-tab="land">🏞️ <span class="lang-en">Land</span><span class="lang-bn">জমি</span></button>
+            <button class="tab-btn" data-tab="unitLength">📏 <span class="lang-en">Length</span><span class="lang-bn">দৈর্ঘ্য</span></button>
+            <button class="tab-btn" data-tab="unitVolume">🧴 <span class="lang-en">Volume</span><span class="lang-bn">আয়তন</span></button>
+            <button class="tab-btn" data-tab="unitTemp">🌡️ <span class="lang-en">Temp</span><span class="lang-bn">তাপমাত্রা</span></button>
+            <button class="tab-btn" data-tab="weight">⚖️ <span class="lang-en">Weight</span><span class="lang-bn">ওজন</span></button>
+            <button class="tab-btn" data-tab="emi">💰 <span class="lang-en">EMI</span><span class="lang-bn">ইএমআই</span></button>
+            <button class="tab-btn" data-tab="bmi">⚖️ <span class="lang-en">BMI</span><span class="lang-bn">বিএমআই</span></button>
+        </div>
     </div>
-    <div class="result-box" id="trigResultDecimal">দশমিক: --</div><div class="result-box" id="trigResultFraction">ভগ্নাংশ: --</div>
-    <button class="clear-submit" onclick="clearTab('trig')">🗑️ ক্লিয়ার</button>
-  </div>
 
-  <!-- পরিমিতি -->
-  <div id="geometry" class="tab-pane">
-    <div class="input-group"><label>আকৃতি</label><select id="shape">
-      <option value="square">বর্গ</option><option value="rectangle">আয়তক্ষেত্র</option><option value="rhombus">রম্বস</option>
-      <option value="parallelogram">সামান্তরিক</option><option value="trapezium">ট্রাপিজিয়াম</option>
-      <option value="irregular_quad">অসম চতুর্ভুজ</option>
-      <option value="circle">বৃত্ত</option><option value="sector">বৃত্তকলা</option>
-      <option value="cube">ঘনক</option><option value="cuboid">আয়তঘন</option>
-      <option value="sphere">গোলক</option>
-      <option value="cone">শঙ্কু</option><option value="frustum">ফ্রাস্টাম</option>
-      <option value="cylinder">সিলিন্ডার</option><option value="right_triangle">সমকোণী ত্রিভুজ</option>
-    </select></div>
-    <div id="shapeInputs" style="display:flex; flex-direction:column; gap:12px;"></div>
-    <button class="calc-submit" id="calcShapeBtn">হিসাব করুন</button>
-    <div class="result-box" id="geometryResult">ফলাফল</div>
-    <button class="clear-submit" onclick="clearTab('geometry')">🗑️ ক্লিয়ার</button>
-  </div>
+    <!-- Basic Calculator -->
+    <div id="basic" class="tab-pane active-pane">
+        <div class="calc-display">
+            <div class="expression" id="exprDisplay">0</div>
+            <div class="result" id="decimalResult">= 0</div>
+        </div>
+        <div class="buttons">
+            <button class="bracket-btn" data-char="(">(</button><button class="bracket-btn" data-char=")">)</button><button class="clear-btn" id="clearBtn">AC</button><button class="del-btn" id="delBtn">⌫</button><button class="op-btn" id="divideBtn">÷</button>
+            <button class="num-btn" data-char="7">7</button><button class="num-btn" data-char="8">8</button><button class="num-btn" data-char="9">9</button><button class="op-btn" id="multiplyBtn">×</button><button class="op-btn" id="minusBtn">-</button>
+            <button class="num-btn" data-char="4">4</button><button class="num-btn" data-char="5">5</button><button class="num-btn" data-char="6">6</button><button class="large-plus" id="largePlusBtn">+</button>
+            <button class="num-btn" data-char="1">1</button><button class="num-btn" data-char="2">2</button><button class="num-btn" data-char="3">3</button><button class="eq-btn" id="equalBtn">=</button>
+            <button class="num-btn" data-char="00">00</button><button class="num-btn" data-char="0">0</button><button class="num-btn" data-char=".">.</button>
+        </div>
+    </div>
 
-  <!-- লাভ-ক্ষতি -->
-  <div id="profitLoss" class="tab-pane">
-    <div class="input-group"><label>ক্রয়মূল্য (CP)</label><input type="number" id="cp" step="any"></div>
-    <div class="input-group"><label>বিক্রয়মূল্য (SP)</label><input type="number" id="sp" step="any"></div>
-    <button class="calc-submit" id="simplePLBtn">লাভ/ক্ষতি নির্ণয়</button><div class="result-box" id="simplePLResult"></div>
-    <hr style="border-color:var(--border); margin:16px 0;">
-    <div class="input-group"><label>অফার: T1 (টাকা)</label><input type="number" id="offerT1" step="any"></div>
-    <div class="input-group"><label>Q1 (পরিমাণ)</label><input type="number" id="offerQ1" step="any"></div>
-    <div class="input-group"><label>T2 (টাকা)</label><input type="number" id="offerT2" step="any"></div>
-    <div class="input-group"><label>Q2 (পরিমাণ)</label><input type="number" id="offerQ2" step="any"></div>
-    <button class="calc-submit" id="offerPLBtn">অফার লাভ/ক্ষতি</button><div class="result-box" id="offerPLResult"></div>
-    <button class="clear-submit" onclick="clearTab('profitLoss')">🗑️ ক্লিয়ার</button>
-  </div>
+    <!-- Other Tabs (Placeholder - JS will populate) -->
+    <div id="flower" class="tab-pane"></div>
+    <div id="trig" class="tab-pane"></div>
+    <div id="geometry" class="tab-pane"></div>
+    <div id="profitLoss" class="tab-pane"></div>
+    <div id="age" class="tab-pane"></div>
+    <div id="work" class="tab-pane"></div>
+    <div id="land" class="tab-pane"></div>
+    <div id="unitLength" class="tab-pane"></div>
+    <div id="unitVolume" class="tab-pane"></div>
+    <div id="unitTemp" class="tab-pane"></div>
+    <div id="weight" class="tab-pane"></div>
+    <div id="emi" class="tab-pane"></div>
+    <div id="bmi" class="tab-pane"></div>
 
-  <!-- বয়স -->
-  <div id="age" class="tab-pane">
-    <div class="input-group"><label>জন্ম তারিখ</label><input type="date" id="birthDate"></div>
-    <button class="calc-submit" id="ageBtn">বয়স নির্ণয়</button><div class="result-box" id="ageResult"></div>
-    <button class="clear-submit" onclick="clearTab('age')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- সময়-কাজ -->
-  <div id="work" class="tab-pane">
-    <div class="input-group"><label>লোক (M1)</label><input type="number" id="workM1" step="any"></div>
-    <div class="input-group"><label>দিন (D1)</label><input type="number" id="workD1" step="any"></div>
-    <div class="input-group"><label>কাজ (W1)</label><input type="number" id="workW1" step="any"></div>
-    <hr style="border-color:var(--border); margin:12px 0;">
-    <div class="input-group"><label>লোক (M2)</label><input type="number" id="workM2" step="any"></div>
-    <div class="input-group"><label>দিন (D2)</label><input type="number" id="workD2" step="any"></div>
-    <div class="input-group"><label>কাজ (W2)</label><input type="number" id="workW2" step="any"></div>
-    <button class="calc-submit" id="workBtn">অজানা নির্ণয়</button><div class="result-box" id="workResult"></div>
-    <button class="clear-submit" onclick="clearTab('work')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- জমির পরিমাপ -->
-  <div id="land" class="tab-pane">
-    <div class="input-group"><label>মান</label><input type="number" id="landValue" step="any"></div>
-    <div class="input-group"><label>একক</label><select id="landUnit">
-      <option value="shotangsho">শতাংশ</option><option value="katha">কাঠা</option><option value="bigha">বিঘা</option>
-      <option value="acre">একর</option><option value="sqft">বর্গফুট</option><option value="sqm">বর্গমিটার</option><option value="sqyd">বর্গগজ</option>
-    </select></div>
-    <button class="calc-submit" id="convertLandBtn">কনভার্ট</button><div id="landResults" class="unit-grid"></div>
-    <button class="clear-submit" onclick="clearTab('land')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- দৈর্ঘ্য কনভার্টার -->
-  <div id="unitLength" class="tab-pane">
-    <div class="input-group"><label>মান</label><input type="number" id="lengthValue" step="any"></div>
-    <div class="input-group"><label>একক</label><select id="lengthUnit">
-      <option value="m">মিটার</option><option value="cm">সেমি</option><option value="mm">মিমি</option><option value="km">কিমি</option><option value="in">ইঞ্চি</option><option value="ft">ফুট</option><option value="yd">গজ</option>
-    </select></div>
-    <button class="calc-submit" id="convertLengthBtn">কনভার্ট</button><div id="lengthResults" class="unit-grid"></div>
-    <button class="clear-submit" onclick="clearTab('unitLength')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- আয়তন কনভার্টার -->
-  <div id="unitVolume" class="tab-pane">
-    <div class="input-group"><label>মান</label><input type="number" id="volumeValue" step="any"></div>
-    <div class="input-group"><label>একক</label><select id="volumeUnit">
-      <option value="l">লিটার</option><option value="ml">মিলিলিটার</option><option value="m3">ঘনমিটার</option><option value="gal">গ্যালন</option>
-    </select></div>
-    <button class="calc-submit" id="convertVolumeBtn">কনভার্ট</button><div id="volumeResults" class="unit-grid"></div>
-    <button class="clear-submit" onclick="clearTab('unitVolume')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- তাপমাত্রা কনভার্টার -->
-  <div id="unitTemp" class="tab-pane">
-    <div class="input-group"><label>মান</label><input type="number" id="tempValue" step="any"></div>
-    <div class="input-group"><label>একক</label><select id="tempUnit">
-      <option value="c">সেলসিয়াস</option><option value="f">ফারেনহাইট</option><option value="k">কেলভিন</option>
-    </select></div>
-    <button class="calc-submit" id="convertTempBtn">কনভার্ট</button><div id="tempResults" class="unit-grid"></div>
-    <button class="clear-submit" onclick="clearTab('unitTemp')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- ওজন কনভার্টার -->
-  <div id="weight" class="tab-pane">
-    <div class="input-group"><label>মান</label><input type="number" id="weightVal" step="any"></div>
-    <div class="input-group"><label>একক</label><select id="weightUnit">
-      <option value="kg">কেজি</option><option value="g">গ্রাম</option><option value="lb">পাউন্ড</option><option value="oz">আউন্স</option><option value="t">টন</option><option value="mt">মেট্রিক টন</option>
-    </select></div>
-    <button class="calc-submit" id="convertWeightBtn">কনভার্ট</button><div id="weightResults" class="unit-grid"></div>
-    <button class="clear-submit" onclick="clearTab('weight')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- ইএমআই -->
-  <div id="emi" class="tab-pane">
-    <div class="input-group"><label>সুদের ধরন</label><select id="emiType">
-      <option value="compound">চক্রবৃদ্ধি সুদ</option>
-      <option value="simple">সরল সুদ</option>
-    </select></div>
-    <div class="input-group"><label>মূলধন (P)</label><input type="number" id="emiPrincipal" step="any"></div>
-    <div class="input-group"><label>বার্ষিক সুদের হার (R%)</label><input type="number" id="emiRate" step="any"></div>
-    <div class="input-group"><label>মাসিক কিস্তি (M) — ঐচ্ছিক</label><input type="number" id="emiMonthly" step="any"></div>
-    <div class="input-group"><label>সময় (N মাস) — ঐচ্ছিক</label><input type="number" id="emiMonths" step="any"></div>
-    <button class="calc-submit" id="emiBtn">গণনা</button>
-    <div class="result-box" id="emiResult">ফলাফল</div>
-    <button class="clear-submit" onclick="clearTab('emi')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <!-- বিএমআই -->
-  <div id="bmi" class="tab-pane">
-    <div class="input-group"><label>উচ্চতা (সেমি)</label><input type="number" id="bmiHeight" step="any"></div>
-    <div class="input-group"><label>ওজন (কেজি)</label><input type="number" id="bmiWeight" step="any"></div>
-    <button class="calc-submit" id="bmiBtn">BMI</button><div class="result-box" id="bmiResult"></div>
-    <button class="clear-submit" onclick="clearTab('bmi')">🗑️ ক্লিয়ার</button>
-  </div>
-
-  <div class="calc-footer">
-    <span>© 2026 Milan Biswas |</span>
-    <button class="contact-btn" id="openContactBtn">📩 মতামত</button>
-  </div>
+    <div class="calc-footer">
+        <span>© 2026 Milan Biswas</span>
+    </div>
 </div>
 
-<!-- PWA ইন্সটল বাটন -->
-<button id="install-btn">📲 ইন্সটল করুন</button>
-
-<!-- কন্টাক্ট মোডাল -->
-<div class="modal" id="contactModal">
-  <div class="modal-content">
-    <button class="close-modal" id="closeModalBtn">&times;</button>
-    <h3>যোগাযোগ / Contact</h3>
-    <form action="https://formspree.io/f/mpqowyld" method="POST">
-      <input type="text" name="name" placeholder="আপনার নাম" required>
-      <input type="email" name="email" placeholder="ইমেইল" required>
-      <textarea name="message" rows="3" placeholder="কোন সমস্যা বা মতামত জানান..."></textarea>
-      <button type="submit">পাঠিয়ে দিন</button>
-    </form>
-  </div>
-</div>
-
-<script>
-  // সার্ভিস ওয়ার্কার রেজিস্টার
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-  }
-
-  // PWA ইন্সটল বাটন
-  let deferredPrompt;
-  const installBtn = document.getElementById('install-btn');
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = 'block';
-  });
-
-  installBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log(`User response: ${outcome}`);
-      deferredPrompt = null;
-      installBtn.style.display = 'none';
-    }
-  });
-
-  (function() {
-    // ট্যাব সুইচিং
-    const tabs = document.querySelectorAll('.tab-btn');
-    const panes = document.querySelectorAll('.tab-pane');
-    tabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabs.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        panes.forEach(p => p.classList.remove('active-pane'));
-        document.getElementById(btn.dataset.tab).classList.add('active-pane');
-      });
-    });
-
-    // থিম টগল
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      themeToggle.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
-    });
-
-    // ক্লিয়ার ট্যাব
-    window.clearTab = function(id) {
-      const pane = document.getElementById(id);
-      if (!pane) return;
-      pane.querySelectorAll('input').forEach(inp => inp.value = '');
-      pane.querySelectorAll('.result-box, .unit-grid').forEach(el => el.innerHTML = '');
-      if (id === 'geometry') document.getElementById('geometryResult').textContent = 'ফলাফল';
-    };
-
-    // সাধারণ ক্যালকুলেটর
-    let expr = '', resetNext = false;
-    const exprEl = document.getElementById('exprDisplay'), resEl = document.getElementById('decimalResult');
-    const fracEl = document.getElementById('fractionResult'), termEl = document.getElementById('termCounter');
-    function normalize(e) { return e.replace(/{/g,'(').replace(/}/g,')').replace(/\[/g,'(').replace(/\]/g,')').replace(/÷/g,'/').replace(/×/g,'*'); }
-    function safeEval(e) { try { let r = Function('"use strict";return (' + normalize(e) + ')')(); if(isNaN(r)||!isFinite(r)) throw new Error(); return r; } catch(_) { return null; } }
-    function toFraction(d, tol=1e-6) { if(isNaN(d)||!isFinite(d)) return d.toString(); if(Math.abs(d-Math.round(d))<tol) return Math.round(d).toString(); let s=d<0?-1:1, a=Math.abs(d), bn=1,bd=1,bdf=Math.abs(a-1); for(let de=1;de<=1000;de++){ let n=Math.round(a*de), df=Math.abs(a-n/de); if(df<bdf){bdf=df;bn=n;bd=de;if(bdf<tol)break;} } let fn=s*bn,fd=bd, g=(a,b)=>b?g(b,a%b):a, gg=g(Math.abs(fn),fd); fn/=gg;fd/=gg; return fd===1?fn.toString():`${fn}/${fd}`; }
-    function update() { if(!expr.trim()){ exprEl.textContent='0';resEl.textContent='= 0';fracEl.textContent='ভগ্নাংশ: —';termEl.textContent='👉 0';return; } let r=safeEval(expr); if(r!==null){ let ds=r%1===0?r:r.toFixed(8).replace(/\.?0+$/,''); resEl.textContent=`= ${ds}`; fracEl.textContent=`ভগ্নাংশ: ${toFraction(r)}`; termEl.textContent=`👉 ${expr.split(/[\+\-\*\/]/).filter(t=>t.trim()&&!/^[\(\)\[\]\{\}]+$/.test(t)).length}`; } else { resEl.textContent='= ত্রুটি';fracEl.textContent='ভগ্নাংশ: —';termEl.textContent='👉 ?'; } exprEl.textContent=expr.replace(/\*/g,'×').replace(/\//g,'÷'); }
-    function addChar(c) { if(resetNext&&/[\d\.]/.test(c)){expr='';resetNext=false;} expr+=c; update(); }
-    function addOp(o) { if(resetNext) resetNext=false; if(expr&&!/[\+\-\*\/]$/.test(expr)){expr+=o;update();} else if(expr==='')return; else{expr=expr.slice(0,-1)+o;update();} }
-    function clearAll() { expr='';resetNext=false;update(); }
-    function del() { if(!resetNext){expr=expr.slice(0,-1);update();} }
-    function sqrtFn() { let r=safeEval(expr); if(r!==null&&r>=0){expr=Math.sqrt(r).toString();resetNext=false;update();} else{expr='Error';update();setTimeout(clearAll,1000);} }
-    function sqFn() { let r=safeEval(expr); if(r!==null){expr=(r*r).toString();resetNext=false;update();} else{expr='Error';update();setTimeout(clearAll,1000);} }
-    function pctFn() { let r=safeEval(expr); if(r!==null){expr=(r/100).toString();resetNext=false;update();} }
-    function equalFn() { let r=safeEval(expr); if(r!==null){expr=r.toString();resetNext=true;update();} else resEl.textContent='= ত্রুটি'; }
-
-    document.querySelectorAll('#basic .num-btn[data-char], #basic .bracket-btn[data-char]').forEach(b => b.addEventListener('click', () => addChar(b.dataset.char)));
-    document.getElementById('clearBtn').addEventListener('click', clearAll);
-    document.getElementById('delBtn').addEventListener('click', del);
-    document.getElementById('sqrtBtn').addEventListener('click', sqrtFn);
-    document.getElementById('squareBtn').addEventListener('click', sqFn);
-    document.getElementById('percentBtn').addEventListener('click', pctFn);
-    document.getElementById('equalBtn').addEventListener('click', equalFn);
-    document.getElementById('minusBtn').addEventListener('click', () => addOp('-'));
-    document.getElementById('multiplyBtn').addEventListener('click', () => addOp('*'));
-    document.getElementById('divideBtn').addEventListener('click', () => addOp('/'));
-    document.getElementById('largePlusBtn').addEventListener('click', () => addOp('+'));
-    update();
-
-    // ত্রিকোণমিতি
-    const trigFns = {
-      sin: d => Math.sin(d*Math.PI/180), cos: d => Math.cos(d*Math.PI/180), tan: d => Math.tan(d*Math.PI/180),
-      asin: v => Math.asin(v)*180/Math.PI, acos: v => Math.acos(v)*180/Math.PI, atan: v => Math.atan(v)*180/Math.PI
-    };
-    ['sin','cos','tan','asin','acos','atan'].forEach(fn => {
-      document.getElementById(fn+'Btn').addEventListener('click', () => {
-        let val = parseFloat(document.getElementById('angleDeg').value) || 0;
-        let res = fn.startsWith('a') ? trigFns[fn](val) : trigFns[fn](val);
-        document.getElementById('trigResultDecimal').textContent = `দশমিক: ${res.toFixed(6)}`;
-        document.getElementById('trigResultFraction').textContent = `ভগ্নাংশ: ${toFraction(res)}`;
-      });
-    });
-
-    // পরিমিতি
-    const shapeInputs = document.getElementById('shapeInputs'), geomRes = document.getElementById('geometryResult');
-    function getVal(id) { return parseFloat(document.getElementById(id)?.value) || 0; }
-    function setVal(id, v) { let el = document.getElementById(id); if(el) el.value = v.toFixed(4); }
-
-    function updateShapeFields() {
-      let s = document.getElementById('shape').value;
-      let fields = {
-        square: [{id:'sqSide',l:'বাহু (a)'},{id:'sqArea',l:'ক্ষেত্রফল (A)'},{id:'sqPeri',l:'পরিসীমা (P)'}],
-        rectangle: [{id:'recLen',l:'দৈর্ঘ্য (l)'},{id:'recWid',l:'প্রস্থ (w)'},{id:'recArea',l:'ক্ষেত্রফল (A)'},{id:'recPeri',l:'পরিসীমা (P)'}],
-        rhombus: [{id:'rhoD1',l:'কর্ণ ১ (d1)'},{id:'rhoD2',l:'কর্ণ ২ (d2)'},{id:'rhoSide',l:'বাহু (a)'},{id:'rhoArea',l:'ক্ষেত্রফল (A)'},{id:'rhoPeri',l:'পরিসীমা (P)'}],
-        parallelogram: [{id:'paraBase',l:'ভূমি (b)'},{id:'paraHt',l:'উচ্চতা (h)'},{id:'paraSide',l:'বাহু (a)'},{id:'paraArea',l:'ক্ষেত্রফল (A)'},{id:'paraPeri',l:'পরিসীমা (P)'}],
-        trapezium: [{id:'trapA',l:'সমান্তরাল ১ (a)'},{id:'trapB',l:'সমান্তরাল ২ (b)'},{id:'trapH',l:'উচ্চতা (h)'},{id:'trapArea',l:'ক্ষেত্রফল (A)'}],
-        irregular_quad: [{id:'irrA',l:'বাহু ১ (a)'},{id:'irrB',l:'বাহু ২ (b)'},{id:'irrC',l:'বাহু ৩ (c)'},{id:'irrD',l:'বাহু ৪ (d)'},{id:'irrDiag',l:'কর্ণ (diag)'}],
-        circle: [{id:'cirRad',l:'ব্যাসার্ধ (r)'},{id:'cirDia',l:'ব্যাস (d)'},{id:'cirCir',l:'পরিধি (C)'},{id:'cirArea',l:'ক্ষেত্রফল (A)'}],
-        sector: [{id:'secRad',l:'ব্যাসার্ধ (r)'},{id:'secAngle',l:'কোণ (θ°)'},{id:'secArc',l:'চাপ (l)'},{id:'secArea',l:'ক্ষেত্রফল (A)'}],
-        cube: [{id:'cubeSide',l:'বাহু (a)'},{id:'cubeVol',l:'আয়তন (V)'},{id:'cubeTSA',l:'সমগ্র তল (TSA)'},{id:'cubeCSA',l:'পার্শ্ব তল (CSA)'},{id:'cubeDiag',l:'কর্ণ (d)'}],
-        cuboid: [{id:'cubLen',l:'দৈর্ঘ্য (l)'},{id:'cubWid',l:'প্রস্থ (w)'},{id:'cubHt',l:'উচ্চতা (h)'},{id:'cubVol',l:'আয়তন (V)'},{id:'cubTSA',l:'সমগ্র তল (TSA)'},{id:'cubCSA',l:'পার্শ্ব তল (CSA)'},{id:'cubDiag',l:'কর্ণ (d)'}],
-        sphere: [{id:'sphRad',l:'ব্যাসার্ধ (r)'},{id:'sphVol',l:'আয়তন (V)'},{id:'sphArea',l:'পৃষ্ঠতল (A)'}],
-        cone: [{id:'coneRad',l:'ব্যাসার্ধ (r)'},{id:'coneHt',l:'উচ্চতা (h)'},{id:'coneSlant',l:'তির্যক উচ্চতা (l)'},{id:'coneVol',l:'আয়তন (V)'},{id:'coneTSA',l:'সমগ্র তল (TSA)'}],
-        frustum: [{id:'frusR',l:'ব্যাসার্ধ ১ (R)'},{id:'frusr',l:'ব্যাসার্ধ ২ (r)'},{id:'frusH',l:'উচ্চতা (h)'},{id:'frusL',l:'তির্যক উচ্চতা (l)'},{id:'frusVol',l:'আয়তন (V)'}],
-        cylinder: [{id:'cylRad',l:'ব্যাসার্ধ (r)'},{id:'cylHt',l:'উচ্চতা (h)'},{id:'cylVol',l:'আয়তন (V)'},{id:'cylTSA',l:'সমগ্র তল (TSA)'},{id:'cylCSA',l:'পার্শ্ব তল (CSA)'}],
-        right_triangle: [{id:'triA',l:'লম্ব (a)'},{id:'triB',l:'ভূমি (b)'},{id:'triC',l:'অতিভুজ (c)'},{id:'triArea',l:'ক্ষেত্রফল (A)'},{id:'triPeri',l:'পরিসীমা (P)'}]
-      };
-      shapeInputs.innerHTML = '';
-      (fields[s]||[]).forEach(f => {
-        const div = document.createElement('div'); div.className = 'input-group';
-        div.innerHTML = `<label>${f.l}</label><input type="number" id="${f.id}" step="any">`;
-        shapeInputs.appendChild(div);
-      });
-    }
-    updateShapeFields();
-    document.getElementById('shape').addEventListener('change', updateShapeFields);
-
-    function computeGeometry(shape, v) {
-      let res = '';
-      if (shape === 'square') {
-        let a=v.sqSide, A=v.sqArea, P=v.sqPeri;
-        if(a){ A=a*a; P=4*a; setVal('sqArea',A); setVal('sqPeri',P); res=`a=${a}, A=${A}, P=${P}`; }
-        else if(A){ a=Math.sqrt(A); P=4*a; setVal('sqSide',a); setVal('sqPeri',P); res=`A=${A}, a=${a.toFixed(2)}, P=${P.toFixed(2)}`; }
-        else if(P){ a=P/4; A=a*a; setVal('sqSide',a); setVal('sqArea',A); res=`P=${P}, a=${a.toFixed(2)}, A=${A.toFixed(2)}`; }
-      }
-      else if (shape === 'rectangle') {
-        let l=v.recLen, w=v.recWid, A=v.recArea, P=v.recPeri;
-        if(l&&w){ A=l*w; P=2*(l+w); setVal('recArea',A); setVal('recPeri',P); res=`l=${l}, w=${w}, A=${A}, P=${P}`; }
-        else if(l&&A){ w=A/l; P=2*(l+w); setVal('recWid',w); setVal('recPeri',P); res=`l=${l}, A=${A}, w=${w.toFixed(2)}, P=${P.toFixed(2)}`; }
-        else if(w&&A){ l=A/w; P=2*(l+w); setVal('recLen',l); setVal('recPeri',P); res=`w=${w}, A=${A}, l=${l.toFixed(2)}, P=${P.toFixed(2)}`; }
-        else if(l&&P){ w=P/2-l; A=l*w; setVal('recWid',w); setVal('recArea',A); res=`l=${l}, P=${P}, w=${w.toFixed(2)}, A=${A.toFixed(2)}`; }
-        else if(w&&P){ l=P/2-w; A=l*w; setVal('recLen',l); setVal('recArea',A); res=`w=${w}, P=${P}, l=${l.toFixed(2)}, A=${A.toFixed(2)}`; }
-      }
-      else if (shape === 'rhombus') {
-        let d1=v.rhoD1, d2=v.rhoD2, a=v.rhoSide, A=v.rhoArea, P=v.rhoPeri;
-        if(d1&&d2){ A=(d1*d2)/2; a=Math.sqrt((d1/2)**2+(d2/2)**2); P=4*a; setVal('rhoArea',A); setVal('rhoSide',a); setVal('rhoPeri',P); res=`d1=${d1}, d2=${d2}, A=${A.toFixed(2)}, a=${a.toFixed(2)}, P=${P.toFixed(2)}`; }
-        else res='বাহু ও ক্ষেত্রফল থেকে কর্ণ বের করা যায় না';
-      }
-      else if (shape === 'parallelogram') {
-        let b=v.paraBase, h=v.paraHt, a=v.paraSide, A=v.paraArea, P=v.paraPeri;
-        if(b&&h){ A=b*h; setVal('paraArea',A); res=`b=${b}, h=${h}, A=${A}`; if(a){ P=2*(b+a); setVal('paraPeri',P); res+=`, P=${P}`; } }
-        else if(b&&A){ h=A/b; setVal('paraHt',h); res=`b=${b}, A=${A}, h=${h.toFixed(2)}`; }
-        else if(h&&A){ b=A/h; setVal('paraBase',b); res=`h=${h}, A=${A}, b=${b.toFixed(2)}`; }
-      }
-      else if (shape === 'trapezium') {
-        let a=v.trapA, b=v.trapB, h=v.trapH, A=v.trapArea;
-        if(a&&b&&h){ A=((a+b)*h)/2; setVal('trapArea',A); res=`a=${a}, b=${b}, h=${h}, A=${A}`; }
-        else if(a&&b&&A){ h=2*A/(a+b); setVal('trapH',h); res=`a=${a}, b=${b}, A=${A}, h=${h.toFixed(2)}`; }
-        else if(a&&h&&A){ b=2*A/h - a; setVal('trapB',b); res=`a=${a}, h=${h}, A=${A}, b=${b.toFixed(2)}`; }
-      }
-      else if (shape === 'irregular_quad') {
-        let a=v.irrA, b=v.irrB, c=v.irrC, d=v.irrD, diag=v.irrDiag;
-        if(a&&b&&c&&d&&diag){ let s1=(a+b+diag)/2, A1=Math.sqrt(s1*(s1-a)*(s1-b)*(s1-diag)); let s2=(c+d+diag)/2, A2=Math.sqrt(s2*(s2-c)*(s2-d)*(s2-diag)); res=`ক্ষেত্রফল ≈ ${(A1+A2).toFixed(4)}`; }
-        else res='পাঁচটি মান প্রয়োজন';
-      }
-      else if (shape === 'circle') {
-        let r=v.cirRad, d=v.cirDia, C=v.cirCir, A=v.cirArea;
-        if(r){ d=2*r; C=2*Math.PI*r; A=Math.PI*r*r; setVal('cirDia',d); setVal('cirCir',C); setVal('cirArea',A); res=`r=${r}, d=${d.toFixed(2)}, C=${C.toFixed(2)}, A=${A.toFixed(2)}`; }
-        else if(d){ r=d/2; C=Math.PI*d; A=Math.PI*r*r; setVal('cirRad',r); setVal('cirCir',C); setVal('cirArea',A); res=`d=${d}, r=${r.toFixed(2)}, C=${C.toFixed(2)}, A=${A.toFixed(2)}`; }
-        else if(C){ r=C/(2*Math.PI); d=2*r; A=Math.PI*r*r; setVal('cirRad',r); setVal('cirDia',d); setVal('cirArea',A); res=`C=${C}, r=${r.toFixed(2)}, d=${d.toFixed(2)}, A=${A.toFixed(2)}`; }
-        else if(A){ r=Math.sqrt(A/Math.PI); d=2*r; C=2*Math.PI*r; setVal('cirRad',r); setVal('cirDia',d); setVal('cirCir',C); res=`A=${A}, r=${r.toFixed(2)}, d=${d.toFixed(2)}, C=${C.toFixed(2)}`; }
-      }
-      else if (shape === 'sector') {
-        let r=v.secRad, ang=v.secAngle, arc=v.secArc, A=v.secArea;
-        if(r&&ang){ arc=(ang/360)*2*Math.PI*r; A=(ang/360)*Math.PI*r*r; setVal('secArc',arc); setVal('secArea',A); res=`r=${r}, θ=${ang}°, l=${arc.toFixed(2)}, A=${A.toFixed(2)}`; }
-        else if(r&&arc){ ang=(arc/(2*Math.PI*r))*360; A=(ang/360)*Math.PI*r*r; setVal('secAngle',ang); setVal('secArea',A); res=`r=${r}, l=${arc}, θ=${ang.toFixed(2)}°, A=${A.toFixed(2)}`; }
-      }
-      else if (shape === 'cube') {
-        let a=v.cubeSide, V=v.cubeVol, TSA=v.cubeTSA, CSA=v.cubeCSA, diag=v.cubeDiag;
-        if(a){ V=a**3; TSA=6*a*a; CSA=4*a*a; diag=a*Math.sqrt(3); setVal('cubeVol',V); setVal('cubeTSA',TSA); setVal('cubeCSA',CSA); setVal('cubeDiag',diag); res=`a=${a}, V=${V}, TSA=${TSA}, CSA=${CSA}, d=${diag.toFixed(2)}`; }
-        else if(V){ a=Math.cbrt(V); TSA=6*a*a; CSA=4*a*a; diag=a*Math.sqrt(3); setVal('cubeSide',a); setVal('cubeTSA',TSA); setVal('cubeCSA',CSA); setVal('cubeDiag',diag); res=`V=${V}, a=${a.toFixed(2)}, TSA=${TSA.toFixed(2)}, CSA=${CSA.toFixed(2)}, d=${diag.toFixed(2)}`; }
-      }
-      else if (shape === 'cuboid') {
-        let l=v.cubLen, w=v.cubWid, h=v.cubHt, V=v.cubVol, TSA=v.cubTSA, CSA=v.cubCSA, diag=v.cubDiag;
-        if(l&&w&&h){ V=l*w*h; TSA=2*(l*w+w*h+h*l); CSA=2*h*(l+w); diag=Math.sqrt(l*l+w*w+h*h); setVal('cubVol',V); setVal('cubTSA',TSA); setVal('cubCSA',CSA); setVal('cubDiag',diag); res=`l=${l}, w=${w}, h=${h}, V=${V}, TSA=${TSA}, CSA=${CSA}, d=${diag.toFixed(2)}`; }
-      }
-      else if (shape === 'sphere') {
-        let r=v.sphRad, V=v.sphVol, A=v.sphArea;
-        if(r){ V=(4/3)*Math.PI*r**3; A=4*Math.PI*r*r; setVal('sphVol',V); setVal('sphArea',A); res=`r=${r}, V=${V.toFixed(2)}, A=${A.toFixed(2)}`; }
-        else if(V){ r=Math.cbrt((3*V)/(4*Math.PI)); A=4*Math.PI*r*r; setVal('sphRad',r); setVal('sphArea',A); res=`V=${V}, r=${r.toFixed(2)}, A=${A.toFixed(2)}`; }
-      }
-      else if (shape === 'cone') {
-        let r=v.coneRad, h=v.coneHt, l=v.coneSlant, V=v.coneVol, TSA=v.coneTSA;
-        if(r&&h){ l=Math.sqrt(r*r+h*h); V=(1/3)*Math.PI*r*r*h; TSA=Math.PI*r*(r+l); setVal('coneSlant',l); setVal('coneVol',V); setVal('coneTSA',TSA); res=`r=${r}, h=${h}, l=${l.toFixed(2)}, V=${V.toFixed(2)}, TSA=${TSA.toFixed(2)}`; }
-      }
-      else if (shape === 'frustum') {
-        let R=v.frusR, r=v.frusr, h=v.frusH, L=v.frusL, V=v.frusVol;
-        if(R&&r&&h){ L=Math.sqrt((R-r)**2 + h*h); V=(1/3)*Math.PI*h*(R*R + r*r + R*r); setVal('frusL',L); setVal('frusVol',V); res=`R=${R}, r=${r}, h=${h}, L=${L.toFixed(2)}, V=${V.toFixed(2)}`; }
-      }
-      else if (shape === 'cylinder') {
-        let r=v.cylRad, h=v.cylHt, V=v.cylVol, TSA=v.cylTSA, CSA=v.cylCSA;
-        if(r&&h){ V=Math.PI*r*r*h; TSA=2*Math.PI*r*(r+h); CSA=2*Math.PI*r*h; setVal('cylVol',V); setVal('cylTSA',TSA); setVal('cylCSA',CSA); res=`r=${r}, h=${h}, V=${V.toFixed(2)}, TSA=${TSA.toFixed(2)}, CSA=${CSA.toFixed(2)}`; }
-      }
-      else if (shape === 'right_triangle') {
-        let a=v.triA, b=v.triB, c=v.triC, A=v.triArea, P=v.triPeri;
-        if(a&&b){ c=Math.sqrt(a*a+b*b); A=0.5*a*b; P=a+b+c; setVal('triC',c); setVal('triArea',A); setVal('triPeri',P); res=`a=${a}, b=${b}, c=${c.toFixed(2)}, A=${A}, P=${P.toFixed(2)}`; }
-        else if(a&&c){ b=Math.sqrt(c*c - a*a); A=0.5*a*b; P=a+b+c; setVal('triB',b); setVal('triArea',A); setVal('triPeri',P); }
-      }
-      return res;
-    }
-
-    document.getElementById('calcShapeBtn').addEventListener('click', () => {
-      let s = document.getElementById('shape').value;
-      let vals = {};
-      shapeInputs.querySelectorAll('input').forEach(inp => vals[inp.id] = parseFloat(inp.value) || 0);
-      let result = computeGeometry(s, vals);
-      geomRes.innerHTML = result || 'গণনা সম্ভব নয়';
-    });
-
-    // লাভ-ক্ষতি
-    document.getElementById('simplePLBtn').addEventListener('click', () => {
-      let cp=parseFloat(document.getElementById('cp').value)||0, sp=parseFloat(document.getElementById('sp').value)||0;
-      if(!cp||!sp){ document.getElementById('simplePLResult').textContent='CP ও SP দিন'; return; }
-      let diff=sp-cp, percent=(diff/cp)*100;
-      document.getElementById('simplePLResult').textContent=`${diff>=0?'লাভ':'ক্ষতি'}: ${Math.abs(diff).toFixed(2)} টাকা (${Math.abs(percent).toFixed(2)}%)`;
-    });
-    document.getElementById('offerPLBtn').addEventListener('click', () => {
-      let t1=parseFloat(document.getElementById('offerT1').value)||0, q1=parseFloat(document.getElementById('offerQ1').value)||0;
-      let t2=parseFloat(document.getElementById('offerT2').value)||0, q2=parseFloat(document.getElementById('offerQ2').value)||0;
-      if(!t1||!q1||!t2||!q2){ document.getElementById('offerPLResult').textContent='সব ফিল্ড পূরণ করুন'; return; }
-      let cpPerItem=t1/q1, spPerItem=t2/q2, totalCP=cpPerItem*q2, totalSP=t2;
-      let diff=totalSP-totalCP, percent=(diff/totalCP)*100;
-      document.getElementById('offerPLResult').textContent=`${diff>=0?'লাভ':'ক্ষতি'}: ${Math.abs(diff).toFixed(2)} টাকা (${Math.abs(percent).toFixed(2)}%)`;
-    });
-
-    // বয়স
-    document.getElementById('ageBtn').addEventListener('click', () => {
-      let birth=document.getElementById('birthDate').value;
-      if(!birth){ document.getElementById('ageResult').textContent='জন্ম তারিখ দিন'; return; }
-      let now=new Date(), bDate=new Date(birth), years=now.getFullYear()-bDate.getFullYear(), months=now.getMonth()-bDate.getMonth(), days=now.getDate()-bDate.getDate();
-      if(days<0){ months--; days+=new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
-      if(months<0){ years--; months+=12; }
-      document.getElementById('ageResult').textContent=`${years} বছর, ${months} মাস, ${days} দিন`;
-    });
-
-    // সময়-কাজ
-    document.getElementById('workBtn').addEventListener('click', () => {
-      let m1=parseFloat(document.getElementById('workM1').value)||0, d1=parseFloat(document.getElementById('workD1').value)||0, w1=parseFloat(document.getElementById('workW1').value)||0;
-      let m2=parseFloat(document.getElementById('workM2').value)||0, d2=parseFloat(document.getElementById('workD2').value)||0, w2=parseFloat(document.getElementById('workW2').value)||0;
-      if(!m1||!d1){ document.getElementById('workResult').textContent='M1 ও D1 আবশ্যক'; return; }
-      let unitWork=(m1*d1)/(w1||1);
-      if(m2&&d2){ document.getElementById('workResult').textContent=`W2 = ${((m2*d2)/unitWork).toFixed(2)}`; }
-      else if(m2&&w2){ document.getElementById('workResult').textContent=`D2 = ${((unitWork*w2)/m2).toFixed(2)} দিন`; }
-      else if(d2&&w2){ document.getElementById('workResult').textContent=`M2 = ${((unitWork*w2)/d2).toFixed(2)} লোক`; }
-      else { document.getElementById('workResult').textContent='M2, D2, W2 এর যেকোনো দুইটি দিন'; }
-    });
-
-    // জমির পরিমাপ
-    const landUnits = { shotangsho: 435.6, katha: 720, bigha: 14400, acre: 43560, sqft: 1, sqm: 10.764, sqyd: 9 };
-    const landLabels = { shotangsho: 'শতাংশ', katha: 'কাঠা', bigha: 'বিঘা', acre: 'একর', sqft: 'বর্গফুট', sqm: 'বর্গমিটার', sqyd: 'বর্গগজ' };
-    document.getElementById('convertLandBtn').addEventListener('click', () => {
-      let val = parseFloat(document.getElementById('landValue').value) || 0;
-      let unit = document.getElementById('landUnit').value;
-      if (!val) return;
-      let sqft = val * (landUnits[unit] || 1);
-      let html = '';
-      for (let [key, factor] of Object.entries(landUnits)) {
-        html += `<div class="unit-item"><span>${(sqft/factor).toFixed(4)}</span>${landLabels[key] || key}</div>`;
-      }
-      document.getElementById('landResults').innerHTML = html;
-    });
-
-    // ইউনিট কনভার্টার (বাংলা লেবেল সহ)
-    const lengthLabels = { m:'মিটার', cm:'সেমি', mm:'মিমি', km:'কিমি', in:'ইঞ্চি', ft:'ফুট', yd:'গজ' };
-    const volumeLabels = { l:'লিটার', ml:'মিলিলিটার', m3:'ঘনমিটার', gal:'গ্যালন' };
-    const weightLabels = { kg:'কেজি', g:'গ্রাম', lb:'পাউন্ড', oz:'আউন্স', t:'টন', mt:'মেট্রিক টন' };
-    const tempLabels = { c:'সেলসিয়াস', f:'ফারেনহাইট', k:'কেলভিন' };
-
-    const unitData = {
-      length: {m:1,cm:0.01,mm:0.001,km:1000,in:0.0254,ft:0.3048,yd:0.9144},
-      volume: {l:1,ml:0.001,m3:1000,gal:3.78541},
-      weight: {kg:1,g:0.001,lb:0.453592,oz:0.0283495,t:1000,mt:1000}
-    };
-    function convertUnit(category, val, fromUnit) {
-      let table = unitData[category];
-      let base = val * table[fromUnit];
-      let result = {};
-      for (let [unit, factor] of Object.entries(table)) result[unit] = (base / factor).toFixed(4);
-      return result;
-    }
-    function populateGrid(containerId, data, labels) {
-      let html = '';
-      for (let [unit, value] of Object.entries(data)) html += `<div class="unit-item"><span>${value}</span>${labels[unit]||unit}</div>`;
-      document.getElementById(containerId).innerHTML = html;
-    }
-
-    document.getElementById('convertLengthBtn').addEventListener('click', ()=>{
-      let val=parseFloat(document.getElementById('lengthValue').value)||0, from=document.getElementById('lengthUnit').value;
-      populateGrid('lengthResults', convertUnit('length', val, from), lengthLabels);
-    });
-    document.getElementById('convertVolumeBtn').addEventListener('click', ()=>{
-      let val=parseFloat(document.getElementById('volumeValue').value)||0, from=document.getElementById('volumeUnit').value;
-      populateGrid('volumeResults', convertUnit('volume', val, from), volumeLabels);
-    });
-    document.getElementById('convertWeightBtn').addEventListener('click', ()=>{
-      let val=parseFloat(document.getElementById('weightVal').value)||0, from=document.getElementById('weightUnit').value;
-      populateGrid('weightResults', convertUnit('weight', val, from), weightLabels);
-    });
-    document.getElementById('convertTempBtn').addEventListener('click', ()=>{
-      let val=parseFloat(document.getElementById('tempValue').value)||0, from=document.getElementById('tempUnit').value;
-      let celsius = val;
-      if(from==='f') celsius=(val-32)*5/9;
-      else if(from==='k') celsius=val-273.15;
-      let results = { c: celsius.toFixed(2), f: (celsius*9/5+32).toFixed(2), k: (celsius+273.15).toFixed(2) };
-      let html = '';
-      for(let [unit,value] of Object.entries(results)) html += `<div class="unit-item"><span>${value}</span>${tempLabels[unit]}</div>`;
-      document.getElementById('tempResults').innerHTML = html;
-    });
-
-    // ফুল বাজার (সংশোধিত)
-    document.getElementById('flowerBtn').addEventListener('click', () => {
-      let total = parseFloat(document.getElementById('flowerTotal').value) || 0;
-      let bagWt = parseFloat(document.getElementById('flowerBag').value) || 0;
-      let waste = parseFloat(document.getElementById('flowerWaste').value) || 0;
-      let price = parseFloat(document.getElementById('flowerPrice').value) || 0;
-      let netWeight = Math.max(0, total - bagWt - waste);
-      let totalPrice = netWeight * price;
-      document.getElementById('flowerResult').textContent = `নিট ওজন: ${netWeight.toFixed(2)} কেজি | মোট মূল্য: ${totalPrice.toFixed(2)} টাকা`;
-    });
-
-    // ইএমআই — চক্রবৃদ্ধি ও সরল উভয়ই
-    function emiPMT_compound(P,R,N) { if(R===0) return P/N; let r=R/1200; return (P*r*Math.pow(1+r,N))/(Math.pow(1+r,N)-1); }
-    function emiPMT_simple(P,R,N) { if(R===0) return P/N; let totalInterest = P * (R/100) * (N/12); let totalAmount = P + totalInterest; return totalAmount / N; }
-
-    document.getElementById('emiBtn').addEventListener('click', () => {
-      let type = document.getElementById('emiType').value;
-      let P=parseFloat(document.getElementById('emiPrincipal').value)||0, R=parseFloat(document.getElementById('emiRate').value)||0;
-      let M=parseFloat(document.getElementById('emiMonthly').value)||0, N=parseFloat(document.getElementById('emiMonths').value)||0;
-
-      if (type === 'compound') {
-        if(P&&R&&N){ let emi=emiPMT_compound(P,R,N); let total=emi*N; let interest=total-P; document.getElementById('emiResult').textContent=`(চক্রবৃদ্ধি) মাসিক কিস্তি: ${emi.toFixed(2)} টাকা, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
-        else if(P&&R&&M){ let r=R/1200; if(M<=P*r){ document.getElementById('emiResult').textContent='কিস্তি খুব কম'; return; } let n=Math.log(M/(M-P*r))/Math.log(1+r); let months=Math.ceil(n); let total=M*months; let interest=total-P; document.getElementById('emiResult').textContent=`(চক্রবৃদ্ধি) সময়: ${months} মাস, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
-        else { document.getElementById('emiResult').textContent='P, R, N অথবা P, R, M দিন'; }
-      } else if (type === 'simple') {
-        if(P&&R&&N){ let emi=emiPMT_simple(P,R,N); let total=emi*N; let interest=total-P; document.getElementById('emiResult').textContent=`(সরল সুদ) মাসিক কিস্তি: ${emi.toFixed(2)} টাকা, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
-        else if(P&&R&&M){ let totalInterest = P * (R/100) * (1.0/12); if(M <= totalInterest){ document.getElementById('emiResult').textContent='কিস্তি খুব কম (সুদের চেয়েও কম)'; return; } let months = Math.ceil(P / (M - totalInterest)); let total = M * months; let interest = total - P; document.getElementById('emiResult').textContent=`(সরল সুদ) সময়: ${months} মাস, মোট পরিশোধ: ${total.toFixed(2)} টাকা, মোট সুদ: ${interest.toFixed(2)} টাকা`; }
-        else { document.getElementById('emiResult').textContent='P, R, N অথবা P, R, M দিন'; }
-      }
-    });
-
-    // BMI
-    document.getElementById('bmiBtn').addEventListener('click', () => {
-      let h=parseFloat(document.getElementById('bmiHeight').value)/100, w=parseFloat(document.getElementById('bmiWeight').value)||0;
-      if(!h||!w) return;
-      let bmi=w/(h*h);
-      let cat=bmi<18.5?'কম ওজন':bmi<25?'স্বাভাবিক':bmi<30?'অতিরিক্ত ওজন':'স্থূলতা';
-      document.getElementById('bmiResult').textContent=`BMI: ${bmi.toFixed(1)} (${cat})`;
-    });
-
-    // কন্টাক্ট মোডাল
-    let modal = document.getElementById('contactModal');
-    document.getElementById('openContactBtn').addEventListener('click', ()=> modal.classList.add('show'));
-    document.getElementById('closeModalBtn').addEventListener('click', ()=> modal.classList.remove('show'));
-    window.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('show'); });
-  })();
-</script>
+<script src="main.js"></script>
 </body>
 </html>
