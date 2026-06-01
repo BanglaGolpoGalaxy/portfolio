@@ -168,3 +168,48 @@ async function sendMessage() {
     messagesDiv.innerHTML += `<div class="ai-message bot">${reply}</div>`;
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
+
+// ========== DRAGGABLE CHAT BUTTON ==========
+(function() {
+    const btn = document.getElementById('ai-chat-btn');
+    if (!btn) return;
+    let isDragging = false, startX, startY, startLeft, startTop;
+    
+    btn.addEventListener('touchstart', function(e) {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        const rect = btn.getBoundingClientRect();
+        startLeft = rect.left;
+        startTop = rect.top;
+        isDragging = false; // মাত্রই শুরু
+    }, {passive: false});
+
+    btn.addEventListener('touchmove', function(e) {
+        if (startX === undefined) return;
+        const touch = e.touches[0];
+        const dx = touch.clientX - startX;
+        const dy = touch.clientY - startY;
+        if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+            isDragging = true;
+            e.preventDefault();
+            btn.style.transition = 'none';
+            btn.style.top = (startTop + dy) + 'px';
+            btn.style.left = (startLeft + dx) + 'px';
+            btn.style.right = 'auto'; // right সরিয়ে left ব্যবহার করছি
+        }
+    }, {passive: false});
+
+    btn.addEventListener('touchend', function(e) {
+        if (!isDragging) {
+            // ক্লিক হিসেবে ধরা হবে, চ্যাট টগল হবে
+            toggleChat();
+        }
+        // রিসেট
+        startX = undefined; startY = undefined;
+        isDragging = false;
+        btn.style.transition = 'transform 0.2s';
+        // পজিশন ঠিক রাখতে পারি, কিন্তু আপাতত left/right জটিলতা এড়াতে আমরা শেষ অবস্থান ধরে রাখব
+        // যদি চান, পরের বার একই জায়গায় থাকবে, সেটা করার জন্য আমরা localStorage-এ সংরক্ষণ করতে পারি, কিন্তু এখন না।
+    });
+})();
