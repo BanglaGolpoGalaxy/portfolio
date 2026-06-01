@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Super Calculator | সুপার ক্যালকুলেটর</title>
+    <meta name="description" content="All-in-1 calculator: Basic, Flower Market, Geometry, EMI, BMI, Profit-Loss. অল-ইন-ওয়ান ক্যালকুলেটর।">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-lang="en">
+
+<div class="super-calc">
+    <div class="calc-title">
+        <span class="lang-en">🧮 Super Calculator — All-in-One Tools</span>
+        <span class="lang-bn">🧮 সুপার ক্যালকুলেটর — অল-ইন-ওয়ান টুলস</span>
+    </div>
+
+    <div class="lang-toggle-wrapper">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="bn">বাংলা</button>
+    </div>
+
+    <div class="tabs-scroll">
+        <div class="tabs" id="tabContainer">
+            <button class="tab-btn active" data-tab="basic">🧮 <span class="lang-en">Basic</span><span class="lang-bn">সাধারণ</span></button>
+            <button class="tab-btn" data-tab="flower">🌻 <span class="lang-en">Flower</span><span class="lang-bn">ফুল বাজার</span></button>
+            <button class="tab-btn" data-tab="trig">📐 <span class="lang-en">Trigonometry</span><span class="lang-bn">ত্রিকোণমিতি</span></button>
+            <button class="tab-btn" data-tab="geometry">📏 <span class="lang-en">Geometry</span><span class="lang-bn">পরিমিতি</span></button>
+            <button class="tab-btn" data-tab="profitLoss">💰 <span class="lang-en">Profit-Loss</span><span class="lang-bn">লাভ-ক্ষতি</span></button>
+            <button class="tab-btn" data-tab="age">🎂 <span class="lang-en">Age</span><span class="lang-bn">বয়স</span></button>
+            <button class="tab-btn" data-tab="land">🏞️ <span class="lang-en">Land</span><span class="lang-bn">জমি</span></button>
+            <button class="tab-btn" data-tab="unitLength">📏 <span class="lang-en">Length</span><span class="lang-bn">দৈর্ঘ্য</span></button>
+            <button class="tab-btn" data-tab="unitVolume">🧴 <span class="lang-en">Volume</span><span class="lang-bn">আয়তন</span></button>
+            <button class="tab-btn" data-tab="unitTemp">🌡️ <span class="lang-en">Temp</span><span class="lang-bn">তাপমাত্রা</span></button>
+            <button class="tab-btn" data-tab="weight">⚖️ <span class="lang-en">Weight</span><span class="lang-bn">ওজন</span></button>
+            <button class="tab-btn" data-tab="emi">💰 <span class="lang-en">EMI</span><span class="lang-bn">ইএমআই</span></button>
+            <button class="tab-btn" data-tab="bmi">⚖️ <span class="lang-en">BMI</span><span class="lang-bn">বিএমআই</span></button>
+        </div>
+    </div>
+
+    <!-- Basic Calculator -->
+    <div id="basic" class="tab-pane active-pane">
+        <div class="calc-display">
+            <div class="term-counter" id="termCounter">👉 0</div>
+            <div class="expression" id="exprDisplay">0</div>
+            <div class="result" id="decimalResult">= 0</div>
+            <div class="fraction-result" id="fractionResult">ভগ্নাংশ: —</div>
+        </div>
+        <div class="buttons">
+            <button class="bracket-btn" data-char="(">(</button><button class="bracket-btn" data-char=")">)</button><button class="bracket-btn" data-char="{">{</button><button class="bracket-btn" data-char="}">}</button><button class="clear-btn" id="clearBtn">AC</button>
+            <button class="bracket-btn" data-char="[">[</button><button class="bracket-btn" data-char="]">]</button><button class="sqrt-btn" id="sqrtBtn">√</button><button class="square-btn" id="squareBtn">x²</button><button class="del-btn" id="delBtn">⌫</button>
+            <button class="num-btn" data-char="7">7</button><button class="num-btn" data-char="8">8</button><button class="num-btn" data-char="9">9</button><button class="percent-btn" id="percentBtn">%</button><button class="op-btn" id="divideBtn">÷</button>
+            <button class="num-btn" data-char="4">4</button><button class="num-btn" data-char="5">5</button><button class="num-btn" data-char="6">6</button><div class="large-plus" id="largePlusBtn">+</div><button class="op-btn" id="multiplyBtn">×</button>
+            <button class="num-btn" data-char="1">1</button><button class="num-btn" data-char="2">2</button><button class="num-btn" data-char="3">3</button><button class="op-btn" id="minusBtn">-</button>
+            <button class="num-btn" data-char="00">00</button><button class="num-btn" data-char="0">0</button><button class="num-btn" data-char=".">.</button><button class="eq-btn" id="equalBtn">=</button>
+        </div>
+    </div>
+
+    <div id="flower" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Total Weight (kg)</label><label class="lang-bn">মোট ওজন (কেজি)</label><input type="number" id="flowerTotal" step="any"></div>
+        <div class="input-group"><label class="lang-en">Bag Weight (kg)</label><label class="lang-bn">ব্যাগের ওজন (কেজি)</label><input type="number" id="flowerBag" step="any"></div>
+        <div class="input-group"><label class="lang-en">Waste (gram/kg)</label><label class="lang-bn">বর্জ্য (গ্রাম/কেজি)</label><input type="number" id="flowerWastePerKg" step="any" value="100"></div>
+        <div class="input-group"><label class="lang-en">Price/kg (₹)</label><label class="lang-bn">দাম/কেজি (টাকা)</label><input type="number" id="flowerPrice" step="any"></div>
+        <button class="calc-submit" id="flowerBtn"><span class="lang-en">Calculate</span><span class="lang-bn">হিসাব করুন</span></button>
+        <div class="result-box" id="flowerResult"></div>
+    </div>
+
+    <div id="trig" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Angle (degrees)</label><label class="lang-bn">কোণ (ডিগ্রি)</label><input type="number" id="angleDeg" step="any" placeholder="0"></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <button class="calc-submit" id="sinBtn">sin</button><button class="calc-submit" id="cosBtn">cos</button><button class="calc-submit" id="tanBtn">tan</button>
+            <button class="calc-submit" id="asinBtn">sin⁻¹</button><button class="calc-submit" id="acosBtn">cos⁻¹</button><button class="calc-submit" id="atanBtn">tan⁻¹</button>
+        </div>
+        <div class="result-box" id="trigResult"></div>
+    </div>
+
+    <div id="geometry" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Shape</label><label class="lang-bn">আকৃতি</label><select id="shapeSelect">
+            <option value="square">Square / বর্গ</option><option value="rectangle">Rectangle / আয়তক্ষেত্র</option><option value="circle">Circle / বৃত্ত</option>
+            <option value="cube">Cube / ঘনক</option><option value="cuboid">Cuboid / আয়তঘন</option><option value="sphere">Sphere / গোলক</option>
+            <option value="equilateral_triangle">Equilateral Δ / সমবাহু ত্রিভুজ</option><option value="isosceles_triangle">Isosceles Δ / সমদ্বিবাহু ত্রিভুজ</option><option value="scalene_triangle">Scalene Δ / বিষমবাহু ত্রিভুজ</option>
+            <option value="right_triangle">Right Δ / সমকোণী ত্রিভুজ</option>
+        </select></div>
+        <div id="shapeInputs" style="display:flex; flex-direction:column; gap:12px;"></div>
+        <button class="calc-submit" id="calcShapeBtn"><span class="lang-en">Calculate</span><span class="lang-bn">হিসাব করুন</span></button>
+        <div class="unit-grid" id="geometryResult"></div>
+    </div>
+
+    <div id="profitLoss" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Cost Price (CP)</label><label class="lang-bn">ক্রয়মূল্য (CP)</label><input type="number" id="cp" step="any"></div>
+        <div class="input-group"><label class="lang-en">Selling Price (SP)</label><label class="lang-bn">বিক্রয়মূল্য (SP)</label><input type="number" id="sp" step="any"></div>
+        <button class="calc-submit" id="simplePLBtn"><span class="lang-en">Calculate</span><span class="lang-bn">হিসাব করুন</span></button>
+        <div class="result-box" id="simplePLResult"></div>
+    </div>
+
+    <div id="age" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Birth Date</label><label class="lang-bn">জন্ম তারিখ</label><input type="date" id="birthDate"></div>
+        <button class="calc-submit" id="ageBtn"><span class="lang-en">Calculate Age</span><span class="lang-bn">বয়স নির্ণয়</span></button>
+        <div class="result-box" id="ageResult"></div>
+    </div>
+
+    <div id="land" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Value</label><label class="lang-bn">মান</label><input type="number" id="landValue" step="any"></div>
+        <div class="input-group"><label class="lang-en">Unit</label><label class="lang-bn">একক</label><select id="landUnit">
+            <option value="shotangsho">Shotangsho / শতাংশ</option><option value="katha">Katha / কাঠা</option><option value="bigha">Bigha / বিঘা</option>
+            <option value="acre">Acre / একর</option><option value="sqft">Sq Feet / বর্গফুট</option><option value="sqm">Sq Meter / বর্গমিটার</option><option value="sqyd">Sq Yard / বর্গগজ</option>
+        </select></div>
+        <button class="calc-submit" id="convertLandBtn"><span class="lang-en">Convert</span><span class="lang-bn">কনভার্ট</span></button>
+        <div class="unit-grid" id="landResults"></div>
+    </div>
+
+    <div id="unitLength" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Value</label><label class="lang-bn">মান</label><input type="number" id="lengthValue" step="any"></div>
+        <div class="input-group"><label class="lang-en">Unit</label><label class="lang-bn">একক</label><select id="lengthUnit">
+            <option value="m">Meter / মিটার</option><option value="cm">Centimeter / সেমি</option><option value="mm">Millimeter / মিমি</option><option value="km">Kilometer / কিমি</option><option value="in">Inch / ইঞ্চি</option><option value="ft">Foot / ফুট</option><option value="yd">Yard / গজ</option>
+        </select></div>
+        <button class="calc-submit" id="convertLengthBtn"><span class="lang-en">Convert</span><span class="lang-bn">কনভার্ট</span></button>
+        <div class="unit-grid" id="lengthResults"></div>
+    </div>
+
+    <div id="unitVolume" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Value</label><label class="lang-bn">মান</label><input type="number" id="volumeValue" step="any"></div>
+        <div class="input-group"><label class="lang-en">Unit</label><label class="lang-bn">একক</label><select id="volumeUnit">
+            <option value="l">Liter / লিটার</option><option value="ml">Milliliter / মিলিলিটার</option><option value="m3">Cubic Meter / ঘনমিটার</option><option value="gal">Gallon / গ্যালন</option>
+        </select></div>
+        <button class="calc-submit" id="convertVolumeBtn"><span class="lang-en">Convert</span><span class="lang-bn">কনভার্ট</span></button>
+        <div class="unit-grid" id="volumeResults"></div>
+    </div>
+
+    <div id="unitTemp" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Value</label><label class="lang-bn">মান</label><input type="number" id="tempValue" step="any"></div>
+        <div class="input-group"><label class="lang-en">Unit</label><label class="lang-bn">একক</label><select id="tempUnit">
+            <option value="c">Celsius / সেলসিয়াস</option><option value="f">Fahrenheit / ফারেনহাইট</option><option value="k">Kelvin / কেলভিন</option>
+        </select></div>
+        <button class="calc-submit" id="convertTempBtn"><span class="lang-en">Convert</span><span class="lang-bn">কনভার্ট</span></button>
+        <div class="unit-grid" id="tempResults"></div>
+    </div>
+
+    <div id="weight" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Value</label><label class="lang-bn">মান</label><input type="number" id="weightVal" step="any"></div>
+        <div class="input-group"><label class="lang-en">Unit</label><label class="lang-bn">একক</label><select id="weightUnit">
+            <option value="kg">Kilogram / কেজি</option><option value="g">Gram / গ্রাম</option><option value="lb">Pound / পাউন্ড</option><option value="oz">Ounce / আউন্স</option><option value="t">Tonne / টন</option>
+        </select></div>
+        <button class="calc-submit" id="convertWeightBtn"><span class="lang-en">Convert</span><span class="lang-bn">কনভার্ট</span></button>
+        <div class="unit-grid" id="weightResults"></div>
+    </div>
+
+    <div id="emi" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Principal (P)</label><label class="lang-bn">মূলধন (P)</label><input type="number" id="emiPrincipal" step="any"></div>
+        <div class="input-group"><label class="lang-en">Rate of Interest (R%)</label><label class="lang-bn">সুদের হার (R%)</label><input type="number" id="emiRate" step="any"></div>
+        <div class="input-group"><label class="lang-en">Time (Months)</label><label class="lang-bn">সময় (মাস)</label><input type="number" id="emiMonths" step="any"></div>
+        <button class="calc-submit" id="emiBtn"><span class="lang-en">Calculate EMI</span><span class="lang-bn">ইএমআই হিসাব</span></button>
+        <div class="result-box" id="emiResult"></div>
+    </div>
+
+    <div id="bmi" class="tab-pane">
+        <div class="input-group"><label class="lang-en">Height (cm)</label><label class="lang-bn">উচ্চতা (সেমি)</label><input type="number" id="bmiHeight" step="any"></div>
+        <div class="input-group"><label class="lang-en">Weight (kg)</label><label class="lang-bn">ওজন (কেজি)</label><input type="number" id="bmiWeight" step="any"></div>
+        <button class="calc-submit" id="bmiBtn">BMI</button>
+        <div class="result-box" id="bmiResult"></div>
+    </div>
+
+    <div class="calc-footer">
+        <span>© 2026 Milan Biswas</span>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
