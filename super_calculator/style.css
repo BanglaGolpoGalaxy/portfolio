@@ -9,7 +9,7 @@
   --surface2: #f0e7d6;
   --text: #1e2a3e;
   --text-secondary: #2c3e50;
-  --accent: #1e6f5c;
+  --accent: #1e6f5c;    /* নীলাভ সবুজ */
   --accent2: #e67e22;
   --border: #d5c7b3;
   --result-bg: #1e3b4d;
@@ -169,7 +169,7 @@ button:active {
   color: white;
 }
 .eq-btn {
-  background: #2c7a4d;
+  background: #1e6f5c; /* নীল */
   color: white;
   grid-column: span 2;
 }
@@ -285,6 +285,7 @@ button:active {
   width: 90%;
   max-width: 400px;
   position: relative;
+  text-align: center;
 }
 .close-modal {
   position: absolute;
@@ -295,6 +296,22 @@ button:active {
   font-size: 1.4rem;
   cursor: pointer;
   color: var(--text);
+}
+.modal-content input, .modal-content textarea {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+}
+.modal-content button[type="submit"] {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 40px;
+  font-weight: bold;
 }
 .tabs-wrapper::-webkit-scrollbar {
   height: 4px;
@@ -307,10 +324,16 @@ button:active {
   background: var(--accent);
   border-radius: 4px;
 }
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
 @media (max-width: 520px) {
   .buttons button { padding: 8px 0; font-size: 1rem; }
   .expression { font-size: 1.3rem; }
   .result { font-size: 1.5rem; }
   .super-calc { padding: 14px; }
   .result-grid { grid-template-columns: 1fr 1fr; }
+  .two-col { grid-template-columns: 1fr; }
 }
