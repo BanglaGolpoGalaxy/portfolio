@@ -23,22 +23,28 @@ def get_git_date(file_path: str) -> str:
             cwd=os.path.dirname(file_path) or "."
         )
         if result.returncode == 0 and result.stdout.strip():
-            return result.stdout.strip()
-    except Exception:
-        pass
+            date = result.stdout.strip()
+            print(f"   📅 Git তারিখ: {date} for {file_path}")
+            return date
+        else:
+            print(f"   ⚠️ Git তারিখ পাওয়া যায়নি, mtime ব্যবহার করা হবে: {file_path}")
+    except Exception as e:
+        print(f"   ❌ Git error: {e} for {file_path}")
 
     # Git ব্যর্থ হলে ফাইলের mtime ব্যবহার (fallback)
     try:
-        return datetime.datetime.fromtimestamp(
-            os.path.getmtime(file_path)
-        ).strftime("%Y-%m-%d")
-    except OSError:
+        mtime = datetime.datetime.fromtimestamp(os.path.getmtime(file_path)).strftime("%Y-%m-%d")
+        print(f"   📅 mtime: {mtime} for {file_path}")
+        return mtime
+    except OSError as e:
+        print(f"   ❌ mtime error: {e}")
         return datetime.datetime.now().strftime("%Y-%m-%d")
 
 
 def get_html_files(directory: str) -> List[Dict]:
     """রুট ডিরেক্টরি থেকে সব .html ফাইল খুঁজে বের করে, sitemap.html বাদ দেয়।"""
     html_files = []
+    print(f"🔍 {directory} ডিরেক্টরি থেকে HTML ফাইল খোঁজা হচ্ছে...")
     for root, _, files in os.walk(directory):
         # .git ফোল্ডার বাদ দিতে
         if ".git" in root:
@@ -50,12 +56,15 @@ def get_html_files(directory: str) -> List[Dict]:
             rel_path = os.path.relpath(full_path, directory)
             # নিজের সাইটম্যাপ ফাইল বাদ (যাতে রিকারশন না হয়)
             if rel_path in ("sitemap.html", "sitemap_index.html"):
+                print(f"   ⏭️ বাদ দেওয়া হচ্ছে: {rel_path}")
                 continue
+            print(f"   📄 পাওয়া গেছে: {rel_path}")
             html_files.append({
                 "path": full_path,
                 "rel_path": rel_path,
                 "date": get_git_date(full_path)
             })
+    print(f"✅ মোট {len(html_files)}টি HTML ফাইল পাওয়া গেছে।")
     return html_files
 
 
@@ -66,12 +75,18 @@ def generate_sitemap():
         print("❌ কোনো HTML ফাইল পাওয়া যায়নি!")
         return
 
+    print("\n📋 ফাইলগুলোর তারিখ ও ক্রম:")
+    for f in files:
+        print(f"   {f['rel_path']} -> {f['date']}")
+
     # === ১. নতুন → পুরনো ক্রমে সাজানো ===
     files.sort(key=lambda x: x["date"], reverse=True)
-
-    print(f"🔍 মোট {len(files)}টি HTML ফাইল পাওয়া গেছে।")
+    print("\n🔄 সাজানোর পর ক্রম (নতুন → পুরনো):")
+    for f in files:
+        print(f"   {f['rel_path']} -> {f['date']}")
 
     # === ২. XML সাইটম্যাপ তৈরি ===
+    print("\n📝 XML সাইটম্যাপ তৈরি করা হচ্ছে...")
     urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
 
     for item in files:
@@ -89,6 +104,7 @@ def generate_sitemap():
         ET.SubElement(url_elem, "loc").text = url
         ET.SubElement(url_elem, "lastmod").text = date
         ET.SubElement(url_elem, "priority").text = priority
+        print(f"   ✅ যোগ করা হয়েছে: {url} ({date})")
 
     # XML ফাইল লেখা
     tree = ET.ElementTree(urlset)
@@ -97,6 +113,7 @@ def generate_sitemap():
     print("✅ sitemap.xml জেনারেট করা হয়েছে।")
 
     # === ৩. HTML সাইটম্যাপ তৈরি (পোর্টফোলিও থিম অনুযায়ী) ===
+    print("\n📝 HTML সাইটম্যাপ তৈরি করা হচ্ছে...")
     generate_html_sitemap(files)
     print("✅ sitemap.html জেনারেট করা হয়েছে।")
 
@@ -165,7 +182,7 @@ def generate_html_sitemap(files: List[Dict]):
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }}
-    .sitemap-header p { color: #aeb5cf; margin-top: 8px; font-size: 16px; }
+    .sitemap-header p {{ color: #aeb5cf; margin-top: 8px; font-size: 16px; }}
     .sitemap-header .badge {{
       display: inline-block;
       margin-top: 12px;
