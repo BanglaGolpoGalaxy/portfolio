@@ -10,10 +10,10 @@
   <meta name="author" content="Milan Biswas">
   <link rel="canonical" href="https://banglagolpogalaxy.github.io/portfolio/">
 
-  <!-- OPEN GRAPH -->
+  <!-- OPEN GRAPH (Hero image for sharing) -->
   <meta property="og:title" content="Milan Biswas | Web Developer, Teacher &amp; Author">
   <meta property="og:description" content="B.Sc graduate, ITI COPA trainee. I build full-stack web tools and write tutorials for Bengali learners.">
-  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/avatar.png">
+  <meta property="og:image" content="https://banglagolpogalaxy.github.io/portfolio/portfolio_hero.jpg">
   <meta property="og:url" content="https://banglagolpogalaxy.github.io/portfolio/">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -50,19 +50,26 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- ========== MAIN CSS (পাথ ঠিক করা) ========== -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQ4HS2936B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-DQ4HS2936B');
+  </script>
 </head>
 
 <body>
 
-  <!-- =========================================
-       NAVBAR
-  ========================================== -->
+  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#home" class="logo">
-        <span class="logo-icon">&lt;/&gt;</span>
+        <img src="avatar.png" alt="Milan Biswas" class="logo-avatar">
         <span class="logo-text">
           <strong>Milan Biswas</strong>
           <small>Web Developer & Creator</small>
@@ -87,16 +94,11 @@
     </div>
   </header>
 
-  <!-- =========================================
-       MAIN
-  ========================================== -->
+  <!-- ===== MAIN ===== -->
   <main>
 
-    <!-- =========================================
-         HERO
-    ========================================== -->
+    <!-- ===== HERO ===== -->
     <section id="home" class="hero container">
-      <!-- LEFT -->
       <div class="hero-content">
         <span class="hello">Hi, I'm 👋</span>
         <h1>Milan Biswas</h1>
@@ -117,7 +119,6 @@
         </div>
       </div>
 
-      <!-- RIGHT / 3D AREA -->
       <div class="hero-visual">
         <div id="three-container"></div>
         <div class="profile-wrapper">
@@ -136,9 +137,7 @@
       </div>
     </section>
 
-    <!-- =========================================
-         STATS
-    ========================================== -->
+    <!-- ===== STATS ===== -->
     <section class="stats container" id="statsSection">
       <div class="stat">
         <strong class="counter" data-target="7" data-suffix="+">0</strong>
@@ -158,9 +157,7 @@
       </div>
     </section>
 
-    <!-- =========================================
-         ABOUT
-    ========================================== -->
+    <!-- ===== ABOUT ===== -->
     <section id="about" class="section container">
       <div class="section-heading">
         <span>ABOUT ME</span>
@@ -186,46 +183,38 @@
       </div>
     </section>
 
-    <!-- =========================================
-         EXPERIENCE
-    ========================================== -->
+    <!-- ===== EXPERIENCE ===== -->
     <section id="experience" class="section container">
       <div class="section-heading">
         <span>MY JOURNEY</span>
         <h2>Work Experience</h2>
       </div>
       <div class="experience-grid" id="experienceGrid">
-        <!-- JS দিয়ে ইনজেক্ট হবে -->
+        <!-- Injected by JS -->
       </div>
     </section>
 
-    <!-- =========================================
-         SKILLS
-    ========================================== -->
+    <!-- ===== SKILLS ===== -->
     <section id="skills" class="section container">
       <div class="section-heading">
         <span>MY TOOLBOX</span>
         <h2>Skills & Technologies</h2>
       </div>
       <div class="skills-grid" id="skillsGrid">
-        <!-- JS দিয়ে ইনজেক্ট হবে -->
+        <!-- Injected by JS -->
       </div>
     </section>
 
-    <!-- =========================================
-         PROJECTS (Scroll + See More)
-    ========================================== -->
+    <!-- ===== PROJECTS ===== -->
     <section id="projects" class="section container">
       <div class="section-heading">
         <span>MY WORK</span>
         <h2>Featured Projects</h2>
       </div>
       <div class="card-section">
-        <!-- Scroll Wrapper -->
         <div class="scroll-wrapper">
           <div id="projectsScroll" class="scroll-cards"></div>
         </div>
-        <!-- Grid Wrapper -->
         <div id="projectsGrid" class="grid-cards"></div>
         <div class="see-more-btn">
           <button id="seeMoreProjects">See All Projects →</button>
@@ -233,9 +222,7 @@
       </div>
     </section>
 
-    <!-- =========================================
-         BLOG (Scroll + See More)
-    ========================================== -->
+    <!-- ===== BLOG ===== -->
     <section id="blog" class="section container">
       <div class="section-heading">
         <span>FROM MY BLOG</span>
@@ -252,16 +239,13 @@
       </div>
     </section>
 
-    <!-- =========================================
-         HIRE ME + CONTACT FORM
-    ========================================== -->
+    <!-- ===== HIRE + CONTACT ===== -->
     <section id="hire-me" class="section container">
       <div class="section-heading">
         <span>HIRE ME</span>
         <h2>Let's work together</h2>
       </div>
       <div class="hire-contact-wrapper">
-        <!-- Hire Me Card -->
         <div class="hire-me-card">
           <p class="hire-big-text">Looking for a developer? Hire me through my freelance profiles.</p>
           <div class="hire-buttons">
@@ -276,7 +260,6 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
         <div class="contact-form-wrapper">
           <h3>Send me a message</h3>
           <form class="contact-form" action="https://formspree.io/f/mpqowyld" method="POST">
@@ -300,9 +283,7 @@
 
   </main>
 
-  <!-- =========================================
-       FOOTER
-  ========================================== -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container footer-inner">
       <div>
@@ -319,9 +300,7 @@
     </div>
   </footer>
 
-  <!-- =========================================
-       CHATBOT
-  ========================================== -->
+  <!-- ===== CHATBOT ===== -->
   <button id="ai-chat-btn" onclick="toggleChat()" title="Ask Milan's AI">💬</button>
   <div id="ai-chat-window">
     <div id="ai-chat-header">
@@ -347,9 +326,7 @@
     </div>
   </div>
 
-  <!-- =========================================
-       THREE.JS & SCRIPTS (পাথ ঠিক করা)
-  ========================================== -->
+  <!-- ===== SCRIPTS ===== -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/chatbot.js"></script>
