@@ -147,7 +147,7 @@ const obs = new IntersectionObserver(
 obs.observe(statsSection);
 
 // ============================================================
-// THREE.JS – 3D (লোগো ফিক্স)
+// THREE.JS – 3D
 // ============================================================
 const container = document.getElementById("three-container");
 const scene = new THREE.Scene();
@@ -173,7 +173,7 @@ const light2 = new THREE.PointLight(0x3b82f6, 2, 15);
 light2.position.set(-3, -2, 5);
 scene.add(light2);
 
-// ------- লোগো ডেটা (বিকল্প লিংক) -------
+// Logos data
 const techList = [
   { name: "React", color: "#61DAFB", pos: [-1.8, 1.6, 0] },
   { name: "Node.js", color: "#5FA04E", pos: [0, 2.2, 0] },
@@ -184,28 +184,21 @@ const techList = [
   { name: "JavaScript", color: "#F7DF1E", pos: [1.4, -1.6, 0] }
 ];
 
-// ------- ফাংশন: SVG থেকে Canvas তৈরি করে Texture -------
+// Canvas Texture for logos
 function createLogoTexture(tech) {
   const canvas = document.createElement("canvas");
   canvas.width = 128;
   canvas.height = 128;
   const ctx = canvas.getContext("2d");
-
-  // ব্যাকগ্রাউন্ড পরিষ্কার
   ctx.clearRect(0, 0, 128, 128);
-
-  // আইকন ড্র – বড় টেক্সট হিসেবে (কারণ SVG লোড না হলে)
   ctx.fillStyle = tech.color;
   ctx.font = "bold 60px Arial";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText(tech.name.charAt(0), 64, 64); // প্রথম অক্ষর
-
-  // ফুল নাম ছোট করে
+  ctx.fillText(tech.name.charAt(0), 64, 64);
   ctx.font = "bold 14px Arial";
   ctx.fillStyle = "#ffffff";
   ctx.fillText(tech.name, 64, 110);
-
   return new THREE.CanvasTexture(canvas);
 }
 
@@ -214,7 +207,6 @@ techList.forEach((tech, idx) => {
   const group = new THREE.Group();
   group.position.set(tech.pos[0], tech.pos[1], tech.pos[2]);
 
-  // 3D শেপ (Icosahedron)
   const geo = new THREE.IcosahedronGeometry(0.45, 1);
   const mat = new THREE.MeshStandardMaterial({
     color: 0x7c5cff,
@@ -226,7 +218,6 @@ techList.forEach((tech, idx) => {
   const mesh = new THREE.Mesh(geo, mat);
   group.add(mesh);
 
-  // লোগো (Canvas Texture)
   const logoTexture = createLogoTexture(tech);
   const spriteMat = new THREE.SpriteMaterial({
     map: logoTexture,
@@ -243,7 +234,7 @@ techList.forEach((tech, idx) => {
   techObjects.push({ group, mesh, idx, baseX: tech.pos[0], baseY: tech.pos[1] });
 });
 
-// Mouse Interaction
+// Mouse
 const mouse = new THREE.Vector2(0, 0);
 const targetMouse = new THREE.Vector2(0, 0);
 window.addEventListener("mousemove", (e) => {
@@ -251,7 +242,7 @@ window.addEventListener("mousemove", (e) => {
   targetMouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
 });
 
-// Animation Loop
+// Animation
 const clock = new THREE.Clock();
 
 function animate() {
@@ -343,6 +334,9 @@ skills.forEach(s => {
 // ============================================================
 // PROJECT & BLOG DATA
 // ============================================================
+
+// ---------- PROJECTS ----------
+// নতুন প্রজেক্ট যোগ করতে এখানে অবজেক্ট যোগ করুন (উদাহরণস্বরূপ দেখুন)
 const projects = [
   {
     title: "🏛️ Aadim Vault (আদিম ভল্ট)",
@@ -384,6 +378,15 @@ const projects = [
     btnText: "Use Calculator →",
     tech: ["HTML", "CSS", "JS"]
   },
+  // ----- NEW: Exam Guide India -----
+  {
+    title: "🎯 Exam Guide India",
+    description: "A free exam preparation platform designed to help Indian students and job aspirants with study materials, exam resources, important questions, and useful preparation content.",
+    image: "images/exam_guide_india.jpg",
+    link: "exam-guide-india/index.html",
+    btnText: "Visit Project →",
+    tech: ["HTML", "CSS", "JS", "Education"]
+  },
   {
     title: "📁 Portfolio Website",
     description: "This very portfolio – responsive, dark/light mode, smooth scroll, contact form.",
@@ -394,6 +397,8 @@ const projects = [
   }
 ];
 
+// ---------- BLOG POSTS ----------
+// নতুন ব্লগ পোস্ট যোগ করতে এখানে অবজেক্ট যোগ করুন (উদাহরণস্বরূপ দেখুন)
 const blogPosts = [
   {
     title: "My Web Development Journey",
