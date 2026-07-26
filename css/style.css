@@ -264,48 +264,62 @@ body.light .secondary-button {
 }
 
 /* =========================================
-   HERO 3D – (ছবি সম্পূর্ণ দেখানো হবে)
+   HERO 3D – (ছবি গোল + নিয়ন আভা + 3D উপরে)
 ========================================= */
 .hero-visual {
   height: 560px;
   position: relative;
 }
 
+/* Three.js ক্যানভাস – ছবির উপরে থাকবে */
 #three-container {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 4; /* বাড়ানো হয়েছে যাতে 3D লোগো ছবির উপরে আসে */
+  pointer-events: none; /* মাউস ইভেন্টে বাধা দেয় না */
 }
 #three-container canvas {
   width: 100% !important;
   height: 100% !important;
 }
 
+/* প্রোফাইল ছবি – পুরোপুরি গোল */
 .profile-wrapper {
   position: absolute;
   z-index: 3;
-  width: 320px;        /* আগে 290px ছিল */
-  height: 400px;       /* আগে 390px ছিল */
+  width: 320px;
+  height: 320px; /* সমান করলাম, যাতে গোল হয় */
   left: 50%;
   top: 48%;
   transform: translate(-50%, -50%);
-  border-radius: 0;    /* আগে 46% 46% 20px 20px ছিল – এখন সরানো */
-  overflow: hidden;
-  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .4));
+  border-radius: 50%; /* পুরোপুরি বৃত্ত */
+  overflow: visible; /* যাতে গ্লো ও 3D লোগো সীমানার বাইরে যেতে পারে */
+  filter: drop-shadow(0 0 40px var(--glow));
 }
 
+/* ছবি নিজে – গোলের ভেতরে ফিট */
 .profile-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  border-radius: 50%; /* ছবিও গোল */
+  border: 3px solid var(--primary); /* নিয়ন বর্ডার */
+  box-shadow: 0 0 50px var(--glow), 0 0 100px var(--glow);
+  transition: box-shadow 0.3s ease;
+}
+.profile-image:hover {
+  box-shadow: 0 0 70px var(--glow), 0 0 140px var(--glow);
 }
 
+/* গ্লো ইফেক্ট – ছবির চারপাশে নিয়ন আভা */
 .profile-glow {
   position: absolute;
-  inset: -80px;
-  background: radial-gradient(circle, rgba(124, 92, 255, .35), transparent 65%);
-  filter: blur(30px);
+  inset: -60px;
+  background: radial-gradient(circle, var(--glow), transparent 70%);
+  filter: blur(40px);
+  border-radius: 50%;
+  z-index: -1;
 }
 
 /* =========================================
@@ -1202,7 +1216,7 @@ footer .social-links a:hover {
   }
   .profile-wrapper {
     width: 200px;
-    height: 260px;
+    height: 200px; /* মোবাইলে গোল রাখতে সমান */
   }
   .code-card {
     width: 220px;
