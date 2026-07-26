@@ -18,7 +18,7 @@ themeToggle.addEventListener("click", () => {
 });
 
 // ============================================================
-// MOBILE MENU (হামবার্গার)
+// MOBILE MENU
 // ============================================================
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
@@ -34,7 +34,7 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
 });
 
 // ============================================================
-// TYPING CODE (Syntax Highlighted)
+// TYPING CODE
 // ============================================================
 const codeElement = document.getElementById("codeTyping");
 const codeLines = [
@@ -147,7 +147,7 @@ const obs = new IntersectionObserver(
 obs.observe(statsSection);
 
 // ============================================================
-// THREE.JS – 3D
+// THREE.JS – 3D (লোগো ফিক্স)
 // ============================================================
 const container = document.getElementById("three-container");
 const scene = new THREE.Scene();
@@ -164,6 +164,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(container.clientWidth, container.clientHeight);
 container.appendChild(renderer.domElement);
 
+// Lighting
 scene.add(new THREE.AmbientLight(0xffffff, 0.9));
 const light1 = new THREE.PointLight(0x7c5cff, 2.5, 15);
 light1.position.set(3, 3, 5);
@@ -172,21 +173,48 @@ const light2 = new THREE.PointLight(0x3b82f6, 2, 15);
 light2.position.set(-3, -2, 5);
 scene.add(light2);
 
+// ------- লোগো ডেটা (বিকল্প লিংক) -------
 const techList = [
-  { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB", pos: [-1.8, 1.6, 0] },
-  { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/5FA04E", pos: [0, 2.2, 0] },
-  { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/FFFFFF", pos: [1.8, 1.6, 0] },
-  { name: "Express", icon: "https://cdn.simpleicons.org/express/FFFFFF", pos: [-2.0, 0, 0] },
-  { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248", pos: [2.0, 0, 0] },
-  { name: "Tailwind", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4", pos: [-1.4, -1.6, 0] },
-  { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E", pos: [1.4, -1.6, 0] }
+  { name: "React", color: "#61DAFB", pos: [-1.8, 1.6, 0] },
+  { name: "Node.js", color: "#5FA04E", pos: [0, 2.2, 0] },
+  { name: "Next.js", color: "#FFFFFF", pos: [1.8, 1.6, 0] },
+  { name: "Express", color: "#FFFFFF", pos: [-2.0, 0, 0] },
+  { name: "MongoDB", color: "#47A248", pos: [2.0, 0, 0] },
+  { name: "Tailwind", color: "#06B6D4", pos: [-1.4, -1.6, 0] },
+  { name: "JavaScript", color: "#F7DF1E", pos: [1.4, -1.6, 0] }
 ];
+
+// ------- ফাংশন: SVG থেকে Canvas তৈরি করে Texture -------
+function createLogoTexture(tech) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 128;
+  canvas.height = 128;
+  const ctx = canvas.getContext("2d");
+
+  // ব্যাকগ্রাউন্ড পরিষ্কার
+  ctx.clearRect(0, 0, 128, 128);
+
+  // আইকন ড্র – বড় টেক্সট হিসেবে (কারণ SVG লোড না হলে)
+  ctx.fillStyle = tech.color;
+  ctx.font = "bold 60px Arial";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(tech.name.charAt(0), 64, 64); // প্রথম অক্ষর
+
+  // ফুল নাম ছোট করে
+  ctx.font = "bold 14px Arial";
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText(tech.name, 64, 110);
+
+  return new THREE.CanvasTexture(canvas);
+}
 
 const techObjects = [];
 techList.forEach((tech, idx) => {
   const group = new THREE.Group();
   group.position.set(tech.pos[0], tech.pos[1], tech.pos[2]);
 
+  // 3D শেপ (Icosahedron)
   const geo = new THREE.IcosahedronGeometry(0.45, 1);
   const mat = new THREE.MeshStandardMaterial({
     color: 0x7c5cff,
@@ -198,18 +226,24 @@ techList.forEach((tech, idx) => {
   const mesh = new THREE.Mesh(geo, mat);
   group.add(mesh);
 
-  const tex = new THREE.TextureLoader().load(tech.icon);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  const spriteMat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false });
+  // লোগো (Canvas Texture)
+  const logoTexture = createLogoTexture(tech);
+  const spriteMat = new THREE.SpriteMaterial({
+    map: logoTexture,
+    transparent: true,
+    depthTest: false,
+    opacity: 0.9
+  });
   const sprite = new THREE.Sprite(spriteMat);
-  sprite.scale.set(0.6, 0.6, 1);
-  sprite.position.z = 0.5;
+  sprite.scale.set(0.8, 0.8, 1);
+  sprite.position.z = 0.55;
   group.add(sprite);
 
   scene.add(group);
   techObjects.push({ group, mesh, idx, baseX: tech.pos[0], baseY: tech.pos[1] });
 });
 
+// Mouse Interaction
 const mouse = new THREE.Vector2(0, 0);
 const targetMouse = new THREE.Vector2(0, 0);
 window.addEventListener("mousemove", (e) => {
@@ -217,6 +251,7 @@ window.addEventListener("mousemove", (e) => {
   targetMouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
 });
 
+// Animation Loop
 const clock = new THREE.Clock();
 
 function animate() {
@@ -251,7 +286,7 @@ window.addEventListener("resize", () => {
 });
 
 // ============================================================
-// EXPERIENCE DATA (কার্ডের রঙের জন্য)
+// EXPERIENCE DATA
 // ============================================================
 const experiences = [
   { title: "📚 Teaching Assistant", date: "2018 – 2019", details: ["Typed notes & prepared papers", "Conducted exams & evaluated", "Took substitute classes"] },
@@ -306,11 +341,8 @@ skills.forEach(s => {
 });
 
 // ============================================================
-// PROJECT & BLOG DATA – আপনার আসল ডেটা
+// PROJECT & BLOG DATA
 // ============================================================
-
-// ------------- PROJECTS -------------
-// নতুন প্রজেক্ট যোগ করতে এখানে অবজেক্ট যোগ করুন
 const projects = [
   {
     title: "🏛️ Aadim Vault (আদিম ভল্ট)",
@@ -362,8 +394,6 @@ const projects = [
   }
 ];
 
-// ------------- BLOG POSTS -------------
-// নতুন ব্লগ পোস্ট যোগ করতে এখানে অবজেক্ট যোগ করুন
 const blogPosts = [
   {
     title: "My Web Development Journey",
@@ -413,7 +443,6 @@ const blogPosts = [
     image: "blog/images/termux_all_command.jpg",
     link: "blog/termux_all_command.html"
   },
-  // ---------- NEW: Aadim Vault Series ----------
   {
     title: "🏛️ আদিম বল সিরিজ (Aadim Vault Series)",
     excerpt: "কীভাবে আমি একটি বিশ্বজনীন হেরিটেজ প্ল্যাটফর্ম তৈরি করলাম – আদিম ভল্ট। সম্পূর্ণ সিরিজটি বাংলায়।",
@@ -425,9 +454,8 @@ const blogPosts = [
 ];
 
 // ============================================================
-// CARD FUNCTIONS – আপনার ডেটার সাথে মানিয়ে
+// CARD FUNCTIONS
 // ============================================================
-
 function createProjectCard(project) {
   const imageHTML = project.image && project.image.endsWith(".html")
     ? `<iframe src="${project.image}" style="width:100%; height:130px; border:none; overflow:hidden; border-radius:12px; margin-bottom:8px;" scrolling="no"></iframe>`
@@ -467,9 +495,8 @@ function createBlogCard(post) {
 }
 
 // ============================================================
-// POPULATE SCROLL & GRID
+// POPULATE CARDS
 // ============================================================
-
 function populateCards(scrollId, gridId, items, cardFunction) {
   const scrollContainer = document.getElementById(scrollId);
   const gridContainer = document.getElementById(gridId);
@@ -486,7 +513,6 @@ populateCards("blogScroll", "blogGrid", blogPosts, createBlogCard);
 // ============================================================
 // SEE MORE BUTTONS
 // ============================================================
-
 function setupMoreButton(buttonId, wrapperId, gridId, allText, backText) {
   const button = document.getElementById(buttonId);
   const wrapper = document.getElementById(wrapperId);
