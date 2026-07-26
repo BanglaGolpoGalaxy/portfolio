@@ -264,7 +264,7 @@ body.light .secondary-button {
 }
 
 /* =========================================
-   HERO 3D
+   HERO 3D – (ছবি সম্পূর্ণ দেখানো হবে)
 ========================================= */
 .hero-visual {
   height: 560px;
@@ -284,12 +284,12 @@ body.light .secondary-button {
 .profile-wrapper {
   position: absolute;
   z-index: 3;
-  width: 290px;
-  height: 390px;
+  width: 320px;        /* আগে 290px ছিল */
+  height: 400px;       /* আগে 390px ছিল */
   left: 50%;
   top: 48%;
   transform: translate(-50%, -50%);
-  border-radius: 46% 46% 20px 20px;
+  border-radius: 0;    /* আগে 46% 46% 20px 20px ছিল – এখন সরানো */
   overflow: hidden;
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .4));
 }
@@ -1119,7 +1119,7 @@ footer .social-links a:hover {
 }
 
 /* =========================================
-   RESPONSIVE (শুধু হামবার্গার মেনু ফিক্স)
+   RESPONSIVE
 ========================================= */
 @media (max-width: 900px) {
   .nav-links {
@@ -1195,19 +1195,20 @@ footer .social-links a:hover {
     width: calc(100% - 30px);
   }
   .hero h1 {
-    font-size: 48px;
+    font-size: 42px;
   }
   .hero-visual {
-    height: 480px;
+    height: 420px;
   }
   .profile-wrapper {
     width: 200px;
-    height: 280px;
+    height: 260px;
   }
   .code-card {
-    width: 260px;
+    width: 220px;
     left: 50%;
     transform: translateX(-50%);
+    bottom: 10px;
   }
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
