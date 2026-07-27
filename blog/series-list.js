@@ -1,8 +1,8 @@
 // ============================================================
-// blog-series-list.js — ব্লগ সিরিজ টেবিল (মোবাইল-ফ্রেন্ডলি)
+// blog-series-list.js — ব্লগ সিরিজ টেবিল
 // ============================================================
 
-// ---------- সিরিজ ডেটা (শুধু মূল পোস্ট) ----------
+// ---------- সিরিজ ডেটা ----------
 const blogSeries = [
   { title: "Backend on Mobile: Termux Tutorial Series", link: "termux_index.html" },
   { title: "Termux কমান্ড চিট শিট – সম্পূর্ণ গাইড", link: "termux_all_command.html" },
@@ -12,31 +12,41 @@ const blogSeries = [
   { title: "My Web Development Journey", link: "coding_journey.html" }
 ];
 
-// ---------- টেবিল রেন্ডার (৫টি দেখাবে, বাকি লুকানো) ----------
+// ---------- টেবিল রেন্ডার ----------
 function renderBlogSeries() {
   const container = document.getElementById('blog-series-table');
   if (!container) return;
 
-  // === ১. কন্টেইনার স্টাইল (ফুটারের আগে বসানোর জন্য) ===
+  // === ১. টেবিলটি Cusdis এর উপরে বসানো ===
+  // Cusdis কমেন্ট বক্স খুঁজে বের করা
+  const cusdisContainer = document.getElementById('cusdis_thread');
+  if (cusdisContainer) {
+    // Cusdis এর আগে টেবিল বসানো
+    cusdisContainer.parentNode.insertBefore(container, cusdisContainer);
+  }
+
+  // === ২. কন্টেইনার স্টাইল ===
   container.style.cssText = `
     max-width: 800px;
-    margin: 40px auto 20px auto;
+    margin: 30px auto 20px auto;
     padding: 0 16px;
+    background: transparent;
   `;
 
-  // === ২. শিরোনাম ===
+  // === ৩. শিরোনাম (পরিবর্তন: "অন্যান্য ব্লগ") ===
   const heading = document.createElement('h3');
-  heading.textContent = '📚 এই সিরিজের অন্যান্য পোস্ট';
+  heading.textContent = '📚 অন্যান্য ব্লগ';
   heading.style.cssText = `
     color: #9b83ff;
     font-size: 18px;
     margin: 0 0 16px 0;
     border-bottom: 1px solid rgba(145,155,220,0.18);
     padding-bottom: 8px;
+    font-weight: 600;
   `;
   container.appendChild(heading);
 
-  // === ৩. টেবিল ===
+  // === ৪. টেবিল ===
   const table = document.createElement('table');
   table.style.cssText = `
     width: 100%;
@@ -47,7 +57,7 @@ function renderBlogSeries() {
     font-size: 14px;
   `;
 
-  // --- হেডার ---
+  // --- হেডার (পরিবর্তন: "আরো পড়ুন") ---
   const thead = document.createElement('thead');
   const headerRow = document.createElement('tr');
   headerRow.style.cssText = `
@@ -55,7 +65,7 @@ function renderBlogSeries() {
     text-align: left;
   `;
   const th = document.createElement('th');
-  th.textContent = '📖 পোস্টের শিরোনাম';
+  th.textContent = '📖 আরো পড়ুন';
   th.style.cssText = `
     padding: 12px 16px;
     color: #f8f9ff;
@@ -86,36 +96,26 @@ function renderBlogSeries() {
     const link = document.createElement('a');
     link.href = item.link;
     link.textContent = item.title;
-    // ===== লাইট মোড ফিক্স =====
+    // ===== লাইট মোড ফিক্স (সাদা ব্যাকগ্রাউন্ড + বর্ডার) =====
     link.style.cssText = `
       color: #7c5cff;
       text-decoration: none;
       display: block;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: all 0.2s;
+      padding: 6px 10px;
+      border-radius: 8px;
       background: transparent;
-      padding: 4px 0;
     `;
 
-    // লাইট মোডে ব্যাকগ্রাউন্ড সাদা করতে
-    const style = document.createElement('style');
-    style.textContent = `
-      body.light .blog-series-table a {
-        background: #ffffff !important;
-        color: #4a2fc4 !important;
-        padding: 4px 8px;
-        border-radius: 6px;
-      }
-      body.light .blog-series-table a:hover {
-        background: #f0ecff !important;
-      }
-    `;
-    document.head.appendChild(style);
-    // কন্টেইনারে ক্লাস যোগ
-    container.classList.add('blog-series-table');
-
-    link.addEventListener('mouseenter', () => link.style.color = '#9b83ff');
-    link.addEventListener('mouseleave', () => link.style.color = '#7c5cff');
+    link.addEventListener('mouseenter', () => {
+      link.style.color = '#9b83ff';
+      link.style.background = 'rgba(124,92,255,0.08)';
+    });
+    link.addEventListener('mouseleave', () => {
+      link.style.color = '#7c5cff';
+      link.style.background = 'transparent';
+    });
 
     td.appendChild(link);
     tr.appendChild(td);
@@ -124,7 +124,51 @@ function renderBlogSeries() {
   table.appendChild(tbody);
   container.appendChild(table);
 
-  // === ৪. "সব পোস্ট দেখুন" বাটন (বাম পাশে) ===
+  // === ৫. লাইট মোডের জন্য CSS (সাদা ব্যাকগ্রাউন্ড + বর্ডার) ===
+  const style = document.createElement('style');
+  style.textContent = `
+    /* ডার্ক মোড - আগের মতো */
+    .blog-series-table a {
+      color: #7c5cff !important;
+      background: transparent !important;
+    }
+    .blog-series-table a:hover {
+      color: #9b83ff !important;
+      background: rgba(124,92,255,0.08) !important;
+    }
+
+    /* লাইট মোড - সাদা ব্যাকগ্রাউন্ড + বর্ডার */
+    body.light .blog-series-table a {
+      color: #4a2fc4 !important;
+      background: #ffffff !important;
+      border: 1px solid rgba(124,92,255,0.2) !important;
+      padding: 6px 12px !important;
+      border-radius: 8px !important;
+    }
+    body.light .blog-series-table a:hover {
+      background: #f0ecff !important;
+      border-color: #7c5cff !important;
+    }
+
+    /* টেবিল ব্যাকগ্রাউন্ড (লাইট মোডে) */
+    body.light .blog-series-table table {
+      background: rgba(255,255,255,0.95) !important;
+      border: 1px solid rgba(124,92,255,0.15) !important;
+    }
+    body.light .blog-series-table thead tr {
+      background: rgba(124,92,255,0.08) !important;
+    }
+    body.light .blog-series-table thead th {
+      color: #0c1428 !important;
+    }
+    body.light .blog-series-table tr {
+      border-bottom: 1px solid rgba(124,92,255,0.08) !important;
+    }
+  `;
+  document.head.appendChild(style);
+  container.classList.add('blog-series-table');
+
+  // === ৬. "সব পোস্ট দেখুন" বাটন (বাম পাশে) ===
   if (blogSeries.length > 5) {
     const buttonWrapper = document.createElement('div');
     buttonWrapper.style.cssText = `
@@ -154,6 +198,20 @@ function renderBlogSeries() {
     button.addEventListener('mouseleave', () => {
       button.style.background = 'rgba(124,92,255,0.15)';
     });
+
+    // লাইট মোডে বাটন
+    const lightStyle = document.createElement('style');
+    lightStyle.textContent = `
+      body.light .blog-series-table button {
+        background: rgba(124,92,255,0.1) !important;
+        color: #4a2fc4 !important;
+        border-color: #4a2fc4 !important;
+      }
+      body.light .blog-series-table button:hover {
+        background: rgba(124,92,255,0.2) !important;
+      }
+    `;
+    document.head.appendChild(lightStyle);
 
     let isExpanded = false;
     button.addEventListener('click', () => {
