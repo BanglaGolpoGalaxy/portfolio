@@ -5,7 +5,7 @@
 
 # ----- ১. ব্লগ টেবিল ইনজেক্ট (শুধু blog ফোল্ডারে) -----
 SCRIPT_TAG='<script src="series-list.js"><\/script>'
-TABLE_DIV='<div id="blog-series-table" class="blog-series-table"><\/div>'
+TABLE_DIV='<div id="blog-series-table"><\/div>'
 
 echo "🔧 ব্লগ টেবিল ইনজেক্ট করা হচ্ছে..."
 find blog -name "*.html" | while read file; do
@@ -19,7 +19,7 @@ find blog -name "*.html" | while read file; do
   fi
 
   if ! grep -q 'blog-series-table' "$file"; then
-    # ===== Cusdis এর আগে বসানোর জন্য (শুধু div যোগ, JS নিজে পজিশন করবে) =====
+    # div যোগ করা হচ্ছে (পজিশন JS ঠিক করবে)
     sed -i "s|</body>|    ${TABLE_DIV}\n</body>|" "$file"
     echo "   ✅ টেবিল div যোগ"
   else
@@ -48,4 +48,4 @@ done
 
 echo ""
 echo "🎉 সব কাজ শেষ!"
-echo "এখন git add -A && git commit -m 'টেবিল আপডেট: Cusdis এর উপরে + লাইট মোড ফিক্স' && git push"
+echo "এখন git add -A && git commit -m 'টেবিল আপডেট: Cusdis এর উপরে + স্বতন্ত্র বক্স' && git push"
