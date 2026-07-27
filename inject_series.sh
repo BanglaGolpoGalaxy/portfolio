@@ -1,12 +1,11 @@
 #!/bin/bash
 # ============================================================
-# ইনজেকশন রোবট — সব ব্লগ ফাইলে series-list.js ও টেবিল ডিভ যোগ করো
-# এবং সব পেজের ফুটারে সাইটম্যাপ লিংক যোগ করো
+# ইনজেকশন রোবট — ব্লগ টেবিল (সিরিজ) + সাইটম্যাপ লিংক
 # ============================================================
 
-# ----- ১. ব্লগ টেবিল ইনজেক্ট -----
+# ----- ১. ব্লগ টেবিল ইনজেক্ট (শুধু blog ফোল্ডারে) -----
 SCRIPT_TAG='<script src="series-list.js"><\/script>'
-TABLE_DIV='<div id="blog-series-table"><\/div>'
+TABLE_DIV='<div id="blog-series-table" class="blog-series-table"><\/div>'
 
 echo "🔧 ব্লগ টেবিল ইনজেক্ট করা হচ্ছে..."
 find blog -name "*.html" | while read file; do
@@ -20,8 +19,9 @@ find blog -name "*.html" | while read file; do
   fi
 
   if ! grep -q 'blog-series-table' "$file"; then
-    sed -i "s|</body>|    ${TABLE_DIV}\n</body>|" "$file"
-    echo "   ✅ টেবিল div যোগ"
+    # ===== ফুটারের আগে (</footer> ট্যাগের আগে) বসানো =====
+    sed -i "s|</footer>|    ${TABLE_DIV}\n</footer>|" "$file"
+    echo "   ✅ টেবিল div যোগ (ফুটারের আগে)"
   else
     echo "   ⏭️ টেবিল div আগে থেকেই আছে"
   fi
@@ -49,4 +49,4 @@ done
 
 echo ""
 echo "🎉 সব কাজ শেষ!"
-echo "এখন git add -A && git commit -m 'ইনজেকশন: ব্লগ টেবিল + সাইটম্যাপ লিংক' && git push"
+echo "এখন git add -A && git commit -m 'ইনজেকশন: ব্লগ টেবিল (ফুটারের আগে) + সাইটম্যাপ লিংক' && git push"
