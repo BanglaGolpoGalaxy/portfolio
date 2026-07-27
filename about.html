@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About – Milan Biswas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===== পোর্টফোলিও থিমের সাথে মিল ===== */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 40px 20px;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: var(--surface);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        h1 {
+            color: var(--primary-light);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        h2 {
+            color: var(--primary-light);
+            margin-top: 28px;
+            font-size: 20px;
+        }
+        p, li {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== ভাষা টগল ===== */
+        .lang-toggle {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        .lang-toggle button {
+            padding: 6px 18px;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .lang-toggle button.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .lang-toggle button:hover:not(.active) {
+            border-color: var(--primary-light);
+            color: var(--text);
+        }
+
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: block;
+        }
+
+        /* ===== রেস্পন্সিভ ===== */
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== ভাষা টগল ===== -->
+    <div class="lang-toggle">
+        <button id="langBn" class="active">🇧🇩 বাংলা</button>
+        <button id="langEn">🇬🇧 English</button>
+    </div>
+
+    <!-- ===== বাংলা কন্টেন্ট ===== -->
+    <div id="contentBn" class="lang-content active">
+        <h1>👨‍💻 আমার সম্পর্কে</h1>
+        <p><strong>নমস্কার!</strong> আমি <strong>Milan Biswas</strong>, একজন ওয়েব ডেভেলপার, টিউটোরিয়াল ক্রিয়েটর ও প্রযুক্তি উৎসাহী।</p>
+
+        <h2>📌 আমি কে?</h2>
+        <p>
+            আমি পশ্চিমবঙ্গ, ভারতের বাসিন্দা। ২০২১ সালে বি.এসসি ডিগ্রি সম্পন্ন করেছি এবং বর্তমানে <strong>ITI COPA</strong> (Computer Operator and Programming Assistant) কোর্স করছি। পেশাগত জীবনে শিক্ষকতা, ম্যানেজমেন্ট, ডেটা এন্ট্রি ও কাস্টমার রিলেশন-এ কাজ করার অভিজ্ঞতা আছে।
+        </p>
+
+        <h2>🛠️ আমি কী করি?</h2>
+        <p>
+            আমি <strong>মোবাইল ফোন থেকেই</strong> ফুল-স্ট্যাক ওয়েব অ্যাপ্লিকেশন তৈরি করি। Termux, Node.js, Express, SQLite, JWT ব্যবহার করে প্রোজেক্ট বানাই এবং Render বা GitHub Pages-এ ডেপ্লয় করি।
+        </p>
+        <ul>
+            <li>HTML, CSS, JavaScript (ES6)</li>
+            <li>Node.js, Express.js, REST API</li>
+            <li>SQLite, MongoDB</li>
+            <li>Git, GitHub, Termux</li>
+            <li>JWT Authentication, QR Code</li>
+        </ul>
+
+        <h2>📚 কেন লিখি?</h2>
+        <p>
+            আমি <strong>বাংলায় ফ্রি টিউটোরিয়াল</strong> লিখি, যাতে বাংলাভাষীরা সহজেই ওয়েব ডেভেলপমেন্ট শিখতে পারে। আমার লক্ষ্য হলো শিক্ষাকে সহজলভ্য ও মজাদার করে তোলা – এমনকি যাদের ল্যাপটপ বা ব্যয়বহুল কোর্সের সুযোগ নেই, তারাও যেন শিখতে পারে।
+        </p>
+
+        <h2>🚀 আমার লক্ষ্য</h2>
+        <ul>
+            <li><strong>প্রজেক্ট:</strong> AadimVault, Shop Manager, Super Calculator, Exam Guide India</li>
+            <li><strong>কমিউনিটি:</strong> ওপেন সোর্স প্রোজেক্টে অবদান রাখা ও বাংলায় টিউটোরিয়াল তৈরি করা</li>
+            <li><strong>ফ্রিল্যান্সিং:</strong> ক্লায়েন্টদের জন্য মানসম্মত ওয়েব সলিউশন তৈরি করা</li>
+        </ul>
+
+        <h2>📬 যোগাযোগ</h2>
+        <p>
+            আপনি যদি আমার কাজ দেখে আগ্রহী হন বা কোনো প্রোজেক্টে সহযোগিতা করতে চান, তাহলে নির্দ্বিধায় <a href="#contact" style="color:var(--primary-light);">কন্টাক্ট ফর্ম</a> ব্যবহার করে মেসেজ করুন।
+        </p>
+    </div>
+
+    <!-- ===== ইংরেজি কন্টেন্ট ===== -->
+    <div id="contentEn" class="lang-content">
+        <h1>👨‍💻 About Me</h1>
+        <p><strong>Hello!</strong> I'm <strong>Milan Biswas</strong>, a web developer, tutorial creator, and tech enthusiast.</p>
+
+        <h2>📌 Who I Am</h2>
+        <p>
+            I'm from West Bengal, India. I completed my B.Sc in 2021 and am currently enrolled in the <strong>ITI COPA</strong> (Computer Operator and Programming Assistant) course. I have professional experience in teaching, management, data entry, and customer relations.
+        </p>
+
+        <h2>🛠️ What I Do</h2>
+        <p>
+            I build full-stack web applications entirely from my <strong>mobile phone</strong>. I use Termux, Node.js, Express, SQLite, and JWT to create projects and deploy them on Render or GitHub Pages.
+        </p>
+        <ul>
+            <li>HTML, CSS, JavaScript (ES6)</li>
+            <li>Node.js, Express.js, REST API</li>
+            <li>SQLite, MongoDB</li>
+            <li>Git, GitHub, Termux</li>
+            <li>JWT Authentication, QR Code</li>
+        </ul>
+
+        <h2>📚 Why I Write</h2>
+        <p>
+            I write <strong>free tutorials in Bengali</strong> so that Bengali speakers can easily learn web development. My goal is to make education accessible and fun – even for those who don't have a laptop or expensive courses.
+        </p>
+
+        <h2>🚀 My Goals</h2>
+        <ul>
+            <li><strong>Projects:</strong> AadimVault, Shop Manager, Super Calculator, Exam Guide India</li>
+            <li><strong>Community:</strong> Contribute to open-source projects and create Bengali tutorials</li>
+            <li><strong>Freelancing:</strong> Build high-quality web solutions for clients</li>
+        </ul>
+
+        <h2>📬 Contact</h2>
+        <p>
+            If you're interested in my work or want to collaborate, feel free to reach out via the <a href="#contact" style="color:var(--primary-light);">contact form</a>.
+        </p>
+    </div>
+
+    <!-- ===== ফুটার ===== -->
+    <div class="footer">
+        <a href="https://banglagolpogalaxy.github.io/portfolio/">🏠 Home</a> &nbsp;·&nbsp;
+        <a href="https://banglagolpogalaxy.github.io/portfolio/privacy-policy.html">🔒 Privacy Policy</a> &nbsp;·&nbsp;
+        © 2026 Milan Biswas
+    </div>
+</div>
+
+<!-- ===== ভাষা টগল জাভাস্ক্রিপ্ট ===== -->
+<script>
+    const langBn = document.getElementById('langBn');
+    const langEn = document.getElementById('langEn');
+    const contentBn = document.getElementById('contentBn');
+    const contentEn = document.getElementById('contentEn');
+
+    function setLanguage(lang) {
+        if (lang === 'bn') {
+            contentBn.classList.add('active');
+            contentEn.classList.remove('active');
+            langBn.classList.add('active');
+            langEn.classList.remove('active');
+            localStorage.setItem('lang', 'bn');
+        } else {
+            contentEn.classList.add('active');
+            contentBn.classList.remove('active');
+            langEn.classList.add('active');
+            langBn.classList.remove('active');
+            localStorage.setItem('lang', 'en');
+        }
+    }
+
+    // ইউজারের আগের পছন্দ লোড
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang === 'en') {
+        setLanguage('en');
+    } else {
+        setLanguage('bn');
+    }
+
+    langBn.addEventListener('click', () => setLanguage('bn'));
+    langEn.addEventListener('click', () => setLanguage('en'));
+</script>
+
+</body>
+</html>
