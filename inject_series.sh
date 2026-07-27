@@ -19,9 +19,9 @@ find blog -name "*.html" | while read file; do
   fi
 
   if ! grep -q 'blog-series-table' "$file"; then
-    # ===== ফুটারের আগে (</footer> ট্যাগের আগে) বসানো =====
-    sed -i "s|</footer>|    ${TABLE_DIV}\n</footer>|" "$file"
-    echo "   ✅ টেবিল div যোগ (ফুটারের আগে)"
+    # ===== Cusdis এর আগে বসানোর জন্য (শুধু div যোগ, JS নিজে পজিশন করবে) =====
+    sed -i "s|</body>|    ${TABLE_DIV}\n</body>|" "$file"
+    echo "   ✅ টেবিল div যোগ"
   else
     echo "   ⏭️ টেবিল div আগে থেকেই আছে"
   fi
@@ -33,7 +33,6 @@ SITEMAP_LINK='    <a href="https://banglagolpogalaxy.github.io/portfolio/sitemap
 echo ""
 echo "🔧 সাইটম্যাপ লিংক ইনজেক্ট করা হচ্ছে..."
 find . -name "*.html" -type f | while read file; do
-  # নিজের সাইটম্যাপ পেজ বাদ
   if [[ "$file" == *"sitemap.html"* ]] || [[ "$file" == *"node_modules"* ]] || [[ "$file" == *".git"* ]]; then
     continue
   fi
@@ -49,4 +48,4 @@ done
 
 echo ""
 echo "🎉 সব কাজ শেষ!"
-echo "এখন git add -A && git commit -m 'ইনজেকশন: ব্লগ টেবিল (ফুটারের আগে) + সাইটম্যাপ লিংক' && git push"
+echo "এখন git add -A && git commit -m 'টেবিল আপডেট: Cusdis এর উপরে + লাইট মোড ফিক্স' && git push"
