@@ -19,7 +19,7 @@ jobs:
           chmod +x inject_series.sh
           ./inject_series.sh
 
-      # ---------- পরিবর্তন কমিট ----------
+      # ---------- ইনজেকশনের পরিবর্তন কমিট ----------
       - name: Commit injected changes
         run: |
           git config user.name 'github-actions[bot]'
@@ -41,14 +41,25 @@ jobs:
       - name: Generate sitemap
         run: python .github/scripts/generate_sitemap.py
 
+      # ---------- সাইটম্যাপ ফাইলের নাম পরিবর্তন ----------
+      - name: Rename sitemap to new name
+        run: |
+          if [ -f sitemap.xml ]; then
+            mv sitemap.xml sitemap_new.xml
+            echo "✅ সাইটম্যাপের নাম পরিবর্তন করা হয়েছে"
+          else
+            echo "⚠️ sitemap.xml পাওয়া যায়নি"
+          fi
+
+      # ---------- আপডেটেড সাইটম্যাপ কমিট ----------
       - name: Commit updated sitemap
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add sitemap.xml sitemap.html
+          git add sitemap_new.xml sitemap.html
           if git diff --staged --quiet; then
             echo "✅ সাইটম্যাপে কোনো পরিবর্তন নেই"
           else
-            git commit -m "🤖 অটো-জেনারেটেড সাইটম্যাপ"
+            git commit -m "🤖 অটো-জেনারেটেড সাইটম্যাপ (নতুন নাম)"
             git push
           fi
