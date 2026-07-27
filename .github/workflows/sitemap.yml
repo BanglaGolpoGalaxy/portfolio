@@ -1,4 +1,4 @@
-name: Generate Sitemap & Clean Links
+name: Generate Sitemap
 
 on:
   push:
@@ -13,47 +13,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # ---------- Node.js সেটআপ (clean_links.js চালানোর জন্য) ----------
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # ---------- clean_links.js রান করুন (সিরিজ লিংক পরিষ্কার) ----------
-      - name: Clean blog series links
-        run: node clean_links.js
-
-      # ---------- পরিষ্কার করা series-list.js কমিট করুন ----------
-      - name: Commit cleaned series-list.js
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add blog/series-list.js
-          if git diff --staged --quiet; then
-            echo "✅ series-list.js-এ কোনো পরিবর্তন নেই"
-          else
-            git commit -m "🧹 clean_links.js: ডুপ্লিকেট ও মৃত লিংক সরানো"
-            git push
-          fi
-
-      # ---------- Python সেটআপ (সাইটম্যাপ জেনারেটের জন্য) ----------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      # ---------- সাইটম্যাপ জেনারেট করুন ----------
       - name: Generate sitemap
         run: python .github/scripts/generate_sitemap.py
 
-      # ---------- আপডেটেড সাইটম্যাপ কমিট করুন ----------
       - name: Commit updated sitemap
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add sitemap.xml sitemap.html
           if git diff --staged --quiet; then
-            echo "✅ সাইটম্যাপে কোনো পরিবর্তন নেই"
+            echo "✅ কোনো পরিবর্তন নেই"
           else
             git commit -m "🤖 অটো-জেনারেটেড সাইটম্যাপ"
             git push
