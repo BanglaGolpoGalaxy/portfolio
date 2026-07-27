@@ -1,5 +1,5 @@
 // ============================================================
-// blog-series-list.js — ব্লগ সিরিজ টেবিল (সরল ও নিশ্চিত)
+// blog-series-list.js — ব্লগ সিরিজ টেবিল (ফুটারের আগে)
 // ============================================================
 
 // ---------- সিরিজ ডেটা ----------
@@ -17,7 +17,7 @@ function createBlogSeriesTable() {
   const container = document.getElementById('blog-series-table');
   if (!container) return;
 
-  // কন্টেইনার ক্লিয়ার করো (যদি আগে কিছু থাকে)
+  // পুরানো কন্টেন্ট ক্লিয়ার
   container.innerHTML = '';
 
   // === ১. শিরোনাম ===
@@ -113,7 +113,7 @@ function createBlogSeriesTable() {
   style.textContent = `
     #blog-series-table {
       max-width: 800px;
-      margin: 30px auto 25px auto;
+      margin: 25px auto 10px auto;
       padding: 20px 20px 10px 20px;
       background: rgba(17,20,50,0.75) !important;
       border-radius: 16px;
@@ -223,54 +223,56 @@ function createBlogSeriesTable() {
   }
 }
 
-// ---------- Cusdis-এর আগে টেবিল বসানোর ফাংশন ----------
-function placeTableBeforeCusdis() {
+// ---------- টেবিলের পজিশন ঠিক করা (কমেন্টের নিচে, ফুটারের আগে) ----------
+function positionTable() {
   const container = document.getElementById('blog-series-table');
-  const cusdis = document.getElementById('cusdis_thread');
-  
   if (!container) return;
-  if (!cusdis) {
-    // Cusdis না পাওয়া গেলে ফুটারের আগে বসাও
-    const footer = document.querySelector('footer');
-    if (footer) {
-      footer.parentNode.insertBefore(container, footer);
-    }
+
+  // ১. Cusdis কমেন্ট বক্স খোঁজো
+  const cusdis = document.getElementById('cusdis_thread');
+  if (cusdis && cusdis.parentNode) {
+    // Cusdis-এর পর (নিচে) বসাও
+    cusdis.parentNode.insertBefore(container, cusdis.nextSibling);
+    console.log('✅ টেবিল Cusdis-এর নিচে বসানো হয়েছে');
     return;
   }
 
-  // Cusdis-এর ঠিক আগে বসাও (একই স্তরে)
-  cusdis.parentNode.insertBefore(container, cusdis);
+  // ২. Cusdis না পেলে ফুটারের আগে বসাও
+  const footer = document.querySelector('footer');
+  if (footer) {
+    footer.parentNode.insertBefore(container, footer);
+    console.log('✅ টেবিল ফুটারের আগে বসানো হয়েছে');
+    return;
+  }
+
+  // ৩. কিছুই না পেলে body-র শেষে
+  document.body.appendChild(container);
+  console.log('✅ টেবিল body-র শেষে বসানো হয়েছে');
 }
 
-// ---------- মূল ফাংশন (Cusdis লোড হওয়া পর্যন্ত অপেক্ষা) ----------
+// ---------- মূল ফাংশন ----------
 function initBlogSeries() {
-  // প্রথমে টেবিল তৈরি করো (কন্টেইনারে কন্টেন্ট যোগ করো)
+  // ১. টেবিল তৈরি করো
   createBlogSeriesTable();
-  
-  // Cusdis লোড হওয়া পর্যন্ত চেক করো (max ৫ সেকেন্ড)
+
+  // ২. অবিলম্বে পজিশন ঠিক করো
+  positionTable();
+
+  // ৩. Cusdis ডাইনামিক লোড হলে আবার পজিশন ঠিক করো (max ৫ সেকেন্ড)
   let attempts = 0;
   const maxAttempts = 20; // ৫ সেকেন্ড (প্রত্যেক ২৫০ms)
-  
+
   const checkInterval = setInterval(() => {
     attempts++;
     const cusdis = document.getElementById('cusdis_thread');
-    
     if (cusdis) {
-      // Cusdis পাওয়া গেলে টেবিল বসাও
-      placeTableBeforeCusdis();
+      // Cusdis এখন লোড হয়েছে, আবার পজিশন ঠিক করো
+      positionTable();
       clearInterval(checkInterval);
-      console.log('✅ টেবিল Cusdis-এর আগে বসানো হয়েছে');
+      console.log('✅ Cusdis লোড হয়েছে, টেবিল পজিশন আপডেট করা হয়েছে');
     } else if (attempts >= maxAttempts) {
-      // সময় শেষ – Cusdis পাওয়া যায়নি
       clearInterval(checkInterval);
-      const footer = document.querySelector('footer');
-      if (footer) {
-        footer.parentNode.insertBefore(
-          document.getElementById('blog-series-table'), 
-          footer
-        );
-      }
-      console.log('⚠️ Cusdis পাওয়া যায়নি, টেবিল ফুটারের আগে বসানো হয়েছে');
+      console.log('⚠️ Cusdis পাওয়া যায়নি, বর্তমান পজিশনেই থাকবে');
     }
   }, 250);
 }
