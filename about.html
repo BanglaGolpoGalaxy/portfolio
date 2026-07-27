@@ -6,19 +6,25 @@
     <title>About – Milan Biswas</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* ===== পোর্টফোলিও থিমের সাথে মিল ===== */
+        /* ===== পোর্টফোলিও থিম ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
             padding: 40px 20px;
             transition: background 0.4s ease, color 0.4s ease;
+            min-height: 100vh;
         }
         .container {
-            max-width: 800px;
+            max-width: 820px;
             margin: auto;
             background: var(--surface);
-            padding: 30px;
+            padding: 35px;
             border-radius: 20px;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
@@ -45,49 +51,40 @@
         ul {
             padding-left: 20px;
         }
-        .footer {
-            margin-top: 30px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 13px;
-            color: var(--muted);
-        }
-        .footer a {
-            color: var(--primary-light);
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
 
-        /* ===== ভাষা টগল ===== */
-        .lang-toggle {
+        /* ===== সিঙ্গেল ল্যাঙ্গুয়েজ টগল ===== */
+        .lang-toggle-wrap {
             display: flex;
-            gap: 10px;
-            align-items: center;
             justify-content: flex-end;
             margin-bottom: 20px;
         }
-        .lang-toggle button {
-            padding: 6px 18px;
+        .lang-toggle {
+            display: flex;
+            background: var(--surface-solid);
             border-radius: 40px;
             border: 1px solid var(--border);
-            background: var(--surface);
+            overflow: hidden;
+            padding: 3px;
+        }
+        .lang-toggle button {
+            padding: 8px 24px;
+            border: none;
+            background: transparent;
             color: var(--muted);
             cursor: pointer;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
-            transition: 0.2s;
+            transition: 0.3s;
             font-family: inherit;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
         }
         .lang-toggle button.active {
             background: var(--primary);
             color: #fff;
-            border-color: var(--primary);
+            box-shadow: 0 4px 15px var(--glow);
         }
         .lang-toggle button:hover:not(.active) {
-            border-color: var(--primary-light);
             color: var(--text);
         }
 
@@ -98,10 +95,110 @@
             display: block;
         }
 
+        /* ===== কন্টাক্ট ফর্ম (পোর্টফোলিও স্টাইলে) ===== */
+        .contact-section {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+        }
+        .contact-section h2 {
+            margin-top: 0;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 16px;
+        }
+        .contact-form .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .contact-form label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            transition: 0.2s;
+            outline: none;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--glow);
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact-form button {
+            padding: 12px 28px;
+            border-radius: 40px;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+            align-self: flex-start;
+            box-shadow: 0 4px 20px var(--glow);
+        }
+        .contact-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--glow);
+        }
+
+        /* ===== ফুটার ===== */
+        .footer {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .footer .copy {
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .footer .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer .quick-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .footer .quick-links a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
         /* ===== রেস্পন্সিভ ===== */
         @media (max-width: 600px) {
             .container { padding: 20px; }
             h1 { font-size: 22px; }
+            .footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .footer .quick-links { gap: 12px; }
+            .contact-form button { align-self: stretch; text-align: center; }
         }
     </style>
 </head>
@@ -109,10 +206,12 @@
 
 <div class="container">
 
-    <!-- ===== ভাষা টগল ===== -->
-    <div class="lang-toggle">
-        <button id="langBn" class="active">🇧🇩 বাংলা</button>
-        <button id="langEn">🇬🇧 English</button>
+    <!-- ===== সিঙ্গেল ল্যাঙ্গুয়েজ টগল ===== -->
+    <div class="lang-toggle-wrap">
+        <div class="lang-toggle">
+            <button id="langBn" class="active">বাংলা</button>
+            <button id="langEn">English</button>
+        </div>
     </div>
 
     <!-- ===== বাংলা কন্টেন্ট ===== -->
@@ -121,14 +220,10 @@
         <p><strong>নমস্কার!</strong> আমি <strong>Milan Biswas</strong>, একজন ওয়েব ডেভেলপার, টিউটোরিয়াল ক্রিয়েটর ও প্রযুক্তি উৎসাহী।</p>
 
         <h2>📌 আমি কে?</h2>
-        <p>
-            আমি পশ্চিমবঙ্গ, ভারতের বাসিন্দা। ২০২১ সালে বি.এসসি ডিগ্রি সম্পন্ন করেছি এবং বর্তমানে <strong>ITI COPA</strong> (Computer Operator and Programming Assistant) কোর্স করছি। পেশাগত জীবনে শিক্ষকতা, ম্যানেজমেন্ট, ডেটা এন্ট্রি ও কাস্টমার রিলেশন-এ কাজ করার অভিজ্ঞতা আছে।
-        </p>
+        <p>আমি পশ্চিমবঙ্গ, ভারতের বাসিন্দা। ২০২১ সালে বি.এসসি ডিগ্রি সম্পন্ন করেছি এবং বর্তমানে <strong>ITI COPA</strong> (Computer Operator and Programming Assistant) কোর্স করছি। পেশাগত জীবনে শিক্ষকতা, ম্যানেজমেন্ট, ডেটা এন্ট্রি ও কাস্টমার রিলেশন-এ কাজ করার অভিজ্ঞতা আছে।</p>
 
         <h2>🛠️ আমি কী করি?</h2>
-        <p>
-            আমি <strong>মোবাইল ফোন থেকেই</strong> ফুল-স্ট্যাক ওয়েব অ্যাপ্লিকেশন তৈরি করি। Termux, Node.js, Express, SQLite, JWT ব্যবহার করে প্রোজেক্ট বানাই এবং Render বা GitHub Pages-এ ডেপ্লয় করি।
-        </p>
+        <p>আমি <strong>মোবাইল ফোন থেকেই</strong> ফুল-স্ট্যাক ওয়েব অ্যাপ্লিকেশন তৈরি করি। Termux, Node.js, Express, SQLite, JWT ব্যবহার করে প্রোজেক্ট বানাই এবং Render বা GitHub Pages-এ ডেপ্লয় করি।</p>
         <ul>
             <li>HTML, CSS, JavaScript (ES6)</li>
             <li>Node.js, Express.js, REST API</li>
@@ -138,9 +233,7 @@
         </ul>
 
         <h2>📚 কেন লিখি?</h2>
-        <p>
-            আমি <strong>বাংলায় ফ্রি টিউটোরিয়াল</strong> লিখি, যাতে বাংলাভাষীরা সহজেই ওয়েব ডেভেলপমেন্ট শিখতে পারে। আমার লক্ষ্য হলো শিক্ষাকে সহজলভ্য ও মজাদার করে তোলা – এমনকি যাদের ল্যাপটপ বা ব্যয়বহুল কোর্সের সুযোগ নেই, তারাও যেন শিখতে পারে।
-        </p>
+        <p>আমি <strong>বাংলায় ফ্রি টিউটোরিয়াল</strong> লিখি, যাতে বাংলাভাষীরা সহজেই ওয়েব ডেভেলপমেন্ট শিখতে পারে। আমার লক্ষ্য হলো শিক্ষাকে সহজলভ্য ও মজাদার করে তোলা – এমনকি যাদের ল্যাপটপ বা ব্যয়বহুল কোর্সের সুযোগ নেই, তারাও যেন শিখতে পারে।</p>
 
         <h2>🚀 আমার লক্ষ্য</h2>
         <ul>
@@ -148,11 +241,6 @@
             <li><strong>কমিউনিটি:</strong> ওপেন সোর্স প্রোজেক্টে অবদান রাখা ও বাংলায় টিউটোরিয়াল তৈরি করা</li>
             <li><strong>ফ্রিল্যান্সিং:</strong> ক্লায়েন্টদের জন্য মানসম্মত ওয়েব সলিউশন তৈরি করা</li>
         </ul>
-
-        <h2>📬 যোগাযোগ</h2>
-        <p>
-            আপনি যদি আমার কাজ দেখে আগ্রহী হন বা কোনো প্রোজেক্টে সহযোগিতা করতে চান, তাহলে নির্দ্বিধায় <a href="#contact" style="color:var(--primary-light);">কন্টাক্ট ফর্ম</a> ব্যবহার করে মেসেজ করুন।
-        </p>
     </div>
 
     <!-- ===== ইংরেজি কন্টেন্ট ===== -->
@@ -161,14 +249,10 @@
         <p><strong>Hello!</strong> I'm <strong>Milan Biswas</strong>, a web developer, tutorial creator, and tech enthusiast.</p>
 
         <h2>📌 Who I Am</h2>
-        <p>
-            I'm from West Bengal, India. I completed my B.Sc in 2021 and am currently enrolled in the <strong>ITI COPA</strong> (Computer Operator and Programming Assistant) course. I have professional experience in teaching, management, data entry, and customer relations.
-        </p>
+        <p>I'm from West Bengal, India. I completed my B.Sc in 2021 and am currently enrolled in the <strong>ITI COPA</strong> (Computer Operator and Programming Assistant) course. I have professional experience in teaching, management, data entry, and customer relations.</p>
 
         <h2>🛠️ What I Do</h2>
-        <p>
-            I build full-stack web applications entirely from my <strong>mobile phone</strong>. I use Termux, Node.js, Express, SQLite, and JWT to create projects and deploy them on Render or GitHub Pages.
-        </p>
+        <p>I build full-stack web applications entirely from my <strong>mobile phone</strong>. I use Termux, Node.js, Express, SQLite, and JWT to create projects and deploy them on Render or GitHub Pages.</p>
         <ul>
             <li>HTML, CSS, JavaScript (ES6)</li>
             <li>Node.js, Express.js, REST API</li>
@@ -178,9 +262,7 @@
         </ul>
 
         <h2>📚 Why I Write</h2>
-        <p>
-            I write <strong>free tutorials in Bengali</strong> so that Bengali speakers can easily learn web development. My goal is to make education accessible and fun – even for those who don't have a laptop or expensive courses.
-        </p>
+        <p>I write <strong>free tutorials in Bengali</strong> so that Bengali speakers can easily learn web development. My goal is to make education accessible and fun – even for those who don't have a laptop or expensive courses.</p>
 
         <h2>🚀 My Goals</h2>
         <ul>
@@ -188,27 +270,55 @@
             <li><strong>Community:</strong> Contribute to open-source projects and create Bengali tutorials</li>
             <li><strong>Freelancing:</strong> Build high-quality web solutions for clients</li>
         </ul>
+    </div>
 
-        <h2>📬 Contact</h2>
-        <p>
-            If you're interested in my work or want to collaborate, feel free to reach out via the <a href="#contact" style="color:var(--primary-light);">contact form</a>.
-        </p>
+    <!-- ===== কন্টাক্ট ফর্ম (উভয় ভাষায়) ===== -->
+    <div class="contact-section">
+        <h2 id="contactHeading">📬 যোগাযোগ</h2>
+        <p id="contactDesc">আপনার প্রশ্ন বা প্রস্তাব থাকলে নিচের ফর্মটি পূরণ করুন।</p>
+
+        <form class="contact-form" action="https://formspree.io/f/mpqowyld" method="POST">
+            <div class="form-group">
+                <label for="name" id="labelName">আপনার নাম</label>
+                <input type="text" id="name" name="name" placeholder="আপনার নাম লিখুন" required>
+            </div>
+            <div class="form-group">
+                <label for="email" id="labelEmail">ইমেইল</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="message" id="labelMessage">বার্তা</label>
+                <textarea id="message" name="message" placeholder="আপনার বার্তা লিখুন..." required></textarea>
+            </div>
+            <button type="submit" id="btnSend">বার্তা পাঠান →</button>
+        </form>
     </div>
 
     <!-- ===== ফুটার ===== -->
     <div class="footer">
-        <a href="https://banglagolpogalaxy.github.io/portfolio/">🏠 Home</a> &nbsp;·&nbsp;
-        <a href="https://banglagolpogalaxy.github.io/portfolio/privacy-policy.html">🔒 Privacy Policy</a> &nbsp;·&nbsp;
-        © 2026 Milan Biswas
+        <span class="copy">© 2026 Milan Biswas</span>
+        <div class="quick-links">
+            <a href="https://banglagolpogalaxy.github.io/portfolio/">🏠 Home</a>
+            <a href="https://banglagolpogalaxy.github.io/portfolio/about.html">👤 About</a>
+            <a href="https://banglagolpogalaxy.github.io/portfolio/privacy-policy.html">🔒 Privacy</a>
+            <a href="https://banglagolpogalaxy.github.io/portfolio/sitemap.html">🗺️ Sitemap</a>
+        </div>
     </div>
 </div>
 
-<!-- ===== ভাষা টগল জাভাস্ক্রিপ্ট ===== -->
+<!-- ===== ভাষা টগল + ফর্ম টেক্সট ===== -->
 <script>
     const langBn = document.getElementById('langBn');
     const langEn = document.getElementById('langEn');
     const contentBn = document.getElementById('contentBn');
     const contentEn = document.getElementById('contentEn');
+
+    const contactHeading = document.getElementById('contactHeading');
+    const contactDesc = document.getElementById('contactDesc');
+    const labelName = document.getElementById('labelName');
+    const labelEmail = document.getElementById('labelEmail');
+    const labelMessage = document.getElementById('labelMessage');
+    const btnSend = document.getElementById('btnSend');
 
     function setLanguage(lang) {
         if (lang === 'bn') {
@@ -217,27 +327,41 @@
             langBn.classList.add('active');
             langEn.classList.remove('active');
             localStorage.setItem('lang', 'bn');
+            // ফর্ম বাংলা
+            contactHeading.textContent = '📬 যোগাযোগ';
+            contactDesc.textContent = 'আপনার প্রশ্ন বা প্রস্তাব থাকলে নিচের ফর্মটি পূরণ করুন।';
+            labelName.textContent = 'আপনার নাম';
+            labelEmail.textContent = 'ইমেইল';
+            labelMessage.textContent = 'বার্তা';
+            btnSend.textContent = 'বার্তা পাঠান →';
+            document.querySelector('#name').placeholder = 'আপনার নাম লিখুন';
+            document.querySelector('#email').placeholder = 'your@email.com';
+            document.querySelector('#message').placeholder = 'আপনার বার্তা লিখুন...';
         } else {
             contentEn.classList.add('active');
             contentBn.classList.remove('active');
             langEn.classList.add('active');
             langBn.classList.remove('active');
             localStorage.setItem('lang', 'en');
+            // ফর্ম ইংরেজি
+            contactHeading.textContent = '📬 Contact';
+            contactDesc.textContent = 'If you have any questions or proposals, fill out the form below.';
+            labelName.textContent = 'Your Name';
+            labelEmail.textContent = 'Email';
+            labelMessage.textContent = 'Message';
+            btnSend.textContent = 'Send Message →';
+            document.querySelector('#name').placeholder = 'Your name';
+            document.querySelector('#email').placeholder = 'your@email.com';
+            document.querySelector('#message').placeholder = 'Write your message...';
         }
     }
 
-    // ইউজারের আগের পছন্দ লোড
     const savedLang = localStorage.getItem('lang');
-    if (savedLang === 'en') {
-        setLanguage('en');
-    } else {
-        setLanguage('bn');
-    }
+    setLanguage(savedLang === 'en' ? 'en' : 'bn');
 
     langBn.addEventListener('click', () => setLanguage('bn'));
     langEn.addEventListener('click', () => setLanguage('en'));
 </script>
 
-        <a href="https://banglagolpogalaxy.github.io/portfolio/sitemap.html" style="color:#7c5cff; text-decoration:none; margin:0 8px;">🗺️ সাইটম্যাপ</a>
 </body>
 </html>
