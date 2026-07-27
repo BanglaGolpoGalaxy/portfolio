@@ -1,5 +1,5 @@
 // ============================================================
-// blog-series-list.js — ব্লগ সিরিজ টেবিল (স্বতন্ত্র)
+// blog-series-list.js — ব্লগ সিরিজ টেবিল (সম্পূর্ণ আলাদা)
 // ============================================================
 
 // ---------- সিরিজ ডেটা ----------
@@ -12,7 +12,7 @@ const blogSeries = [
   { title: "My Web Development Journey", link: "coding_journey.html" }
 ];
 
-// ---------- টেবিল রেন্ডার ----------
+// ---------- টেবিল রেন্ডার (সঠিক পজিশন) ----------
 function renderBlogSeries() {
   const container = document.getElementById('blog-series-table');
   if (!container) return;
@@ -20,35 +20,57 @@ function renderBlogSeries() {
   // === ১. Cusdis কমেন্ট বক্স খুঁজে বের করা ===
   const cusdis = document.getElementById('cusdis_thread');
   
-  // === ২. সঠিক জায়গায় বসানো (Cusdis এর আগে, কিন্তু Cusdis-এর বাবা এলিমেন্টের ভেতরে) ===
   if (cusdis && cusdis.parentNode) {
-    // Cusdis-এর প্যারেন্টের ভেতরে, Cusdis-এর ঠিক আগে বসানো
-    cusdis.parentNode.insertBefore(container, cusdis);
+    // Cusdis-এর প্যারেন্ট বের করা (যে ডিভের ভেতরে Cusdis আছে)
+    let parent = cusdis.parentNode;
+    
+    // যদি প্যারেন্টের ক্লাস বা আইডি কমেন্ট-রিলেটেড হয়, তাহলে তারও উপরে যাও
+    // (যাতে টেবিল কমেন্ট বক্সের বাইরে থাকে)
+    while (parent && parent.classList && 
+           (parent.classList.contains('cusdis') || 
+            parent.id === 'cusdis' || 
+            parent.className.includes('comment') ||
+            parent.className.includes('cusdis'))) {
+      parent = parent.parentNode;
+    }
+    
+    // প্যারেন্টের ভেতরে, Cusdis-এর আগে বসানো (কিন্তু প্যারেন্টের প্রথম সন্তান হিসেবে)
+    if (parent) {
+      parent.insertBefore(container, cusdis);
+    } else {
+      // যদি কোনো প্যারেন্ট না পাওয়া যায়, তাহলে ফুটারের আগে বসানো
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.parentNode.insertBefore(container, footer);
+      } else {
+        document.body.appendChild(container);
+      }
+    }
   } else {
     // Cusdis না পাওয়া গেলে ফুটারের আগে বসানো (ব্যাকআপ)
     const footer = document.querySelector('footer');
     if (footer) {
       footer.parentNode.insertBefore(container, footer);
     } else {
-      // যদি কোনো জায়গা না পাওয়া যায়, তাহলে body-র শেষে বসানো
       document.body.appendChild(container);
     }
   }
 
-  // === ৩. কন্টেইনার স্টাইল (স্বতন্ত্র বক্স) ===
+  // === ২. কন্টেইনার স্টাইল (স্বতন্ত্র বক্স) ===
   container.style.cssText = `
     max-width: 800px;
-    margin: 30px auto 20px auto;
+    margin: 30px auto 25px auto;
     padding: 20px 20px 10px 20px;
-    background: rgba(17,20,50,0.6);
+    background: rgba(17,20,50,0.7);
     border-radius: 16px;
     border: 1px solid rgba(145,155,220,0.15);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
     position: relative;
     z-index: 5;
+    clear: both;
   `;
 
-  // === ৪. শিরোনাম ===
+  // === ৩. শিরোনাম ===
   const heading = document.createElement('h3');
   heading.textContent = '📚 অন্যান্য ব্লগ';
   heading.style.cssText = `
@@ -61,7 +83,7 @@ function renderBlogSeries() {
   `;
   container.appendChild(heading);
 
-  // === ৫. টেবিল ===
+  // === ৪. টেবিল ===
   const table = document.createElement('table');
   table.style.cssText = `
     width: 100%;
@@ -138,12 +160,12 @@ function renderBlogSeries() {
   table.appendChild(tbody);
   container.appendChild(table);
 
-  // === ৬. লাইট মোডের জন্য CSS (গাঢ় ব্যাকগ্রাউন্ড + কন্ট্রাস্ট) ===
+  // === ৫. লাইট মোডের জন্য CSS (গাঢ় ব্যাকগ্রাউন্ড + কন্ট্রাস্ট) ===
   const style = document.createElement('style');
   style.textContent = `
     /* ===== ডার্ক মোড ===== */
     #blog-series-table {
-      background: rgba(17,20,50,0.7) !important;
+      background: rgba(17,20,50,0.75) !important;
       border: 1px solid rgba(145,155,220,0.15) !important;
     }
     #blog-series-table a {
@@ -172,9 +194,9 @@ function renderBlogSeries() {
       background: rgba(124,92,255,0.25) !important;
     }
 
-    /* ===== লাইট মোড (গাঢ় ব্যাকগ্রাউন্ড + সাদা/হালকা লেখা) ===== */
+    /* ===== লাইট মোড (গাঢ় ব্যাকগ্রাউন্ড + হালকা লেখা) ===== */
     body.light #blog-series-table {
-      background: rgba(25,30,60,0.9) !important;
+      background: rgba(25,30,60,0.92) !important;
       border: 1px solid rgba(124,92,255,0.25) !important;
     }
     body.light #blog-series-table a {
@@ -205,7 +227,7 @@ function renderBlogSeries() {
   `;
   document.head.appendChild(style);
 
-  // === ৭. "সব পোস্ট দেখুন" বাটন (বাম পাশে) ===
+  // === ৬. "সব পোস্ট দেখুন" বাটন (বাম পাশে) ===
   if (blogSeries.length > 5) {
     const buttonWrapper = document.createElement('div');
     buttonWrapper.style.cssText = `
