@@ -1,5 +1,5 @@
 // ============================================================
-// blog-series-list.js — ব্লগ সিরিজ টেবিল (ফুটারের আগে)
+// blog-series-list.js — ব্লগ সিরিজ টেবিল (সরাসরি ফুটারের উপরে)
 // ============================================================
 
 // ---------- সিরিজ ডেটা ----------
@@ -113,7 +113,7 @@ function createBlogSeriesTable() {
   style.textContent = `
     #blog-series-table {
       max-width: 800px;
-      margin: 25px auto 10px auto;
+      margin: 25px auto 15px auto;
       padding: 20px 20px 10px 20px;
       background: rgba(17,20,50,0.75) !important;
       border-radius: 16px;
@@ -223,31 +223,22 @@ function createBlogSeriesTable() {
   }
 }
 
-// ---------- টেবিলের পজিশন ঠিক করা (কমেন্টের নিচে, ফুটারের আগে) ----------
-function positionTable() {
+// ---------- টেবিল ফুটারের উপরে বসানো (সরাসরি body-তে) ----------
+function placeTableAboveFooter() {
   const container = document.getElementById('blog-series-table');
   if (!container) return;
 
-  // ১. Cusdis কমেন্ট বক্স খোঁজো
-  const cusdis = document.getElementById('cusdis_thread');
-  if (cusdis && cusdis.parentNode) {
-    // Cusdis-এর পর (নিচে) বসাও
-    cusdis.parentNode.insertBefore(container, cusdis.nextSibling);
-    console.log('✅ টেবিল Cusdis-এর নিচে বসানো হয়েছে');
-    return;
-  }
-
-  // ২. Cusdis না পেলে ফুটারের আগে বসাও
+  // ফুটার খোঁজো
   const footer = document.querySelector('footer');
   if (footer) {
-    footer.parentNode.insertBefore(container, footer);
-    console.log('✅ টেবিল ফুটারের আগে বসানো হয়েছে');
-    return;
+    // ফুটারের ঠিক আগে বসাও (body-র সরাসরি চাইল্ড হিসেবে)
+    document.body.insertBefore(container, footer);
+    console.log('✅ টেবিল ফুটারের উপরে বসানো হয়েছে');
+  } else {
+    // ফুটার না পেলে body-র শেষে
+    document.body.appendChild(container);
+    console.log('✅ ফুটার পাওয়া যায়নি, টেবিল body-র শেষে বসানো হয়েছে');
   }
-
-  // ৩. কিছুই না পেলে body-র শেষে
-  document.body.appendChild(container);
-  console.log('✅ টেবিল body-র শেষে বসানো হয়েছে');
 }
 
 // ---------- মূল ফাংশন ----------
@@ -255,26 +246,8 @@ function initBlogSeries() {
   // ১. টেবিল তৈরি করো
   createBlogSeriesTable();
 
-  // ২. অবিলম্বে পজিশন ঠিক করো
-  positionTable();
-
-  // ৩. Cusdis ডাইনামিক লোড হলে আবার পজিশন ঠিক করো (max ৫ সেকেন্ড)
-  let attempts = 0;
-  const maxAttempts = 20; // ৫ সেকেন্ড (প্রত্যেক ২৫০ms)
-
-  const checkInterval = setInterval(() => {
-    attempts++;
-    const cusdis = document.getElementById('cusdis_thread');
-    if (cusdis) {
-      // Cusdis এখন লোড হয়েছে, আবার পজিশন ঠিক করো
-      positionTable();
-      clearInterval(checkInterval);
-      console.log('✅ Cusdis লোড হয়েছে, টেবিল পজিশন আপডেট করা হয়েছে');
-    } else if (attempts >= maxAttempts) {
-      clearInterval(checkInterval);
-      console.log('⚠️ Cusdis পাওয়া যায়নি, বর্তমান পজিশনেই থাকবে');
-    }
-  }, 250);
+  // ২. ফুটারের উপরে বসাও (সরাসরি body-তে)
+  placeTableAboveFooter();
 }
 
 // ---------- পেজ লোড হলে শুরু করো ----------
