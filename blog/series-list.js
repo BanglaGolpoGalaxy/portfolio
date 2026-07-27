@@ -19,18 +19,23 @@ function renderBlogSeries() {
 
   // === ১. Cusdis কমেন্ট বক্স খুঁজে বের করা ===
   const cusdis = document.getElementById('cusdis_thread');
-  if (cusdis) {
-    // Cusdis এর আগে টেবিল বসানো (স্বতন্ত্র, আলাদা)
+  
+  // === ২. সঠিক জায়গায় বসানো (Cusdis এর আগে, কিন্তু Cusdis-এর বাবা এলিমেন্টের ভেতরে) ===
+  if (cusdis && cusdis.parentNode) {
+    // Cusdis-এর প্যারেন্টের ভেতরে, Cusdis-এর ঠিক আগে বসানো
     cusdis.parentNode.insertBefore(container, cusdis);
   } else {
     // Cusdis না পাওয়া গেলে ফুটারের আগে বসানো (ব্যাকআপ)
     const footer = document.querySelector('footer');
     if (footer) {
       footer.parentNode.insertBefore(container, footer);
+    } else {
+      // যদি কোনো জায়গা না পাওয়া যায়, তাহলে body-র শেষে বসানো
+      document.body.appendChild(container);
     }
   }
 
-  // === ২. কন্টেইনার স্টাইল (স্বতন্ত্র বক্স) ===
+  // === ৩. কন্টেইনার স্টাইল (স্বতন্ত্র বক্স) ===
   container.style.cssText = `
     max-width: 800px;
     margin: 30px auto 20px auto;
@@ -39,9 +44,11 @@ function renderBlogSeries() {
     border-radius: 16px;
     border: 1px solid rgba(145,155,220,0.15);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 5;
   `;
 
-  // === ৩. শিরোনাম ===
+  // === ৪. শিরোনাম ===
   const heading = document.createElement('h3');
   heading.textContent = '📚 অন্যান্য ব্লগ';
   heading.style.cssText = `
@@ -54,7 +61,7 @@ function renderBlogSeries() {
   `;
   container.appendChild(heading);
 
-  // === ৪. টেবিল ===
+  // === ৫. টেবিল ===
   const table = document.createElement('table');
   table.style.cssText = `
     width: 100%;
@@ -131,7 +138,7 @@ function renderBlogSeries() {
   table.appendChild(tbody);
   container.appendChild(table);
 
-  // === ৫. লাইট মোডের জন্য CSS (স্পষ্ট কন্ট্রাস্ট) ===
+  // === ৬. লাইট মোডের জন্য CSS (গাঢ় ব্যাকগ্রাউন্ড + কন্ট্রাস্ট) ===
   const style = document.createElement('style');
   style.textContent = `
     /* ===== ডার্ক মোড ===== */
@@ -165,17 +172,17 @@ function renderBlogSeries() {
       background: rgba(124,92,255,0.25) !important;
     }
 
-    /* ===== লাইট মোড (গাঢ় ব্যাকগ্রাউন্ড + সাদা লেখা) ===== */
+    /* ===== লাইট মোড (গাঢ় ব্যাকগ্রাউন্ড + সাদা/হালকা লেখা) ===== */
     body.light #blog-series-table {
-      background: rgba(30,35,70,0.85) !important;
+      background: rgba(25,30,60,0.9) !important;
       border: 1px solid rgba(124,92,255,0.25) !important;
     }
     body.light #blog-series-table a {
-      color: #b8aaff !important;
+      color: #c8b8ff !important;
       background: transparent !important;
     }
     body.light #blog-series-table a:hover {
-      color: #d4c8ff !important;
+      color: #e0d6ff !important;
       background: rgba(124,92,255,0.15) !important;
     }
     body.light #blog-series-table table {
@@ -189,7 +196,7 @@ function renderBlogSeries() {
     }
     body.light #blog-series-table button {
       background: rgba(124,92,255,0.2) !important;
-      color: #b8aaff !important;
+      color: #c8b8ff !important;
       border-color: #9b83ff !important;
     }
     body.light #blog-series-table button:hover {
@@ -198,7 +205,7 @@ function renderBlogSeries() {
   `;
   document.head.appendChild(style);
 
-  // === ৬. "সব পোস্ট দেখুন" বাটন (বাম পাশে) ===
+  // === ৭. "সব পোস্ট দেখুন" বাটন (বাম পাশে) ===
   if (blogSeries.length > 5) {
     const buttonWrapper = document.createElement('div');
     buttonWrapper.style.cssText = `
