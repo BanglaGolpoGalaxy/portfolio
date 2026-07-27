@@ -1,4 +1,4 @@
-name: Generate Sitemap
+name: Generate Sitemap & Inject Series
 
 on:
   push:
@@ -13,6 +13,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # ---------- ইনজেকশন স্ক্রিপ্ট রান (ব্লগ টেবিল + সাইটম্যাপ লিংক) ----------
+      - name: Run inject_series.sh
+        run: |
+          chmod +x inject_series.sh
+          ./inject_series.sh
+
+      # ---------- পরিবর্তন কমিট ----------
+      - name: Commit injected changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --staged --quiet; then
+            echo "✅ কোনো পরিবর্তন নেই"
+          else
+            git commit -m "🔧 ইনজেকশন রোবট: ব্লগ টেবিল ও সাইটম্যাপ লিংক যোগ"
+            git push
+          fi
+
+      # ---------- সাইটম্যাপ জেনারেট (Python) ----------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -27,7 +47,7 @@ jobs:
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add sitemap.xml sitemap.html
           if git diff --staged --quiet; then
-            echo "✅ কোনো পরিবর্তন নেই"
+            echo "✅ সাইটম্যাপে কোনো পরিবর্তন নেই"
           else
             git commit -m "🤖 অটো-জেনারেটেড সাইটম্যাপ"
             git push
