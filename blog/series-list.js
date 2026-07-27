@@ -1,5 +1,5 @@
 // ============================================================
-// blog-series-list.js — ব্লগ সিরিজ টেবিল (সরাসরি ফুটারের উপরে)
+// blog-series-list.js — ব্লগ সিরিজ টেবিল (body-তে সরাসরি)
 // ============================================================
 
 // ---------- সিরিজ ডেটা ----------
@@ -223,17 +223,28 @@ function createBlogSeriesTable() {
   }
 }
 
-// ---------- টেবিল ফুটারের উপরে বসানো (সরাসরি body-তে) ----------
-function placeTableAboveFooter() {
+// ---------- টেবিল body-তে সরাসরি বসানো (কোনো কমেন্ট ডিভের ভেতরে নয়) ----------
+function placeTableDirectly() {
   const container = document.getElementById('blog-series-table');
   if (!container) return;
 
-  // ফুটার খোঁজো
+  // ১. নিশ্চিত করো container body-র সরাসরি সন্তান
+  if (container.parentNode !== document.body) {
+    // body-তে সরিয়ে নাও (যদি অন্য কোথাও থাকে)
+    document.body.appendChild(container);
+  }
+
+  // ২. ফুটার খোঁজো (body-তে সরাসরি না থাকলেও)
   const footer = document.querySelector('footer');
+  
   if (footer) {
-    // ফুটারের ঠিক আগে বসাও (body-র সরাসরি চাইল্ড হিসেবে)
+    // footer-কে body-তে সরিয়ে নাও (যাতে body-র সন্তান হয়)
+    if (footer.parentNode !== document.body) {
+      document.body.appendChild(footer);
+    }
+    // container-কে footer-এর আগে বসাও (body-র ভেতর)
     document.body.insertBefore(container, footer);
-    console.log('✅ টেবিল ফুটারের উপরে বসানো হয়েছে');
+    console.log('✅ টেবিল body-তে, footer-এর আগে বসানো হয়েছে');
   } else {
     // ফুটার না পেলে body-র শেষে
     document.body.appendChild(container);
@@ -246,8 +257,8 @@ function initBlogSeries() {
   // ১. টেবিল তৈরি করো
   createBlogSeriesTable();
 
-  // ২. ফুটারের উপরে বসাও (সরাসরি body-তে)
-  placeTableAboveFooter();
+  // ২. body-তে সরাসরি বসাও
+  placeTableDirectly();
 }
 
 // ---------- পেজ লোড হলে শুরু করো ----------
