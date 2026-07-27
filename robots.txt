@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://banglagolpogalaxy.github.io/portfolio/sitemap.xml
+Sitemap: https://banglagolpogalaxy.github.io/portfolio/sitemap_new.xml
