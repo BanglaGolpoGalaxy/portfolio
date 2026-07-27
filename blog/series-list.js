@@ -1,5 +1,5 @@
 // ============================================================
-// blog-series-list.js — ব্লগ সিরিজ টেবিল
+// blog-series-list.js — ব্লগ সিরিজ টেবিল (স্বতন্ত্র)
 // ============================================================
 
 // ---------- সিরিজ ডেটা ----------
@@ -17,23 +17,31 @@ function renderBlogSeries() {
   const container = document.getElementById('blog-series-table');
   if (!container) return;
 
-  // === ১. টেবিলটি Cusdis এর উপরে বসানো ===
-  // Cusdis কমেন্ট বক্স খুঁজে বের করা
-  const cusdisContainer = document.getElementById('cusdis_thread');
-  if (cusdisContainer) {
-    // Cusdis এর আগে টেবিল বসানো
-    cusdisContainer.parentNode.insertBefore(container, cusdisContainer);
+  // === ১. Cusdis কমেন্ট বক্স খুঁজে বের করা ===
+  const cusdis = document.getElementById('cusdis_thread');
+  if (cusdis) {
+    // Cusdis এর আগে টেবিল বসানো (স্বতন্ত্র, আলাদা)
+    cusdis.parentNode.insertBefore(container, cusdis);
+  } else {
+    // Cusdis না পাওয়া গেলে ফুটারের আগে বসানো (ব্যাকআপ)
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.parentNode.insertBefore(container, footer);
+    }
   }
 
-  // === ২. কন্টেইনার স্টাইল ===
+  // === ২. কন্টেইনার স্টাইল (স্বতন্ত্র বক্স) ===
   container.style.cssText = `
     max-width: 800px;
     margin: 30px auto 20px auto;
-    padding: 0 16px;
-    background: transparent;
+    padding: 20px 20px 10px 20px;
+    background: rgba(17,20,50,0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(145,155,220,0.15);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   `;
 
-  // === ৩. শিরোনাম (পরিবর্তন: "অন্যান্য ব্লগ") ===
+  // === ৩. শিরোনাম ===
   const heading = document.createElement('h3');
   heading.textContent = '📚 অন্যান্য ব্লগ';
   heading.style.cssText = `
@@ -41,7 +49,7 @@ function renderBlogSeries() {
     font-size: 18px;
     margin: 0 0 16px 0;
     border-bottom: 1px solid rgba(145,155,220,0.18);
-    padding-bottom: 8px;
+    padding-bottom: 10px;
     font-weight: 600;
   `;
   container.appendChild(heading);
@@ -51,17 +59,17 @@ function renderBlogSeries() {
   table.style.cssText = `
     width: 100%;
     border-collapse: collapse;
-    background: rgba(17,20,50,0.5);
     border-radius: 12px;
     overflow: hidden;
     font-size: 14px;
+    background: rgba(0,0,0,0.2);
   `;
 
-  // --- হেডার (পরিবর্তন: "আরো পড়ুন") ---
+  // --- হেডার ---
   const thead = document.createElement('thead');
   const headerRow = document.createElement('tr');
   headerRow.style.cssText = `
-    background: rgba(124,92,255,0.15);
+    background: rgba(124,92,255,0.2);
     text-align: left;
   `;
   const th = document.createElement('th');
@@ -96,25 +104,24 @@ function renderBlogSeries() {
     const link = document.createElement('a');
     link.href = item.link;
     link.textContent = item.title;
-    // ===== লাইট মোড ফিক্স (সাদা ব্যাকগ্রাউন্ড + বর্ডার) =====
     link.style.cssText = `
       color: #7c5cff;
       text-decoration: none;
       display: block;
       font-weight: 500;
-      transition: all 0.2s;
       padding: 6px 10px;
-      border-radius: 8px;
+      border-radius: 6px;
+      transition: all 0.2s;
       background: transparent;
     `;
 
     link.addEventListener('mouseenter', () => {
+      link.style.background = 'rgba(124,92,255,0.12)';
       link.style.color = '#9b83ff';
-      link.style.background = 'rgba(124,92,255,0.08)';
     });
     link.addEventListener('mouseleave', () => {
-      link.style.color = '#7c5cff';
       link.style.background = 'transparent';
+      link.style.color = '#7c5cff';
     });
 
     td.appendChild(link);
@@ -124,49 +131,72 @@ function renderBlogSeries() {
   table.appendChild(tbody);
   container.appendChild(table);
 
-  // === ৫. লাইট মোডের জন্য CSS (সাদা ব্যাকগ্রাউন্ড + বর্ডার) ===
+  // === ৫. লাইট মোডের জন্য CSS (স্পষ্ট কন্ট্রাস্ট) ===
   const style = document.createElement('style');
   style.textContent = `
-    /* ডার্ক মোড - আগের মতো */
-    .blog-series-table a {
+    /* ===== ডার্ক মোড ===== */
+    #blog-series-table {
+      background: rgba(17,20,50,0.7) !important;
+      border: 1px solid rgba(145,155,220,0.15) !important;
+    }
+    #blog-series-table a {
       color: #7c5cff !important;
       background: transparent !important;
     }
-    .blog-series-table a:hover {
+    #blog-series-table a:hover {
       color: #9b83ff !important;
-      background: rgba(124,92,255,0.08) !important;
+      background: rgba(124,92,255,0.12) !important;
     }
-
-    /* লাইট মোড - সাদা ব্যাকগ্রাউন্ড + বর্ডার */
-    body.light .blog-series-table a {
-      color: #4a2fc4 !important;
-      background: #ffffff !important;
-      border: 1px solid rgba(124,92,255,0.2) !important;
-      padding: 6px 12px !important;
-      border-radius: 8px !important;
+    #blog-series-table table {
+      background: rgba(0,0,0,0.25) !important;
     }
-    body.light .blog-series-table a:hover {
-      background: #f0ecff !important;
+    #blog-series-table thead tr {
+      background: rgba(124,92,255,0.2) !important;
+    }
+    #blog-series-table thead th {
+      color: #f8f9ff !important;
+    }
+    #blog-series-table button {
+      background: rgba(124,92,255,0.15) !important;
+      color: #9b83ff !important;
       border-color: #7c5cff !important;
     }
+    #blog-series-table button:hover {
+      background: rgba(124,92,255,0.25) !important;
+    }
 
-    /* টেবিল ব্যাকগ্রাউন্ড (লাইট মোডে) */
-    body.light .blog-series-table table {
-      background: rgba(255,255,255,0.95) !important;
-      border: 1px solid rgba(124,92,255,0.15) !important;
+    /* ===== লাইট মোড (গাঢ় ব্যাকগ্রাউন্ড + সাদা লেখা) ===== */
+    body.light #blog-series-table {
+      background: rgba(30,35,70,0.85) !important;
+      border: 1px solid rgba(124,92,255,0.25) !important;
     }
-    body.light .blog-series-table thead tr {
-      background: rgba(124,92,255,0.08) !important;
+    body.light #blog-series-table a {
+      color: #b8aaff !important;
+      background: transparent !important;
     }
-    body.light .blog-series-table thead th {
-      color: #0c1428 !important;
+    body.light #blog-series-table a:hover {
+      color: #d4c8ff !important;
+      background: rgba(124,92,255,0.15) !important;
     }
-    body.light .blog-series-table tr {
-      border-bottom: 1px solid rgba(124,92,255,0.08) !important;
+    body.light #blog-series-table table {
+      background: rgba(0,0,0,0.15) !important;
+    }
+    body.light #blog-series-table thead tr {
+      background: rgba(124,92,255,0.25) !important;
+    }
+    body.light #blog-series-table thead th {
+      color: #f8f9ff !important;
+    }
+    body.light #blog-series-table button {
+      background: rgba(124,92,255,0.2) !important;
+      color: #b8aaff !important;
+      border-color: #9b83ff !important;
+    }
+    body.light #blog-series-table button:hover {
+      background: rgba(124,92,255,0.35) !important;
     }
   `;
   document.head.appendChild(style);
-  container.classList.add('blog-series-table');
 
   // === ৬. "সব পোস্ট দেখুন" বাটন (বাম পাশে) ===
   if (blogSeries.length > 5) {
@@ -181,16 +211,15 @@ function renderBlogSeries() {
     button.textContent = '📖 সব পোস্ট দেখুন →';
     button.style.cssText = `
       padding: 8px 24px;
-      background: rgba(124,92,255,0.15);
-      border: 1px solid #7c5cff;
       border-radius: 40px;
-      color: #9b83ff;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
-      display: inline-block;
       font-family: inherit;
+      border: 1px solid #7c5cff;
+      background: rgba(124,92,255,0.15);
+      color: #9b83ff;
     `;
     button.addEventListener('mouseenter', () => {
       button.style.background = 'rgba(124,92,255,0.25)';
@@ -198,20 +227,6 @@ function renderBlogSeries() {
     button.addEventListener('mouseleave', () => {
       button.style.background = 'rgba(124,92,255,0.15)';
     });
-
-    // লাইট মোডে বাটন
-    const lightStyle = document.createElement('style');
-    lightStyle.textContent = `
-      body.light .blog-series-table button {
-        background: rgba(124,92,255,0.1) !important;
-        color: #4a2fc4 !important;
-        border-color: #4a2fc4 !important;
-      }
-      body.light .blog-series-table button:hover {
-        background: rgba(124,92,255,0.2) !important;
-      }
-    `;
-    document.head.appendChild(lightStyle);
 
     let isExpanded = false;
     button.addEventListener('click', () => {
