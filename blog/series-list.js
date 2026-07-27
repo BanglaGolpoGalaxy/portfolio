@@ -1,5 +1,5 @@
 // ============================================================
-// blog-series-list.js — ব্লগ সিরিজ টেবিল (সম্পূর্ণ আলাদা)
+// blog-series-list.js — ব্লগ সিরিজ টেবিল (সরল ও নিশ্চিত)
 // ============================================================
 
 // ---------- সিরিজ ডেটা ----------
@@ -12,65 +12,15 @@ const blogSeries = [
   { title: "My Web Development Journey", link: "coding_journey.html" }
 ];
 
-// ---------- টেবিল রেন্ডার (সঠিক পজিশন) ----------
-function renderBlogSeries() {
+// ---------- টেবিল তৈরি ----------
+function createBlogSeriesTable() {
   const container = document.getElementById('blog-series-table');
   if (!container) return;
 
-  // === ১. Cusdis কমেন্ট বক্স খুঁজে বের করা ===
-  const cusdis = document.getElementById('cusdis_thread');
-  
-  if (cusdis && cusdis.parentNode) {
-    // Cusdis-এর প্যারেন্ট বের করা (যে ডিভের ভেতরে Cusdis আছে)
-    let parent = cusdis.parentNode;
-    
-    // যদি প্যারেন্টের ক্লাস বা আইডি কমেন্ট-রিলেটেড হয়, তাহলে তারও উপরে যাও
-    // (যাতে টেবিল কমেন্ট বক্সের বাইরে থাকে)
-    while (parent && parent.classList && 
-           (parent.classList.contains('cusdis') || 
-            parent.id === 'cusdis' || 
-            parent.className.includes('comment') ||
-            parent.className.includes('cusdis'))) {
-      parent = parent.parentNode;
-    }
-    
-    // প্যারেন্টের ভেতরে, Cusdis-এর আগে বসানো (কিন্তু প্যারেন্টের প্রথম সন্তান হিসেবে)
-    if (parent) {
-      parent.insertBefore(container, cusdis);
-    } else {
-      // যদি কোনো প্যারেন্ট না পাওয়া যায়, তাহলে ফুটারের আগে বসানো
-      const footer = document.querySelector('footer');
-      if (footer) {
-        footer.parentNode.insertBefore(container, footer);
-      } else {
-        document.body.appendChild(container);
-      }
-    }
-  } else {
-    // Cusdis না পাওয়া গেলে ফুটারের আগে বসানো (ব্যাকআপ)
-    const footer = document.querySelector('footer');
-    if (footer) {
-      footer.parentNode.insertBefore(container, footer);
-    } else {
-      document.body.appendChild(container);
-    }
-  }
+  // কন্টেইনার ক্লিয়ার করো (যদি আগে কিছু থাকে)
+  container.innerHTML = '';
 
-  // === ২. কন্টেইনার স্টাইল (স্বতন্ত্র বক্স) ===
-  container.style.cssText = `
-    max-width: 800px;
-    margin: 30px auto 25px auto;
-    padding: 20px 20px 10px 20px;
-    background: rgba(17,20,50,0.7);
-    border-radius: 16px;
-    border: 1px solid rgba(145,155,220,0.15);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    position: relative;
-    z-index: 5;
-    clear: both;
-  `;
-
-  // === ৩. শিরোনাম ===
+  // === ১. শিরোনাম ===
   const heading = document.createElement('h3');
   heading.textContent = '📚 অন্যান্য ব্লগ';
   heading.style.cssText = `
@@ -83,7 +33,7 @@ function renderBlogSeries() {
   `;
   container.appendChild(heading);
 
-  // === ৪. টেবিল ===
+  // === ২. টেবিল ===
   const table = document.createElement('table');
   table.style.cssText = `
     width: 100%;
@@ -126,9 +76,7 @@ function renderBlogSeries() {
     }
 
     const td = document.createElement('td');
-    td.style.cssText = `
-      padding: 10px 16px;
-    `;
+    td.style.cssText = `padding: 10px 16px;`;
 
     const link = document.createElement('a');
     link.href = item.link;
@@ -160,13 +108,18 @@ function renderBlogSeries() {
   table.appendChild(tbody);
   container.appendChild(table);
 
-  // === ৫. লাইট মোডের জন্য CSS (গাঢ় ব্যাকগ্রাউন্ড + কন্ট্রাস্ট) ===
+  // === ৩. লাইট মোডের CSS ===
   const style = document.createElement('style');
   style.textContent = `
-    /* ===== ডার্ক মোড ===== */
     #blog-series-table {
+      max-width: 800px;
+      margin: 30px auto 25px auto;
+      padding: 20px 20px 10px 20px;
       background: rgba(17,20,50,0.75) !important;
+      border-radius: 16px;
       border: 1px solid rgba(145,155,220,0.15) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      clear: both;
     }
     #blog-series-table a {
       color: #7c5cff !important;
@@ -194,14 +147,12 @@ function renderBlogSeries() {
       background: rgba(124,92,255,0.25) !important;
     }
 
-    /* ===== লাইট মোড (গাঢ় ব্যাকগ্রাউন্ড + হালকা লেখা) ===== */
     body.light #blog-series-table {
       background: rgba(25,30,60,0.92) !important;
       border: 1px solid rgba(124,92,255,0.25) !important;
     }
     body.light #blog-series-table a {
       color: #c8b8ff !important;
-      background: transparent !important;
     }
     body.light #blog-series-table a:hover {
       color: #e0d6ff !important;
@@ -227,7 +178,7 @@ function renderBlogSeries() {
   `;
   document.head.appendChild(style);
 
-  // === ৬. "সব পোস্ট দেখুন" বাটন (বাম পাশে) ===
+  // === ৪. "সব পোস্ট দেখুন" বাটন ===
   if (blogSeries.length > 5) {
     const buttonWrapper = document.createElement('div');
     buttonWrapper.style.cssText = `
@@ -272,5 +223,61 @@ function renderBlogSeries() {
   }
 }
 
-// ---------- পেজ লোড হলে রেন্ডার ----------
-document.addEventListener('DOMContentLoaded', renderBlogSeries);
+// ---------- Cusdis-এর আগে টেবিল বসানোর ফাংশন ----------
+function placeTableBeforeCusdis() {
+  const container = document.getElementById('blog-series-table');
+  const cusdis = document.getElementById('cusdis_thread');
+  
+  if (!container) return;
+  if (!cusdis) {
+    // Cusdis না পাওয়া গেলে ফুটারের আগে বসাও
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.parentNode.insertBefore(container, footer);
+    }
+    return;
+  }
+
+  // Cusdis-এর ঠিক আগে বসাও (একই স্তরে)
+  cusdis.parentNode.insertBefore(container, cusdis);
+}
+
+// ---------- মূল ফাংশন (Cusdis লোড হওয়া পর্যন্ত অপেক্ষা) ----------
+function initBlogSeries() {
+  // প্রথমে টেবিল তৈরি করো (কন্টেইনারে কন্টেন্ট যোগ করো)
+  createBlogSeriesTable();
+  
+  // Cusdis লোড হওয়া পর্যন্ত চেক করো (max ৫ সেকেন্ড)
+  let attempts = 0;
+  const maxAttempts = 20; // ৫ সেকেন্ড (প্রত্যেক ২৫০ms)
+  
+  const checkInterval = setInterval(() => {
+    attempts++;
+    const cusdis = document.getElementById('cusdis_thread');
+    
+    if (cusdis) {
+      // Cusdis পাওয়া গেলে টেবিল বসাও
+      placeTableBeforeCusdis();
+      clearInterval(checkInterval);
+      console.log('✅ টেবিল Cusdis-এর আগে বসানো হয়েছে');
+    } else if (attempts >= maxAttempts) {
+      // সময় শেষ – Cusdis পাওয়া যায়নি
+      clearInterval(checkInterval);
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.parentNode.insertBefore(
+          document.getElementById('blog-series-table'), 
+          footer
+        );
+      }
+      console.log('⚠️ Cusdis পাওয়া যায়নি, টেবিল ফুটারের আগে বসানো হয়েছে');
+    }
+  }, 250);
+}
+
+// ---------- পেজ লোড হলে শুরু করো ----------
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  initBlogSeries();
+} else {
+  document.addEventListener('DOMContentLoaded', initBlogSeries);
+}
