@@ -374,7 +374,7 @@ const projects = [
     title: "🧮 Super Calculator Tool",
     description: "All-in-1 calculator: Flower market, EMI, BMI, Age, length, weight, volume, temperature, Profit-Loss.",
     image: "images/super_calculator.jpg",
-    link: "super_calculator/super_calculator.html",
+    link: "super_calc/super_calculator.html",
     btnText: "Use Calculator →",
     tech: ["HTML", "CSS", "JS"]
   },
