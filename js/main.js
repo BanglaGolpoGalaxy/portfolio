@@ -383,7 +383,7 @@ const projects = [
     title: "🎯 Exam Guide India",
     description: "A free exam preparation platform designed to help Indian students and job aspirants with study materials, exam resources, important questions, and useful preparation content.",
     image: "images/exam_guide_india.jpg",
-    link: "exam-guide-india/index.html",
+    link: "https://exam-guide-india.onrender.com",
     btnText: "Visit Project →",
     tech: ["HTML", "CSS", "JS", "Education"]
   },
