@@ -449,7 +449,7 @@ const blogPosts = [
     link: "blog/termux_all_command.html"
   },
   {
-    title: "🏛️ আদিম বল সিরিজ (Aadim Vault Series)",
+    title: "🏛️ আদিম ভল্ট সিরিজ (Aadim Vault Series)",
     excerpt: "কীভাবে আমি একটি বিশ্বজনীন হেরিটেজ প্ল্যাটফর্ম তৈরি করলাম – আদিম ভল্ট। সম্পূর্ণ সিরিজটি বাংলায়।",
     readTime: "Series",
     languages: "🌐 বাংলা · English",
