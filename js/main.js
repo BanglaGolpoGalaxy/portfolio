@@ -454,7 +454,7 @@ const blogPosts = [
     readTime: "Series",
     languages: "🌐 বাংলা · English",
     image: "blog/images/aadim_vault_series.jpg",
-    link: "blog/aadim_vault_series.html"
+    link: "blog/aadim_vault_index.html"
   }
 ];
 
