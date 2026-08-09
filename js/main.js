@@ -336,7 +336,6 @@ skills.forEach(s => {
 // ============================================================
 
 // ---------- PROJECTS ----------
-// নতুন প্রজেক্ট যোগ করতে এখানে অবজেক্ট যোগ করুন (উদাহরণস্বরূপ দেখুন)
 const projects = [
   {
     title: "🏛️ Aadim Vault (আদিম ভল্ট)",
@@ -378,7 +377,6 @@ const projects = [
     btnText: "Use Calculator →",
     tech: ["HTML", "CSS", "JS"]
   },
-  // ----- NEW: Exam Guide India -----
   {
     title: "🎯 Exam Guide India",
     description: "A free exam preparation platform designed to help Indian students and job aspirants with study materials, exam resources, important questions, and useful preparation content.",
@@ -398,7 +396,6 @@ const projects = [
 ];
 
 // ---------- BLOG POSTS ----------
-// নতুন ব্লগ পোস্ট যোগ করতে এখানে অবজেক্ট যোগ করুন (উদাহরণস্বরূপ দেখুন)
 const blogPosts = [
   {
     title: "My Web Development Journey",
@@ -459,8 +456,10 @@ const blogPosts = [
 ];
 
 // ============================================================
-// CARD FUNCTIONS
+// CARD FUNCTIONS (UPDATED)
 // ============================================================
+
+// 🔹 PROJECT CARD – পুরো কার্ড এখন ক্লিকযোগ্য, একই ট্যাবে খোলে
 function createProjectCard(project) {
   const imageHTML = project.image && project.image.endsWith(".html")
     ? `<iframe src="${project.image}" style="width:100%; height:130px; border:none; overflow:hidden; border-radius:12px; margin-bottom:8px;" scrolling="no"></iframe>`
@@ -471,23 +470,24 @@ function createProjectCard(project) {
     : "";
 
   return `
-    <article class="project-card">
+    <a href="${project.link}" target="_self" class="project-card" style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
       ${imageHTML}
       <div class="project-content">
         <h3>${project.title}</h3>
         <p>${project.description}</p>
         <div class="project-tags">${techHTML}</div>
         <div class="project-links">
-          <a href="${project.link}" target="_blank" class="demo-link">${project.btnText}</a>
+          <span class="demo-link" style="display:inline-block; padding:6px 14px; border-radius:8px; font-size:10px; font-weight:600; background:var(--primary); color:#fff; transition:.2s;">${project.btnText}</span>
         </div>
       </div>
-    </article>
+    </a>
   `;
 }
 
+// 🔹 BLOG CARD – পুরো কার্ড ক্লিকযোগ্য, একই ট্যাবে খোলে (target="_self")
 function createBlogCard(post) {
   return `
-    <a href="${post.link}" target="_blank" class="blog-card" style="display:block; text-decoration:none; color:inherit;">
+    <a href="${post.link}" target="_self" class="blog-card" style="display:block; text-decoration:none; color:inherit;">
       <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.style.display='none'">
       <div class="blog-content">
         <h3>${post.title}</h3>
