@@ -452,7 +452,15 @@ const blogPosts = [
     languages: "🌐 বাংলা · English",
     image: "blog/images/aadim_vault_series.jpg",
     link: "blog/aadim_vault_index.html"
-  }
+  },
+  {
+  title: "MongoDB দিয়ে আপনার ওয়েবসাইটকে স্মার্ট করা",
+  excerpt: "MongoDB অ্যাকাউন্ট তৈরি, ক্লাস্টার সেটআপ, ইউজার তৈরি, নেটওয়ার্ক অ্যাক্সেস এবং Node.js প্রোজেক্টে সংযোগ – সম্পূর্ণ ফ্রি টিউটোরিয়াল।",
+  readTime: "20 min read",
+  languages: "🌐 বাংলা · English",
+  image: "blog/images/mongodb_tutorial_card.jpg",
+  link: "blog/mongodb-tutorial.html"
+}
 ];
 
 // ============================================================
