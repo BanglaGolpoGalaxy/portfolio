@@ -458,7 +458,7 @@ const blogPosts = [
   excerpt: "MongoDB অ্যাকাউন্ট তৈরি, ক্লাস্টার সেটআপ, ইউজার তৈরি, নেটওয়ার্ক অ্যাক্সেস এবং Node.js প্রোজেক্টে সংযোগ – সম্পূর্ণ ফ্রি টিউটোরিয়াল।",
   readTime: "20 min read",
   languages: "🌐 বাংলা · English",
-  image: "blog/images/mongodb_tutorial_card.jpg",
+  image: "blog/images/mongodb.jpg",
   link: "blog/mongodb-tutorial.html"
 }
 ];
